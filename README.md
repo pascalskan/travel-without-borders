@@ -46,11 +46,11 @@ inventory and version details.
 travel-without-borders/
 ├── 00_Backups/        # Full site backups (git-ignored, retained locally)
 ├── 01_Documentation/  # Project documentation
-├── 02_Assets/         # Source assets (logos, icons, images)
-├── 03_Development/     # Custom code (child theme, CSS, JS, PHP, notes)
+├── 02_Assets/         # Brand/media assets (logos, icons, images)
 ├── 04_Testing/        # Baseline & comparison screenshots, test evidence
 ├── 05_Deployment/     # Deployment, release, and rollback checklists
 ├── 06_References/     # Audit reports, client notes, vendor documentation
+├── 07_Source/         # Custom source: themes, CSS, JS, tracking, exports
 ├── CHANGELOG.md       # Keep a Changelog history
 ├── PROJECT_STATUS.md  # Project dashboard
 ├── CONTRIBUTING.md    # How to work in this repository

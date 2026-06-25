@@ -276,7 +276,7 @@ plugin.
 ## Version Control Recommendations
 
 - Bring the **child theme** (`functions.php`, `header.php`, stylesheets) under
-  version control in `03_Development/Child Theme/` so the one real code
+  version control in `07_Source/Themes/` so the one real code
   customisation (GTM) is tracked.
 - Consolidate hand-written CSS (Theme Options ~16 lines, Customizer 5 lines, the
   stray `.iconbox-heading-xs` rule) into a **single tracked child-theme
@@ -300,7 +300,7 @@ plugin.
 | -------- | ------ | ------ |
 | P1 | Export Quform entries (190), Yoast settings, Redirection rules, Slider Revolution modules | Protect live data before any work |
 | P1 | Document GTM/UA/GA4 IDs and the `header.php` injection | Prevent silent tracking loss |
-| P1 | Place the child theme under version control in `03_Development/` | Track the only real code customisation |
+| P1 | Place the child theme under version control in `07_Source/Themes/` | Track the only real code customisation |
 | P2 | Consolidate hand-written CSS into one tracked child-theme stylesheet | Maintainability |
 | P2 | Resolve Redirection "database pending upgrade" | Operational stability |
 | P2 | Review dual UA + GA4 with the client; plan UA retirement | Remove deprecated tracking |

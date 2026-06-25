@@ -33,8 +33,8 @@ flowchart TD
 
 ## 3. Develop
 
-- Implement changes in the **Ave child theme** or as custom CSS/JS/PHP under
-  `03_Development/`.
+- Implement changes in the **Ave child theme** or as custom CSS/JS under
+  `07_Source/`.
 - Never edit the parent theme or plugin files directly.
 - Follow the [Coding Standards](CODING_STANDARDS.md).
 

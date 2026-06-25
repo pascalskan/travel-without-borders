@@ -41,5 +41,7 @@ Central index of all documentation in this repository.
 
 | Location | Description |
 | -------- | ----------- |
+| [Source overview](../07_Source/README.md) | Repository philosophy; what is and isn't version controlled |
+| [Asset Register](../07_Source/Inventory/ASSET_REGISTER.md) | Custom assets: location, VC status, export status |
 | [Restore Notes](../00_Backups/2026-06-25_Pre-Development/RestoreNotes.md) | How to restore the baseline backup |
 | `06_References/` | Audit reports, client notes, vendor docs |

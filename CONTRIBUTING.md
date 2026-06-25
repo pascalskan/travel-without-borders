@@ -24,8 +24,8 @@ any change.
 | Content | Location |
 | ------- | -------- |
 | Documentation | `01_Documentation/` |
-| Source assets (logos, icons, images) | `02_Assets/` |
-| Custom code (child theme, CSS, JS, PHP) | `03_Development/` |
+| Brand/media assets (logos, icons, images) | `02_Assets/` |
+| Custom source (child theme, CSS, JS, tracking, exports) | `07_Source/` |
 | Test evidence / screenshots | `04_Testing/` |
 | Deployment & rollback docs | `05_Deployment/` |
 | Audits, client notes, vendor docs | `06_References/` |

@@ -7,7 +7,7 @@ environment, and easy for another developer to maintain.
 ## Golden Rules
 
 1. **Child theme only.** Never edit the parent Ave theme or any plugin. All
-   customisation goes in the Ave child theme or under `03_Development/`.
+   customisation goes in the Ave child theme or under `07_Source/`.
 2. **PHP 7.4 compatible.** The live host runs PHP 7.4.33. Do not use syntax or
    features newer than PHP 7.4.
 3. **No destructive changes without a backup.** See [Workflow](WORKFLOW.md).
@@ -23,20 +23,20 @@ environment, and easy for another developer to maintain.
 
 ## CSS
 
-- Keep custom CSS in dedicated child-theme stylesheets under `03_Development/CSS/`.
+- Keep custom CSS in dedicated child-theme stylesheets under `07_Source/CSS/`.
 - Prefer specific, well-scoped selectors over `!important`.
 - Group and comment rules by section/component.
 
 ## JavaScript
 
-- Keep custom scripts under `03_Development/JavaScript/`.
+- Keep custom scripts under `07_Source/JavaScript/`.
 - Enqueue properly with dependencies declared.
 - Avoid inline scripts; avoid global namespace pollution.
 
 ## Files & Naming
 
 - Use clear, descriptive file names.
-- Keep custom assets in `02_Assets/` and custom code in `03_Development/`.
+- Keep brand/media assets in `02_Assets/` and custom source in `07_Source/`.
 - One concern per file where practical.
 
 ## Documentation

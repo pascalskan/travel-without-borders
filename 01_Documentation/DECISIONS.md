@@ -26,7 +26,7 @@ See [Customisation Audit](CUSTOMISATION_AUDIT.md).
 GA4 `G-484B6GT6CW`) is hardcoded in the child theme's `header.php`, not managed by
 a plugin or theme option. A theme/template change would silently break tracking.
 
-**Decision:** Bring the child theme under version control in `03_Development/`,
+**Decision:** Bring the child theme under version control in `07_Source/Themes/`,
 document the tracking IDs in [TECH_STACK.md](TECH_STACK.md), and explicitly
 re-add GTM on any template change. Review retiring deprecated UA with the client.
 
@@ -55,7 +55,7 @@ and store it outside the live database.
 edits to the theme or plugins would be lost on update and risk the live site.
 
 **Decision:** All custom work is delivered through an Ave child theme (or
-`03_Development/`), and no change reaches production without a current, verified
+`07_Source/`), and no change reaches production without a current, verified
 backup.
 
 **Consequences:** Updates remain safe; recovery is always possible. Adds a

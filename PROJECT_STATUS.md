@@ -14,7 +14,7 @@ A living overview of progress on the Travel Without Borders redevelopment.
 | ----- | ----------- | ------ |
 | 0 | Discovery & Recovery | ✅ Complete |
 | 1 | Repository Housekeeping | 🟡 In progress |
-| 2 | Local Environment & Child Theme | ⬜ Not started |
+| 2 | Local Environment & Child Theme | 🟡 In progress |
 | 3 | Homepage Redesign | ⬜ Not started |
 | 4 | Testimonials Redesign | ⬜ Not started |
 | 5 | Optimisation (performance, mobile, a11y) | ⬜ Not started |
@@ -55,11 +55,21 @@ Legend: ✅ complete · 🟡 in progress · ⬜ not started
 
 ---
 
-## Phase 2 — Local Environment & Child Theme ⬜
+## Phase 2 — Local Environment & Child Theme 🟡
+
+### 2.1 Repository preparation for production assets ✅
+
+- [x] Create the `07_Source/` source structure (Themes, Plugins, CSS, JavaScript, Tracking, Exports, Inventory)
+- [x] Add a README to every source folder (what belongs / what does not)
+- [x] Create the [Asset Register](07_Source/Inventory/ASSET_REGISTER.md) from the customisation audit
+- [x] Retire `03_Development/`; make `07_Source/` the single home for custom code
+- [x] Repoint all documentation references to `07_Source/`
+
+### 2.2 Local environment & onboarding ⬜
 
 - [ ] Set up local WordPress environment
 - [ ] Mirror plugins and theme locally
-- [ ] Bring existing Ave Child theme under version control (`03_Development/`)
+- [ ] Bring existing Ave Child theme under version control (`07_Source/Themes/`)
 - [ ] Export migration-critical data (Quform entries, Yoast, Redirection, Slider Revolution)
 - [ ] Document GTM/UA/GA4 tracking and `header.php` injection
 - [ ] Verify local matches production

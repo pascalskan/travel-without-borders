@@ -24,7 +24,7 @@ Create a safe place to build.
 
 - Stand up a local WordPress mirror.
 - Replicate theme and plugins.
-- Bring the existing Ave Child theme under version control in `03_Development/`,
+- Bring the existing Ave Child theme under version control in `07_Source/`,
   and route all custom code through it.
 
 ## Phase 3 — Homepage Redesign ⬜
