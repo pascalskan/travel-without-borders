@@ -65,13 +65,22 @@ Legend: ✅ complete · 🟡 in progress · ⬜ not started
 - [x] Retire `03_Development/`; make `07_Source/` the single home for custom code
 - [x] Repoint all documentation references to `07_Source/`
 
-### 2.2 Local environment & onboarding ⬜
+### 2.2 Automated asset acquisition from backup ✅
+
+- [x] Search the entire extracted backup (themes, plugins, uploads, SQL, configs)
+- [x] Import the Ave Child theme to `07_Source/Themes/ave-child/` and review it
+- [x] Extract custom CSS (Theme Options + Customizer) to `07_Source/CSS/`
+- [x] Extract the GTM snippet to `07_Source/Tracking/`
+- [x] Extract the redirect rule(s) found in the SQL to `07_Source/Exports/Redirects/`
+- [x] Import brand logos and custom SVG icons to `02_Assets/`
+- [x] Inventory uploads/media and database data (see [Acquisition Report](07_Source/Inventory/ACQUISITION_REPORT.md))
+- [x] Update the [Asset Register](07_Source/Inventory/ASSET_REGISTER.md)
+
+### 2.3 Local environment & live-only data ⬜
 
 - [ ] Set up local WordPress environment
 - [ ] Mirror plugins and theme locally
-- [ ] Bring existing Ave Child theme under version control (`07_Source/Themes/`)
-- [ ] Export migration-critical data (Quform entries, Yoast, Redirection, Slider Revolution)
-- [ ] Document GTM/UA/GA4 tracking and `header.php` injection
+- [ ] **Re-export from live** (backup is incomplete): Quform entries, Slider Revolution modules, full Redirection set, Yoast config
 - [ ] Verify local matches production
 
 ---

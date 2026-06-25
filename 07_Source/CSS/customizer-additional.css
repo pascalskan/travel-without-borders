@@ -1,0 +1,17 @@
+/*
+ * Source:   Appearance → Customize → Additional CSS.
+ * Captured: from the 2026-06-25 SQL backup (custom_css post, option `ave`).
+ * Notes:    The `.hideMob` responsive utility identified in the Customisation
+ *           Audit. Authoritative copy is the WordPress Customizer (database);
+ *           this file is the version-controlled source for re-applying it.
+ */
+
+.hideMob {
+    display: none !important;
+}
+
+@media (max-width: 1100px) {
+    .hideMob {
+        display: block !important;
+    }
+}

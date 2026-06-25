@@ -320,11 +320,21 @@ The following could not be confirmed with the current level of access:
   level of access.*
 - **Origin of the `.iconbox-heading-xs h3` inline rule** — *Unable to verify with
   current level of access.*
-- **Template overrides in the child theme beyond `header.php`** — *Unable to
-  verify with current level of access.*
-- **Exact active plugin count** — inspection notes reference "19 active plugins"
-  while [TECH_STACK.md](TECH_STACK.md) lists 18. The plugin list should be
-  re-counted. *Unable to verify with current level of access.*
+- **Template overrides in the child theme beyond `header.php`** — ✅ *Resolved in
+  Phase 2:* the backup child theme contains only `functions.php`, `header.php`,
+  `style.css`, `screenshot.jpg`. `header.php` is the only override. See the
+  [Acquisition Report](../07_Source/Inventory/ACQUISITION_REPORT.md).
+- **Exact active plugin count** — ✅ *Clarified in Phase 2:* the backup `Plugins/`
+  folder holds **22 plugin directories**, including ones inactive at audit time
+  (Breeze, Flamingo, UpdraftPlus). This reconciles the "18 active vs 19"
+  ambiguity (more installed than active). Confirm the live active count when
+  convenient.
+
+> **Phase 2 backup discrepancy:** the live-admin figures above for **Quform
+> entries (190)** and **Slider Revolution modules (12)** are **not reflected in
+> the 2026-06-25 backup**, which holds only 1 of each, plus 1 redirect rule.
+> These exist only on the live site and must be re-exported — see the
+> [Acquisition Report](../07_Source/Inventory/ACQUISITION_REPORT.md).
 
 ---
 

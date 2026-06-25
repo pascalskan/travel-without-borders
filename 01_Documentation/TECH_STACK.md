@@ -42,10 +42,12 @@ recorded directly from the live site.
 
 ## Active Plugins (18 listed)
 
-> **Note:** the customisation inspection referenced "19 active plugins" while the
-> list below contains 18. The active plugin count should be re-verified. See
-> [Customisation Audit](CUSTOMISATION_AUDIT.md). All plugins are commercial or
-> theme-bundled — there are **no custom plugins**.
+> **Note:** the 18 below are the **active** plugins. The Phase 2 backup showed
+> **22 plugin directories installed**, including ones inactive at audit time
+> (Breeze, Flamingo, UpdraftPlus) — which explains the earlier "18 vs 19"
+> ambiguity (more installed than active). All are commercial or theme-bundled —
+> there are **no custom plugins**. See the
+> [Acquisition Report](../07_Source/Inventory/ACQUISITION_REPORT.md).
 
 | Plugin | Version |
 | ------ | ------- |

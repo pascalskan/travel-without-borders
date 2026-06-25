@@ -44,8 +44,11 @@ modules with no active licence key.
 **Decision:** Before deactivating or migrating any of these, export their data
 and store it outside the live database.
 
-**Consequences:** Protects live business data and SEO. See
-[Customisation Audit](CUSTOMISATION_AUDIT.md).
+**Consequences:** Protects live business data and SEO. Phase 2 confirmed this is
+essential: the 2026-06-25 backup holds only **1** Quform entry and **1** slider
+(not 190/12), so these must be exported from the **live** site, not recovered
+from the backup. See [Customisation Audit](CUSTOMISATION_AUDIT.md) and the
+[Acquisition Report](../07_Source/Inventory/ACQUISITION_REPORT.md).
 
 ---
 

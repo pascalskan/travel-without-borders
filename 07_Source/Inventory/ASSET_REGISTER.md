@@ -1,52 +1,58 @@
 # Asset Register
 
-Master inventory of the project's **custom assets** — what exists, where it lives
-on the live site, where it belongs in this repository, and whether it is yet
-version-controlled or exported.
+Master inventory of the project's **custom assets** — what exists, where it came
+from, whether it is now version-controlled, and its acquisition status.
 
-**Source:** [Customisation Audit](../../01_Documentation/CUSTOMISATION_AUDIT.md)
-**Last updated:** 2026-06-25
-**Status legend:** ✅ done · ⏳ pending · ➖ not applicable
+**Updated:** 2026-06-25 (after Phase 2 automated acquisition from the extracted backup)
+**Backup searched:** `00_Backups/2026-06-25_Pre-Development/`
+**Status legend:** ✅ acquired · 🟡 partial · ⏳ pending · ⛔ blocked (manual/live-only)
 
-> "Version Controlled" and "Exported" describe the **current** state. Most assets
-> are pending because Phase 2 brings them into the repository; this register is
-> the checklist for that work.
+## Columns
+
+`Asset` · `Location` (in repo, or live origin) · `Version Controlled` ·
+`Source` (where it was acquired from) · `Status` · `Notes`
 
 ## Custom code
 
-| Asset | Current Location | Repository Location | Version Controlled | Exported | Notes |
-| ----- | ---------------- | ------------------- | ------------------ | -------- | ----- |
-| Ave Child theme (`functions.php`, `header.php`, `style.css`) | Live site `wp-content/themes/ave-child/` | `07_Source/Themes/` | ⏳ | ➖ | Only substantive code customisation; `header.php` carries GTM |
-| GTM tracking snippet (`GTM-TCZM2CR`) | Hardcoded in child `header.php` | `07_Source/Tracking/` | ⏳ | ➖ | Not plugin-managed; must be re-applied on any template change |
-| Theme Options custom CSS (~16 lines) | Ave Theme Options (DB) | `07_Source/CSS/` | ⏳ | ⏳ | Targets `.main-nav`, `.fancy-box-tour`; consolidate into a tracked stylesheet |
-| Customizer Additional CSS (5 lines) | WordPress Customizer (DB) | `07_Source/CSS/` | ⏳ | ⏳ | `.hideMob` responsive utility |
-| Stray `.iconbox-heading-xs h3` rule | Origin unclear (inline) | `07_Source/CSS/` | ⏳ | ➖ | Identify origin before tracking — *unable to verify with current access* |
-| Custom JavaScript | None found | `07_Source/JavaScript/` | ➖ | ➖ | No custom JS exists; clean area for new work |
-| Custom plugins | None | `07_Source/Plugins/` | ➖ | ➖ | All active plugins are commercial/theme-bundled |
+| Asset | Location | Version Controlled | Source | Status | Notes |
+| ----- | -------- | ------------------ | ------ | ------ | ----- |
+| Ave Child theme | `07_Source/Themes/ave-child/` | ✅ | Backup `themes/ave-child/` | ✅ | 4 files; reviewed in [CHILD_THEME_REVIEW.md](../Themes/CHILD_THEME_REVIEW.md) |
+| GTM tracking snippet | `07_Source/Tracking/gtm-container.html` | ✅ | Backup `header.php` | ✅ | `GTM-TCZM2CR`; loads UA + GA4 |
+| Theme Options custom CSS | `07_Source/CSS/theme-options-custom.css` | ✅ | Compiled `liquid-css-global.css` | ✅ | `.main-nav`, `.fancy-box-tour`; DB is authoritative |
+| Customizer Additional CSS | `07_Source/CSS/customizer-additional.css` | ✅ | SQL (`custom_css` / `ave`) | ✅ | `.hideMob` utility |
+| Stray `.iconbox-heading-xs` rule | — | ❌ | Not located in backup | ⛔ | Origin still unverified; likely DB/page-level |
+| Custom JavaScript | `07_Source/JavaScript/` | ➖ | — | ➖ | None exists (confirmed) |
+| Custom plugins | `07_Source/Plugins/` | ➖ | — | ➖ | None exists (confirmed) |
 
-## Exported data (business-critical)
+## Exported / database data
 
-| Asset | Current Location | Repository Location | Version Controlled | Exported | Notes |
-| ----- | ---------------- | ------------------- | ------------------ | -------- | ----- |
-| Quform forms + 190 entries | Quform (DB) | `07_Source/Exports/Quform/` | ➖ (data) | ⏳ | Live enquiry/booking data — export before any change; contains personal data |
-| Slider Revolution — 12 modules | Slider Revolution (DB) | `07_Source/Exports/Slider-Revolution/` | ➖ (data) | ⏳ | No active licence key may limit export |
-| Yoast SEO per-page metadata | Yoast (DB) | `07_Source/Exports/Yoast/` | ➖ (data) | ⏳ | Use Yoast import/export to preserve rankings |
-| Redirection rules | Redirection (DB) | `07_Source/Exports/Redirects/` | ➖ (data) | ⏳ | DB pending upgrade; re-import before go-live |
+| Asset | Location | Version Controlled | Source | Status | Notes |
+| ----- | -------- | ------------------ | ------ | ------ | ----- |
+| Quform form definitions | Live DB / SQL `quform_forms` | ❌ | SQL (base64-serialized) | 🟡 | 2 forms present; serialized blob — re-export via Quform for a clean import |
+| Quform entries | Live DB | ❌ | SQL `quform_entries` | ⛔ | **Backup holds only 1 entry (2020), not the audited 190.** Personal data — must not be committed. Re-export from live |
+| Redirection rules | `07_Source/Exports/Redirects/redirects-from-backup.csv` | ✅ | SQL `redirection_items` | 🟡 | Only **1 rule** in backup; re-export live to confirm full set |
+| Slider Revolution modules | Live DB / SQL `revslider_sliders` | ❌ | SQL | ⛔ | Backup holds **1 slider (`homepage`), not the audited 12.** Export via plugin (no licence key may limit) |
+| Yoast SEO config/metadata | Live DB / SQL `yoast_*` | ❌ | SQL | ⏳ | Present in SQL; export via Yoast import/export tool for portability |
+| Theme Options (full) | Live DB / SQL option `ave` | 🟡 | SQL (serialized) | 🟡 | Serialized in backup; custom CSS portion extracted. Re-apply via Redux import |
+| WPBakery page content | Live DB / SQL `posts` | ❌ | SQL | ⏳ | 87 pages; export via WordPress WXR, not raw SQL |
 
-## Database-held configuration (not file-trackable)
+## Brand & design assets
 
-| Asset | Current Location | Repository Location | Version Controlled | Exported | Notes |
-| ----- | ---------------- | ------------------- | ------------------ | -------- | ----- |
-| Ave Theme Options (Redux) | Live site (DB) | ➖ | ➖ | ➖ | Captured by backup; backup is the system of record |
-| WPBakery page content (87 pages) | Live site (DB) | ➖ | ➖ | ➖ | Inline `vc_custom_*` styling lost on builder migration |
-| WPBakery inline/element CSS | Per-page (DB) | ➖ | ➖ | ➖ | Machine-generated; rebuilt per page, not trackable |
-| Menus / Widgets / Sidebars | Live site (DB) | ➖ | ➖ | ➖ | Captured by backup |
+| Asset | Location | Version Controlled | Source | Status | Notes |
+| ----- | -------- | ------------------ | ------ | ------ | ----- |
+| TWB logos (black/white, 160/280/337px) | `02_Assets/Logos/` | ✅ | `uploads/2020/01/` | ✅ | Originals only; WP thumbnails skipped |
+| Legacy logo (`logo@1x.png`) | `02_Assets/Logos/` | ✅ | `uploads/2018/06/` | ✅ | Older brand mark |
+| Travel Aware logo | `02_Assets/Logos/` | ✅ | `uploads/2018/08/` | ✅ | Partner/trust logo |
+| Custom UI icons (10 SVG) | `02_Assets/Icons/` | ✅ | `uploads/2018/06/` | ✅ | backpack, bus, mountain, phone, sofa, etc. |
+| Ave demo logos (SVG) | — | ➖ | `uploads/2018/11/` | ➖ | Vendor theme demo assets — intentionally skipped |
+| Custom fonts | — | ➖ | — | ➖ | None; Muli/Poppins load via Google Fonts |
+| Destination photography (~3,000 jpg) | Live `uploads/` | ➖ | Backup uploads | ➖ | Site content media — inventoried, not duplicated |
 
 ## Reference assets
 
-| Asset | Current Location | Repository Location | Version Controlled | Exported | Notes |
-| ----- | ---------------- | ------------------- | ------------------ | -------- | ----- |
-| Plugin inventory (18 listed; count to re-verify) | TECH_STACK / live admin | `01_Documentation/TECH_STACK.md` | ✅ | ➖ | Notes referenced "19 active"; re-count |
-| Baseline screenshots | Captured | `04_Testing/Baseline/` | ✅ | ➖ | Homepage baseline (7 images) |
-| Full UpdraftPlus backup | Local | `00_Backups/2026-06-25_Pre-Development/` | ➖ (ignored) | ✅ | Permanent recovery point; excluded from Git by design |
-| Brand/media assets (logos, icons, slideshow) | Live site uploads | `02_Assets/` | ⏳ | ➖ | Default/sticky/mobile logos uploaded in Theme Options |
+| Asset | Location | Version Controlled | Source | Status | Notes |
+| ----- | -------- | ------------------ | ------ | ------ | ----- |
+| Plugin inventory | `01_Documentation/TECH_STACK.md` | ✅ | Backup `Plugins/` (22 dirs) | ✅ | 22 installed (incl. inactive); 18 active per audit |
+| Baseline screenshots | `04_Testing/Baseline/` | ✅ | Phase 0 capture | ✅ | Homepage (7 images) |
+| Full UpdraftPlus backup | `00_Backups/2026-06-25_Pre-Development/` | ➖ (ignored) | UpdraftPlus | ✅ | Permanent recovery point; excluded from Git |
+| Cache configs (WP Rocket, Breeze) | Live `Others/` | ➖ | Backup | ➖ | Environment config; not project source |

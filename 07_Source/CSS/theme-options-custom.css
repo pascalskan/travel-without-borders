@@ -1,0 +1,29 @@
+/*
+ * Source:   Ave Theme Options → "CSS Code" field (Redux, stored in the database).
+ * Captured: from the 2026-06-25 backup, compiled into
+ *           uploads/liquid-styles/liquid-css-global.css.
+ * Notes:    This is the hand-written custom CSS identified in the Customisation
+ *           Audit (~16 lines targeting .main-nav and .fancy-box-tour). The
+ *           authoritative copy lives in the database (option name `ave`); this
+ *           file is the version-controlled source for re-applying it.
+ *           Re-enter it in Theme Options (or enqueue via the child theme) — do
+ *           not rely on the compiled liquid-styles output, which is generated.
+ */
+
+.main-nav .link-txt .txt {
+    font-weight: 700;
+}
+
+/* MAIN DESTINATION PAGES */
+
+.fancy-box-tour .fancy-box-footer {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4625em 20px;
+}
+
+.fancy-box-tour .fancy-box-contents {
+    padding: 0.75em 20px 0.75em;
+}
