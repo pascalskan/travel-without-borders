@@ -1,0 +1,10 @@
+# Normalise line endings: store text as LF in the repo, check out native per OS.
+* text=auto eol=lf
+
+# Binary assets — never apply line-ending conversion or text diffing.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.zip  binary
+*.gz   binary

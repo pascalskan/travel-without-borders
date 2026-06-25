@@ -11,12 +11,41 @@ recorded directly from the live site.
 | Component     | Detail                                   |
 | ------------- | ---------------------------------------- |
 | CMS           | WordPress 7.0                            |
-| Theme         | Ave (child theme) by Liquid Themes       |
+| Theme         | Ave (parent) + **Ave Child** v1.0 by Liquid Themes |
 | Theme add-ons | Ave Core v2.9.2, Ave Portfolio v1.0      |
-| Page builder  | WPBakery / Visual Composer               |
+| Page builder  | WPBakery / Visual Composer (all 87 pages) |
 | PHP           | 7.4.33                                   |
 
-## Active Plugins (18)
+## Theme
+
+- **Active theme:** Ave Child v1.0 (child of Ave). Used correctly; parent not
+  edited directly.
+- **Custom code:** Child `functions.php` is a standard stylesheet enqueue only.
+  Child `header.php` is a modified copy of the parent header with Google Tag
+  Manager hardcoded in. See [Customisation Audit](CUSTOMISATION_AUDIT.md).
+- **Configuration:** Typography (Body: Muli, Headings: Muli Bold, single post
+  title: Poppins), Wide layout at 1170px, plus extensive Ave Theme Options
+  (Redux Framework) — held in the database, not version-controlled.
+
+## Tracking & Analytics
+
+| Service | ID | Loaded via |
+| ------- | -- | ---------- |
+| Google Tag Manager | `GTM-TCZM2CR` | Hardcoded in child `header.php` |
+| Universal Analytics (deprecated) | `UA-135755883-1` | GTM |
+| Google Analytics 4 | `G-484B6GT6CW` | GTM |
+
+> Tracking is **not** managed via a plugin or the Ave `google_analytics` /
+> `space_head` / `space_body` fields (all empty). It must be migrated manually if
+> the theme/template changes, or tracking will break. See
+> [Customisation Audit](CUSTOMISATION_AUDIT.md).
+
+## Active Plugins (18 listed)
+
+> **Note:** the customisation inspection referenced "19 active plugins" while the
+> list below contains 18. The active plugin count should be re-verified. See
+> [Customisation Audit](CUSTOMISATION_AUDIT.md). All plugins are commercial or
+> theme-bundled — there are **no custom plugins**.
 
 | Plugin | Version |
 | ------ | ------- |
@@ -45,4 +74,9 @@ recorded directly from the live site.
   the host is upgraded. See [DECISIONS.md](DECISIONS.md).
 - Caching (WP Rocket) and image optimisation (Smush) are active — account for
   cache clearing during testing and deployment.
+- Several plugins are structurally load-bearing (Ave Core, Ave Portfolio, Slider
+  Revolution, Quform, WPBakery, Post SMTP, Redirection, Yoast SEO). See the
+  [Customisation Audit](CUSTOMISATION_AUDIT.md) for coupling and migration risk.
+- Quform holds **190 live enquiry/booking entries** — preserve before any
+  migration or deactivation.
 - This inventory should be re-verified before each major phase.

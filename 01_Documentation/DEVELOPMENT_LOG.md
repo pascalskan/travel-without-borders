@@ -21,5 +21,5 @@ progress see the [Project Status](../PROJECT_STATUS.md).
 **Next**
 
 - Set up local development environment
-- Create Ave child theme
+- Bring existing Ave Child theme under version control
 - Begin slideshow / homepage work

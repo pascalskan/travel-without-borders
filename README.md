@@ -57,19 +57,6 @@ travel-without-borders/
 └── README.md          # This file
 ```
 
-```mermaid
-graph TD
-    ROOT["travel-without-borders/"]
-    ROOT --> B["00_Backups/ — full backups, git-ignored"]
-    ROOT --> D["01_Documentation/ — project docs"]
-    ROOT --> A["02_Assets/ — logos, icons, images"]
-    ROOT --> DEV["03_Development/ — child theme, CSS, JS, PHP"]
-    ROOT --> T["04_Testing/ — baseline & comparison screenshots"]
-    ROOT --> DEP["05_Deployment/ — deploy, release, rollback"]
-    ROOT --> R["06_References/ — audits, client & vendor docs"]
-    ROOT --> RT["Root docs: README, CHANGELOG, PROJECT_STATUS, CONTRIBUTING"]
-```
-
 ## Workflow
 
 The project follows a strict, backup-first workflow for every change:
@@ -86,7 +73,7 @@ The full process is documented in [WORKFLOW.md](01_Documentation/WORKFLOW.md).
 
 **Phase 0 (Discovery & Recovery) complete. Development not yet started.**
 
-- ✅ Website, plugin, and mobile audits complete
+- ✅ Website, plugin, mobile, and customisation audits complete
 - ✅ GitHub repository created and structured
 - ✅ Baseline screenshots captured
 - ✅ Full UpdraftPlus backup created and verified
@@ -128,6 +115,7 @@ Key documents:
 | -------- | ------- |
 | [Project Overview](01_Documentation/PROJECT_OVERVIEW.md) | Goals, scope, and context |
 | [Tech Stack](01_Documentation/TECH_STACK.md) | Platform, plugins, versions |
+| [Customisation Audit](01_Documentation/CUSTOMISATION_AUDIT.md) | How the site is customised; risks & safe areas |
 | [Roadmap](01_Documentation/ROADMAP.md) | Planned phases and milestones |
 | [Workflow](01_Documentation/WORKFLOW.md) | Day-to-day development process |
 | [Coding Standards](01_Documentation/CODING_STANDARDS.md) | Code conventions |

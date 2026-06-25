@@ -29,9 +29,10 @@ Legend: ✅ complete · 🟡 in progress · ⬜ not started
 ### Discovery
 
 - [x] Website audit
-- [x] Plugin audit (18 active plugins)
+- [x] Plugin audit (~18–19 active — count to re-verify)
 - [x] Mobile audit
 - [x] Theme investigation
+- [x] Customisation audit (theme, plugins, WPBakery, CSS/JS/PHP, tracking)
 
 ### Recovery
 
@@ -48,6 +49,7 @@ Legend: ✅ complete · 🟡 in progress · ⬜ not started
 - [x] Standardise folder naming
 - [x] Rewrite README, CHANGELOG, PROJECT_STATUS
 - [x] Add core documentation (tech stack, workflow, standards, backup, roadmap, decisions)
+- [x] Add customisation audit
 - [x] Create documentation index
 - [ ] Final review and commit
 
@@ -57,7 +59,9 @@ Legend: ✅ complete · 🟡 in progress · ⬜ not started
 
 - [ ] Set up local WordPress environment
 - [ ] Mirror plugins and theme locally
-- [ ] Create Ave child theme
+- [ ] Bring existing Ave Child theme under version control (`03_Development/`)
+- [ ] Export migration-critical data (Quform entries, Yoast, Redirection, Slider Revolution)
+- [ ] Document GTM/UA/GA4 tracking and `header.php` injection
 - [ ] Verify local matches production
 
 ---

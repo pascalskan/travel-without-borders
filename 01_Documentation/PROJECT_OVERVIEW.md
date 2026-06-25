@@ -31,10 +31,11 @@ documentation-driven workflow that protects the live environment at every step.
 
 ## Context
 
-The site uses the Ave theme with the WPBakery page builder on PHP 7.4.33. A full
-audit (website, plugins, mobile, theme) was completed in Phase 0, along with a
-verified baseline backup. No development work has started yet. Full platform
-detail is in [TECH_STACK.md](TECH_STACK.md).
+The site uses the Ave theme with the WPBakery page builder on PHP 7.4.33. Full
+audits (website, plugins, mobile, theme, and customisation) were completed in
+Phase 0, along with a verified baseline backup. No development work has started
+yet. Full platform detail is in [TECH_STACK.md](TECH_STACK.md); how the site is
+customised is in [CUSTOMISATION_AUDIT.md](CUSTOMISATION_AUDIT.md).
 
 ## Related Documents
 

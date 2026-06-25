@@ -6,8 +6,9 @@ Central index of all documentation in this repository.
 
 | Document | Description |
 | -------- | ----------- |
-| [Project Overview](PROJECT_OVERVIEW.md) | Goals, scope, context, and stakeholders |
+| [Project Overview](PROJECT_OVERVIEW.md) | Goals, scope, and context |
 | [Tech Stack](TECH_STACK.md) | Platform, theme, plugins, and versions |
+| [Customisation Audit](CUSTOMISATION_AUDIT.md) | How the site is customised; technical debt, risks, safe areas |
 | [Roadmap](ROADMAP.md) | Planned phases and milestones |
 | [Decisions](DECISIONS.md) | Log of significant project decisions |
 

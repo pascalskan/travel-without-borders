@@ -7,7 +7,7 @@ tracked in the [Project Status](../PROJECT_STATUS.md) dashboard.
 
 Audit the site and establish a safe, recoverable baseline.
 
-- Website, plugin, mobile, and theme audits.
+- Website, plugin, mobile, theme, and customisation audits.
 - Baseline screenshots and verified full backup.
 - Repository created.
 
@@ -18,31 +18,32 @@ Turn the repository into a professional, well-documented project.
 - Standardise structure and naming.
 - Complete core documentation and index.
 
-## Phase 2 — Local Environment & Child Theme
+## Phase 2 — Local Environment & Child Theme ⬜
 
 Create a safe place to build.
 
 - Stand up a local WordPress mirror.
 - Replicate theme and plugins.
-- Create the Ave child theme for all custom code.
+- Bring the existing Ave Child theme under version control in `03_Development/`,
+  and route all custom code through it.
 
-## Phase 3 — Homepage Redesign
+## Phase 3 — Homepage Redesign ⬜
 
 - Define goals and design direction.
 - Implement via child theme / WPBakery.
 - Validate against baseline screenshots.
 
-## Phase 4 — Testimonials Redesign
+## Phase 4 — Testimonials Redesign ⬜
 
 - Define goals.
 - Implement and test.
 
-## Phase 5 — Optimisation
+## Phase 5 — Optimisation ⬜
 
 - Performance, mobile responsiveness, and accessibility.
 - Re-test against baselines.
 
-## Phase 6 — Deployment
+## Phase 6 — Deployment ⬜
 
 - Pre-deployment backup.
 - Follow the deployment checklist.

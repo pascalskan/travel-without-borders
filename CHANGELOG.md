@@ -36,9 +36,10 @@ development work.
 ### Completed
 
 - Website audit.
-- Plugin audit (18 active plugins inventoried).
+- Plugin audit (~18–19 active plugins inventoried; exact count to re-verify).
 - Mobile audit.
-- Theme investigation (Ave child theme, Ave Core v2.9.2, Ave Portfolio v1.0).
+- Theme investigation (Ave Child v1.0, Ave Core v2.9.2, Ave Portfolio v1.0).
+- Customisation audit (theme, plugins, WPBakery, CSS/JS/PHP, assets, tracking).
 
 [Unreleased]: #unreleased
 [Phase 0]: #phase-0--2026-06-25
