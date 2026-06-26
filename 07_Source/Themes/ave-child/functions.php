@@ -21,10 +21,21 @@ function twb_child_register_assets() {
 	$path = get_stylesheet_directory();
 
 	// Version assets by file modification time so edits always bust the cache.
+	$tokens   = $path . '/assets/css/twb-tokens.css';
 	$css      = $path . '/assets/css/hero-carousel.css';
 	$js       = $path . '/assets/js/hero-carousel.js';
+	$tokens_ver = file_exists( $tokens ) ? filemtime( $tokens ) : false;
 	$css_ver  = file_exists( $css ) ? filemtime( $css ) : false;
 	$js_ver   = file_exists( $js ) ? filemtime( $js ) : false;
+
+	// Shared design token layer. Registered here so component stylesheets can
+	// declare it as a dependency and enqueue it on demand. Populated in M2.
+	wp_register_style(
+		'twb-tokens',
+		$dir . '/assets/css/twb-tokens.css',
+		array(),
+		$tokens_ver
+	);
 
 	wp_register_style(
 		'twb-hero-carousel',
@@ -44,6 +55,10 @@ function twb_child_register_assets() {
 add_action( 'wp_enqueue_scripts', 'twb_child_register_assets' );
 
 /**
- * Load custom WPBakery elements added by the child theme.
+ * Load custom child-theme components.
+ *
+ * A single, deterministic loader (inc/loader.php) requires every component in
+ * explicit dependency order (see ADR-001 D9). New components are added in the
+ * loader, not here — functions.php stays thin.
  */
-require_once get_stylesheet_directory() . '/inc/hero-carousel.php';
+require_once get_stylesheet_directory() . '/inc/loader.php';

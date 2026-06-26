@@ -1,0 +1,11 @@
+/**
+ * TWB shared design token layer.
+ *
+ * Intentionally empty stub (Milestone 1).
+ *
+ * This file exists so the shared `twb-tokens` style handle can be registered
+ * now and depended on by future component stylesheets. The actual tokens
+ * (CSS custom properties: colour, type scale, spacing 8/16/24/32/48/64/80,
+ * radius, shadow, motion, container widths) and base utilities are added in
+ * Milestone 2 (Shared design foundation).
+ */
