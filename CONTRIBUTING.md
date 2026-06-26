@@ -11,9 +11,14 @@ any change.
    ([Backup Strategy](01_Documentation/BACKUP_STRATEGY.md)).
 3. Review the [Workflow](01_Documentation/WORKFLOW.md) and
    [Coding Standards](01_Documentation/CODING_STANDARDS.md).
+4. Review the [Local Development Workflow](01_Documentation/LOCAL_DEV_WORKFLOW.md)
+   — how the child theme is version-controlled and linked into LocalWP.
 
 ## Ground Rules
 
+- **Edit the child theme in the repo** at `07_Source/Themes/ave-child/`; LocalWP
+  runs it through a junction (see
+  [Local Development Workflow](01_Documentation/LOCAL_DEV_WORKFLOW.md)).
 - **Never edit the parent theme or plugins** — use the Ave child theme.
 - **Never commit backups** — `00_Backups/` is git-ignored by design.
 - **Keep custom code PHP 7.4-compatible.**

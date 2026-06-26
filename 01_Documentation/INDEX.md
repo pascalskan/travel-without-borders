@@ -17,6 +17,7 @@ Central index of all documentation in this repository.
 | Document | Description |
 | -------- | ----------- |
 | [Workflow](WORKFLOW.md) | Step-by-step development process |
+| [Local Development Workflow](LOCAL_DEV_WORKFLOW.md) | How the child theme is version-controlled and linked into LocalWP |
 | [Coding Standards](CODING_STANDARDS.md) | Code conventions for custom work |
 | [Backup Strategy](BACKUP_STRATEGY.md) | Backup, retention, and recovery policy |
 | [Contributing](../CONTRIBUTING.md) | How to work in this repository |

@@ -6,5 +6,39 @@ function liquid_parent_theme_scripts() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 }
 function liquid_child_theme_style(){
-    wp_enqueue_style( 'child-one-style', get_stylesheet_directory_uri() . '/style.css' );	
+    wp_enqueue_style( 'child-one-style', get_stylesheet_directory_uri() . '/style.css' );
 }
+
+/**
+ * Register child-theme assets for the TWB Hero Carousel.
+ *
+ * Assets are only *enqueued* on demand from the element's render callback, so
+ * they load solely on pages that actually use the hero. Flickity itself is
+ * provided (and registered) by the parent Ave theme.
+ */
+function twb_child_register_assets() {
+	$theme   = wp_get_theme();
+	$version = $theme->get( 'Version' );
+	$dir     = get_stylesheet_directory_uri();
+
+	wp_register_style(
+		'twb-hero-carousel',
+		$dir . '/assets/css/hero-carousel.css',
+		array( 'flickity' ),
+		$version
+	);
+
+	wp_register_script(
+		'twb-hero-carousel',
+		$dir . '/assets/js/hero-carousel.js',
+		array( 'flickity', 'flickity-fade' ),
+		$version,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'twb_child_register_assets' );
+
+/**
+ * Load custom WPBakery elements added by the child theme.
+ */
+require_once get_stylesheet_directory() . '/inc/hero-carousel.php';

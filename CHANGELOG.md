@@ -8,6 +8,17 @@ entries are grouped by project phase and dated.
 
 ## [Unreleased]
 
+### Changed
+
+- **Established the source-controlled local development workflow.** The Ave
+  child theme is now version-controlled in the repo at
+  `07_Source/Themes/ave-child/`, and LocalWP consumes it through a Windows
+  directory junction. Synced the previously out-of-Git development code
+  (hero carousel: `inc/`, `assets/`) into the repo, added
+  `scripts/link-child-theme.ps1` to (re)create the junction, and documented the
+  workflow in `01_Documentation/LOCAL_DEV_WORKFLOW.md`. The live site, database,
+  plugins, and parent theme were not touched.
+
 ### Planned
 
 - Set up local development environment.

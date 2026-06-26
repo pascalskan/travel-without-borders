@@ -1,0 +1,243 @@
+/* ==========================================================================
+   TWB Hero Carousel
+   Native Ave / WPBakery hero built on Flickity. Full-width image carousel with
+   the title + description shown BELOW the image, only for the active slide.
+
+   Palette (Travel Without Borders):
+     --twb-green  #1e5630   --twb-yellow #fed700   white #ffffff
+   ========================================================================== */
+
+.twb-hero {
+	/* Fills its container. Place inside a WPBakery row set to
+	   "Stretch row and content (no paddings)" for an edge-to-edge hero;
+	   this stays scrollbar-safe (no 100vw overflow). */
+	--twb-green: #1e5630;
+	--twb-green-dark: #16401f;
+	--twb-yellow: #fed700;
+	/* Primary visual: tall, premium hero. Desktop ~550–650px. */
+	--twb-img-h: clamp(550px, 60vh, 650px);
+	--twb-arrow-inset: clamp(20px, 4vw, 56px);
+	width: 100%;
+	margin: 0;
+}
+
+/* Hide the un-initialised markup until Flickity is ready to avoid a flash of
+   stacked slides and the resulting layout shift. */
+.twb-hero__carousel:not(.flickity-enabled) .twb-hero__cell {
+	display: none;
+}
+.twb-hero__carousel:not(.flickity-enabled) .twb-hero__cell:first-child {
+	display: block;
+}
+
+/* Each cell is the full width of the carousel. */
+.twb-hero__cell {
+	width: 100%;
+}
+
+/* --- Image -------------------------------------------------------------- */
+.twb-hero__media {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: var(--twb-img-h); /* reserve height up-front to avoid layout shift */
+	overflow: hidden;
+}
+
+.twb-hero__img,
+.twb-hero__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center center; /* consistent focal point for any photo */
+}
+
+/* Clickable slide affordance. */
+a.twb-hero__media {
+	cursor: pointer;
+}
+a.twb-hero__media .twb-hero__img {
+	transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+a.twb-hero__media:hover .twb-hero__img,
+a.twb-hero__media:focus-visible .twb-hero__img {
+	transform: scale(1.03);
+}
+a.twb-hero__media:focus-visible {
+	outline: 4px solid var(--twb-yellow);
+	outline-offset: -4px;
+}
+
+/* --- Caption (below image, active slide only) --------------------------- */
+.twb-hero__caption {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 820px;
+	margin: 0 auto;
+	/* Generous, balanced breathing room: image ↓ title ↓ description. */
+	padding: 48px 24px 8px;
+	text-align: center;
+	/* Only the selected cell reveals its caption (subtle, ~300ms fade). */
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(6px);
+	transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+		transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+		visibility 0s linear 0.3s;
+}
+
+.twb-hero__cell.is-selected .twb-hero__caption {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s,
+		transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s,
+		visibility 0s;
+}
+
+.twb-hero__title {
+	margin: 0 0 0.55em;
+	font-size: clamp(26px, 3vw, 36px);
+	line-height: 1.2;
+	letter-spacing: 0.005em;
+	color: var(--twb-green);
+}
+
+.twb-hero__desc {
+	margin: 0 auto;
+	max-width: 660px;
+	font-size: clamp(15px, 1.4vw, 18px);
+	line-height: 1.7;
+	color: #555;
+}
+
+/* --- Flickity arrows ---------------------------------------------------- */
+/* White circular buttons => high contrast on any image. Self-contained
+   positioning so they do not depend on the parent theme's button styles. */
+.twb-hero .flickity-prev-next-button {
+	position: absolute;
+	width: 54px;
+	height: 54px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: #ffffff;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+	z-index: 10;
+	cursor: pointer;
+	/* Centre on the IMAGE (half its height), not the image+caption cell. */
+	top: calc(var(--twb-img-h) / 2);
+	transform: translateY(-50%);
+	transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+		box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+		transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.twb-hero .flickity-prev-next-button .flickity-button-icon,
+.twb-hero .flickity-prev-next-button svg .arrow {
+	fill: var(--twb-green);
+	transition: fill 0.2s ease;
+}
+/* Shrink Flickity's default oversized icon to a neat chevron. */
+.twb-hero .flickity-prev-next-button .flickity-button-icon {
+	left: 28%;
+	top: 28%;
+	width: 44%;
+	height: 44%;
+}
+.twb-hero .flickity-prev-next-button:hover {
+	background: var(--twb-green);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.36);
+	transform: translateY(-50%) scale(1.08);
+}
+.twb-hero .flickity-prev-next-button:hover .flickity-button-icon,
+.twb-hero .flickity-prev-next-button:hover svg .arrow {
+	fill: var(--twb-yellow);
+}
+.twb-hero .flickity-prev-next-button:focus-visible {
+	outline: 3px solid var(--twb-yellow);
+	outline-offset: 3px;
+	box-shadow: 0 0 0 3px var(--twb-green-dark), 0 6px 18px rgba(0, 0, 0, 0.36);
+}
+.twb-hero .flickity-prev-next-button:disabled {
+	opacity: 0; /* not applicable with wrapAround, but safe */
+}
+.twb-hero .flickity-prev-next-button.previous {
+	left: var(--twb-arrow-inset);
+}
+.twb-hero .flickity-prev-next-button.next {
+	right: var(--twb-arrow-inset);
+}
+
+/* --- Flickity pagination dots ------------------------------------------- */
+.twb-hero .flickity-page-dots {
+	position: relative;
+	bottom: auto;
+	margin-top: 26px;
+	line-height: 1;
+}
+.twb-hero .flickity-page-dots .dot {
+	width: 11px;
+	height: 11px;
+	margin: 0 6px;
+	background: #c4c9c4;
+	opacity: 1;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+.twb-hero .flickity-page-dots .dot.is-selected {
+	background: var(--twb-green);
+	transform: scale(1.15);
+}
+.twb-hero .flickity-page-dots .dot:focus-visible {
+	outline: 3px solid var(--twb-yellow);
+	outline-offset: 2px;
+}
+
+/* --- Tablet ------------------------------------------------------------- */
+@media (max-width: 1024px) {
+	.twb-hero {
+		--twb-img-h: clamp(420px, 52vh, 500px);
+		--twb-arrow-inset: clamp(16px, 3vw, 40px);
+	}
+	.twb-hero__caption {
+		padding-top: 40px;
+	}
+}
+
+/* --- Mobile ------------------------------------------------------------- */
+@media (max-width: 767px) {
+	.twb-hero {
+		--twb-img-h: clamp(260px, 40vh, 340px);
+		--twb-arrow-inset: 14px;
+	}
+	.twb-hero__caption {
+		padding: 32px 18px 6px;
+	}
+	.twb-hero__title {
+		margin-bottom: 0.45em;
+	}
+	/* Larger, easier touch targets while keeping the buttons clear of edges. */
+	.twb-hero .flickity-prev-next-button {
+		width: 44px;
+		height: 44px;
+		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+	}
+	.twb-hero .flickity-page-dots {
+		margin-top: 18px;
+	}
+	.twb-hero .flickity-page-dots .dot {
+		width: 9px;
+		height: 9px;
+		margin: 0 5px;
+	}
+}
+
+/* --- Reduced motion ----------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+	.twb-hero__caption,
+	.twb-hero__img,
+	.twb-hero .flickity-prev-next-button {
+		transition: none;
+	}
+}
