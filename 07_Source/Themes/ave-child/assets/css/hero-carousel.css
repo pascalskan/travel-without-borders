@@ -139,12 +139,16 @@ a.twb-hero__media:focus-visible {
 	fill: var(--twb-green);
 	transition: fill 0.2s ease;
 }
-/* Shrink Flickity's default oversized icon to a neat chevron. */
+/* Centre the chevron inside the circle. Forced absolute + translate because the
+   parent theme resets the icon to position:relative, which otherwise pushes the
+   chevron into the corner (looks like a stray second indicator). */
 .twb-hero .flickity-prev-next-button .flickity-button-icon {
-	left: 28%;
-	top: 28%;
-	width: 44%;
-	height: 44%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 38%;
+	height: 38%;
+	transform: translate(-50%, -50%);
 }
 .twb-hero .flickity-prev-next-button:hover {
 	background: var(--twb-green);

@@ -17,22 +17,27 @@ function liquid_child_theme_style(){
  * provided (and registered) by the parent Ave theme.
  */
 function twb_child_register_assets() {
-	$theme   = wp_get_theme();
-	$version = $theme->get( 'Version' );
-	$dir     = get_stylesheet_directory_uri();
+	$dir  = get_stylesheet_directory_uri();
+	$path = get_stylesheet_directory();
+
+	// Version assets by file modification time so edits always bust the cache.
+	$css      = $path . '/assets/css/hero-carousel.css';
+	$js       = $path . '/assets/js/hero-carousel.js';
+	$css_ver  = file_exists( $css ) ? filemtime( $css ) : false;
+	$js_ver   = file_exists( $js ) ? filemtime( $js ) : false;
 
 	wp_register_style(
 		'twb-hero-carousel',
 		$dir . '/assets/css/hero-carousel.css',
 		array( 'flickity' ),
-		$version
+		$css_ver
 	);
 
 	wp_register_script(
 		'twb-hero-carousel',
 		$dir . '/assets/js/hero-carousel.js',
 		array( 'flickity', 'flickity-fade' ),
-		$version,
+		$js_ver,
 		true
 	);
 }
