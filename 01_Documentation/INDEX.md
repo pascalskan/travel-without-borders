@@ -23,6 +23,13 @@ Central index of all documentation in this repository.
 | -------- | ----------- |
 | [ADR-001 — Testimonials Architecture](Architecture/ADR-001-Testimonials-Architecture.md) | Why CPT, shared taxonomies, WPBakery elements, Flickity reuse, `filemtime`, shared renderer, contextual queries, and the loader — with rejected alternatives |
 
+## Implemented Features
+
+| Document | Description |
+| -------- | ----------- |
+| [Homepage Hero Carousel](HERO_CAROUSEL.md) | The `twb_hero_carousel` slideshow: config, files, and key gotchas (e.g. why `flickity-fade` is dequeued and slide mode is used) |
+| [Testimonials Component](TESTIMONIALS.md) | The `twb_testimonials` carousel: WPBakery params, files, behaviour, and why CPT migration is recorded as a future enhancement |
+
 ## Process
 
 | Document | Description |

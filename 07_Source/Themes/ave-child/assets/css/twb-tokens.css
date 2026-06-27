@@ -1,11 +1,115 @@
-/**
- * TWB shared design token layer.
- *
- * Intentionally empty stub (Milestone 1).
- *
- * This file exists so the shared `twb-tokens` style handle can be registered
- * now and depended on by future component stylesheets. The actual tokens
- * (CSS custom properties: colour, type scale, spacing 8/16/24/32/48/64/80,
- * radius, shadow, motion, container widths) and base utilities are added in
- * Milestone 2 (Shared design foundation).
- */
+/* ==========================================================================
+   TWB Shared Design Token Layer
+   The single source of truth for brand colour, typography, spacing, radius,
+   shadow, motion and container widths. Every TWB component references these
+   `var(--twb-*)` tokens instead of hard-coding repeatable values.
+
+   Values mirror the Design System Audit (§0). Custom properties are declared on
+   :root (declaration only — they paint nothing on their own); usable styling is
+   delivered exclusively through `.twb-*` classes so nothing bleeds into the
+   parent Ave theme.
+   ========================================================================== */
+
+:root {
+	/* --- Brand palette --------------------------------------------------- */
+	--twb-green: #1e5630;        /* primary */
+	--twb-green-dark: #16401f;   /* button/arrow hover depth */
+	--twb-navy: #032c42;         /* headings / card titles */
+	--twb-yellow: #fed700;       /* accent / focus ring / stars */
+	--twb-sage: #789964;         /* sub-headings, secondary badges */
+	--twb-olive-dark: #4f6640;   /* button hover */
+
+	/* --- Text ------------------------------------------------------------ */
+	--twb-text: #273744;         /* body copy */
+	--twb-text-muted: #797b86;   /* secondary / meta */
+	--twb-text-faint: #a7a9b8;   /* faint meta */
+	--twb-text-grey: #555555;    /* hero-style descriptions */
+
+	/* --- Surfaces & lines ------------------------------------------------ */
+	--twb-white: #ffffff;
+	--twb-surface: #f7f7f7;      /* alt section background */
+	--twb-border: #e0e0e0;       /* hairline */
+	--twb-dot: #c4c9c4;          /* carousel inactive dot */
+
+	/* --- Typography ------------------------------------------------------ */
+	/* Muli is loaded by the parent theme; inherit it rather than re-import. */
+	--twb-font: 'Muli', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	--twb-fs-meta: 14px;
+	--twb-fs-body: 16px;
+	--twb-fs-quote: 18px;
+	--twb-fs-title: 20px;
+	--twb-lh-body: 1.8;
+	--twb-lh-quote: 1.7;
+	--twb-lh-heading: 1.2;
+
+	/* --- Spacing scale (8-based: 8/16/24/32/48/64/80, +4 for fine tuning) -- */
+	--twb-space-4: 4px;
+	--twb-space-8: 8px;
+	--twb-space-16: 16px;
+	--twb-space-24: 24px;
+	--twb-space-32: 32px;
+	--twb-space-48: 48px;
+	--twb-space-64: 64px;
+	--twb-space-80: 80px;
+
+	/* --- Radius ---------------------------------------------------------- */
+	--twb-radius-0: 0;           /* default: square card language */
+	--twb-radius-sm: 4px;
+	--twb-radius-pill: 800px;
+
+	/* --- Elevation ------------------------------------------------------- */
+	--twb-shadow-ambient: 0 1px 3px rgba(0, 0, 0, 0.05);
+	--twb-shadow-card-hover: 0 10px 30px rgba(0, 0, 0, 0.15);
+	--twb-shadow-control: 0 4px 14px rgba(0, 0, 0, 0.28);
+
+	/* --- Motion ---------------------------------------------------------- */
+	--twb-ease: cubic-bezier(0.4, 0, 0.2, 1);          /* hero caption/arrow language */
+	--twb-ease-spring: cubic-bezier(0.32, 0.98, 0.37, 1); /* Ave card lift */
+	--twb-dur-fast: 0.2s;
+	--twb-dur: 0.3s;
+	--twb-dur-card: 0.45s;
+
+	/* --- Layout ---------------------------------------------------------- */
+	--twb-container: 1170px;     /* boxed content width */
+}
+
+/* --------------------------------------------------------------------------
+   Minimal base utilities — scoped to `.twb-*` only, never bare elements, so
+   they cannot affect the parent theme. Components opt in by adding a class.
+   -------------------------------------------------------------------------- */
+
+/* Boxed container. */
+.twb-container {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: var(--twb-container);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: var(--twb-space-16);
+	padding-right: var(--twb-space-16);
+}
+
+/* Section background helpers. */
+.twb-bg-white { background-color: var(--twb-white); }
+.twb-bg-surface { background-color: var(--twb-surface); }
+
+/* Section vertical rhythm (follows the site's 70–80px section padding). */
+.twb-section { padding-top: var(--twb-space-80); padding-bottom: var(--twb-space-80); }
+
+@media (max-width: 767px) {
+	.twb-section { padding-top: var(--twb-space-48); padding-bottom: var(--twb-space-48); }
+}
+
+/* Visually-hidden text for accessible labels (e.g. rating text equivalent). */
+.twb-visually-hidden {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}

@@ -185,11 +185,10 @@ function twb_hero_carousel_render( $atts, $content = null ) {
 	}
 
 	// Assets are bundled with the parent Ave theme and registered there; we only
-	// need to request them so they are printed for this page. flickity-fade
-	// provides the elegant cross-fade transition.
+	// need to request them so they are printed for this page. (flickity-fade is
+	// dequeued in functions.php so Flickity's reliable slide transition works.)
 	wp_enqueue_style( 'flickity' );
 	wp_enqueue_script( 'flickity' );
-	wp_enqueue_script( 'flickity-fade' );
 	wp_enqueue_style( 'twb-hero-carousel' );
 	wp_enqueue_script( 'twb-hero-carousel' );
 
@@ -206,7 +205,6 @@ function twb_hero_carousel_render( $atts, $content = null ) {
 		'prevNextButtons'      => true,   // Previous / next arrows.
 		'draggable'            => true,   // Manual navigation.
 		'pauseAutoPlayOnHover' => true,   // Pause on interaction.
-		'fade'                 => true,   // Elegant cross-fade (flickity-fade).
 		'cellAlign'            => 'center',
 		'imagesLoaded'         => true,
 		'adaptiveHeight'       => true,

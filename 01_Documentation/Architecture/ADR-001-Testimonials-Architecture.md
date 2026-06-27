@@ -9,7 +9,7 @@
 
 | | |
 | --- | --- |
-| **Status** | Accepted (pre-implementation) |
+| **Status** | Superseded for the current implementation. The production implementation uses a reusable WPBakery component (see [Testimonials Component](../TESTIMONIALS.md)). The CPT architecture (D3/D4) remains the preferred future enhancement if centralised testimonial management becomes necessary. |
 | **Date** | 2026-06-26 |
 | **Context** | Building the first fully-architected reusable component for the TWB child theme. Testimonials is the **canonical template** for all future components (FAQs, Guides, CTA/Trust Bands, Holiday Types, Featured Destinations, Offers, Customer Stories). |
 | **Drivers** | Reuse, maintainability, client-editability, scalability to hundreds of records, accessibility & performance to the hero standard, and the established LocalWP + junction + Git workflow. |

@@ -8,15 +8,19 @@
    ========================================================================== */
 
 .twb-hero {
-	/* Fills its container. Place inside a WPBakery row set to
-	   "Stretch row and content (no paddings)" for an edge-to-edge hero;
-	   this stays scrollbar-safe (no 100vw overflow). */
+	/* Fills its container, so the layout follows the WPBakery row it sits in:
+	   a normal (boxed) row → content-width hero; a "Stretch row and content
+	   (no paddings)" row → edge-to-edge hero. Both are scrollbar-safe. */
 	--twb-green: #1e5630;
 	--twb-green-dark: #16401f;
 	--twb-yellow: #fed700;
 	/* Primary visual: tall, premium hero. Desktop ~550–650px. */
+	/* Primary visual: tall, premium hero. */
 	--twb-img-h: clamp(550px, 60vh, 650px);
-	--twb-arrow-inset: clamp(20px, 4vw, 56px);
+	/* Reserved side gutters: the image is kept within these, and the arrows sit
+	   in them — so the arrows are always on the sides, never over any image. */
+	--twb-gutter: 84px;
+	--twb-arrow-inset: 15px;
 	width: 100%;
 	margin: 0;
 }
@@ -39,9 +43,17 @@
 .twb-hero__media {
 	position: relative;
 	display: block;
+	box-sizing: border-box;
 	width: 100%;
 	height: var(--twb-img-h); /* reserve height up-front to avoid layout shift */
+	/* Keep every image inside the reserved side gutters so the arrows (which sit
+	   in the gutters) never overlap a picture. */
+	padding: 0 var(--twb-gutter);
 	overflow: hidden;
+	/* `contain` leaves margins around off-ratio images; fill them with the hero
+	   band colour so they blend in. Match this to the WPBakery row background
+	   the hero sits in. */
+	background-color: #f7f7f7;
 }
 
 .twb-hero__img,
@@ -49,8 +61,11 @@
 	display: block;
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
-	object-position: center center; /* consistent focal point for any photo */
+	/* `contain` shows the WHOLE image (never cropped); each image is a different
+	   width, and the arrows track its edges via JS (see hero-carousel.js). The
+	   unused space blends into the grey hero band. */
+	object-fit: contain;
+	object-position: center center;
 }
 
 /* Clickable slide affordance. */
@@ -202,7 +217,8 @@ a.twb-hero__media:focus-visible {
 @media (max-width: 1024px) {
 	.twb-hero {
 		--twb-img-h: clamp(420px, 52vh, 500px);
-		--twb-arrow-inset: clamp(16px, 3vw, 40px);
+		--twb-gutter: 66px;
+		--twb-arrow-inset: 10px;
 	}
 	.twb-hero__caption {
 		padding-top: 40px;
@@ -213,7 +229,8 @@ a.twb-hero__media:focus-visible {
 @media (max-width: 767px) {
 	.twb-hero {
 		--twb-img-h: clamp(260px, 40vh, 340px);
-		--twb-arrow-inset: 14px;
+		--twb-gutter: 52px;
+		--twb-arrow-inset: 5px;
 	}
 	.twb-hero__caption {
 		padding: 32px 18px 6px;

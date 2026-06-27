@@ -1,40 +1,45 @@
 /* global Flickity */
 /**
- * TWB Hero Carousel initialiser.
+ * TWB Testimonials initialiser.
  *
- * Reuses Ave's bundled Flickity. Each `.twb-hero` is initialised exactly once;
- * options come from the element's `data-twb-hero` attribute (set server-side).
+ * Reuses Ave's bundled Flickity. Each `.twb-testimonials` is initialised exactly
+ * once; options come from the carousel's `data-twb-testimonials` attribute (set
+ * server-side). Honours prefers-reduced-motion by disabling autoplay and the
+ * crossfade.
  */
 ( function () {
 	'use strict';
 
 	var DEFAULTS = {
-		autoPlay: 5000,
+		autoPlay: 6000,
 		wrapAround: true,
 		pageDots: true,
 		prevNextButtons: true,
 		draggable: true,
 		pauseAutoPlayOnHover: true,
 		cellAlign: 'center',
-		imagesLoaded: true,
 		adaptiveHeight: true,
 		accessibility: true /* tab focus + left/right arrow-key navigation */
 	};
 
-	function initHero( el ) {
+	function prefersReducedMotion() {
+		return window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
+	}
+
+	function initOne( el ) {
 		// Guard: never initialise the same element twice.
-		if ( ! el || el.dataset.twbHeroInit === 'true' ) {
+		if ( ! el || el.dataset.twbTestimonialsInit === 'true' ) {
 			return;
 		}
 
-		var carousel = el.querySelector( '.twb-hero__carousel' );
+		var carousel = el.querySelector( '.twb-testimonials__carousel' );
 		if ( ! carousel || typeof Flickity === 'undefined' ) {
 			return;
 		}
 
-		// Already a Flickity instance? (e.g. another script) – do not duplicate.
+		// Already a Flickity instance? – do not duplicate.
 		if ( Flickity.data( carousel ) ) {
-			el.dataset.twbHeroInit = 'true';
+			el.dataset.twbTestimonialsInit = 'true';
 			return;
 		}
 
@@ -47,7 +52,7 @@
 		}
 
 		try {
-			var custom = JSON.parse( el.getAttribute( 'data-twb-hero' ) || '{}' );
+			var custom = JSON.parse( carousel.getAttribute( 'data-twb-testimonials' ) || '{}' );
 			for ( key in custom ) {
 				if ( Object.prototype.hasOwnProperty.call( custom, key ) ) {
 					options[ key ] = custom[ key ];
@@ -57,16 +62,21 @@
 			/* Fall back to defaults on malformed JSON. */
 		}
 
-		el.dataset.twbHeroInit = 'true';
+		// Respect reduced-motion: disable autoplay.
+		if ( prefersReducedMotion() ) {
+			options.autoPlay = false;
+		}
+
+		el.dataset.twbTestimonialsInit = 'true';
 		/* eslint-disable no-new */
 		new Flickity( carousel, options );
 		/* eslint-enable no-new */
 	}
 
 	function initAll() {
-		var heroes = document.querySelectorAll( '.twb-hero' );
-		for ( var i = 0; i < heroes.length; i++ ) {
-			initHero( heroes[ i ] );
+		var nodes = document.querySelectorAll( '.twb-testimonials' );
+		for ( var i = 0; i < nodes.length; i++ ) {
+			initOne( nodes[ i ] );
 		}
 	}
 

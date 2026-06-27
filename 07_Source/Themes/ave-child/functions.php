@@ -47,12 +47,26 @@ function twb_child_register_assets() {
 	wp_register_script(
 		'twb-hero-carousel',
 		$dir . '/assets/js/hero-carousel.js',
-		array( 'flickity', 'flickity-fade' ),
+		array( 'flickity' ),
 		$js_ver,
 		true
 	);
 }
 add_action( 'wp_enqueue_scripts', 'twb_child_register_assets' );
+
+/**
+ * Remove the flickity-fade plugin on the front end.
+ *
+ * Ave loads flickity-fade site-wide, but it patches Flickity's cell positioning
+ * globally — which makes the hero's slide transition unreliable (slides desync /
+ * stick mid-fade). None of Ave's own carousels use fade, so dequeuing it is safe
+ * and lets the hero use Flickity's standard, reliable slide transition.
+ */
+function twb_remove_flickity_fade() {
+	wp_dequeue_script( 'flickity-fade' );
+	wp_deregister_script( 'flickity-fade' );
+}
+add_action( 'wp_enqueue_scripts', 'twb_remove_flickity_fade', 100 );
 
 /**
  * Load custom child-theme components.

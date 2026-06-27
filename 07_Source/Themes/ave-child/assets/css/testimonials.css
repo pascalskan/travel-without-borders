@@ -1,0 +1,256 @@
+/* ==========================================================================
+   TWB Testimonials
+   A premium testimonials carousel built on Flickity, reusing the hero's
+   interaction language (white circular arrows, brand dots, yellow focus ring,
+   restrained crossfade). All values come from the shared token layer
+   (twb-tokens.css); nothing repeatable is hard-coded.
+   ========================================================================== */
+
+.twb-testimonials {
+	font-family: var(--twb-font);
+	color: var(--twb-text);
+	--twb-arrow-inset: clamp(0px, 2vw, 24px);
+}
+
+/* --- Section header ------------------------------------------------------ */
+.twb-testimonials__header {
+	max-width: 760px;
+	margin: 0 auto var(--twb-space-48);
+	text-align: center;
+}
+
+.twb-testimonials__eyebrow {
+	margin: 0 0 var(--twb-space-8);
+	font-size: var(--twb-fs-meta);
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--twb-sage);
+}
+
+.twb-testimonials__heading {
+	margin: 0;
+	font-size: clamp(26px, 3vw, 36px);
+	line-height: var(--twb-lh-heading);
+	color: var(--twb-green);
+}
+
+/* --- Carousel scaffolding ------------------------------------------------ */
+/* Hide un-initialised markup to avoid a flash of stacked cards (no CLS). */
+.twb-testimonials__carousel:not(.flickity-enabled) .twb-testimonials__cell {
+	display: none;
+}
+.twb-testimonials__carousel:not(.flickity-enabled) .twb-testimonials__cell:first-child {
+	display: block;
+}
+
+.twb-testimonials__cell {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 760px;
+	padding: 0 var(--twb-space-8);
+}
+
+/* --- Card --------------------------------------------------------------- */
+.twb-testimonial-card {
+	box-sizing: border-box;
+	height: 100%;
+	margin: var(--twb-space-8) auto;
+	padding: var(--twb-space-32);
+	background: var(--twb-white);
+	border: 1px solid var(--twb-border);
+	border-radius: var(--twb-radius-0); /* square card language */
+	box-shadow: var(--twb-shadow-ambient);
+	transition: box-shadow var(--twb-dur-card) var(--twb-ease-spring);
+	text-align: left;
+}
+.twb-testimonial-card:hover {
+	box-shadow: var(--twb-shadow-card-hover);
+}
+
+.twb-testimonial-card__top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--twb-space-16);
+	min-height: 24px;
+	margin-bottom: var(--twb-space-16);
+}
+
+/* Badges. */
+.twb-testimonial-card__badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--twb-space-8);
+}
+.twb-testimonial-card__badge {
+	display: inline-block;
+	padding: 4px 10px;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	border-radius: var(--twb-radius-pill);
+	color: var(--twb-white);
+}
+.twb-testimonial-card__badge--region { background: var(--twb-green); }
+.twb-testimonial-card__badge--trip { background: var(--twb-sage); }
+
+/* Star rating. */
+.twb-testimonial-card__rating {
+	flex: none;
+	font-size: 16px;
+	line-height: 1;
+	letter-spacing: 2px;
+	color: var(--twb-border);
+	white-space: nowrap;
+}
+.twb-testimonial-card__star.is-on { color: var(--twb-yellow); }
+
+/* Quote. */
+.twb-testimonial-card__quote {
+	margin: 0 0 var(--twb-space-24);
+	padding: 0;
+	border: 0;
+	quotes: none;
+}
+.twb-testimonial-card__quote p {
+	margin: 0;
+	font-size: var(--twb-fs-quote);
+	line-height: var(--twb-lh-quote);
+	color: var(--twb-text);
+}
+
+/* Attribution. */
+.twb-testimonial-card__caption {
+	display: flex;
+	align-items: center;
+	gap: var(--twb-space-16);
+}
+.twb-testimonial-card__avatar {
+	flex: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: var(--twb-green);
+	color: var(--twb-white);
+	font-size: var(--twb-fs-title);
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.twb-testimonial-card__attribution {
+	display: flex;
+	flex-direction: column;
+}
+.twb-testimonial-card__name {
+	font-size: var(--twb-fs-body);
+	font-weight: 700;
+	font-style: normal;
+	color: var(--twb-navy);
+}
+.twb-testimonial-card__meta {
+	font-size: var(--twb-fs-meta);
+	color: var(--twb-text-muted);
+}
+
+/* --- Flickity arrows (hero interaction language) ------------------------- */
+.twb-testimonials .flickity-prev-next-button {
+	position: absolute;
+	top: 50%;
+	width: 48px;
+	height: 48px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--twb-white);
+	box-shadow: var(--twb-shadow-control);
+	z-index: 10;
+	cursor: pointer;
+	transform: translateY(-50%);
+	transition: background var(--twb-dur-fast) var(--twb-ease),
+		box-shadow var(--twb-dur-fast) var(--twb-ease),
+		transform var(--twb-dur-fast) var(--twb-ease);
+}
+.twb-testimonials .flickity-prev-next-button.previous { left: var(--twb-arrow-inset); }
+.twb-testimonials .flickity-prev-next-button.next { right: var(--twb-arrow-inset); }
+.twb-testimonials .flickity-prev-next-button .flickity-button-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 36%;
+	height: 36%;
+	transform: translate(-50%, -50%);
+	fill: var(--twb-green);
+	transition: fill var(--twb-dur-fast) ease;
+}
+.twb-testimonials .flickity-prev-next-button:hover {
+	background: var(--twb-green);
+	transform: translateY(-50%) scale(1.08);
+}
+.twb-testimonials .flickity-prev-next-button:hover .flickity-button-icon {
+	fill: var(--twb-yellow);
+}
+.twb-testimonials .flickity-prev-next-button:focus-visible {
+	outline: 3px solid var(--twb-yellow);
+	outline-offset: 3px;
+}
+
+/* --- Flickity dots ------------------------------------------------------- */
+.twb-testimonials .flickity-page-dots {
+	position: relative;
+	bottom: auto;
+	margin-top: var(--twb-space-24);
+	line-height: 1;
+}
+.twb-testimonials .flickity-page-dots .dot {
+	width: 11px;
+	height: 11px;
+	margin: 0 6px;
+	background: var(--twb-dot);
+	opacity: 1;
+	transition: background var(--twb-dur-fast) ease, transform var(--twb-dur-fast) ease;
+}
+.twb-testimonials .flickity-page-dots .dot.is-selected {
+	background: var(--twb-green);
+	transform: scale(1.15);
+}
+.twb-testimonials .flickity-page-dots .dot:focus-visible {
+	outline: 3px solid var(--twb-yellow);
+	outline-offset: 2px;
+}
+
+/* --- Carousel focus ring (keyboard arrow-key nav) ----------------------- */
+.twb-testimonials__carousel:focus-visible {
+	outline: 3px solid var(--twb-yellow);
+	outline-offset: 4px;
+}
+
+/* --- Tablet -------------------------------------------------------------- */
+@media (max-width: 1024px) {
+	.twb-testimonials { --twb-arrow-inset: 0px; }
+}
+
+/* --- Mobile -------------------------------------------------------------- */
+@media (max-width: 767px) {
+	.twb-testimonial-card { padding: var(--twb-space-24); }
+	.twb-testimonial-card__quote p { font-size: var(--twb-fs-body); }
+	/* 44px minimum touch targets, kept clear of the card edges. */
+	.twb-testimonials .flickity-prev-next-button {
+		width: 44px;
+		height: 44px;
+	}
+	.twb-testimonials__header { margin-bottom: var(--twb-space-32); }
+}
+
+/* --- Reduced motion ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+	.twb-testimonial-card,
+	.twb-testimonials .flickity-prev-next-button,
+	.twb-testimonials .flickity-page-dots .dot {
+		transition: none;
+	}
+}
