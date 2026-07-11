@@ -10,6 +10,15 @@ entries are grouped by project phase and dated.
 
 ### Added
 
+- **Dedicated Testimonials page (`/testimonials/`).** Assembled from reusable
+  components (no bespoke CSS/JS/PHP): a new **`[twb_page_hero]`** inner-page hero
+  (panel + image; see [Page Hero](01_Documentation/PAGE_HERO.md)); the
+  **testimonials element extended with a `layout` param** (carousel | grid — grid
+  loads no JavaScript); and shared `twb-tokens` utilities (`.twb-bg-green`,
+  `.twb-prose`, `.twb-btn`). The homepage keeps a curated carousel; the page shows
+  the full collection as a grid and ends with an enquiry CTA. See
+  [Testimonials Component](01_Documentation/TESTIMONIALS.md).
+
 - **Testimonials system (reusable WPBakery component).** Introduced a
   `[twb_testimonials]` carousel element in the Ave child theme, following the
   hero-carousel pattern (Ave's bundled Flickity reused — no new library;

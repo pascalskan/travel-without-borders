@@ -6,6 +6,41 @@ progress see the [Project Status](../PROJECT_STATUS.md).
 
 ---
 
+## 2026-07-12 (later) — Dedicated Testimonials page (Milestone 4)
+
+Built on a new branch `feature/testimonials-page` (off `main`, which now contains
+the merged homepage work).
+
+**Completed**
+
+- **Grid layout for `[twb_testimonials]`.** Added a `layout` param
+  (`carousel` | `grid`) to the existing element — same file, same card renderer,
+  same CSS (no duplication). Grid is a static responsive grid (3 → 2 → 1) that
+  loads **no Flickity/JS**. Grid CSS added to `testimonials.css`.
+- **New `[twb_page_hero]` element** (`inc/page-hero.php`, `assets/css/page-hero.css`):
+  a reusable inner-page hero — green text panel (H1 + intro) beside a cover image,
+  stacks on mobile; eager LCP image; token-based; no JS. Registered via the loader.
+  See [Page Hero](PAGE_HERO.md).
+- **Shared utilities** added to `twb-tokens.css`: `.twb-bg-green` (green band),
+  `.twb-prose` (centred copy), `.twb-btn` (gold pill CTA button) — used by the
+  page's intro and CTA rows.
+- **Assembled `/testimonials/`** (local DB): page hero → intro → featured carousel
+  → full 9-card grid → green CTA band (button → `/contact/`). Nine placeholder
+  testimonials, each with a German destination photo linking to its destination
+  page.
+- **Verified** with Playwright at 1440 / 768 / 390: single H1; featured carousel
+  (Flickity, keyboard) and grid (3/2/1) render; grid images lazy-load; CTA →
+  `/contact/`; **homepage testimonials unchanged** (carousel, 4 cards) and its CTA
+  now navigates to `/testimonials/`; no horizontal scroll; 0 console errors; no PHP
+  warnings; PHP 7.4 lint clean.
+
+**Not yet done**
+
+- Real testimonial content + photos (deferred, as agreed).
+- Optional: add the Testimonials page to the primary navigation (local menu).
+
+---
+
 ## 2026-07-12
 
 **Completed — Testimonials system (Milestones 1–3)**

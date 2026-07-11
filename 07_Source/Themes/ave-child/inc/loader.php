@@ -39,5 +39,8 @@ $twb_inc = get_stylesheet_directory() . '/inc/';
 // Existing component — unchanged.
 require_once $twb_inc . 'hero-carousel.php';
 
-// Testimonials — reusable WPBakery carousel element (own CSS/JS, on-demand).
+// Testimonials — reusable WPBakery carousel/grid element (own CSS/JS, on-demand).
 require_once $twb_inc . 'testimonials.php';
+
+// Page hero — reusable inner-page hero element (own CSS, on-demand).
+require_once $twb_inc . 'page-hero.php';

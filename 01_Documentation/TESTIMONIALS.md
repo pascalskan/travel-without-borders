@@ -43,7 +43,8 @@ migration to a CPT can reuse the same card renderer and CSS/JS unchanged.
 
 | Aspect | Setting / behaviour |
 | ------ | ------------------- |
-| Transition | **Slide** (Flickity default). *Not* fade — `flickity-fade` is dequeued site-wide (see [Hero Carousel](HERO_CAROUSEL.md) Gotcha 1). Do **not** add `fade: true`. |
+| Layout | **Carousel** (default) or **Grid**. Grid is a static responsive grid (3 → 2 → 1 columns) that loads **no JavaScript/Flickity** — used on the dedicated page for the full collection. Both layouts share the same card renderer and CSS. |
+| Transition | (Carousel) **Slide** (Flickity default). *Not* fade — `flickity-fade` is dequeued site-wide (see [Hero Carousel](HERO_CAROUSEL.md) Gotcha 1). Do **not** add `fade: true`. |
 | Autoplay | Optional (element param), default 6000 ms; pauses on hover/interaction; **disabled automatically under `prefers-reduced-motion`** |
 | Loop | Infinite (`wrapAround`) |
 | Controls | Prev/next arrows (white circles, hero interaction language) + pagination dots; keyboard arrows; draggable |
@@ -63,6 +64,7 @@ migration to a CPT can reuse the same card renderer and CSS/JS unchanged.
 In WPBakery, add the **TWB Testimonials** element (under the **Travel Without
 Borders** category):
 
+- **Layout** — Carousel (default) or Grid.
 - **Eyebrow** — small label above the heading (optional).
 - **Heading** — section H2 (optional).
 - **Testimonials** (repeater) — per item: **Quote** (required), Author name,
@@ -96,6 +98,23 @@ relevant destination page (e.g. Bavaria → `/destinations/holidays-to-bavaria/`
   `_twb_homepage_pre_testimonials_backup` on page 30 (restore point).
 - The testimonial **content is element params** (local), entered in the builder;
   the **code** (element, renderer, assets) deploys with the theme.
+
+### Dedicated page (`/testimonials/`, local content)
+
+The dedicated page (the homepage CTA target) is assembled in WPBakery from
+reusable components — no bespoke CSS/JS/PHP:
+
+1. **[twb_page_hero]** — heading + intro in a brand panel beside an image
+   (see [Page Hero](PAGE_HERO.md)).
+2. **Introduction** — a centred `.twb-prose` text row.
+3. **Featured** — `[twb_testimonials layout="carousel"]` (curated three).
+4. **Full grid** — `[twb_testimonials layout="grid"]` (the complete collection).
+5. **CTA band** — a `.twb-section.twb-bg-green` row with a `.twb-btn` linking to
+   `/contact/`.
+
+The homepage continues to show only a curated **carousel** selection; the
+dedicated page shows the **complete collection** as a grid. Page content is local
+DB (not version-controlled); only the component code deploys with the theme.
 
 ---
 

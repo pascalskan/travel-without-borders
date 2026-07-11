@@ -28,7 +28,8 @@ Central index of all documentation in this repository.
 | Document | Description |
 | -------- | ----------- |
 | [Homepage Hero Carousel](HERO_CAROUSEL.md) | The `twb_hero_carousel` slideshow: config, files, and key gotchas (e.g. why `flickity-fade` is dequeued and slide mode is used) |
-| [Testimonials Component](TESTIMONIALS.md) | The `twb_testimonials` carousel: WPBakery params, files, behaviour, and why CPT migration is recorded as a future enhancement |
+| [Testimonials Component](TESTIMONIALS.md) | The `twb_testimonials` carousel/grid: WPBakery params, files, behaviour, the dedicated page, and why CPT migration is recorded as a future enhancement |
+| [Page Hero Component](PAGE_HERO.md) | The `twb_page_hero` inner-page hero: panel + image, params, and behaviour |
 
 ## Process
 

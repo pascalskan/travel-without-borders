@@ -135,6 +135,47 @@ a.twb-testimonial-card__media:focus-visible {
 	outline-offset: -3px;
 }
 
+/* --- Grid layout (static; no Flickity, no JS) --------------------------- */
+.twb-testimonials__grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--twb-space-32);
+}
+.twb-testimonials__grid-item {
+	display: flex; /* stretch the card to equal row height */
+}
+.twb-testimonials__grid .twb-testimonial-card {
+	width: 100%;
+	margin: 0;
+}
+/* Grid cards are narrow, so images always sit on top (never side-by-side). */
+.twb-testimonials--grid .twb-testimonial-card--has-media {
+	flex-direction: column;
+	gap: 0;
+	padding: 0;
+}
+.twb-testimonials--grid .twb-testimonial-card--has-media .twb-testimonial-card__media {
+	flex-basis: auto;
+	max-width: none;
+	width: 100%;
+}
+.twb-testimonials--grid .twb-testimonial-card__img {
+	height: 200px;
+	min-height: 0;
+}
+
+@media (max-width: 991px) {
+	.twb-testimonials__grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--twb-space-24);
+	}
+}
+@media (max-width: 767px) {
+	.twb-testimonials__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
 .twb-testimonial-card__top {
 	display: flex;
 	align-items: center;

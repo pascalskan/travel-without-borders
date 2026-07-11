@@ -183,11 +183,26 @@ function twb_testimonials_vc_map() {
 					),
 				),
 				array(
-					'type'       => 'checkbox',
-					'heading'    => __( 'Auto-rotate', 'ave' ),
-					'param_name' => 'autoplay',
-					'value'      => array( __( 'Enable automatic rotation', 'ave' ) => 'yes' ),
-					'std'        => 'yes',
+					'type'        => 'dropdown',
+					'heading'     => __( 'Layout', 'ave' ),
+					'param_name'  => 'layout',
+					'value'       => array(
+						__( 'Carousel', 'ave' ) => 'carousel',
+						__( 'Grid', 'ave' )     => 'grid',
+					),
+					'std'         => 'carousel',
+					'description' => __( 'Carousel (one at a time, needs JS) or a static responsive grid (all at once).', 'ave' ),
+				),
+				array(
+					'type'        => 'checkbox',
+					'heading'     => __( 'Auto-rotate', 'ave' ),
+					'param_name'  => 'autoplay',
+					'value'       => array( __( 'Enable automatic rotation', 'ave' ) => 'yes' ),
+					'std'         => 'yes',
+					'dependency'  => array(
+						'element' => 'layout',
+						'value'   => array( 'carousel' ),
+					),
 				),
 				array(
 					'type'        => 'textfield',
@@ -195,7 +210,7 @@ function twb_testimonials_vc_map() {
 					'param_name'  => 'autoplay_speed',
 					'value'       => '6000',
 					'dependency'  => array(
-						'element'   => 'autoplay',
+						'element' => 'autoplay',
 						'not_empty' => true,
 					),
 					'description' => __( 'Time each testimonial is shown, in milliseconds. Default 6000 (6s).', 'ave' ),
@@ -439,6 +454,7 @@ function twb_testimonials_render_card( $item, $opts ) {
 function twb_testimonials_render( $atts, $content = null ) {
 	$atts = shortcode_atts(
 		array(
+			'layout'         => 'carousel',
 			'eyebrow'        => '',
 			'heading'        => '',
 			'items'          => '',
@@ -487,11 +503,16 @@ function twb_testimonials_render( $atts, $content = null ) {
 		return '';
 	}
 
-	// Request the on-demand assets (registered above + bundled by Ave).
-	wp_enqueue_style( 'flickity' );
-	wp_enqueue_script( 'flickity' );
+	$is_grid = ( 'grid' === $atts['layout'] );
+
+	// Component styles always; the carousel JS + Flickity only in carousel mode
+	// (the grid is static markup and needs no JavaScript).
 	wp_enqueue_style( 'twb-testimonials' );
-	wp_enqueue_script( 'twb-testimonials' );
+	if ( ! $is_grid ) {
+		wp_enqueue_style( 'flickity' );
+		wp_enqueue_script( 'flickity' );
+		wp_enqueue_script( 'twb-testimonials' );
+	}
 
 	$autoplay = ( 'yes' === $atts['autoplay'] );
 	$speed    = absint( $atts['autoplay_speed'] );
@@ -533,7 +554,7 @@ function twb_testimonials_render( $atts, $content = null ) {
 
 	ob_start();
 	?>
-	<section class="twb-testimonials twb-section <?php echo esc_attr( $bg_class ); ?><?php echo $any_media ? ' twb-testimonials--has-media' : ''; ?>">
+	<section class="twb-testimonials twb-section <?php echo esc_attr( $bg_class ); ?><?php echo $any_media ? ' twb-testimonials--has-media' : ''; ?><?php echo $is_grid ? ' twb-testimonials--grid' : ''; ?>">
 		<div class="twb-container">
 			<?php if ( '' !== $atts['eyebrow'] || '' !== $atts['heading'] ) : ?>
 				<header class="twb-testimonials__header">
@@ -546,19 +567,29 @@ function twb_testimonials_render( $atts, $content = null ) {
 				</header>
 			<?php endif; ?>
 
-			<?php
-			// Accessible name for the focusable carousel (tabindex is added by
-			// Flickity). Uses the heading when present so a screen-reader user
-			// tabbing onto the scroller hears what it is.
-			$carousel_label = ( '' !== $atts['heading'] ) ? $atts['heading'] : __( 'Testimonials', 'ave' );
-			?>
-			<div class="twb-testimonials__carousel" aria-label="<?php echo esc_attr( $carousel_label ); ?>" aria-roledescription="carousel" data-twb-testimonials="<?php echo esc_attr( wp_json_encode( $options ) ); ?>">
-				<?php foreach ( $cards as $card ) : ?>
-					<div class="twb-testimonials__cell">
-						<?php echo $card; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
-					</div>
-				<?php endforeach; ?>
-			</div>
+			<?php if ( $is_grid ) : ?>
+				<div class="twb-testimonials__grid">
+					<?php foreach ( $cards as $card ) : ?>
+						<div class="twb-testimonials__grid-item">
+							<?php echo $card; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php else : ?>
+				<?php
+				// Accessible name for the focusable carousel (tabindex is added by
+				// Flickity). Uses the heading when present so a screen-reader user
+				// tabbing onto the scroller hears what it is.
+				$carousel_label = ( '' !== $atts['heading'] ) ? $atts['heading'] : __( 'Testimonials', 'ave' );
+				?>
+				<div class="twb-testimonials__carousel" aria-label="<?php echo esc_attr( $carousel_label ); ?>" aria-roledescription="carousel" data-twb-testimonials="<?php echo esc_attr( wp_json_encode( $options ) ); ?>">
+					<?php foreach ( $cards as $card ) : ?>
+						<div class="twb-testimonials__cell">
+							<?php echo $card; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
 
 			<?php if ( '' !== $cta_text ) : ?>
 				<div class="twb-testimonials__cta-wrap">
