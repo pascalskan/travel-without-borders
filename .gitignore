@@ -39,6 +39,16 @@ Desktop.ini
 *.temp
 
 # -----------------------------------------------------------------------------
+# Verification / tooling artifacts (root-level only)
+# -----------------------------------------------------------------------------
+
+# Playwright MCP session snapshots
+/.playwright-mcp/
+# Ad-hoc screenshots saved to the repo root during QA.
+# Anchored to the repo root, so assets in 02_Assets/ and 04_Testing/ are safe.
+/*.png
+
+# -----------------------------------------------------------------------------
 # Node
 # -----------------------------------------------------------------------------
 

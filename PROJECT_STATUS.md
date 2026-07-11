@@ -2,9 +2,9 @@
 
 A living overview of progress on the Travel Without Borders redevelopment.
 
-**Last updated:** 2026-06-25
-**Current phase:** Phase 0 — Discovery & Recovery (complete)
-**Development started:** No
+**Last updated:** 2026-07-12
+**Current phase:** Phase 4 — Testimonials (in progress)
+**Development started:** Yes
 
 ---
 
@@ -15,8 +15,8 @@ A living overview of progress on the Travel Without Borders redevelopment.
 | 0 | Discovery & Recovery | ✅ Complete |
 | 1 | Repository Housekeeping | 🟡 In progress |
 | 2 | Local Environment & Child Theme | 🟡 In progress |
-| 3 | Homepage Redesign | ⬜ Not started |
-| 4 | Testimonials Redesign | ⬜ Not started |
+| 3 | Homepage Redesign | 🟡 In progress |
+| 4 | Testimonials Redesign | 🟡 In progress |
 | 5 | Optimisation (performance, mobile, a11y) | ⬜ Not started |
 | 6 | Deployment | ⬜ Not started |
 
@@ -94,12 +94,22 @@ Legend: ✅ complete · 🟡 in progress · ⬜ not started
 
 ---
 
-## Phase 4 — Testimonials Redesign ⬜
+## Phase 4 — Testimonials Redesign 🟡
 
-- [ ] Define design goals
-- [ ] Implement
-- [ ] Test
+Built as a reusable WPBakery component (see
+[Testimonials Component](01_Documentation/TESTIMONIALS.md)). Content is stored as
+element params; the CPT is a documented future enhancement
+([ADR-001](01_Documentation/Architecture/ADR-001-Testimonials-Architecture.md)).
+
+- [x] M1 — Loader infrastructure (`inc/loader.php`) + shared token layer
+- [x] M2 — Reusable `[twb_testimonials]` carousel component (a11y + perf to hero standard)
+- [x] M3 — Homepage integration (full-bleed band + CTA → `/testimonials/`), polish, optional linked destination images
+- [ ] Dedicated `/testimonials/` page
+- [ ] Real testimonial content + photos
 - [ ] Client review
+
+> Verified locally (Playwright, 1440/768/390): hero unchanged, no horizontal
+> scroll, 0 console errors, no PHP warnings. Not yet committed.
 
 ---
 
