@@ -164,6 +164,22 @@ function twb_testimonials_vc_map() {
 							'param_name'  => 'travel_date',
 							'description' => __( 'Free text, e.g. "May 2024".', 'ave' ),
 						),
+						array(
+							'type'        => 'attach_image',
+							'heading'     => __( 'Destination image', 'ave' ),
+							'param_name'  => 'image',
+							'description' => __( 'Optional photo of the destination shown to the left of the quote. Leave blank for a text-only card.', 'ave' ),
+						),
+						array(
+							'type'        => 'vc_link',
+							'heading'     => __( 'Destination link', 'ave' ),
+							'param_name'  => 'image_link',
+							'dependency'  => array(
+								'element'   => 'image',
+								'not_empty' => true,
+							),
+							'description' => __( 'Optional. If set, the destination image links to this page (e.g. the region/city it mentions).', 'ave' ),
+						),
 					),
 				),
 				array(
@@ -209,6 +225,22 @@ function twb_testimonials_vc_map() {
 					'std'         => 'surface',
 					'description' => __( 'Section background colour.', 'ave' ),
 				),
+				array(
+					'type'        => 'textfield',
+					'heading'     => __( 'CTA text', 'ave' ),
+					'param_name'  => 'cta_text',
+					'description' => __( 'Optional link shown centred below the carousel, e.g. "Read all testimonials". Leave blank to hide.', 'ave' ),
+				),
+				array(
+					'type'        => 'vc_link',
+					'heading'     => __( 'CTA link', 'ave' ),
+					'param_name'  => 'cta_link',
+					'dependency'  => array(
+						'element'   => 'cta_text',
+						'not_empty' => true,
+					),
+					'description' => __( 'Where the CTA points (e.g. the future Testimonials page). Defaults to # if left blank.', 'ave' ),
+				),
 			),
 		)
 	);
@@ -241,10 +273,80 @@ function twb_testimonials_render_stars( $rating ) {
 }
 
 /**
+ * Render the optional destination image column for a card.
+ *
+ * Lazy-loaded, `object-fit: cover`; wrapped in a link when a destination link is
+ * set. Returns '' when there is no image.
+ *
+ * @param int    $image_id  Attachment ID (0 = none).
+ * @param string $link_raw  Raw vc_link value (may be empty).
+ * @param string $region    Region name, used for alt / link label.
+ * @return string
+ */
+function twb_testimonials_render_media( $image_id, $link_raw, $region ) {
+	if ( $image_id < 1 ) {
+		return '';
+	}
+
+	$img = wp_get_attachment_image(
+		$image_id,
+		'medium_large',
+		false,
+		array(
+			'class'    => 'twb-testimonial-card__img',
+			'loading'  => 'lazy',
+			'decoding' => 'async',
+			'alt'      => ( '' !== $region ) ? $region : '',
+		)
+	);
+
+	if ( '' === $img ) {
+		return '';
+	}
+
+	// Optional link to the destination the testimonial mentions.
+	$url    = '';
+	$target = '';
+	$rel    = '';
+	if ( '' !== $link_raw && function_exists( 'vc_build_link' ) ) {
+		$parsed = vc_build_link( $link_raw );
+		if ( is_array( $parsed ) && ! empty( $parsed['url'] ) ) {
+			$url    = $parsed['url'];
+			$target = isset( $parsed['target'] ) ? trim( $parsed['target'] ) : '';
+			$rel    = isset( $parsed['rel'] ) ? trim( $parsed['rel'] ) : '';
+			if ( '_blank' === $target ) {
+				$rel = trim( $rel . ' noopener noreferrer' );
+			}
+		}
+	}
+
+	if ( '' === $url ) {
+		return '<div class="twb-testimonial-card__media">' . $img . '</div>';
+	}
+
+	$label = ( '' !== $region )
+		/* translators: %s: destination/region name */
+		? sprintf( __( 'View %s', 'ave' ), $region )
+		: __( 'View destination', 'ave' );
+
+	$attr = ' href="' . esc_url( $url ) . '"';
+	if ( '' !== $target ) {
+		$attr .= ' target="' . esc_attr( $target ) . '"';
+	}
+	if ( '' !== $rel ) {
+		$attr .= ' rel="' . esc_attr( $rel ) . '"';
+	}
+	$attr .= ' aria-label="' . esc_attr( $label ) . '"';
+
+	return '<a class="twb-testimonial-card__media twb-testimonial-card__media--link"' . $attr . '>' . $img . '</a>';
+}
+
+/**
  * Render a single testimonial card.
  *
  * The single source of card markup for this component (mirrors the hero's
- * "one renderer" approach). Returns a semantic figure/blockquote/figcaption.
+ * "one renderer" approach). Returns a semantic figure/blockquote/figcaption,
+ * optionally preceded by a destination image column.
  *
  * @param array $item Testimonial fields.
  * @param array $opts Display options (show_rating, show_badges).
@@ -266,50 +368,62 @@ function twb_testimonials_render_card( $item, $opts ) {
 	$show_rating = ! empty( $opts['show_rating'] );
 	$show_badges = ! empty( $opts['show_badges'] );
 
-	// Initial-letter avatar fallback (no images stored in this element).
+	// Initial-letter avatar fallback (no author photo stored in this element).
 	$initial = '' !== $name ? mb_substr( $name, 0, 1 ) : '“';
+
+	// Optional destination image (shown to the left of the quote), which may link
+	// to the place it mentions. Reuses the shared vc_link parsing.
+	$media_html = twb_testimonials_render_media(
+		isset( $item['image'] ) ? absint( $item['image'] ) : 0,
+		isset( $item['image_link'] ) ? $item['image_link'] : '',
+		$region
+	);
+	$has_media = ( '' !== $media_html );
 
 	ob_start();
 	?>
-	<figure class="twb-testimonial-card">
-		<div class="twb-testimonial-card__top">
-			<?php if ( $show_badges && ( '' !== $region || '' !== $trip ) ) : ?>
-				<div class="twb-testimonial-card__badges">
-					<?php if ( '' !== $region ) : ?>
-						<span class="twb-testimonial-card__badge twb-testimonial-card__badge--region"><?php echo esc_html( $region ); ?></span>
+	<figure class="twb-testimonial-card<?php echo $has_media ? ' twb-testimonial-card--has-media' : ''; ?>">
+		<?php echo $media_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped values in twb_testimonials_render_media(). ?>
+		<div class="twb-testimonial-card__body">
+			<div class="twb-testimonial-card__top">
+				<?php if ( $show_badges && ( '' !== $region || '' !== $trip ) ) : ?>
+					<div class="twb-testimonial-card__badges">
+						<?php if ( '' !== $region ) : ?>
+							<span class="twb-testimonial-card__badge twb-testimonial-card__badge--region"><?php echo esc_html( $region ); ?></span>
+						<?php endif; ?>
+						<?php if ( '' !== $trip ) : ?>
+							<span class="twb-testimonial-card__badge twb-testimonial-card__badge--trip"><?php echo esc_html( $trip ); ?></span>
+						<?php endif; ?>
+					</div>
+				<?php endif; ?>
+				<?php
+				if ( $show_rating && $rating > 0 ) {
+					echo twb_testimonials_render_stars( $rating ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
+				?>
+			</div>
+
+			<blockquote class="twb-testimonial-card__quote">
+				<p><?php echo esc_html( $quote ); ?></p>
+			</blockquote>
+
+			<figcaption class="twb-testimonial-card__caption">
+				<span class="twb-testimonial-card__avatar" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
+				<span class="twb-testimonial-card__attribution">
+					<?php if ( '' !== $name ) : ?>
+						<cite class="twb-testimonial-card__name"><?php echo esc_html( $name ); ?></cite>
 					<?php endif; ?>
-					<?php if ( '' !== $trip ) : ?>
-						<span class="twb-testimonial-card__badge twb-testimonial-card__badge--trip"><?php echo esc_html( $trip ); ?></span>
+					<?php if ( '' !== $location || '' !== $date ) : ?>
+						<span class="twb-testimonial-card__meta">
+							<?php
+							$meta = array_filter( array( $location, $date ) );
+							echo esc_html( implode( ' · ', $meta ) );
+							?>
+						</span>
 					<?php endif; ?>
-				</div>
-			<?php endif; ?>
-			<?php
-			if ( $show_rating && $rating > 0 ) {
-				echo twb_testimonials_render_stars( $rating ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
-			?>
+				</span>
+			</figcaption>
 		</div>
-
-		<blockquote class="twb-testimonial-card__quote">
-			<p><?php echo esc_html( $quote ); ?></p>
-		</blockquote>
-
-		<figcaption class="twb-testimonial-card__caption">
-			<span class="twb-testimonial-card__avatar" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
-			<span class="twb-testimonial-card__attribution">
-				<?php if ( '' !== $name ) : ?>
-					<cite class="twb-testimonial-card__name"><?php echo esc_html( $name ); ?></cite>
-				<?php endif; ?>
-				<?php if ( '' !== $location || '' !== $date ) : ?>
-					<span class="twb-testimonial-card__meta">
-						<?php
-						$meta = array_filter( array( $location, $date ) );
-						echo esc_html( implode( ' · ', $meta ) );
-						?>
-					</span>
-				<?php endif; ?>
-			</span>
-		</figcaption>
 	</figure>
 	<?php
 	return ob_get_clean();
@@ -333,6 +447,8 @@ function twb_testimonials_render( $atts, $content = null ) {
 			'show_rating'    => 'yes',
 			'show_badges'    => 'yes',
 			'background'     => 'surface',
+			'cta_text'       => '',
+			'cta_link'       => '',
 		),
 		$atts,
 		'twb_testimonials'
@@ -353,11 +469,17 @@ function twb_testimonials_render( $atts, $content = null ) {
 	);
 
 	// Build cards first so a block of empty quotes renders nothing at all.
-	$cards = array();
+	// Track whether any rendered card has a destination image, so the section can
+	// widen to accommodate the two-column layout.
+	$cards     = array();
+	$any_media = false;
 	foreach ( $items as $item ) {
 		$card = twb_testimonials_render_card( $item, $opts );
 		if ( '' !== $card ) {
 			$cards[] = $card;
+			if ( isset( $item['image'] ) && absint( $item['image'] ) > 0 ) {
+				$any_media = true;
+			}
 		}
 	}
 
@@ -390,9 +512,28 @@ function twb_testimonials_render( $atts, $content = null ) {
 
 	$bg_class = ( 'white' === $atts['background'] ) ? 'twb-bg-white' : 'twb-bg-surface';
 
+	// Optional CTA below the carousel. Parse the vc_link; default to '#'.
+	$cta_text = trim( (string) $atts['cta_text'] );
+	$cta_url  = '#';
+	$cta_rel  = '';
+	$cta_tgt  = '';
+	if ( '' !== $cta_text && '' !== $atts['cta_link'] && function_exists( 'vc_build_link' ) ) {
+		$parsed = vc_build_link( $atts['cta_link'] );
+		if ( is_array( $parsed ) ) {
+			if ( ! empty( $parsed['url'] ) ) {
+				$cta_url = $parsed['url'];
+			}
+			$cta_tgt = isset( $parsed['target'] ) ? trim( $parsed['target'] ) : '';
+			$cta_rel = isset( $parsed['rel'] ) ? trim( $parsed['rel'] ) : '';
+			if ( '_blank' === $cta_tgt ) {
+				$cta_rel = trim( $cta_rel . ' noopener noreferrer' );
+			}
+		}
+	}
+
 	ob_start();
 	?>
-	<section class="twb-testimonials twb-section <?php echo esc_attr( $bg_class ); ?>">
+	<section class="twb-testimonials twb-section <?php echo esc_attr( $bg_class ); ?><?php echo $any_media ? ' twb-testimonials--has-media' : ''; ?>">
 		<div class="twb-container">
 			<?php if ( '' !== $atts['eyebrow'] || '' !== $atts['heading'] ) : ?>
 				<header class="twb-testimonials__header">
@@ -405,13 +546,37 @@ function twb_testimonials_render( $atts, $content = null ) {
 				</header>
 			<?php endif; ?>
 
-			<div class="twb-testimonials__carousel" data-twb-testimonials="<?php echo esc_attr( wp_json_encode( $options ) ); ?>">
+			<?php
+			// Accessible name for the focusable carousel (tabindex is added by
+			// Flickity). Uses the heading when present so a screen-reader user
+			// tabbing onto the scroller hears what it is.
+			$carousel_label = ( '' !== $atts['heading'] ) ? $atts['heading'] : __( 'Testimonials', 'ave' );
+			?>
+			<div class="twb-testimonials__carousel" aria-label="<?php echo esc_attr( $carousel_label ); ?>" aria-roledescription="carousel" data-twb-testimonials="<?php echo esc_attr( wp_json_encode( $options ) ); ?>">
 				<?php foreach ( $cards as $card ) : ?>
 					<div class="twb-testimonials__cell">
 						<?php echo $card; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
 					</div>
 				<?php endforeach; ?>
 			</div>
+
+			<?php if ( '' !== $cta_text ) : ?>
+				<div class="twb-testimonials__cta-wrap">
+					<a class="twb-testimonials__cta" href="<?php echo esc_url( $cta_url ); ?>"
+						<?php
+						if ( '' !== $cta_tgt ) {
+							echo ' target="' . esc_attr( $cta_tgt ) . '"';
+						}
+						if ( '' !== $cta_rel ) {
+							echo ' rel="' . esc_attr( $cta_rel ) . '"';
+						}
+						?>
+					>
+						<?php echo esc_html( $cta_text ); ?>
+						<span class="twb-testimonials__cta-arrow" aria-hidden="true">&rarr;</span>
+					</a>
+				</div>
+			<?php endif; ?>
 		</div>
 	</section>
 	<?php

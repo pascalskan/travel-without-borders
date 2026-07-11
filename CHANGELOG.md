@@ -8,6 +8,30 @@ entries are grouped by project phase and dated.
 
 ## [Unreleased]
 
+### Added
+
+- **Testimonials system (reusable WPBakery component).** Introduced a
+  `[twb_testimonials]` carousel element in the Ave child theme, following the
+  hero-carousel pattern (Ave's bundled Flickity reused — no new library;
+  on-demand assets; `filemtime` versioning; shared design tokens). Delivered in
+  three milestones:
+  - **M1 — Infrastructure:** a deterministic component loader
+    (`inc/loader.php`, explicit ordered `require_once` per ADR-001 D9) and a
+    shared design-token layer (`assets/css/twb-tokens.css`); `functions.php`
+    kept thin.
+  - **M2 — Component:** client-editable quotes with author, location,
+    trip-type/region badges, optional star rating, an optional **destination
+    image that links to the place it mentions**, and a centred CTA. Built to the
+    hero's accessibility bar (keyboard, focus rings, reduced-motion, WCAG-AA
+    colours, semantic `figure`/`blockquote`/`cite`) and performance bar (no CLS,
+    lazy images). Content is stored as WPBakery element params; the Custom Post
+    Type is recorded as a **future enhancement** (ADR-001 superseded for the
+    current implementation).
+  - **M3 — Homepage integration:** placed as a full-bleed band between the
+    introduction and Special Interest Holidays, with the CTA pointing at the
+    future `/testimonials/` page.
+  See [Testimonials Component](01_Documentation/TESTIMONIALS.md).
+
 ### Changed
 
 - **Established the source-controlled local development workflow.** The Ave

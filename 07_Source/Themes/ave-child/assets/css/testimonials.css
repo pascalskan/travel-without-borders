@@ -1,15 +1,25 @@
 /* ==========================================================================
    TWB Testimonials
    A premium testimonials carousel built on Flickity, reusing the hero's
-   interaction language (white circular arrows, brand dots, yellow focus ring,
-   restrained crossfade). All values come from the shared token layer
+   interaction language (white circular arrows, brand dots, yellow focus rings on
+   the controls, slide transition). All values come from the shared token layer
    (twb-tokens.css); nothing repeatable is hard-coded.
    ========================================================================== */
 
 .twb-testimonials {
 	font-family: var(--twb-font);
 	color: var(--twb-text);
-	--twb-arrow-inset: clamp(0px, 2vw, 24px);
+	/* Card width and how far the arrows sit OUTSIDE the card. On desktop the
+	   arrows live in the gutter beside a single centred card (negative inset);
+	   on narrow screens there is no gutter, so they move to the card edge. */
+	--twb-card-max: 780px;
+	--twb-arrow-inset: -64px;
+}
+
+/* Wider card when a destination image column is present, so both the image and
+   the quote have comfortable room. Still centred; arrows stay in the gutter. */
+.twb-testimonials--has-media {
+	--twb-card-max: 900px;
 }
 
 /* --- Section header ------------------------------------------------------ */
@@ -25,7 +35,9 @@
 	font-weight: 700;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	color: var(--twb-sage);
+	/* olive-dark (not sage) so the label meets WCAG AA on the surface band
+	   (sage on #f7f7f7 is only 3.0:1; olive-dark is 5.9:1). */
+	color: var(--twb-olive-dark);
 }
 
 .twb-testimonials__heading {
@@ -36,6 +48,17 @@
 }
 
 /* --- Carousel scaffolding ------------------------------------------------ */
+/* Constrain the carousel to a single card width and centre it, so there is no
+   half-shown "peek" card — one testimonial shows at a time and the arrows have
+   clear space beside it. `overflow: visible` lets the gutter arrows show; the
+   inner Flickity viewport still clips the sliding cards. */
+.twb-testimonials__carousel {
+	position: relative;
+	max-width: var(--twb-card-max);
+	margin: 0 auto;
+	overflow: visible;
+}
+
 /* Hide un-initialised markup to avoid a flash of stacked cards (no CLS). */
 .twb-testimonials__carousel:not(.flickity-enabled) .twb-testimonials__cell {
 	display: none;
@@ -47,8 +70,6 @@
 .twb-testimonials__cell {
 	box-sizing: border-box;
 	width: 100%;
-	max-width: 760px;
-	padding: 0 var(--twb-space-8);
 }
 
 /* --- Card --------------------------------------------------------------- */
@@ -66,6 +87,52 @@
 }
 .twb-testimonial-card:hover {
 	box-shadow: var(--twb-shadow-card-hover);
+}
+
+/* Two-column variant: destination image on the left, quote on the right. */
+.twb-testimonial-card--has-media {
+	display: flex;
+	align-items: stretch;
+	gap: var(--twb-space-32);
+	padding: 0; /* the image sits flush; the body carries the padding */
+	overflow: hidden;
+}
+.twb-testimonial-card--has-media .twb-testimonial-card__body {
+	flex: 1 1 auto;
+	min-width: 0; /* let text wrap instead of forcing the card wider */
+	padding: var(--twb-space-32);
+}
+
+/* Destination image column. */
+.twb-testimonial-card__media {
+	flex: 0 0 40%;
+	max-width: 300px;
+	display: block;
+	align-self: stretch;
+	overflow: hidden;
+	background: var(--twb-surface);
+}
+.twb-testimonial-card__img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	min-height: 220px;
+	object-fit: cover;
+	object-position: center;
+}
+a.twb-testimonial-card__media {
+	position: relative;
+}
+a.twb-testimonial-card__media .twb-testimonial-card__img {
+	transition: transform 0.5s var(--twb-ease);
+}
+a.twb-testimonial-card__media:hover .twb-testimonial-card__img,
+a.twb-testimonial-card__media:focus-visible .twb-testimonial-card__img {
+	transform: scale(1.04);
+}
+a.twb-testimonial-card__media:focus-visible {
+	outline: 3px solid var(--twb-yellow);
+	outline-offset: -3px;
 }
 
 .twb-testimonial-card__top {
@@ -94,7 +161,9 @@
 	color: var(--twb-white);
 }
 .twb-testimonial-card__badge--region { background: var(--twb-green); }
-.twb-testimonial-card__badge--trip { background: var(--twb-sage); }
+/* olive-dark (not sage) so white badge text meets WCAG AA
+   (white on sage is 3.2:1; white on olive-dark is 6.4:1). */
+.twb-testimonial-card__badge--trip { background: var(--twb-olive-dark); }
 
 /* Star rating. */
 .twb-testimonial-card__rating {
@@ -223,27 +292,102 @@
 	outline-offset: 2px;
 }
 
-/* --- Carousel focus ring (keyboard arrow-key nav) ----------------------- */
-.twb-testimonials__carousel:focus-visible {
+/* The carousel container is focusable (Flickity adds tabindex for arrow-key
+   navigation), but we do NOT draw a ring around the whole area: Flickity
+   focuses it programmatically on click, which would flash a full-width outline.
+   Focus is still clearly indicated on the real controls — arrows, dots and the
+   CTA all have their own :focus-visible rings (matching the hero). */
+.twb-testimonials__carousel:focus {
+	outline: none;
+}
+
+/* --- CTA (centred, below the carousel) ---------------------------------- */
+.twb-testimonials__cta-wrap {
+	margin-top: var(--twb-space-32);
+	text-align: center;
+}
+.twb-testimonials__cta {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--twb-space-8);
+	padding-bottom: 4px;
+	font-size: var(--twb-fs-body);
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--twb-green);
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	transition: color var(--twb-dur-fast) var(--twb-ease),
+		border-color var(--twb-dur-fast) var(--twb-ease);
+}
+.twb-testimonials__cta:hover,
+.twb-testimonials__cta:focus-visible {
+	color: var(--twb-green-dark);
+	border-bottom-color: var(--twb-yellow);
+}
+.twb-testimonials__cta:focus-visible {
 	outline: 3px solid var(--twb-yellow);
 	outline-offset: 4px;
 }
+.twb-testimonials__cta-arrow {
+	transition: transform var(--twb-dur-fast) var(--twb-ease);
+}
+.twb-testimonials__cta:hover .twb-testimonials__cta-arrow {
+	transform: translateX(4px);
+}
 
-/* --- Tablet -------------------------------------------------------------- */
-@media (max-width: 1024px) {
-	.twb-testimonials { --twb-arrow-inset: 0px; }
+@media (prefers-reduced-motion: reduce) {
+	.twb-testimonials__cta,
+	.twb-testimonials__cta-arrow {
+		transition: none;
+	}
+}
+
+/* --- Tablet / small laptop ----------------------------------------------- */
+/* Below ~992px there is no gutter beside a 780px card, so let the card fill the
+   width and bring the arrows in to the card edge instead of the gutter. */
+@media (max-width: 991px) {
+	.twb-testimonials {
+		--twb-card-max: 100%;
+		--twb-arrow-inset: 8px;
+	}
 }
 
 /* --- Mobile -------------------------------------------------------------- */
 @media (max-width: 767px) {
 	.twb-testimonial-card { padding: var(--twb-space-24); }
 	.twb-testimonial-card__quote p { font-size: var(--twb-fs-body); }
-	/* 44px minimum touch targets, kept clear of the card edges. */
+	/* 44px minimum touch targets. */
 	.twb-testimonials .flickity-prev-next-button {
 		width: 44px;
 		height: 44px;
 	}
 	.twb-testimonials__header { margin-bottom: var(--twb-space-32); }
+
+	/* Stack the two-column card: full-width image on top, quote below. */
+	.twb-testimonial-card--has-media {
+		flex-direction: column;
+		gap: 0;
+		padding: 0; /* image spans edge-to-edge; the body keeps its own padding */
+	}
+	.twb-testimonial-card--has-media .twb-testimonial-card__body {
+		padding: var(--twb-space-24);
+	}
+	.twb-testimonial-card__media {
+		flex-basis: auto;
+		max-width: none;
+		width: 100%;
+	}
+	.twb-testimonial-card__img {
+		height: 200px;
+		min-height: 0;
+	}
+	/* On the stacked card, sit the arrows over the image (centre of the 200px
+	   photo) so they never cover the quote text. */
+	.twb-testimonials--has-media .flickity-prev-next-button {
+		top: 100px;
+	}
 }
 
 /* --- Reduced motion ------------------------------------------------------ */

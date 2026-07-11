@@ -48,10 +48,11 @@ migration to a CPT can reuse the same card renderer and CSS/JS unchanged.
 | Loop | Infinite (`wrapAround`) |
 | Controls | Prev/next arrows (white circles, hero interaction language) + pagination dots; keyboard arrows; draggable |
 | Card | Square, hairline border, shadow-lift on hover; semantic `figure` > `blockquote` > `figcaption` (`cite` for the name) |
+| Destination image | **Optional** photo shown to the left of the quote (a place in Germany the testimonial mentions). Lazy-loaded, `object-fit: cover`. If a **destination link** is set the image links to it (with an accessible "View <region>" label). No image → the existing single-column text card. On mobile the card stacks (image on top, full-width) with the arrows sitting over the photo |
 | Rating | Optional 1–5 stars (yellow), shown only when set; accessible label "Rated X out of 5" |
-| Badges | Optional Region (green) + Trip type (sage) uppercase pills |
+| Badges | Optional Region (`--twb-green`) + Trip type (`--twb-olive-dark`) uppercase pills. Olive-dark (not sage) so white badge text meets WCAG AA — see Accessibility |
 | Avatar | Initial-letter monogram fallback (no images stored in this element) |
-| Accessibility | `:focus-visible` yellow ring, keyboard nav, reduced-motion, AA-oriented colours, semantic quote markup |
+| Accessibility | `:focus-visible` yellow ring; keyboard arrows; reduced-motion; semantic `figure`/`blockquote`/`cite`; carousel has an `aria-label` (+ `aria-roledescription="carousel"`); **AA-verified colours** — the eyebrow and trip badge use `--twb-olive-dark` (not `--twb-sage`, which fails AA on the surface band: 3.0:1 / 3.2:1 → 5.9:1 / 6.4:1) |
 | Performance | Assets enqueued only when the element renders; bundled Flickity reused (no new library); `filemtime` cache-busting; no CLS (un-initialised cards hidden until Flickity is ready) |
 | Fallback | Empty quotes are skipped; a block with no usable quotes renders nothing (no empty box) |
 
@@ -65,12 +66,36 @@ Borders** category):
 - **Eyebrow** — small label above the heading (optional).
 - **Heading** — section H2 (optional).
 - **Testimonials** (repeater) — per item: **Quote** (required), Author name,
-  Author location, Trip type (badge), Region (badge), Rating (0–5), Travel date.
+  Author location, Trip type (badge), Region (badge), Rating (0–5), Travel date,
+  **Destination image** (optional photo on the left), **Destination link**
+  (optional — the image links to the region/city it mentions).
 - **Auto-rotate** + **interval (ms)**.
 - **Show rating stars** / **Show badges** toggles.
 - **Background** — Surface (light grey) or White.
+- **CTA text** + **CTA link** — optional centred link below the carousel (e.g.
+  "Read all testimonials"). Falls back to `#` when no link is set. On the homepage
+  it points at **`/testimonials/`** (the future dedicated page); no code change is
+  needed once that page exists.
 
 No HTML/CSS required; fully reusable and configurable across pages.
+
+### Homepage placement (local content)
+
+The element is placed on the homepage (front page, page 30) in a full-bleed
+WPBakery row (`full_width="stretch_row_content_no_spaces"`) **between the
+introduction/destinations content and the Special Interest Holidays row**, with a
+surface background so it reads as an alternating band. The band uses the shared
+80px section rhythm and sits between the site's standard ~45px inter-row margins,
+so the transitions match the rest of the homepage. The CTA ("Read all
+testimonials") points to `/testimonials/`. Each placeholder testimonial has a
+matching German destination photo (from the Media Library) that links to the
+relevant destination page (e.g. Bavaria → `/destinations/holidays-to-bavaria/`).
+
+- The homepage layout lives in the **local DB** (not version-controlled). The
+  original `post_content` is backed up to post meta
+  `_twb_homepage_pre_testimonials_backup` on page 30 (restore point).
+- The testimonial **content is element params** (local), entered in the builder;
+  the **code** (element, renderer, assets) deploys with the theme.
 
 ---
 
