@@ -6,6 +6,15 @@ progress see the [Project Status](../PROJECT_STATUS.md).
 
 ---
 
+## 2026-07-12 (fixes) — Homepage band colour
+
+- Set the homepage testimonials band to **white** (was surface/grey). The
+  Special Interest section directly below it is grey, so a grey band read as two
+  grey sections in a row; white restores the grey/white alternation. Homepage
+  content is local DB (recreate on production).
+
+---
+
 ## 2026-07-12 (fixes) — Trust stats: centring + accuracy
 
 - Fixed the trust-stats row centring: `.twb-trust-stats__list { margin: 0 }`

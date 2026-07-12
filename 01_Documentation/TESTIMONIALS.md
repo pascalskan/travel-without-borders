@@ -85,8 +85,10 @@ No HTML/CSS required; fully reusable and configurable across pages.
 
 The element is placed on the homepage (front page, page 30) in a full-bleed
 WPBakery row (`full_width="stretch_row_content_no_spaces"`) **between the
-introduction/destinations content and the Special Interest Holidays row**, with a
-surface background so it reads as an alternating band. The band uses the shared
+introduction/destinations content and the Special Interest Holidays row**. The
+band uses a **white** background: the Special Interest row below it is grey, so
+white keeps the site's grey/white alternation (a grey band here would sit flush
+against the grey Special Interest section). The band uses the shared
 80px section rhythm and sits between the site's standard ~45px inter-row margins,
 so the transitions match the rest of the homepage. The CTA ("Read all
 testimonials") points to `/testimonials/`. Each placeholder testimonial has a
