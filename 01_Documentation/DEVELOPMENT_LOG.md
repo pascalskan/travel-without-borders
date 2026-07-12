@@ -6,6 +6,31 @@ progress see the [Project Status](../PROJECT_STATUS.md).
 
 ---
 
+## 2026-07-12 (redesign) — Testimonials page realigned to the site's page grammar
+
+After a structural audit of the other templates (Destinations, Bavaria,
+Zell-Mosel, About, Groups, Tailor-made…), redesigned the page to speak the
+site's dialect instead of "generic premium":
+
+- **Restyled `[twb_page_hero]`** into the site's **split section** — photo one
+  side, **charcoal `#242424` panel** the other, white H1 + muted intro + **yellow
+  underline link** (added `heading_tag`, `image_side`, and link params; added
+  `--twb-charcoal` token). Reused for both the page hero (H1) and the closing CTA
+  band (H2). See [Page Hero](PAGE_HERO.md).
+- **New `[twb_trust_stats]`** credibility strip (30+ / 100% / 60+).
+- **New `[twb_email_strip]`** — token-based recreation of the site's standard
+  green "e-mail us" closing band (the ported WPBakery row lost its `vc_custom`
+  green background, so a clean reusable element is used instead).
+- **Rebuilt `/testimonials/`**: split hero → trust stats → featured carousel
+  (`el_id="reviews"`) → full grid → closing split CTA → email strip. Bands
+  alternate charcoal/white/surface/white/charcoal/green.
+- **Verified** (Playwright 1440/390): one H1, charcoal split hero (image left,
+  "Read the reviews" → #reviews), stats, carousel + grid, H2 closing CTA, green
+  email strip renders; hero/stats stack on mobile; no horizontal scroll; 0
+  console errors; no PHP warnings; PHP 7.4 lint clean.
+
+---
+
 ## 2026-07-12 (navigation) — Testimonials added to the main menu
 
 **Completed**

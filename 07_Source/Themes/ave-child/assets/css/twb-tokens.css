@@ -28,6 +28,7 @@
 	/* --- Surfaces & lines ------------------------------------------------ */
 	--twb-white: #ffffff;
 	--twb-surface: #f7f7f7;      /* alt section background */
+	--twb-charcoal: #242424;     /* split-panel dark background (heroes / bands) */
 	--twb-border: #e0e0e0;       /* hairline */
 	--twb-dot: #c4c9c4;          /* carousel inactive dot */
 

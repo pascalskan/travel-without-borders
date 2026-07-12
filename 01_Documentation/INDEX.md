@@ -29,7 +29,9 @@ Central index of all documentation in this repository.
 | -------- | ----------- |
 | [Homepage Hero Carousel](HERO_CAROUSEL.md) | The `twb_hero_carousel` slideshow: config, files, and key gotchas (e.g. why `flickity-fade` is dequeued and slide mode is used) |
 | [Testimonials Component](TESTIMONIALS.md) | The `twb_testimonials` carousel/grid: WPBakery params, files, behaviour, the dedicated page, and why CPT migration is recorded as a future enhancement |
-| [Page Hero Component](PAGE_HERO.md) | The `twb_page_hero` inner-page hero: panel + image, params, and behaviour |
+| [Page Hero / Split Band](PAGE_HERO.md) | The `twb_page_hero` split section (photo + charcoal panel): inner-page hero and CTA band |
+| Trust Stats (`twb_trust_stats`) | Credibility strip of number + label stats; see [Testimonials Component](TESTIMONIALS.md) dedicated-page section |
+| Email Strip (`twb_email_strip`) | The site's standard green "e-mail us" closing band; see [Testimonials Component](TESTIMONIALS.md) |
 
 ## Process
 

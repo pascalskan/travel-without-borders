@@ -11,12 +11,15 @@ entries are grouped by project phase and dated.
 ### Added
 
 - **Dedicated Testimonials page (`/testimonials/`).** Assembled from reusable
-  components (no bespoke CSS/JS/PHP): a new **`[twb_page_hero]`** inner-page hero
-  (panel + image; see [Page Hero](01_Documentation/PAGE_HERO.md)); the
-  **testimonials element extended with a `layout` param** (carousel | grid — grid
-  loads no JavaScript); and shared `twb-tokens` utilities (`.twb-bg-green`,
-  `.twb-prose`, `.twb-btn`). The homepage keeps a curated carousel; the page shows
-  the full collection as a grid and ends with an enquiry CTA. See
+  components (no bespoke CSS/JS/PHP) and aligned to the site's own page grammar:
+  a **`[twb_page_hero]`** split section (photo + charcoal panel + yellow underline
+  link — see [Page Hero](01_Documentation/PAGE_HERO.md)), reused as both the H1
+  hero and the H2 closing CTA band; a **`[twb_trust_stats]`** credibility strip; a
+  **`[twb_email_strip]`** standard green contact band; and the **testimonials
+  element extended with a `layout` param** (carousel | grid — grid loads no
+  JavaScript). Page order: split hero → trust stats → featured carousel → full
+  grid → closing CTA → email strip. The homepage keeps a curated carousel; the
+  page shows the full collection. See
   [Testimonials Component](01_Documentation/TESTIMONIALS.md).
 
 - **Testimonials system (reusable WPBakery component).** Introduced a

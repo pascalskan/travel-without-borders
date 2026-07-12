@@ -102,15 +102,22 @@ relevant destination page (e.g. Bavaria → `/destinations/holidays-to-bavaria/`
 ### Dedicated page (`/testimonials/`, local content)
 
 The dedicated page (the homepage CTA target) is assembled in WPBakery from
-reusable components — no bespoke CSS/JS/PHP:
+reusable components — no bespoke CSS/JS/PHP — and follows the site's own page
+grammar (split hero, alternating bands, split CTA, email strip):
 
-1. **[twb_page_hero]** — heading + intro in a brand panel beside an image
-   (see [Page Hero](PAGE_HERO.md)).
-2. **Introduction** — a centred `.twb-prose` text row.
-3. **Featured** — `[twb_testimonials layout="carousel"]` (curated three).
-4. **Full grid** — `[twb_testimonials layout="grid"]` (the complete collection).
-5. **CTA band** — a `.twb-section.twb-bg-green` row with a `.twb-btn` linking to
-   `/contact/`.
+1. **Split hero** — `[twb_page_hero]` H1: photo left + charcoal panel with intro
+   and a "Read the reviews" underline link (→ `#reviews`). See [Page Hero](PAGE_HERO.md).
+2. **Trust stats** — `[twb_trust_stats]`: 30+ years · 100% protected · 60+
+   destinations (surfaces the About page's hidden proof into the journey).
+3. **Featured** — `[twb_testimonials layout="carousel"]` on surface grey
+   (the row carries `el_id="reviews"`), curated three.
+4. **Full grid** — `[twb_testimonials layout="grid"]` on white, the complete collection.
+5. **Closing CTA band** — `[twb_page_hero]` H2 (photo + charcoal panel), "Start
+   your enquiry" underline link → `/contact/` (mirrors the Groups page's closing band).
+6. **Email strip** — `[twb_email_strip]`: the site's standard green "e-mail us"
+   band (envelope + yellow-bordered box).
+
+Bands alternate charcoal → white → surface → white → charcoal → green.
 
 The homepage continues to show only a curated **carousel** selection; the
 dedicated page shows the **complete collection** as a grid. Page content is local

@@ -42,5 +42,11 @@ require_once $twb_inc . 'hero-carousel.php';
 // Testimonials — reusable WPBakery carousel/grid element (own CSS/JS, on-demand).
 require_once $twb_inc . 'testimonials.php';
 
-// Page hero — reusable inner-page hero element (own CSS, on-demand).
+// Page hero / split band — reusable inner-page hero element (own CSS, on-demand).
 require_once $twb_inc . 'page-hero.php';
+
+// Trust stats — reusable credibility strip element (own CSS, on-demand).
+require_once $twb_inc . 'trust-stats.php';
+
+// Email strip — the standard green "e-mail us" closing band (own CSS, on-demand).
+require_once $twb_inc . 'email-strip.php';
