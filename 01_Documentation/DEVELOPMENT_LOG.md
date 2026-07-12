@@ -6,6 +6,23 @@ progress see the [Project Status](../PROJECT_STATUS.md).
 
 ---
 
+## 2026-07-12 (navigation) — Testimonials added to the main menu
+
+**Completed**
+
+- Added **Testimonials** (→ `/testimonials/`, page 7254) to the header menu
+  (Main Menu, #15) **after Tailor-made Holidays and before Groups** (menu item
+  #7255; Groups/Blog/Contact reordered +1). Local DB change — must be recreated
+  on production. Verified on desktop and in the mobile hamburger menu.
+- Investigated the desktop menu overflow the 9th item worsens (~1200–1520px
+  clips Groups/Blog). Spacing trim alone can't fix it (Contact pill still
+  overflows) and Ave caps the hamburger breakpoint at 1199 with JS hard-wired
+  to it — raising it broke the header and was reverted. **Decision: accept for
+  now, fix in the optimisation milestone** — see
+  [DECISIONS.md](DECISIONS.md).
+
+---
+
 ## 2026-07-12 (later) — Dedicated Testimonials page (Milestone 4)
 
 Built on a new branch `feature/testimonials-page` (off `main`, which now contains
