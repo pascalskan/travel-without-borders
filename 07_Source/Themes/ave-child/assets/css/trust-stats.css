@@ -16,7 +16,10 @@
 	align-items: center;
 	justify-content: center;
 	gap: var(--twb-space-32) var(--twb-space-64);
-	margin: 0;
+	/* margin: 0 auto keeps the .twb-container centred (a bare `margin: 0`
+	   would override the container's auto margins and push it flush left). */
+	margin-top: 0;
+	margin-bottom: 0;
 	padding-left: var(--twb-space-16);
 	padding-right: var(--twb-space-16);
 	list-style: none;

@@ -6,6 +6,18 @@ progress see the [Project Status](../PROJECT_STATUS.md).
 
 ---
 
+## 2026-07-12 (fixes) — Trust stats: centring + accuracy
+
+- Fixed the trust-stats row centring: `.twb-trust-stats__list { margin: 0 }`
+  was overriding the `.twb-container` auto margins, pushing the row flush-left on
+  wide viewports. Now uses `margin-top/bottom: 0` only, so the container stays
+  centred.
+- Corrected the stats for accuracy: removed the "100% financially protected"
+  claim; the destinations figure is now **50+** (the site offers **53**
+  individual destinations across **6** regions — "60+" overstated it).
+
+---
+
 ## 2026-07-12 (redesign) — Testimonials page realigned to the site's page grammar
 
 After a structural audit of the other templates (Destinations, Bavaria,

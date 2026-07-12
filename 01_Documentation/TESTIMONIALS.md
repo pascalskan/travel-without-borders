@@ -107,8 +107,9 @@ grammar (split hero, alternating bands, split CTA, email strip):
 
 1. **Split hero** — `[twb_page_hero]` H1: photo left + charcoal panel with intro
    and a "Read the reviews" underline link (→ `#reviews`). See [Page Hero](PAGE_HERO.md).
-2. **Trust stats** — `[twb_trust_stats]`: 30+ years · 100% protected · 60+
-   destinations (surfaces the About page's hidden proof into the journey).
+2. **Trust stats** — `[twb_trust_stats]`: **30+ years · 50+ German destinations**
+   (accurate: the site offers 53 individual destinations across 6 regions;
+   surfaces the About page's experience claim into the journey).
 3. **Featured** — `[twb_testimonials layout="carousel"]` on surface grey
    (the row carries `el_id="reviews"`), curated three.
 4. **Full grid** — `[twb_testimonials layout="grid"]` on white, the complete collection.
