@@ -6,12 +6,20 @@ progress see the [Project Status](../PROJECT_STATUS.md).
 
 ---
 
-## 2026-07-12 (fixes) — Homepage band colour
+## 2026-07-12 (fixes) — Homepage band alternation
 
-- Set the homepage testimonials band to **white** (was surface/grey). The
-  Special Interest section directly below it is grey, so a grey band read as two
-  grey sections in a row; white restores the grey/white alternation. Homepage
-  content is local DB (recreate on production).
+- The testimonials band sits between a white section and the grey Special
+  Interest section, so a single band can't alternate with both neighbours.
+  Restored the band to **grey** and **flipped every following row** to keep a
+  clean grey/white swap: white(intro) → grey(testimonials) → white(Special
+  Interest) → grey(decorative) → white(Berlin) → grey(Special Events) →
+  white(Blog) → green(email).
+- Mechanism: added **`.wpb_row.twb-band-white` / `.wpb_row.twb-band-grey`**
+  utilities to `twb-tokens.css` (filemtime-versioned; `.wpb_row` + `!important`
+  beats each row's `.vc_custom_*` background) and applied them to the rows via
+  `el_class` (homepage content = local DB, recreate on production). An earlier
+  attempt to edit the rows' WPBakery `css` attributes directly failed (added
+  properties don't get the generated class applied); `el_class` is reliable.
 
 ---
 

@@ -94,6 +94,13 @@
 .twb-bg-white { background-color: var(--twb-white); }
 .twb-bg-surface { background-color: var(--twb-surface); }
 
+/* Band overrides for WPBakery rows (applied via `el_class`), used to keep the
+   homepage grey/white alternation after inserting the testimonials band. The
+   `.wpb_row` compound + !important beats each row's per-row `.vc_custom_*`
+   background regardless of load order. */
+.wpb_row.twb-band-white { background-color: var(--twb-white) !important; }
+.wpb_row.twb-band-grey { background-color: var(--twb-surface) !important; }
+
 /* Green band: brand-green background with white text (headings + copy). */
 .twb-bg-green { background-color: var(--twb-green); }
 .twb-bg-green,
