@@ -99,11 +99,26 @@ body.home .twb-events-cards .fancy-box {
 	max-width: 100%;
 	margin: 0;
 }
-/* Equal height with the footer pinned to the bottom of each card. */
-body.home .twb-events-cards .fancy-box-tour {
+/* ----------------------------------------------------------------------------
+   TWB - Homepage Special Interest + Special Events: uniform card height
+   Make every card in both sections the same height with the DETAILS / ENQUIRE
+   footer pinned to the bottom, so buttons line up regardless of how much text a
+   card has (e.g. Football Camps' two-line caption, Augsburg's two-line title).
+   Lay each card out as a flex column and give a shared min-height on desktop,
+   where the cards are a fixed ~271px wide; below that they size naturally.
+   Ref: A.S tasks - Homepage > Special Interest / Special Events (all cards same size).
+   ---------------------------------------------------------------------------- */
+body.home .fancy-box-tour {
 	display: flex;
 	flex-direction: column;
 }
-body.home .twb-events-cards .fancy-box-tour .fancy-box-footer {
-	margin-top: auto;
+/* Grow the body (not a footer margin) so the card's border stays continuous and
+   the DETAILS / ENQUIRE footer sits flush at the bottom of every card. */
+body.home .fancy-box-tour .fancy-box-contents {
+	flex: 1 0 auto;
+}
+@media (min-width: 992px) {
+	body.home .fancy-box-tour {
+		min-height: 420px;
+	}
 }
