@@ -11,3 +11,56 @@ License URI: license.txt
 Text Domain: ave
 Tags: responsive, retina, rtl-language-support, blog, portfolio, custom-colors, live-editor
 */
+
+/* ============================================================================
+   TWB — Homepage blog cards
+   Give the homepage blog cards the same bordered-card treatment as the
+   Special Interest holiday cards (.fancy-box-tour: 1px solid #e7e9ef on white)
+   and pin each card's "Read more" button to the bottom, so the buttons line up
+   across a row no matter how much text a card has.
+   Scoped to the homepage (body.home); the Blog archive is left untouched.
+   Ref: A.S tasks - Homepage > Blogs (add borders; equal-size cards).
+   ============================================================================ */
+
+/* Equal-height cards: flex the grid row and its columns so every card in a row
+   stretches to the tallest one, giving the footer a fixed base to sit on. */
+body.home .liquid-blog-posts .liquid-blog-grid.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+body.home .liquid-blog-posts .liquid-blog-grid.row > [class*="col-"] {
+	display: flex;
+}
+
+/* The card: white background + the Special-Interest border, laid out as a
+   vertical flex column so the footer can be pushed to the bottom. */
+body.home .liquid-blog-posts article.liquid-lp {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	background: #fff;
+	border: 1px solid #e7e9ef; /* same border as .fancy-box-tour */
+}
+
+/* Keep the image flush to the top edge, inside the border. */
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-media {
+	margin: 0;
+}
+
+/* Padding so text and button clear the new border (20px matches the
+   Special-Interest card's .fancy-box-contents inset). */
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-header,
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-excerpt,
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-footer {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-header {
+	padding-top: 18px;
+}
+
+/* Pin the "Read more" footer to the bottom of every card. */
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-footer {
+	margin-top: auto;
+	padding-bottom: 20px;
+}
