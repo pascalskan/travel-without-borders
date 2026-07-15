@@ -32,6 +32,8 @@ Central index of all documentation in this repository.
 | [Page Hero / Split Band](PAGE_HERO.md) | The `twb_page_hero` split section (photo + charcoal panel): inner-page hero and CTA band |
 | Trust Stats (`twb_trust_stats`) | Credibility strip of number + label stats; see [Testimonials Component](TESTIMONIALS.md) dedicated-page section |
 | Email Strip (`twb_email_strip`) | The site's standard green "e-mail us" closing band; see [Testimonials Component](TESTIMONIALS.md) |
+| [Trade / Business Enquiry Form](TRADE_ENQUIRY_FORM.md) | How to build the B2B "Trade Enquiry" form as a labelled Quform duplicate that reuses the existing email pipeline without mixing with individual enquiries |
+| [Trade (B2B) Page](TRADE_B2B_PAGE.md) | How to create the Trade page by cloning the Testimonials layout, stripping content to placeholders (keeping the top/bottom photos, email section and footer), and replacing Blog with Trade in the nav |
 
 ## Process
 

@@ -5,6 +5,29 @@ consequences. Newest first. Keep entries short and factual.
 
 ---
 
+## 2026-07-15 — Build the B2B "Trade Enquiry" form as a labelled Quform duplicate
+
+**Context:** The Business-to-Business page needs its own enquiry form
+(Business name, Email, Phone, Trade Enquiry) that reaches the same business inbox
+as the current contact form but is never confused with individual enquiries. The
+existing contact form is a Quform form whose definition and notification settings
+live in the WordPress database, not in this repo. Post SMTP already delivers mail.
+
+**Decision:** Do not build a second, parallel email path in the theme. Instead
+duplicate the existing Quform contact form in WP-admin, swap in the business
+fields, and label submissions three ways: a distinct form name, a
+`[TRADE ENQUIRY]` notification-subject prefix, and a fixed `Enquiry Type: Trade`
+value in the entry/email body. The reproducible procedure is version-controlled
+in [Trade / Business Enquiry Form](TRADE_ENQUIRY_FORM.md).
+
+**Consequences:** Reuses the working, verified email pipeline (no new sender to
+authenticate in Post SMTP); the original form and its 190 entries are untouched;
+trade entries file separately. The front-end Individual/Business slider toggle
+remains a separate task. Config lives in the DB, so the doc — not code — is the
+source of truth for the form.
+
+---
+
 ## 2026-07-12 — Accept the desktop menu overflow at ~1200–1520px (fix in the optimisation milestone)
 
 **Context:** Adding **Testimonials** to the header menu (after Tailor-made
