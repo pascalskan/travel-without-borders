@@ -1,262 +1,94 @@
-HOMEPAGE:
-
-
-
-&#x09;Header:
-
-&#x09;
-
-&#x09;	follow picture made on chatGPT for reference. Font should be green and bigger than slideshow title 		and description. should ne centred.	Remove car photo
-
-
-
-&#x09;Slideshow images:
-
-
-
-&#x09;	All images/descriptions/titles should be clickable to designated page. All Names should have "-" 		followed by their region/Major City. If its not possible to click, make a button below "see more" 		ensure its formatted correctly
-
-
-
-&#x09;	AI descriptions on all.
-
-
-
-&#x09;	Add created border from most recent image creation on ChatGPT
-
-
-
-&#x09;	Berlin - Stock Photo ID: 1437602624 - Major cities page
-
-
-
-&#x09;	Augsburg (Bavaria) - Bavaria page - Email Photo
-
-
-
-&#x09;	Berchtesgadener Land (Bavaria) - Email Photo
-
-
-
-&#x09;	Bamberg (Bavaria) - Stock Photo ID: 84577729
-
-
-
-&#x09;	Heidelberg (The Black Forest region) - Stock Photo ID: 84651187
-
-
-
-&#x09;	Black Forest Region Cake - Stock Photo ID: 75689197
-
-
-
-&#x09;	Zell- Mosel (The Rhine, Moselle and Eifel) - Stock Photo ID: 84411985
-
-
-
-&#x09;	Trier (The Rhine, Moselle and Eifel) - Stock Photo ID: 1105361522
-
-
-
-&#x09;	Hamburg (Major cities of Germany) - Stock Photo ID: 47886229
-
-
-
-&#x09;	Bastei bridge in Saxon Switzerland in Eastern Germany - Stock Photo ID: 1742066453
-
-&#x09;
-
-&#x09;	Colditz Castle (Special Interest Holidays) - Email Photo
-
-
-
-&#x09;	Football camps in Bavaria (Special interest Holidays) - Email Photo
-
-
-
-&#x09;Testimonials: 
-
-&#x09;
-
-&#x09;	Sub-Title: "loved by independent tourists" line under "and private groups". if it must be on two 		lines they are split into defined areas as stated before.
-
-
-
-&#x09;	Ensure Tags are accurate, there will be no groups but a few special interest and tailor made
-
-&#x09;
-
-&#x09;	Ensure pics are accurate to the place the review is based on. if the review is not based on a 			specific place, A.S will tell me a photo to use as well as Tag.
-
-
-
-&#x09;	Remove the stars
-
-&#x09;
-
-&#x09;	only 3
-
-
-
-&#x09;	remove "what our travellers say"
-
-		get rid of initials in circle
-
-
-
-&#x09;Wide Choice of Destinations:
-
-
-
-&#x09;	Rhine, Eastern buttons don't work. get rid of learn more nad make the photos clickable.
-
-
-
-&#x09;Wide choice of options for the independent traveller:
-
-
-
-&#x09;	Remove entirely
-
-
-
-&#x09;Special Interest holidays: 
-
-&#x09;	
-
-&#x09;	Move Berlin Burlesque sections into another card on the special interests section. (Enquire Now)
-
-
-
-&#x09;	Ensure all cards are alphabetical order
-
-
-
-&#x09;	ensure all cards are the same size.
-
-
-
-&#x09;Single photo:
-
-
-
-&#x09;	Remove the photo.
-
-
-
-&#x09;Special Events:
-
-
-
-&#x09;	all cards should be the same size that the special interest holidays are.
-
-
-
-&#x09;Blogs:
-
-&#x09;	add borders. 
-
-
-
-&#x09;	Ensure all cards are the same size.
-
-
-
-&#x09;Second Footer:
-
-
-
-&#x09;	Centre the Email. 
-
-&#x09;	
-
-&#x09;	make a little bigger.
-
-
-
-
-
-
-
-Testimonials Page:
-
-
-
-&#x09;remove Traveller favourites
-
-
-
-&#x09;40+ years of expertise not 30
-
-
-
-&#x09;remove "for thirty years", replace with "for more than 15 years"
-
-
-
-&#x09;remove "what our travellers say" with "planning bespoke holidays to Germany - Loved by our travellers"
-
-	above reviews. remove "every testimonial" and "all reviews" replace with "testimonials"
-
-
-
-&#x09;Again remove stars off cards. 
-
-
-
-&#x09;ensure tags are accurate
-
-
-
-&#x09;Get rid of initial in circle
-
-
-
-&#x09;get rid of second footer light green border, make it abit smaller. must be larger than original homepage 	one.
-
-
-
-Business to Business page:
-
-&#x09; 
-
-&#x09;Replace blogs on Nav bar
-
-
-
-&#x09;create full design.follow design of testimonials page apart from content. header with images as well as all 	footers should be copied.
-
-&#x09;
-
-&#x09;Header - 
-
-
-
-&#x09;introduction - 
-
-
-
-&#x09;contact me. 
-
-
-
-&#x09;this has to be its own form. Done on the same page as the contact form, with a slider next to "get in 	touch". default to individual enquiries/ business enquiries. this si a slider that will change the 	from depending on 	what is selected. individual form is the one that already exists. 
-
-
-
-&#x09;	business form contains: 
-
-
-
-&#x09;	Business name 
-
-&#x09;	Email address
-
-&#x09;	Phone number
-
-&#x09;	Trade Enquiry
-
-
-
-&#x09;
-
+# A.S Tasks
+
+**Legend:** ✅ done · 🟡 partially done (see note) · ⬜ not started
+
+> Progress notes added 2026-07-15. Items marked ✅/🟡 were actioned on branch
+> `feature/as-tasks`. Homepage content edits (page/section/card changes) live in
+> the local WordPress database; CSS/layout changes are committed in the child
+> theme (`07_Source/Themes/ave-child/style.css`).
+
+---
+
+## HOMEPAGE
+
+### Header
+- ⬜ Follow picture made on ChatGPT for reference. Font should be green and bigger than the slideshow title and description. Should be centred. Remove car photo.
+
+### Slideshow images
+- ⬜ All images/descriptions/titles should be clickable to their designated page. All names should have "-" followed by their region/major city. If it's not possible to click, make a "see more" button below — ensure it's formatted correctly.
+- ⬜ AI descriptions on all.
+- ⬜ Add created border from most recent image creation on ChatGPT.
+- ⬜ Berlin — Stock Photo ID: 1437602624 — Major cities page
+- ⬜ Augsburg (Bavaria) — Bavaria page — Email Photo
+- ⬜ Berchtesgadener Land (Bavaria) — Email Photo
+- ⬜ Bamberg (Bavaria) — Stock Photo ID: 84577729
+- ⬜ Heidelberg (The Black Forest region) — Stock Photo ID: 84651187
+- ⬜ Black Forest Region Cake — Stock Photo ID: 75689197
+- ⬜ Zell-Mosel (The Rhine, Moselle and Eifel) — Stock Photo ID: 84411985
+- ⬜ Trier (The Rhine, Moselle and Eifel) — Stock Photo ID: 1105361522
+- ⬜ Hamburg (Major cities of Germany) — Stock Photo ID: 47886229
+- ⬜ Bastei bridge in Saxon Switzerland, Eastern Germany — Stock Photo ID: 1742066453
+- ⬜ Colditz Castle (Special Interest Holidays) — Email Photo
+- ⬜ Football camps in Bavaria (Special Interest Holidays) — Email Photo
+
+### Testimonials (homepage section)
+- ⬜ Sub-title: "loved by independent tourists" line under "and private groups". If it must be on two lines, split into defined areas as stated before.
+- ⬜ Ensure tags are accurate — no groups, but a few special interest and tailor-made.
+- ⬜ Ensure pics are accurate to the place the review is based on. If a review isn't based on a specific place, A.S will provide a photo and tag.
+- ⬜ Remove the stars.
+- ⬜ Only 3.
+- ⬜ Remove "what our travellers say".
+- ⬜ Get rid of initials in circle.
+
+### Wide Choice of Destinations
+- ⬜ Rhine, Eastern buttons don't work. Get rid of "learn more" and make the photos clickable.
+
+### Wide choice of options for the independent traveller
+- ✅ Remove entirely. *(Removed both the mobile and desktop variants of the section, including all option buttons.)*
+
+### Special Interest holidays
+- ✅ Move Berlin Burlesque into its own card in the Special Interests section (Enquire Now). *(Added as a card matching the others; button reads ENQUIRE and links to the contact page. The old stand-alone Berlin Burlesque section was removed.)*
+- ✅ Ensure all cards are in alphabetical order.
+- ✅ Ensure all cards are the same size. *(Uniform width + image ratio; all cards equalised to the same height with the footer aligned.)*
+
+### Single photo
+- ✅ Remove the photo. *(Removed the stand-alone Eagle's Nest image.)*
+
+### Special Events
+- ✅ All cards should be the same size as the Special Interest holiday cards. *(Resized to match, converted to a clean centred static row, and equalised to the same height as the Special Interest cards.)*
+
+### Blogs
+- ✅ Add borders. *(Copied the Special Interest card border style; also pinned each "Read more" button to the bottom of its card.)*
+- ✅ Ensure all cards are the same size. *(Equal-height cards with footers aligned.)*
+
+### Second Footer
+- ⬜ Centre the email.
+- ⬜ Make it a little bigger.
+
+---
+
+## Testimonials Page
+- ⬜ Remove "Traveller favourites".
+- ⬜ 40+ years of expertise, not 30.
+- ⬜ Remove "for thirty years", replace with "for more than 15 years".
+- ⬜ Replace "what our travellers say" with "Planning bespoke holidays to Germany — Loved by our travellers" above the reviews. Remove "every testimonial" and "all reviews", replace with "testimonials".
+- ⬜ Remove stars off cards.
+- ⬜ Ensure tags are accurate.
+- ⬜ Get rid of initial in circle.
+- ⬜ Get rid of the second footer's light-green border; make it a bit smaller — but larger than the original homepage one.
+
+---
+
+## Business to Business page (Trade)
+- ✅ Replace Blogs on the nav bar. *(Header nav now shows "Trade" in place of "Blog", linking to the new /trade/ page. Blog itself is untouched and still linked in the footer.)*
+- 🟡 Create full design; follow the design of the Testimonials page apart from content. Header with images, and all footers, should be copied. *(The /trade/ page was created by cloning the Testimonials layout — top & bottom hero photos, the email section and the footer are all in place. Body content is placeholder for now; final design/copy still to do.)*
+- 🟡 Header. *(Placeholder hero in place — real heading/eyebrow/CTA copy pending.)*
+- 🟡 Introduction. *(Placeholder intro in place — real copy pending.)*
+- 🟡 Contact me — this must be its own form on the same page as the contact form, with a slider next to "Get in touch" toggling between Individual enquiries / Business enquiries (defaulting to individual). The slider swaps the form; the individual form is the one that already exists.
+  *(The trade/business enquiry form is specified and documented in `01_Documentation/TRADE_ENQUIRY_FORM.md` as a labelled Quform duplicate that reuses the existing email pipeline. **Build is blocked pending two values from A.S: the recipient email the current contact form uses, and the current Quform form ID.** The individual/business slider toggle on the existing Contact page is not yet built. Note: this toggle lives on the pre-existing Contact page, not the Trade page.)*
+  - 🟡 Business form contains:
+    - Business name
+    - Email address
+    - Phone number
+    - Trade Enquiry
+    *(Fields documented, not yet built in Quform.)*
