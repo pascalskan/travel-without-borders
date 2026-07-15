@@ -64,3 +64,18 @@ body.home .liquid-blog-posts article.liquid-lp .liquid-lp-footer {
 	margin-top: auto;
 	padding-bottom: 20px;
 }
+
+/* ----------------------------------------------------------------------------
+   TWB - Homepage Special Interest / Special Events cards (.fancy-box-tour)
+   These s04 cards output each image at its natural aspect (attachment-full), so
+   an odd-ratio image (e.g. the Berlin Burlesque 4:3) rendered shorter than the
+   others (~564x500) and made its card shorter. Normalise every card image to
+   the same ratio with object-fit:cover so the cards are a consistent height.
+   Ref: A.S tasks - Homepage > Special Interest (all cards the same size).
+   ---------------------------------------------------------------------------- */
+body.home .fancy-box-tour .fancy-box-image img {
+	width: 100%;
+	aspect-ratio: 564 / 500;
+	height: auto;
+	object-fit: cover;
+}
