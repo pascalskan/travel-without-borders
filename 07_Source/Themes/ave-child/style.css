@@ -79,3 +79,31 @@ body.home .fancy-box-tour .fancy-box-image img {
 	height: auto;
 	object-fit: cover;
 }
+
+/* ----------------------------------------------------------------------------
+   TWB - Homepage Special Events: static centred row
+   Special Events has only 3 cards, so a carousel left them centred with peeking
+   neighbours. They are now a plain inner row (.twb-events-cards); lay the cards
+   out as a centred flex row at the same width as the Special Interest cards
+   (~271px), equal height with the DETAILS footer pinned to the bottom.
+   Ref: A.S tasks - Homepage > Special Events (cards same size as Special Interest).
+   ---------------------------------------------------------------------------- */
+body.home .twb-events-cards .wpb_wrapper-inner {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 14px;
+}
+body.home .twb-events-cards .fancy-box {
+	width: 271px;
+	max-width: 100%;
+	margin: 0;
+}
+/* Equal height with the footer pinned to the bottom of each card. */
+body.home .twb-events-cards .fancy-box-tour {
+	display: flex;
+	flex-direction: column;
+}
+body.home .twb-events-cards .fancy-box-tour .fancy-box-footer {
+	margin-top: auto;
+}
