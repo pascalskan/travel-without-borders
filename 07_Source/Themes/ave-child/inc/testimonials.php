@@ -180,6 +180,18 @@ function twb_testimonials_vc_map() {
 							),
 							'description' => __( 'Optional. If set, the destination image links to this page (e.g. the region/city it mentions).', 'ave' ),
 						),
+						array(
+							'type'        => 'dropdown',
+							'heading'     => __( 'Card width (grid only)', 'ave' ),
+							'param_name'  => 'span',
+							'value'       => array(
+								__( 'Normal (1 column)', 'ave' ) => '1',
+								__( 'Wide (2 columns)', 'ave' )  => '2',
+								__( 'Full (3 columns)', 'ave' )  => '3',
+							),
+							'std'         => '1',
+							'description' => __( 'Grid columns this card spans. Use Wide/Full for a long review so it reads across instead of running tall. Ignored in carousel mode.', 'ave' ),
+						),
 					),
 				),
 				array(
@@ -488,7 +500,10 @@ function twb_testimonials_render( $atts, $content = null ) {
 	foreach ( $items as $item ) {
 		$card = twb_testimonials_render_card( $item, $opts );
 		if ( '' !== $card ) {
-			$cards[] = $card;
+			// Optional grid span (1–3 columns) so long reviews can read across
+			// instead of running tall. Only used by the grid layout.
+			$span    = isset( $item['span'] ) ? max( 1, min( 3, (int) $item['span'] ) ) : 1;
+			$cards[] = array( 'html' => $card, 'span' => $span );
 			if ( isset( $item['image'] ) && absint( $item['image'] ) > 0 ) {
 				$any_media = true;
 			}
@@ -566,8 +581,8 @@ function twb_testimonials_render( $atts, $content = null ) {
 			<?php if ( $is_grid ) : ?>
 				<div class="twb-testimonials__grid">
 					<?php foreach ( $cards as $card ) : ?>
-						<div class="twb-testimonials__grid-item">
-							<?php echo $card; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
+						<div class="twb-testimonials__grid-item<?php echo $card['span'] > 1 ? ' twb-testimonials__grid-item--span-' . (int) $card['span'] : ''; ?>">
+							<?php echo $card['html']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
 						</div>
 					<?php endforeach; ?>
 				</div>
@@ -581,7 +596,7 @@ function twb_testimonials_render( $atts, $content = null ) {
 				<div class="twb-testimonials__carousel" aria-label="<?php echo esc_attr( $carousel_label ); ?>" aria-roledescription="carousel" data-twb-testimonials="<?php echo esc_attr( wp_json_encode( $options ) ); ?>">
 					<?php foreach ( $cards as $card ) : ?>
 						<div class="twb-testimonials__cell">
-							<?php echo $card; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
+							<?php echo $card['html']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
 						</div>
 					<?php endforeach; ?>
 				</div>

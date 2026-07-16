@@ -164,6 +164,31 @@ a.twb-testimonial-card__media:focus-visible {
 	min-height: 0;
 }
 
+/* Wide cards: a long review spans 2 or 3 grid columns so it reads across the
+   row instead of running tall. Browsers cap the span at the available columns,
+   so these collapse cleanly at the 2-col and 1-col breakpoints below. */
+.twb-testimonials__grid-item--span-2 {
+	grid-column: span 2;
+}
+.twb-testimonials__grid-item--span-3 {
+	grid-column: span 3;
+}
+/* With the extra width, a wide card with a photo reads better side-by-side
+   (image left, quote right) rather than image-on-top. */
+.twb-testimonials--grid [class*="grid-item--span"] .twb-testimonial-card--has-media {
+	flex-direction: row;
+	gap: var(--twb-space-32);
+	padding: 0;
+}
+.twb-testimonials--grid [class*="grid-item--span"] .twb-testimonial-card--has-media .twb-testimonial-card__media {
+	flex: 0 0 38%;
+	max-width: 38%;
+	width: 38%;
+}
+.twb-testimonials--grid [class*="grid-item--span"] .twb-testimonial-card--has-media .twb-testimonial-card__img {
+	height: 100%;
+}
+
 @media (max-width: 991px) {
 	.twb-testimonials__grid {
 		grid-template-columns: repeat(2, 1fr);
@@ -173,6 +198,16 @@ a.twb-testimonial-card__media:focus-visible {
 @media (max-width: 767px) {
 	.twb-testimonials__grid {
 		grid-template-columns: 1fr;
+	}
+	/* On one column, wide cards behave like any other card (image back on top). */
+	.twb-testimonials--grid [class*="grid-item--span"] .twb-testimonial-card--has-media {
+		flex-direction: column;
+		gap: 0;
+	}
+	.twb-testimonials--grid [class*="grid-item--span"] .twb-testimonial-card--has-media .twb-testimonial-card__media {
+		flex: none;
+		max-width: none;
+		width: 100%;
 	}
 }
 
