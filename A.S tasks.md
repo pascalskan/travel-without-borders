@@ -32,7 +32,7 @@
 - ⬜ Football camps in Bavaria (Special Interest Holidays) — Email Photo
 
 ### Testimonials (homepage section)
-- ⬜ Sub-title: "loved by independent tourists" line under "and private groups". If it must be on two lines, split into defined areas as stated before. *(Awaiting exact wording from A.S — current heading is "Loved by independent travellers and private groups".)*
+- ✅ Sub-title: "loved by independent tourists" line under "and private groups". If it must be on two lines, split into defined areas as stated before. *(Heading changed to "Loved by independent tourists and private groups"; when it wraps it now breaks as "Loved by independent tourists" / "and private groups".)*
 - ✅ Ensure tags are accurate — no groups, but a few special interest and tailor-made. *(Featured set is now Tailor-made ×2 + Special Interest ×1; the Groups testimonial was removed.)*
 - 🟡 Ensure pics are accurate to the place the review is based on. If a review isn't based on a specific place, A.S will provide a photo and tag. *(The 3 featured reviews are place-based and use their region images (Bavaria, Rhine & Mosel, Black Forest). Awaiting A.S for any specific photo/tag swaps.)*
 - ✅ Remove the stars.
