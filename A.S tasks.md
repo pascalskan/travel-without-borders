@@ -41,7 +41,7 @@
 - ⬜ Get rid of initials in circle.
 
 ### Wide Choice of Destinations
-- ⬜ Rhine, Eastern buttons don't work. Get rid of "learn more" and make the photos clickable.
+- ✅ Rhine, Eastern buttons don't work. Get rid of "learn more" and make the photos clickable. *(Removed the "Learn More" button from all six cards and made the whole card clickable to its destination page — the four short cards (Rhine, Northern, Eastern, Major Cities) weren't clickable because their content sat above the card's overlay link. Also fixed each card's link, incl. Major Cities which pointed to the Rhine page. Bavaria & Black Forest descriptions still reveal on hover.)*
 
 ### Wide choice of options for the independent traveller
 - ✅ Remove entirely. *(Removed both the mobile and desktop variants of the section, including all option buttons.)*
