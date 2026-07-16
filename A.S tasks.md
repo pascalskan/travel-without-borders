@@ -63,8 +63,8 @@
 - ✅ Ensure all cards are the same size. *(Equal-height cards with footers aligned.)*
 
 ### Second Footer
-- ⬜ Centre the email.
-- ⬜ Make it a little bigger.
+- ✅ Centre the email. *(Replaced the old off-centre `ld_icon_box` with the standard `twb_email_strip` component used on every other page — now centred.)*
+- ✅ Make it a little bigger. *(The email address is larger in the standard strip; the whole homepage email section now matches the other pages.)*
 
 ---
 
