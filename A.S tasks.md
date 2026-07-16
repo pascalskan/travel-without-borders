@@ -15,21 +15,22 @@
 - ✅ Follow picture made on ChatGPT for reference. Font should be green and bigger than the slideshow title and description. Should be centred. Remove car photo. *(Intro (heading + welcome + Learn More) moved above the slideshow, all in one grey section; text centred and enlarged (heading 44px, welcome 23px); car image removed. Colours follow the reference image — dark heading + green welcome text; say if you'd rather the heading itself be green.)*
 
 ### Slideshow images
-- ⬜ All images/descriptions/titles should be clickable to their designated page. All names should have "-" followed by their region/major city. If it's not possible to click, make a "see more" button below — ensure it's formatted correctly.
-- ⬜ AI descriptions on all.
-- ⬜ Add created border from most recent image creation on ChatGPT.
-- ⬜ Berlin — Stock Photo ID: 1437602624 — Major cities page
-- ⬜ Augsburg (Bavaria) — Bavaria page — Email Photo
-- ⬜ Berchtesgadener Land (Bavaria) — Email Photo
-- ⬜ Bamberg (Bavaria) — Stock Photo ID: 84577729
-- ⬜ Heidelberg (The Black Forest region) — Stock Photo ID: 84651187
-- ⬜ Black Forest Region Cake — Stock Photo ID: 75689197
-- ⬜ Zell-Mosel (The Rhine, Moselle and Eifel) — Stock Photo ID: 84411985
-- ⬜ Trier (The Rhine, Moselle and Eifel) — Stock Photo ID: 1105361522
-- ⬜ Hamburg (Major cities of Germany) — Stock Photo ID: 47886229
-- ⬜ Bastei bridge in Saxon Switzerland, Eastern Germany — Stock Photo ID: 1742066453
-- ⬜ Colditz Castle (Special Interest Holidays) — Email Photo
-- ⬜ Football camps in Bavaria (Special Interest Holidays) — Email Photo
+- ✅ All images/descriptions/titles should be clickable to their designated page. All names should have "-" followed by their region/major city. *(All 12 slides rebuilt: the whole slide links to its destination page, and titles are "Name – Region", e.g. "Berlin – Major Cities".)*
+- ✅ AI descriptions on all. *(One-line description written for every slide.)*
+- ⬜ Add created border from most recent image creation on ChatGPT. *(Pending — needs the border asset from A.S.)*
+- 🟡 The 12 slide photos. *(Built with the images A.S selected. Only Trier used the exact stock photo (1105361522) — the other 7 stock IDs were not in the media library, so existing/selected images were used per A.S's picks. Slot 6 used the existing full-size Black Forest gateau. Note: Augsburg (390×390), Colditz moody (450×400), Berchtesgadener Land (640×480) and Bamberg (1280×426) are low-res/odd-ratio and may want higher-res replacements.)*
+  - ✅ Berlin — twilight Brandenburg Gate → Major Cities (Berlin) page
+  - ✅ Augsburg (Bavaria) — email photo → Augsburg page
+  - ✅ Berchtesgadener Land (Bavaria) — "SLOT 3" email photo → Berchtesgadener Land page
+  - ✅ Bamberg (Bavaria) — email photo → Bamberg page
+  - ✅ Heidelberg — existing image → Heidelberg page
+  - ✅ Black Forest Cake — existing black-forest-gateau → Black Forest page
+  - ✅ Zell-Mosel — Zell-Mosel-new → Zell-Mosel page
+  - ✅ Trier — exact stock 1105361522 → Trier page
+  - ✅ Hamburg — Hamburg.jpg → Hamburg page
+  - ✅ Bastei bridge — bastei.jpg → Eastern Germany page (no own page)
+  - ✅ Colditz Castle — moody b&w email photo → Colditz page
+  - ✅ Football camps in Bavaria — "football V1" (9000×6000) → Football Camps page
 
 ### Testimonials (homepage section)
 - ✅ Sub-title: "loved by independent tourists" line under "and private groups". If it must be on two lines, split into defined areas as stated before. *(Heading changed to "Loved by independent tourists and private groups"; when it wraps it now breaks as "Loved by independent tourists" / "and private groups".)*
