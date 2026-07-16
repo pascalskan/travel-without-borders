@@ -558,7 +558,7 @@ function twb_testimonials_render( $atts, $content = null ) {
 						<p class="twb-testimonials__eyebrow"><?php echo esc_html( $atts['eyebrow'] ); ?></p>
 					<?php endif; ?>
 					<?php if ( '' !== $atts['heading'] ) : ?>
-						<h2 class="twb-testimonials__heading"><?php echo esc_html( $atts['heading'] ); ?></h2>
+						<h2 class="twb-testimonials__heading"><?php echo wp_kses( $atts['heading'], array( 'br' => array() ) ); ?></h2>
 					<?php endif; ?>
 				</header>
 			<?php endif; ?>
