@@ -32,13 +32,13 @@
 - ⬜ Football camps in Bavaria (Special Interest Holidays) — Email Photo
 
 ### Testimonials (homepage section)
-- ⬜ Sub-title: "loved by independent tourists" line under "and private groups". If it must be on two lines, split into defined areas as stated before.
-- ⬜ Ensure tags are accurate — no groups, but a few special interest and tailor-made.
-- ⬜ Ensure pics are accurate to the place the review is based on. If a review isn't based on a specific place, A.S will provide a photo and tag.
-- ⬜ Remove the stars.
-- ⬜ Only 3.
-- ⬜ Remove "what our travellers say".
-- ⬜ Get rid of initials in circle.
+- ⬜ Sub-title: "loved by independent tourists" line under "and private groups". If it must be on two lines, split into defined areas as stated before. *(Awaiting exact wording from A.S — current heading is "Loved by independent travellers and private groups".)*
+- ✅ Ensure tags are accurate — no groups, but a few special interest and tailor-made. *(Featured set is now Tailor-made ×2 + Special Interest ×1; the Groups testimonial was removed.)*
+- 🟡 Ensure pics are accurate to the place the review is based on. If a review isn't based on a specific place, A.S will provide a photo and tag. *(The 3 featured reviews are place-based and use their region images (Bavaria, Rhine & Mosel, Black Forest). Awaiting A.S for any specific photo/tag swaps.)*
+- ✅ Remove the stars.
+- ✅ Only 3.
+- ✅ Remove "what our travellers say".
+- ✅ Get rid of initials in circle. *(Removed from the shared testimonial card, so it's gone on the Testimonials page too.)*
 
 ### Wide Choice of Destinations
 - ✅ Rhine, Eastern buttons don't work. Get rid of "learn more" and make the photos clickable. *(Removed the "Learn More" button from all six cards and made the whole card clickable to its destination page — the four short cards (Rhine, Northern, Eastern, Major Cities) weren't clickable because their content sat above the card's overlay link. Also fixed each card's link, incl. Major Cities which pointed to the Rhine page. Bavaria & Black Forest descriptions still reveal on hover.)*
