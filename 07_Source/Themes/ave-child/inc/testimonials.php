@@ -383,9 +383,6 @@ function twb_testimonials_render_card( $item, $opts ) {
 	$show_rating = ! empty( $opts['show_rating'] );
 	$show_badges = ! empty( $opts['show_badges'] );
 
-	// Initial-letter avatar fallback (no author photo stored in this element).
-	$initial = '' !== $name ? mb_substr( $name, 0, 1 ) : '“';
-
 	// Optional destination image (shown to the left of the quote), which may link
 	// to the place it mentions. Reuses the shared vc_link parsing.
 	$media_html = twb_testimonials_render_media(
@@ -423,7 +420,6 @@ function twb_testimonials_render_card( $item, $opts ) {
 			</blockquote>
 
 			<figcaption class="twb-testimonial-card__caption">
-				<span class="twb-testimonial-card__avatar" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
 				<span class="twb-testimonial-card__attribution">
 					<?php if ( '' !== $name ) : ?>
 						<cite class="twb-testimonial-card__name"><?php echo esc_html( $name ); ?></cite>

@@ -237,20 +237,6 @@ a.twb-testimonial-card__media:focus-visible {
 	align-items: center;
 	gap: var(--twb-space-16);
 }
-.twb-testimonial-card__avatar {
-	flex: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 44px;
-	height: 44px;
-	border-radius: 50%;
-	background: var(--twb-green);
-	color: var(--twb-white);
-	font-size: var(--twb-fs-title);
-	font-weight: 700;
-	text-transform: uppercase;
-}
 .twb-testimonial-card__attribution {
 	display: flex;
 	flex-direction: column;
