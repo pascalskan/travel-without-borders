@@ -69,14 +69,13 @@
 ---
 
 ## Testimonials Page
-- ⬜ Remove "Traveller favourites".
-- ⬜ 40+ years of expertise, not 30.
-- ⬜ Remove "for thirty years", replace with "for more than 15 years".
-- ⬜ Replace "what our travellers say" with "Planning bespoke holidays to Germany — Loved by our travellers" above the reviews. Remove "every testimonial" and "all reviews", replace with "testimonials".
-- ⬜ Remove stars off cards.
-- ⬜ Ensure tags are accurate.
-- ⬜ Get rid of initial in circle.
-- ⬜ Get rid of the second footer's light-green border; make it a bit smaller — but larger than the original homepage one.
+- ✅ Remove "Traveller favourites". *(Featured carousel heading cleared.)*
+- ✅ 40+ years of expertise, not 30. *(Trust stat now reads 40+.)*
+- ✅ Remove "for thirty years", replace with "for more than 15 years". *(Hero intro updated.)*
+- ✅ Replace "what our travellers say" with "Planning bespoke holidays to Germany – Loved by our travellers" above the reviews. Remove "every testimonial" and "all reviews", replace with "testimonials". *(Hero heading updated; the grid section now just reads "Testimonials".)*
+- ✅ Remove stars off cards. *(show_rating turned off on both the carousel and the grid.)*
+- 🟡 Ensure tags are accurate. *(Being set as the real testimonials are added — each gets its correct section tag: Tailor-made / Special Interest.)*
+- ✅ Get rid of initial in circle. *(Already removed from the shared testimonial card.)*
 
 ---
 
