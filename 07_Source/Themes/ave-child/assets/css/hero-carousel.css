@@ -46,13 +46,12 @@
 	box-sizing: border-box;
 	width: 100%;
 	height: var(--twb-img-h); /* reserve height up-front to avoid layout shift */
-	/* Keep every image inside the reserved side gutters so the arrows (which sit
-	   in the gutters) never overlap a picture. */
-	padding: 0 var(--twb-gutter);
+	/* Keep every image inside the reserved side gutters (so the arrows in the
+	   gutters never overlap it) and add a small mat so the framed picture has a
+	   thin grey gap inside the green frame (see ::after). */
+	padding: 10px calc(var(--twb-gutter) + 10px);
 	overflow: hidden;
-	/* `contain` leaves margins around off-ratio images; fill them with the hero
-	   band colour so they blend in. Match this to the WPBakery row background
-	   the hero sits in. */
+	/* The mat / gap colour, matching the hero band the carousel sits in. */
 	background-color: #f7f7f7;
 }
 
@@ -61,10 +60,9 @@
 	display: block;
 	width: 100%;
 	height: 100%;
-	/* `contain` shows the WHOLE image (never cropped); each image is a different
-	   width, and the arrows track its edges via JS (see hero-carousel.js). The
-	   unused space blends into the grey hero band. */
-	object-fit: contain;
+	/* `cover` fills the framed area edge-to-edge (centre-cropped) so every slide
+	   sits neatly inside the green frame regardless of the source aspect ratio. */
+	object-fit: cover;
 	object-position: center center;
 }
 
@@ -82,6 +80,22 @@ a.twb-hero__media:focus-visible .twb-hero__img {
 a.twb-hero__media:focus-visible {
 	outline: 4px solid var(--twb-yellow);
 	outline-offset: -4px;
+}
+
+/* Green "matted frame" around the slide image (A.S reference). Drawn as an inset
+   overlay just inside the side gutters, so the arrows (in the gutters) stay
+   outside it. The small inset leaves a thin grey gap between the frame and the
+   picture, matching the framed look in the reference. */
+.twb-hero__media::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--twb-gutter);
+	right: var(--twb-gutter);
+	border: 2px solid var(--twb-green);
+	pointer-events: none;
+	z-index: 2;
 }
 
 /* --- Caption (below image, active slide only) --------------------------- */
