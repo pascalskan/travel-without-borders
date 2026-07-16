@@ -12,7 +12,7 @@
 ## HOMEPAGE
 
 ### Header
-- ⬜ Follow picture made on ChatGPT for reference. Font should be green and bigger than the slideshow title and description. Should be centred. Remove car photo.
+- ✅ Follow picture made on ChatGPT for reference. Font should be green and bigger than the slideshow title and description. Should be centred. Remove car photo. *(Intro (heading + welcome + Learn More) moved above the slideshow, all in one grey section; text centred and enlarged (heading 44px, welcome 23px); car image removed. Colours follow the reference image — dark heading + green welcome text; say if you'd rather the heading itself be green.)*
 
 ### Slideshow images
 - ⬜ All images/descriptions/titles should be clickable to their designated page. All names should have "-" followed by their region/major city. If it's not possible to click, make a "see more" button below — ensure it's formatted correctly.
