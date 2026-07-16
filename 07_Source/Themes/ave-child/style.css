@@ -122,3 +122,22 @@ body.home .fancy-box-tour .fancy-box-contents {
 		min-height: 420px;
 	}
 }
+
+/* ----------------------------------------------------------------------------
+   TWB - Homepage "Wide choice of destinations" cards (.fancy-box-travel)
+   Make the WHOLE card clickable. Each card already has a full-cover
+   .liquid-overlay-link (from img_link), but on the short cards the
+   .fancy-box-contents (z-index:2) sits above it and swallows the clicks, so
+   only the tall cards worked. Lift the overlay link above the content so a
+   click anywhere on the card follows the link. The overlay is transparent, so
+   the title and the hover-revealed description still show through.
+   The "Learn More" button is hidden here: the s03 "travel" template renders the
+   footer unconditionally (it ignores show_button), so it is removed with CSS.
+   Ref: A.S tasks - Homepage > Wide Choice of Destinations.
+   ---------------------------------------------------------------------------- */
+body.home .fancy-box-travel .liquid-overlay-link {
+	z-index: 5;
+}
+body.home .fancy-box-travel .fancy-box-footer {
+	display: none;
+}
