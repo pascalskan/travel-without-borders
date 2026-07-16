@@ -76,6 +76,7 @@
 - ✅ Remove stars off cards. *(show_rating turned off on both the carousel and the grid.)*
 - ✅ Ensure tags are accurate. *(Real testimonials added, each tagged by section: J Shaw = Tailor-made / Mosel Valley; A Corbin & Karen = Special Interest / Colditz; Schott = Tailor-made / Idstein.)*
 - ✅ Get rid of initial in circle. *(Already removed from the shared testimonial card.)*
+- ✅ Card layout reworked per A.S. *(Featured "Traveller favourites" carousel removed entirely. The page is now a single uniform grid of equal-height cards (480px). The two long reviews — J Shaw and The Schott Family — are "wide" cards spanning two columns (cards 1–2 of their row), with A Corbin and Karen as normal single cards beside them. Each card shows a teaser of the review; if it doesn't fit, a "Show more" button appears and opens a pop-up with an enlarged image + the full review. Short reviews that fit show no button.)*
 
 ---
 

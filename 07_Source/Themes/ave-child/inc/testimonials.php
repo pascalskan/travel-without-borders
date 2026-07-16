@@ -446,6 +446,9 @@ function twb_testimonials_render_card( $item, $opts ) {
 					<?php endif; ?>
 				</span>
 			</figcaption>
+			<button type="button" class="twb-testimonial-card__more" hidden>
+				<span class="twb-testimonial-card__more-txt"><?php esc_html_e( 'Show more', 'ave' ); ?></span>
+			</button>
 		</div>
 	</figure>
 	<?php
@@ -519,10 +522,12 @@ function twb_testimonials_render( $atts, $content = null ) {
 	// Component styles always; the carousel JS + Flickity only in carousel mode
 	// (the grid is static markup and needs no JavaScript).
 	wp_enqueue_style( 'twb-testimonials' );
+	// The script handles both the carousel (Flickity) and the grid's "Show more"
+	// modal, so it loads in both modes; Flickity is only needed for the carousel.
+	wp_enqueue_script( 'twb-testimonials' );
 	if ( ! $is_grid ) {
 		wp_enqueue_style( 'flickity' );
 		wp_enqueue_script( 'flickity' );
-		wp_enqueue_script( 'twb-testimonials' );
 	}
 
 	$autoplay = ( 'yes' === $atts['autoplay'] );
@@ -602,7 +607,17 @@ function twb_testimonials_render( $atts, $content = null ) {
 				</div>
 			<?php endif; ?>
 
-			<?php if ( '' !== $cta_text ) : ?>
+			<?php if ( $is_grid ) : ?>
+					<div class="twb-testimonials__modal" hidden>
+						<div class="twb-testimonials__modal-backdrop" data-twb-modal-close></div>
+						<div class="twb-testimonials__modal-dialog" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Testimonial', 'ave' ); ?>">
+							<button type="button" class="twb-testimonials__modal-close" data-twb-modal-close aria-label="<?php esc_attr_e( 'Close', 'ave' ); ?>">&times;</button>
+							<div class="twb-testimonials__modal-body"></div>
+						</div>
+					</div>
+				<?php endif; ?>
+
+				<?php if ( '' !== $cta_text ) : ?>
 				<div class="twb-testimonials__cta-wrap">
 					<a class="twb-testimonials__cta" href="<?php echo esc_url( $cta_url ); ?>"
 						<?php
