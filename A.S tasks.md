@@ -17,7 +17,7 @@
 ### Slideshow images
 - ✅ All images/descriptions/titles should be clickable to their designated page. All names should have "-" followed by their region/major city. *(All 12 slides rebuilt: the whole slide links to its destination page, and titles are "Name – Region", e.g. "Berlin – Major Cities".)*
 - ✅ AI descriptions on all. *(One-line description written for every slide.)*
-- ⬜ Add created border from most recent image creation on ChatGPT. *(Pending — needs the border asset from A.S.)*
+- ✅ Add created border from most recent image creation on ChatGPT. *(Added a green "matted frame" around each slide image matching the reference — a green frame with a thin grey gap. Slides now fill the frame (centre-cropped) so every image sits neatly inside it.)*
 - 🟡 The 12 slide photos. *(Built with the images A.S selected. Only Trier used the exact stock photo (1105361522) — the other 7 stock IDs were not in the media library, so existing/selected images were used per A.S's picks. Slot 6 used the existing full-size Black Forest gateau. Note: Augsburg (390×390), Colditz moody (450×400), Berchtesgadener Land (640×480) and Bamberg (1280×426) are low-res/odd-ratio and may want higher-res replacements.)*
   - ✅ Berlin — twilight Brandenburg Gate → Major Cities (Berlin) page
   - ✅ Augsburg (Bavaria) — email photo → Augsburg page
