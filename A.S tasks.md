@@ -74,7 +74,7 @@
 - ✅ Remove "for thirty years", replace with "for more than 15 years". *(Hero intro updated.)*
 - ✅ Replace "what our travellers say" with "Planning bespoke holidays to Germany – Loved by our travellers" above the reviews. Remove "every testimonial" and "all reviews", replace with "testimonials". *(Hero heading updated; the grid section now just reads "Testimonials".)*
 - ✅ Remove stars off cards. *(show_rating turned off on both the carousel and the grid.)*
-- 🟡 Ensure tags are accurate. *(Being set as the real testimonials are added — each gets its correct section tag: Tailor-made / Special Interest.)*
+- ✅ Ensure tags are accurate. *(Real testimonials added, each tagged by section: J Shaw = Tailor-made / Mosel Valley; A Corbin & Karen = Special Interest / Colditz; Schott = Tailor-made / Idstein.)*
 - ✅ Get rid of initial in circle. *(Already removed from the shared testimonial card.)*
 
 ---
