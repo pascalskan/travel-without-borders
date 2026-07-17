@@ -102,7 +102,7 @@ V2:
 
 Footers:
 
-	✅ Ensure the footer across the full site is accurate containing the new testimonials page and the trade page. *(Added Testimonials and Trade to the footer "Company" column (the "Footer Nav - 2" menu), which renders on every page. Column order is now: About Us, Testimonials, Blog, Trade, Contact Details, Privacy Policy, Terms & Conditions. Verified on the live-rendered footer.)*
+	✅ Ensure the footer across the full site is accurate containing the new testimonials page and the trade page. *(Site-wide footer, verified on the live-rendered page. **Our Services** column (footer-nav-1): Destinations, Groups, Special Interest Holidays, Special Events, Tailor-made Holidays, Trade. **Company** column (footer-nav-2): About Us, Testimonials, Blog, Contact Details, Privacy Policy, Terms & Conditions. **Bottom line** now a real menu (footer-nav-4, created — it previously fell back to the services list): Destinations, Groups, Special Interest Holidays, Special Events, Tailor-made Holidays, Testimonials, Trade. Per A.S: Trade sits under Our Services (not Company); Testimonials + Trade also added to the bottom line.)*
 
 Homepage:
 
