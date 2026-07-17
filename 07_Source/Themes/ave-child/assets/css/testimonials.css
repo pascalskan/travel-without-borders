@@ -202,6 +202,12 @@ a.twb-testimonial-card__media:focus-visible {
 .twb-testimonials--grid .twb-testimonial-card__quote {
 	margin-bottom: var(--twb-space-16);
 }
+/* Drop the author/date to the foot of the card: strip the inherited
+   <figcaption> margins so the quote reclaims that space and shows more lines. */
+.twb-testimonials--grid .twb-testimonial-card__caption {
+	margin-top: 0;
+	margin-bottom: 0;
+}
 .twb-testimonials--grid .twb-testimonial-card__more {
 	margin-top: var(--twb-space-8);
 }
