@@ -144,6 +144,11 @@
 			} );
 			body.appendChild( content );
 
+			// Featured (full-width span-3) reviews open a WIDER pop-up rather than
+			// a tall one, since their reviews are the long ones.
+			var wide = !! card.closest( '.twb-testimonials__grid-item--span-3' );
+			modal.classList.toggle( 'twb-testimonials__modal--wide', wide );
+
 			modal.hidden = false;
 			document.documentElement.classList.add( 'twb-modal-open' );
 			var close = modal.querySelector( '.twb-testimonials__modal-close' );

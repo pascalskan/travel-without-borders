@@ -600,6 +600,11 @@ html.twb-modal-open {
 	border-top: 4px solid var(--twb-green);
 	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
+/* Featured reviews (J Shaw, Schott) — wider so the long review reads across
+   rather than running tall. */
+.twb-testimonials__modal--wide .twb-testimonials__modal-dialog {
+	width: min(920px, 94vw);
+}
 .twb-testimonials__modal-close {
 	position: absolute;
 	top: 6px;
