@@ -143,9 +143,9 @@ Testimonials page
 
 		Reviews:
 
-			🟡 scott family needs location. *(BLOCKED — still need the Schott family's location text from A.S. The card image is now the Idstein square, but the location line under the name is still blank.)*
+			✅ scott family needs location. *(Set to "Middlesex" (per A.S) on both the Testimonials page and the homepage Schott card.)*
 			✅ scott family needs picture *(A.S supplied Scott-Family-photo.jpg (Idstein square, id 7332) — applied to the Schott card here and on the homepage.)*
-			🟡 New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest) *(BLOCKED on the review TEXT. A.S has supplied the photo (Andy-Starling.jpg) but not the review wording. Once the text arrives it becomes the 3rd small card in the final row, Special Interest / June 2026.)*
+			🟡 New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest) *(Card BUILT as the 3rd small card in the final row — photo Andy-Starling.jpg (id 7335, Berlin/Reichstag), location Cambridgeshire, Berlin / Special Interest, June 2026. Review body is PLACEHOLDER text; swap in the real wording when A.S supplies it.)*
 		
 		Format Of Cards:
 	
@@ -155,7 +155,7 @@ Testimonials page
 	
 				✅ J Shaw (picture on the left) (covers full width of 3 cards instead of 2, replacing 				the space the smaller card lives on its right)
 				✅ Scott family (Follows same format as J Shaw card) (exists below J Shaw review)
-				🟡 remaining 3 Reviews exist on the final row below Scott Family. Consistent smaller 				cards with pictures on the top. *(A Corbin + Karen are in the final row now; the 3rd (Andy Starling) will fill the last slot once its text is supplied.)*
+				✅ remaining 3 Reviews exist on the final row below Scott Family. Consistent smaller 				cards with pictures on the top. *(Final row now holds all 3 small cards: A Corbin, Karen, Andy Starling. Small-card images fill the card (no white padding, minimal crop, equal width). The Show-more pop-up is wider and shows the whole photo.)*
 
 
 Contact:
