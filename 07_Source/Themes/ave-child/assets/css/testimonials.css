@@ -160,8 +160,10 @@ a.twb-testimonial-card__media:focus-visible {
 	width: 100%;
 }
 .twb-testimonials--grid .twb-testimonial-card__img {
-	height: 130px;
+	height: 210px;
 	min-height: 0;
+	object-fit: contain; /* small cards: show the whole photo, don't crop it */
+	background: var(--twb-white);
 }
 
 /* Wide cards: a long review spans 2 or 3 grid columns so it reads across the
@@ -256,6 +258,8 @@ a.twb-testimonial-card__media:focus-visible {
 .twb-testimonials--grid .twb-testimonials__grid-item--span-3 .twb-testimonial-card__img {
 	height: 100%;
 	min-height: 0;
+	object-fit: cover; /* featured cards fill the left column */
+	background: none;
 }
 /* On mobile the featured card stacks (image on top) like the small cards. */
 @media (max-width: 767px) {
@@ -586,9 +590,11 @@ html.twb-modal-open {
 .twb-testimonials__modal-dialog {
 	position: relative;
 	z-index: 1;
-	width: min(720px, 100%);
+	display: flex;
+	flex-direction: column;
+	width: min(880px, 100%);
 	max-height: 84vh;
-	overflow: auto;
+	overflow: hidden;
 	background: var(--twb-white, #fff);
 	border-top: 4px solid var(--twb-green);
 	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
@@ -607,13 +613,28 @@ html.twb-modal-open {
 	line-height: 1;
 	cursor: pointer;
 }
+/* The pop-up always reads image-left / text-right, whichever card opened it. */
+.twb-testimonials__modal-body {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	flex: 1 1 auto;
+	min-height: 0;
+}
+.twb-testimonials__modal-media {
+	flex: 0 0 40%;
+	max-width: 360px;
+}
 .twb-testimonials__modal-media img {
 	display: block;
 	width: 100%;
-	max-height: 240px;
+	height: 100%;
 	object-fit: cover;
 }
 .twb-testimonials__modal-content {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-y: auto; /* the review scrolls; the image stays put */
 	padding: var(--twb-space-32);
 }
 /* Full quote in the modal — override the card's clamp/fade. */
@@ -623,4 +644,20 @@ html.twb-modal-open {
 }
 .twb-testimonials__modal-content .twb-testimonial-card__quote::after {
 	content: none;
+}
+/* On narrow screens the pop-up stacks: image on top, review below. */
+@media (max-width: 600px) {
+	.twb-testimonials__modal-body {
+		flex-direction: column;
+	}
+	.twb-testimonials__modal-media {
+		flex-basis: auto;
+		max-width: none;
+	}
+	.twb-testimonials__modal-media img {
+		height: 220px;
+	}
+	.twb-testimonials__modal-content {
+		overflow-y: visible;
+	}
 }
