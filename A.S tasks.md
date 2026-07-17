@@ -137,7 +137,7 @@ Testimonials page
 	
 	header/footer:
 		
-		🟡 Replacing both the top and bottom photo. The top photo is is the first photo sent on WhatsApp. the 		bottom 	photo is the second photo. *(BLOCKED — need the two WhatsApp photos from A.S. Top hero is currently the snowy Neuschwanstein; bottom is the Dresden night photo.)*
+		✅ Replacing both the top and bottom photo. The top photo is is the first photo sent on WhatsApp. the 		bottom 	photo is the second photo. *(A.S supplied "Testimonial header photo" (winter alpine lake, id 7338) and "Testimonial footer photo" (Schwerin Castle reflection, id 7339). Top hero and bottom "Ready to plan…" hero on the Testimonials page updated. The homepage slideshow keeps its own Neuschwanstein/Dresden slides.)*
 
 	Testimonials:	
 
@@ -145,7 +145,9 @@ Testimonials page
 
 			✅ scott family needs location. *(Set to "Middlesex" (per A.S) on both the Testimonials page and the homepage Schott card.)*
 			✅ scott family needs picture *(A.S supplied Scott-Family-photo.jpg (Idstein square, id 7332) — applied to the Schott card here and on the homepage.)*
-			🟡 New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest) *(Card BUILT as the 3rd small card in the final row — photo Andy-Starling.jpg (id 7335, Berlin/Reichstag), location Cambridgeshire, Berlin / Special Interest, June 2026. Review body is PLACEHOLDER text; swap in the real wording when A.S supplies it.)*
+			🟡 New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest) *(Card BUILT as the 3rd small card in the final row — photo Andy-Starling.jpg (id 7335, Berlin/Reichstag), location Cambridgeshire, Berlin / Special Interest, June 2026. Name shortened to "A Starling" per A.S. Review body is still PLACEHOLDER text; swap in the real wording when A.S supplies it.)*
+			✅ *(Extra per A.S: on every card the name · location · date now sits on the same row as the "Show more" button, not stacked above it.)*
+			✅ *(Extra per A.S: nav bar — Testimonials and Groups swapped, so the order is now … Tailor-made Holidays · Groups · Testimonials · Trade.)*
 		
 		Format Of Cards:
 	
