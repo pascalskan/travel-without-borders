@@ -109,7 +109,7 @@ Homepage:
 	General:
 
 		Fix grey, white pattern.
-		Standardise spelling of Mosel. some instances are spelt differently.
+		✅ Standardise spelling of Mosel. some instances are spelt differently. *(Standardised the French/English "Moselle" to the German "Mosel" everywhere it appears in visible content — 37 replacements across 15 pages/posts (homepage hero slide titles/descriptions, About, Destinations, Rhine-valley + Bernkastel-Kues/Cochem/Koblenz/Zell-Mosel pages, Fairy Tale Castles, Rhine in Flames, and 4 blog posts). Two "Mosel (Moselle)"/"also known as the Moselle River" notes were collapsed to avoid redundancy. Left one legacy lowercase URL slug (wine-tour-moselle-valley.html) untouched so the link isn't broken. Verified: hero carousel still renders and no visible "Moselle" remains.)*
 
 	Slideshow:
 		
