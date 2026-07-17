@@ -116,13 +116,13 @@ Homepage:
 		✅ Neuschwanstein castle should be added in after Augsburg berlin, not replacing but after. this 			should be the snowy picture we have used as the top photo on the testimonials page *(Added as slide 3, right after Augsburg (nothing replaced) — using the snowy Neuschwanstein photo (id 7241) from the top of the Testimonials page. Title "Neuschwanstein – Bavaria", links to the Füssen & Schwangau destination page.)*
 		✅ Add Dresden photo, the same one used for the testimonials page at the bottom. *(Added as slide 10, immediately before the Hamburg slide (per A.S) — using the Dresden night photo (id 7244) from the bottom of the Testimonials page. Title "Dresden – Major Cities", links to the Dresden page. Slideshow now has 14 slides.)*
 
-	Testimonials:
+	Testimonials: *(HOMEPAGE testimonials section — the 3-card summary carousel on the homepage, page 30. NOT the Testimonials page.)*
 		
-		change title to "Bespoke Germany Planning Holiday Feedback"
-		change Karen review to the scott family
-		change the A Corben review summary to include the POW war camp stuff.
-		Replace J Shaw with mosel image
-		new Scott family picture will be uploaded when received
+		✅ change title to "Bespoke Germany Planning Holiday Feedback" *(Section heading updated.)*
+		✅ change Karen review to the scott family *(Karen card replaced with The Schott Family — Tailor-made / Idstein, May 2025, with a short summary of their family-roots trip. Cards are now J Shaw, The Schott Family, A Corbin.)*
+		✅ change the A Corben review summary to include the POW war camp stuff. *(Summary now reads: "A superb trip to Colditz Castle and an obscure POW camp — hotels, English-speaking guides and taxi transfers to hard-to-reach places all arranged…")*
+		✅ Replace J Shaw with mosel image *(J Shaw's card image swapped from the Zell-Mosel town shot to the iconic Bremm Mosel meander (river bend at sunrise, id 5843).)*
+		🟡 new Scott family picture will be uploaded when received *(The Schott card is using a temporary placeholder image (Frankfurt "neue-altstadt" half-timbered old town, thematically close to Idstein) until the real family photo is supplied. Swap in the family photo when received.)*
 
 	special interest:
 
