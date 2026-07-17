@@ -108,7 +108,7 @@ Homepage:
 
 	General:
 
-		Fix grey, white pattern.
+		✅ Fix grey, white pattern. *(Homepage section backgrounds now alternate cleanly starting grey at the hero/title: Grey (hero) → White (How can we help) → Grey (Germany intro) → White (Destinations) → Grey (Testimonials) → White (Special Interest) → Grey (Special Events) → White (Blogs) → green email band → footer. The rhythm was out of sync because removed sections left same-colour neighbours (two greys after the hero, two whites around testimonials). Fixed by applying the theme band classes (twb-band-grey / twb-band-white) to the affected rows on page 30 — these override the old inline vc_custom backgrounds via higher CSS specificity. No empty leftover rows were found; the "double bands" were the mis-alternation itself.)*
 		✅ Standardise spelling of Mosel. some instances are spelt differently. *(Standardised the French/English "Moselle" to the German "Mosel" everywhere it appears in visible content — 37 replacements across 15 pages/posts (homepage hero slide titles/descriptions, About, Destinations, Rhine-valley + Bernkastel-Kues/Cochem/Koblenz/Zell-Mosel pages, Fairy Tale Castles, Rhine in Flames, and 4 blog posts). Two "Mosel (Moselle)"/"also known as the Moselle River" notes were collapsed to avoid redundancy. Left one legacy lowercase URL slug (wine-tour-moselle-valley.html) untouched so the link isn't broken. Verified: hero carousel still renders and no visible "Moselle" remains.)*
 
 	Slideshow:
