@@ -86,10 +86,314 @@
 - 🟡 Header. *(Placeholder hero in place — real heading/eyebrow/CTA copy pending.)*
 - 🟡 Introduction. *(Placeholder intro in place — real copy pending.)*
 - ✅ Contact me — its own form on the same page as the contact form, with a slider next to "Get in touch" toggling between Individual enquiries / Business enquiries (defaulting to individual). The slider swaps the form; the individual form is the one that already exists.
-  *(Built on the local Contact page. The two values that were previously "blocked on A.S" were found directly in the local DB — the contact form delivers to `mail@travelwithoutborders.co.uk`, and the individual form is Quform `id=1` "Tailor-made Holidays Form". The Trade form was created as Quform `id=3` "Trade Enquiry — Business" by duplicating form 1 via Quform's own API, relabelling its fields, and prefixing the notification subject with `[TRADE ENQUIRY]` — it delivers to the same inbox. A new child-theme element `[twb_enquiry_toggle]` (inc/enquiry-toggle.php + own CSS/JS) renders both forms under a segmented Individual/Business switch, defaulting to Individual; the Contact page (ID 4014) embeds it. Both SEND buttons are normalised to the brand green.)*
+  *(Built and tested on Local. The two values previously "blocked on A.S" were found in the local DB — the contact form delivers to `mail@travelwithoutborders.co.uk`, and the individual form is Quform `id=1` ("Tailor-made Holidays Form"). The Trade form is Quform `id=3` ("Trade Enquiry — Business"), created by duplicating form 1 via Quform's own API, with relabelled fields and a `[TRADE ENQUIRY]` subject prefix, delivering to the same inbox. A new child-theme element `[twb_enquiry_toggle]` (inc/enquiry-toggle.php + own CSS/JS) renders both forms under a segmented Individual/Business switch defaulting to Individual; the Contact page (ID 4014) embeds it. Both SEND buttons normalised to the brand green. See `01_Documentation/TRADE_ENQUIRY_FORM.md`.)*
   - ✅ Business form contains:
     - Business name
     - Email address
     - Phone number
     - Trade Enquiry
     *(Built as Quform form id=3; labels confirmed live.)*
+  - ✅ End-to-end delivery tested on Local. *(Submitted the Trade form → Quform entry stored (#191) and the notification email was generated correctly: To `mail@travelwithoutborders.co.uk`, subject `[TRADE ENQUIRY] New business enquiry from Trade Enquiry — Business`, body carrying all four fields. On Local the mail is captured by Local's Mailpit catcher (Post SMTP's Gmail OAuth2 can't authenticate on the `.local` domain, so it falls back to PHP mail() → Mailpit). On production it will deliver to the real inbox via the same Post SMTP → Gmail pipeline that already sends the individual enquiries — no extra setup. A real inbox delivery from Local is only possible by switching Local's Post SMTP to a Gmail App Password.)*
+
+
+
+V2:
+
+
+Footers:
+
+	Ensure the footer across the full site is accurate containing the new testimonials page and the trade page.
+
+Homepage:
+
+	General:
+
+		Fix grey, white pattern.
+		Standardise spelling of Mosel. some instances are spelt differently.
+
+	Slideshow:
+		
+		Neuschwanstein castle should be added in after Augsburg berlin, not replacing but after. this 			should be the snowy picture we have used as the top photo on the testimonials page
+		Add Dresden photo, the same one used for the testimonials page at the bottom.
+
+	Testimonials:
+		
+		change title to "Bespoke Germany Planning Holiday Feedback"
+		change Karen review to the scott family
+		change the A Corben review summary to include the POW war camp stuff.
+		Replace J Shaw with mosel image
+		new Scott family picture will be uploaded when received
+
+	special interest:
+
+		ensure all buttons can be clicked not just the photo. for the berlin berlsesque one, the enquire 		button takes u to the contact form where as the picture should take u to its designated page.
+
+	special events:
+
+		the pictures are clickable but the buttons arnt clickable, fix this
+
+	
+Testimonials page
+	
+	header/footer:
+		
+		Replacing both the top and bottom photo. The top photo is is the first photo sent on WhatsApp. the 		bottom 	photo is the second photo.
+
+	Testimonials:	
+
+		Reviews:
+
+			scott family needs location.
+			scott family needs picture
+			New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest)
+		
+		Format Of Cards:
+	
+			J Shaw and Scott family cards should now follow the format of the cards on the homepage. 			the picture on the left and review on the right. the cards should cover the whole width of 			all the testimonials rather than leaving space for the a smaller card on its right. The 3 			remaining reviews will keep the smaller card format with the picture on the top.
+
+			Order:
+	
+				J Shaw (picture on the left) (covers full width of 3 cards instead of 2, replacing 				the space the smaller card lives on its right)
+				Scott family (Follows same format as J Shaw card) (exists below J Shaw review)
+				remaining 3 Reviews exist on the final row below Scott Family. Consistent smaller 				cards with pictures on the top.
+
+
+Contact:
+
+	Address:
+		
+		change "out address" to "Registered Address"
+		Add England
+
+Trade:
+	
+	Header/footer:
+
+		Replace the top photo with a photo of Augsburg
+		replace the bottom photo with a photo of 
+
+
+Talk:
+	Destinations:
+
+		all pages
+
+			the writing in the top header black box isn't too clear as the colour isn't clear 						ainst black, consider changing to white.
+			Double check all distances.
+			Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-rail/fly-				drive/self-drive/rail) and accommodation (hotel/guesthouse) options.
+
+			What to do:
+
+				bullet points that carries over under the next line however they go under the 					bullet point rather than where the actual text starts after the bullet point.
+
+		Bavaria:
+		
+			Oberammergau:
+		
+				Oberammergau passion play has no page under special events, only available from 				clicking register your interest in Oberammergau page under destination/Bavaria.
+				no credit given under sliding images
+
+			Regensburg:
+
+				no credit given for any pictures
+
+			Rothenburg Ob Tauber:
+	
+				little to no description under title.
+
+		Black Forest:
+
+			Freiburg:
+
+				no credit for any of the pictures.
+
+			Hiedelerg:
+				
+				no credit for any of the pictures.
+
+			Konstanz (Lake Constance):
+
+				little description under title.
+				no credit given for any of the pictures.
+
+			Lindau (Lake Constance):
+
+				Little to no description under title.
+				No credit given for pictures.
+
+			Meersburg (Lake Constance):
+
+				no credit given for pictures.
+
+			Schluchsee:
+
+				no credit given for pictures.
+
+			Titisee_Neustadt:
+		
+				little to no description under title.
+				No credit given for pictures.
+
+			Triberg:
+
+				Little description under title.
+				No credit given for pictures.
+
+
+		Eastern Germany:
+
+			Eisenach:
+
+				No picture in header.
+				no credit given for pictures.
+
+			Erfurt:
+
+				no credit given for picture collage.
+				picture collage sizing isn't consistent.
+
+			Potsdam:
+
+				Small description under Title.
+
+			Rostock and Warnemunde:
+
+				Small description under title.
+				No picture in header
+			
+			Schwerin:
+
+				small description under title.
+
+
+		Northern Germany:
+
+			Celle:
+	
+				little description under title.
+
+
+			Hamelin:
+
+				little to no description under title.
+
+
+			Goslar (Harz Mountains):
+
+				no credit given for pictures.
+				sizing of pictures in collage isn't consistent.
+
+
+		The Rhine, Mosel and Eifel:
+
+			
+			Aachen:
+
+				no credit given for pictures.
+
+
+			Bernkastel-Kues:
+
+				no credit given for pictures.
+
+			
+			Boppard:
+
+				little description under title.
+				no credit given for pictures.
+
+			
+			Cochem:
+
+				no credit given for photos.
+
+
+			Daun:
+
+				No credit given for photos.
+
+
+			Koblenz:
+
+				No credit given for picture collage.
+
+
+			Rudesheim:
+
+				No credit given for picture collage
+
+
+			Trier:
+
+				No credit given for picture collage.
+
+
+		
+		Major cities in Germany
+
+			Bremen:
+
+				Travel Facts format doesn't match all other pages. 
+				section on its right doesn't line up
+
+			
+			Dusseldorf:
+
+				Little description under title
+				ALOT of info under "What to do"
+
+			Frankfurt:
+		
+				Little description under title
+				Extra bullet point under "what to do" with no content.
+
+			Hannover:
+				
+				no credit given for picture collage.
+
+			Stuttgart:
+
+				picture doesn't load/exist anymore. description: Weindorf 0216 © Stuttgart Marketing GmbH Christoph 				Düpper
+
+
+	Special interests:
+
+		The Colditz Castle Experience:
+
+			Small description under title.
+
+
+		The Eagles's Nest (Kehlsteinhaus) Experience:
+
+			small description under title.
+			no credit given for pictures.
+			Centre sub-titles including ("sample packages for the independent traveller by Air" and "Sample package for
+			private groups" with both their child-titles)
+
+
+		Fine Wine and Dine:
+
+			No credit for pictures.
+
+		
+		Augsburg Football Tour:
+	
+			little to no description under title.
+			no credit given for pictures.
+			nothing next to the picture of a football in a goal.
+			centre the coming soon section.
+
+
+		Motorcar Enthusiasts holidays:
+
+			Centre "Sample packages for the independent traveller by Air" + description.
+			nothing next to "motorcar Weekend Dream" card. potentially a picture.
+
+	Testimonials:
+
+		potential to change Header/Footer pictures. remove footer picture, change Header picture to match 		special events page style
+
+	Trade:
+		
+		Same change applied above (testimonials Header and Footer picture change)
+	
