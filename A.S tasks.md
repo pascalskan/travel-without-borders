@@ -102,7 +102,7 @@ V2:
 
 Footers:
 
-	Ensure the footer across the full site is accurate containing the new testimonials page and the trade page.
+	✅ Ensure the footer across the full site is accurate containing the new testimonials page and the trade page. *(Added Testimonials and Trade to the footer "Company" column (the "Footer Nav - 2" menu), which renders on every page. Column order is now: About Us, Testimonials, Blog, Trade, Contact Details, Privacy Policy, Terms & Conditions. Verified on the live-rendered footer.)*
 
 Homepage:
 
