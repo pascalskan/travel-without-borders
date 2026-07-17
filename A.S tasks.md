@@ -85,11 +85,11 @@
 - 🟡 Create full design; follow the design of the Testimonials page apart from content. Header with images, and all footers, should be copied. *(The /trade/ page was created by cloning the Testimonials layout — top & bottom hero photos, the email section and the footer are all in place. Body content is placeholder for now; final design/copy still to do.)*
 - 🟡 Header. *(Placeholder hero in place — real heading/eyebrow/CTA copy pending.)*
 - 🟡 Introduction. *(Placeholder intro in place — real copy pending.)*
-- 🟡 Contact me — this must be its own form on the same page as the contact form, with a slider next to "Get in touch" toggling between Individual enquiries / Business enquiries (defaulting to individual). The slider swaps the form; the individual form is the one that already exists.
-  *(The trade/business enquiry form is specified and documented in `01_Documentation/TRADE_ENQUIRY_FORM.md` as a labelled Quform duplicate that reuses the existing email pipeline. **Build is blocked pending two values from A.S: the recipient email the current contact form uses, and the current Quform form ID.** The individual/business slider toggle on the existing Contact page is not yet built. Note: this toggle lives on the pre-existing Contact page, not the Trade page.)*
-  - 🟡 Business form contains:
+- ✅ Contact me — its own form on the same page as the contact form, with a slider next to "Get in touch" toggling between Individual enquiries / Business enquiries (defaulting to individual). The slider swaps the form; the individual form is the one that already exists.
+  *(Built on the local Contact page. The two values that were previously "blocked on A.S" were found directly in the local DB — the contact form delivers to `mail@travelwithoutborders.co.uk`, and the individual form is Quform `id=1` "Tailor-made Holidays Form". The Trade form was created as Quform `id=3` "Trade Enquiry — Business" by duplicating form 1 via Quform's own API, relabelling its fields, and prefixing the notification subject with `[TRADE ENQUIRY]` — it delivers to the same inbox. A new child-theme element `[twb_enquiry_toggle]` (inc/enquiry-toggle.php + own CSS/JS) renders both forms under a segmented Individual/Business switch, defaulting to Individual; the Contact page (ID 4014) embeds it. Both SEND buttons are normalised to the brand green.)*
+  - ✅ Business form contains:
     - Business name
     - Email address
     - Phone number
     - Trade Enquiry
-    *(Fields documented, not yet built in Quform.)*
+    *(Built as Quform form id=3; labels confirmed live.)*

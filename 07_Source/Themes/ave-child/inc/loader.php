@@ -50,3 +50,6 @@ require_once $twb_inc . 'trust-stats.php';
 
 // Email strip — the standard green "e-mail us" closing band (own CSS, on-demand).
 require_once $twb_inc . 'email-strip.php';
+
+// Enquiry toggle — Individual/Business form switch on the Contact page (own CSS/JS).
+require_once $twb_inc . 'enquiry-toggle.php';

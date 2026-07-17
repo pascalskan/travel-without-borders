@@ -14,6 +14,19 @@ enquiries.
 
 Related task: `A.S tasks.md` → *Business to Business page → contact me*.
 
+> **STATUS (built on Local, 2026-07-17).** The two blockers below were resolved
+> by reading the local database directly (no need to ask): the contact form
+> delivers to **`mail@travelwithoutborders.co.uk`**, and the individual form is
+> Quform **`id=1`** ("Tailor-made Holidays Form"). The trade form is built as
+> Quform **`id=3`** ("Trade Enquiry — Business") — a duplicate of form 1 with
+> relabelled fields (Business name / Email address / Phone number / Trade
+> Enquiry) and a `[TRADE ENQUIRY]` subject prefix, delivering to the same inbox.
+> The Individual/Business slider is the child-theme element
+> `[twb_enquiry_toggle]` (see `07_Source/Themes/ave-child/inc/enquiry-toggle.php`),
+> embedded on the Contact page (ID 4014). **Still to do:** repeat on production
+> (create the duplicate + embed the toggle there), and run the live delivery
+> test below.
+
 ---
 
 ## Objective
@@ -43,9 +56,9 @@ Business page is unrelated future work, tracked separately.)
 - [ ] Confirm the **recipient address** the current contact form's notification
       sends to (WP-admin → Forms → *General Contact Form* → **Email** →
       Notification → *To*). Reuse that exact address so nothing new has to be
-      verified in Post SMTP. _Record it here once confirmed:_ `__________`.
+      verified in Post SMTP. _Recorded:_ **`mail@travelwithoutborders.co.uk`**.
 - [ ] Note the current form's **ID** (shown in the Forms list / shortcode, e.g.
-      `[quform id="1" name="..."]`). _Record it here:_ `__________`.
+      `[quform id="1" name="..."]`). _Recorded:_ **`id=1` ("Tailor-made Holidays Form")**.
 - [ ] Do this in **staging/Local first** if available
       ([Local Dev Workflow](LOCAL_DEV_WORKFLOW.md)), then repeat in production.
 
