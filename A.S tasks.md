@@ -137,25 +137,25 @@ Testimonials page
 	
 	header/footer:
 		
-		Replacing both the top and bottom photo. The top photo is is the first photo sent on WhatsApp. the 		bottom 	photo is the second photo.
+		🟡 Replacing both the top and bottom photo. The top photo is is the first photo sent on WhatsApp. the 		bottom 	photo is the second photo. *(BLOCKED — need the two WhatsApp photos from A.S. Top hero is currently the snowy Neuschwanstein; bottom is the Dresden night photo.)*
 
 	Testimonials:	
 
 		Reviews:
 
-			scott family needs location.
-			scott family needs picture
-			New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest)
+			🟡 scott family needs location. *(BLOCKED — need the Schott family's location from A.S. Card currently shows no location.)*
+			🟡 scott family needs picture *(BLOCKED — using a temporary placeholder (Frankfurt "neue-altstadt" half-timbered old town, close to Idstein) on both the homepage and this page until the real family photo is supplied.)*
+			🟡 New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest) *(BLOCKED — need the Andy Starling review text. Will be added as the 3rd small card in the final row, Special Interest / June 2026.)*
 		
 		Format Of Cards:
 	
-			J Shaw and Scott family cards should now follow the format of the cards on the homepage. 			the picture on the left and review on the right. the cards should cover the whole width of 			all the testimonials rather than leaving space for the a smaller card on its right. The 3 			remaining reviews will keep the smaller card format with the picture on the top.
+			✅ J Shaw and Scott family cards should now follow the format of the cards on the homepage. 			the picture on the left and review on the right. the cards should cover the whole width of 			all the testimonials rather than leaving space for the a smaller card on its right. The 3 			remaining reviews will keep the smaller card format with the picture on the top. *(Done. J Shaw and Schott are now full-width (span-3) cards with the image on the left and the review on the right; A Corbin and Karen keep the small top-image format. Each card stays a contained height and clamps the review with a "Show more" button that opens the full review in a centred pop-up (portalled above the sticky header, scrollable). See commit a32eebd.)*
 
 			Order:
 	
-				J Shaw (picture on the left) (covers full width of 3 cards instead of 2, replacing 				the space the smaller card lives on its right)
-				Scott family (Follows same format as J Shaw card) (exists below J Shaw review)
-				remaining 3 Reviews exist on the final row below Scott Family. Consistent smaller 				cards with pictures on the top.
+				✅ J Shaw (picture on the left) (covers full width of 3 cards instead of 2, replacing 				the space the smaller card lives on its right)
+				✅ Scott family (Follows same format as J Shaw card) (exists below J Shaw review)
+				🟡 remaining 3 Reviews exist on the final row below Scott Family. Consistent smaller 				cards with pictures on the top. *(A Corbin + Karen are in the final row now; the 3rd (Andy Starling) will fill the last slot once its text is supplied.)*
 
 
 Contact:
