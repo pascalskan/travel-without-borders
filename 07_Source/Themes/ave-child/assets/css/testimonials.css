@@ -212,6 +212,25 @@ a.twb-testimonial-card__media:focus-visible {
 .twb-testimonials--grid .twb-testimonial-card__more {
 	margin-top: var(--twb-space-8);
 }
+/* Attribution (name · location · date) sits on the same row as "Show more"
+   at the foot of the grid card, rather than stacked above it. */
+.twb-testimonials--grid .twb-testimonial-card__foot {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--twb-space-16);
+	flex: 0 0 auto;
+}
+.twb-testimonial-card__foot .twb-testimonial-card__caption {
+	flex: 0 1 auto;
+	min-width: 0;
+}
+.twb-testimonials--grid .twb-testimonial-card__foot .twb-testimonial-card__more {
+	margin-top: 0;
+	align-self: center;
+	flex: 0 0 auto;
+	white-space: nowrap;
+}
 /* Only the quote flexes; the rest keep their natural height. */
 .twb-testimonials--grid .twb-testimonial-card__top,
 .twb-testimonials--grid .twb-testimonial-card__caption,

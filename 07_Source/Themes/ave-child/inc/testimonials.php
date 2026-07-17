@@ -431,7 +431,7 @@ function twb_testimonials_render_card( $item, $opts ) {
 				<p><?php echo esc_html( $quote ); ?></p>
 			</blockquote>
 
-			<figcaption class="twb-testimonial-card__caption">
+			<div class="twb-testimonial-card__foot"><figcaption class="twb-testimonial-card__caption">
 				<span class="twb-testimonial-card__attribution">
 					<?php if ( '' !== $name ) : ?>
 						<cite class="twb-testimonial-card__name"><?php echo esc_html( $name ); ?></cite>
@@ -449,6 +449,7 @@ function twb_testimonials_render_card( $item, $opts ) {
 			<button type="button" class="twb-testimonial-card__more" hidden>
 				<span class="twb-testimonial-card__more-txt"><?php esc_html_e( 'Show more', 'ave' ); ?></span>
 			</button>
+				</div>
 		</div>
 	</figure>
 	<?php
