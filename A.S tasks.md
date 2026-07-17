@@ -121,8 +121,8 @@ Homepage:
 		✅ change title to "Bespoke Germany Planning Holiday Feedback" *(Section heading updated.)*
 		✅ change Karen review to the scott family *(Karen card replaced with The Schott Family — Tailor-made / Idstein, May 2025, with a short summary of their family-roots trip. Cards are now J Shaw, The Schott Family, A Corbin.)*
 		✅ change the A Corben review summary to include the POW war camp stuff. *(Summary now reads: "A superb trip to Colditz Castle and an obscure POW camp — hotels, English-speaking guides and taxi transfers to hard-to-reach places all arranged…")*
-		✅ Replace J Shaw with mosel image *(J Shaw's card image swapped from the Zell-Mosel town shot to the iconic Bremm Mosel meander (river bend at sunrise, id 5843).)*
-		🟡 new Scott family picture will be uploaded when received *(The Schott card is using a temporary placeholder image (Frankfurt "neue-altstadt" half-timbered old town, thematically close to Idstein) until the real family photo is supplied. Swap in the family photo when received.)*
+		✅ Replace J Shaw with mosel image *(A.S supplied the Mosel photo (Mosel-photo-J-Shaw.JPG, id 7331 — the Mosel river valley with vineyards). Applied to J Shaw on BOTH the homepage and the Testimonials page.)*
+		✅ new Scott family picture will be uploaded when received *(A.S supplied Scott-Family-photo.jpg (id 7332 — the Idstein town square with its lion fountain). Applied to the Schott card on BOTH the homepage and the Testimonials page, replacing the earlier placeholder.)*
 
 	special interest:
 
@@ -143,9 +143,9 @@ Testimonials page
 
 		Reviews:
 
-			🟡 scott family needs location. *(BLOCKED — need the Schott family's location from A.S. Card currently shows no location.)*
-			🟡 scott family needs picture *(BLOCKED — using a temporary placeholder (Frankfurt "neue-altstadt" half-timbered old town, close to Idstein) on both the homepage and this page until the real family photo is supplied.)*
-			🟡 New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest) *(BLOCKED — need the Andy Starling review text. Will be added as the 3rd small card in the final row, Special Interest / June 2026.)*
+			🟡 scott family needs location. *(BLOCKED — still need the Schott family's location text from A.S. The card image is now the Idstein square, but the location line under the name is still blank.)*
+			✅ scott family needs picture *(A.S supplied Scott-Family-photo.jpg (Idstein square, id 7332) — applied to the Schott card here and on the homepage.)*
+			🟡 New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest) *(BLOCKED on the review TEXT. A.S has supplied the photo (Andy-Starling.jpg) but not the review wording. Once the text arrives it becomes the 3rd small card in the final row, Special Interest / June 2026.)*
 		
 		Format Of Cards:
 	
