@@ -93,6 +93,12 @@
 		if ( ! modal ) {
 			return; // carousel section, no modal
 		}
+		// Portal the modal to <body> so it overlays everything. Left in place, an
+		// ancestor row's transform traps it in a stacking context and the sticky
+		// header bleeds over the top.
+		if ( modal.parentNode !== document.body ) {
+			document.body.appendChild( modal );
+		}
 		var body   = modal.querySelector( '.twb-testimonials__modal-body' );
 		var cards  = el.querySelectorAll( '.twb-testimonials__grid .twb-testimonial-card' );
 		var opener = null;

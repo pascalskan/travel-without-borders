@@ -234,6 +234,45 @@ a.twb-testimonial-card__media:focus-visible {
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--twb-white, #fff));
 	pointer-events: none;
 }
+
+/* --- Featured full-width cards (span 3) --------------------------------- */
+/* J Shaw + Schott span the full row and read like the homepage cards: image on
+   the left, review on the right. They keep a contained height and CLAMP the
+   review with a "Show more" button — the full review opens in the pop-up, so a
+   long review never makes the card grow tall. The remaining reviews stay as the
+   uniform top-image cards above. */
+.twb-testimonials--grid .twb-testimonials__grid-item--span-3 .twb-testimonial-card {
+	height: 380px;
+}
+.twb-testimonials--grid .twb-testimonials__grid-item--span-3 .twb-testimonial-card--has-media {
+	flex-direction: row;
+	align-items: stretch;
+}
+.twb-testimonials--grid .twb-testimonials__grid-item--span-3 .twb-testimonial-card__media {
+	flex: 0 0 38%;
+	width: 38%;
+	max-width: 440px;
+}
+.twb-testimonials--grid .twb-testimonials__grid-item--span-3 .twb-testimonial-card__img {
+	height: 100%;
+	min-height: 0;
+}
+/* On mobile the featured card stacks (image on top) like the small cards. */
+@media (max-width: 767px) {
+	.twb-testimonials--grid .twb-testimonials__grid-item--span-3 .twb-testimonial-card--has-media {
+		flex-direction: column;
+	}
+	.twb-testimonials--grid .twb-testimonials__grid-item--span-3 .twb-testimonial-card__media {
+		flex-basis: auto;
+		width: 100%;
+		max-width: none;
+	}
+	.twb-testimonials--grid .twb-testimonials__grid-item--span-3 .twb-testimonial-card__img {
+		height: 200px;
+		min-height: 0;
+	}
+}
+
 /* "Show more" — hidden until JS detects the quote overflows the card. */
 .twb-testimonial-card__more {
 	align-self: flex-start;
@@ -530,7 +569,7 @@ html.twb-modal-open {
 .twb-testimonials__modal {
 	position: fixed;
 	inset: 0;
-	z-index: 9999;
+	z-index: 99999; /* above the sticky header (portalled to <body> in JS) */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -547,8 +586,8 @@ html.twb-modal-open {
 .twb-testimonials__modal-dialog {
 	position: relative;
 	z-index: 1;
-	width: min(760px, 100%);
-	max-height: 90vh;
+	width: min(720px, 100%);
+	max-height: 84vh;
 	overflow: auto;
 	background: var(--twb-white, #fff);
 	border-top: 4px solid var(--twb-green);
@@ -571,7 +610,7 @@ html.twb-modal-open {
 .twb-testimonials__modal-media img {
 	display: block;
 	width: 100%;
-	max-height: 320px;
+	max-height: 240px;
 	object-fit: cover;
 }
 .twb-testimonials__modal-content {
