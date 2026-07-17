@@ -113,8 +113,8 @@ Homepage:
 
 	Slideshow:
 		
-		Neuschwanstein castle should be added in after Augsburg berlin, not replacing but after. this 			should be the snowy picture we have used as the top photo on the testimonials page
-		Add Dresden photo, the same one used for the testimonials page at the bottom.
+		✅ Neuschwanstein castle should be added in after Augsburg berlin, not replacing but after. this 			should be the snowy picture we have used as the top photo on the testimonials page *(Added as slide 3, right after Augsburg (nothing replaced) — using the snowy Neuschwanstein photo (id 7241) from the top of the Testimonials page. Title "Neuschwanstein – Bavaria", links to the Füssen & Schwangau destination page.)*
+		✅ Add Dresden photo, the same one used for the testimonials page at the bottom. *(Added as slide 10, immediately before the Hamburg slide (per A.S) — using the Dresden night photo (id 7244) from the bottom of the Testimonials page. Title "Dresden – Major Cities", links to the Dresden page. Slideshow now has 14 slides.)*
 
 	Testimonials:
 		
@@ -126,7 +126,7 @@ Homepage:
 
 	special interest:
 
-		🟡 ensure all buttons can be clicked not just the photo. for the berlin berlsesque one, the enquire 		button takes u to the contact form where as the picture should take u to its designated page. *(All Special Interest card buttons (DETAILS / ENQUIRE) are now clickable links — previously the card footer sat above the photo's overlay link so only the photo was clickable. Each DETAILS button now links to the same page as its photo (Colditz, Fairy Tale Castles, Fine Wine and Dine, Football Camps). Berlin Burlesque's ENQUIRE button now links to the contact form. **BLOCKED:** the Berlin Burlesque photo can't link to "its designated page" because no Berlin Burlesque page exists — the photo currently still points to /contact/. Need A.S to confirm: create a Berlin Burlesque page, or link the photo somewhere specific?)*
+		✅ ensure all buttons can be clicked not just the photo. for the berlin berlsesque one, the enquire 		button takes u to the contact form where as the picture should take u to its designated page. *(All Special Interest card buttons (DETAILS / ENQUIRE) are now clickable links — previously the card footer sat above the photo's overlay link so only the photo was clickable. Each DETAILS button now links to the same page as its photo (Colditz, Fairy Tale Castles, Fine Wine and Dine, Football Camps). Berlin Burlesque's ENQUIRE button now links to the contact form. Berlin Burlesque has no dedicated page, so per A.S the photo also points to the contact page.)*
 
 	special events:
 
