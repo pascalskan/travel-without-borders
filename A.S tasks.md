@@ -126,11 +126,11 @@ Homepage:
 
 	special interest:
 
-		ensure all buttons can be clicked not just the photo. for the berlin berlsesque one, the enquire 		button takes u to the contact form where as the picture should take u to its designated page.
+		🟡 ensure all buttons can be clicked not just the photo. for the berlin berlsesque one, the enquire 		button takes u to the contact form where as the picture should take u to its designated page. *(All Special Interest card buttons (DETAILS / ENQUIRE) are now clickable links — previously the card footer sat above the photo's overlay link so only the photo was clickable. Each DETAILS button now links to the same page as its photo (Colditz, Fairy Tale Castles, Fine Wine and Dine, Football Camps). Berlin Burlesque's ENQUIRE button now links to the contact form. **BLOCKED:** the Berlin Burlesque photo can't link to "its designated page" because no Berlin Burlesque page exists — the photo currently still points to /contact/. Need A.S to confirm: create a Berlin Burlesque page, or link the photo somewhere specific?)*
 
 	special events:
 
-		the pictures are clickable but the buttons arnt clickable, fix this
+		✅ the pictures are clickable but the buttons arnt clickable, fix this *(All Special Events DETAILS buttons (Augsburg Plärrer Volksfest, Christmas Markets, Rhine in Flames) are now clickable links to their pages — same fix as Special Interest. Photos remain clickable as before.)*
 
 	
 Testimonials page
