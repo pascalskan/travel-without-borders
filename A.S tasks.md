@@ -192,8 +192,8 @@ Contact:
 
 	Address:
 		
-		change "out address" to "Registered Address"
-		Add England
+		✅ change "out address" to "Registered Address" *(The address box heading on the Contact page now reads "Registered Address".)*
+		✅ Add England *(Added "England" as the final line of the address: Unit 7 / Salisbury House / Wheatfield Way / Hinckley / LE10 1YG / England.)*
 
 Trade:
 	
