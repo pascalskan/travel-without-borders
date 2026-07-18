@@ -389,6 +389,10 @@ function twb_testimonials_render_card( $item, $opts ) {
 	$location = isset( $item['author_location'] ) ? trim( $item['author_location'] ) : '';
 	$trip     = isset( $item['trip_type'] ) ? trim( $item['trip_type'] ) : '';
 	$region   = isset( $item['region'] ) ? trim( $item['region'] ) : '';
+	// The region field may hold several comma-separated tags, e.g. "Colditz, Berlin";
+	// each is rendered as its own badge, in the order given.
+	$regions  = array_values( array_filter( array_map( 'trim', explode( ',', $region ) ), 'strlen' ) );
+	$region_primary = $regions ? $regions[0] : '';
 	$date     = isset( $item['travel_date'] ) ? trim( $item['travel_date'] ) : '';
 	$rating   = isset( $item['rating'] ) ? (int) $item['rating'] : 0;
 
@@ -400,7 +404,7 @@ function twb_testimonials_render_card( $item, $opts ) {
 	$media_html = twb_testimonials_render_media(
 		isset( $item['image'] ) ? absint( $item['image'] ) : 0,
 		isset( $item['image_link'] ) ? $item['image_link'] : '',
-		$region
+		$region_primary
 	);
 	$has_media = ( '' !== $media_html );
 
@@ -410,11 +414,11 @@ function twb_testimonials_render_card( $item, $opts ) {
 		<?php echo $media_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped values in twb_testimonials_render_media(). ?>
 		<div class="twb-testimonial-card__body">
 			<div class="twb-testimonial-card__top">
-				<?php if ( $show_badges && ( '' !== $region || '' !== $trip ) ) : ?>
+				<?php if ( $show_badges && ( ! empty( $regions ) || '' !== $trip ) ) : ?>
 					<div class="twb-testimonial-card__badges">
-						<?php if ( '' !== $region ) : ?>
-							<span class="twb-testimonial-card__badge twb-testimonial-card__badge--region"><?php echo esc_html( $region ); ?></span>
-						<?php endif; ?>
+						<?php foreach ( $regions as $region_tag ) : ?>
+							<span class="twb-testimonial-card__badge twb-testimonial-card__badge--region"><?php echo esc_html( $region_tag ); ?></span>
+						<?php endforeach; ?>
 						<?php if ( '' !== $trip ) : ?>
 							<span class="twb-testimonial-card__badge twb-testimonial-card__badge--trip"><?php echo esc_html( $trip ); ?></span>
 						<?php endif; ?>
