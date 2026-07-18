@@ -208,13 +208,13 @@ Talk:
 
 		all pages
 
-			✅ the writing in the top header black box isn't too clear as the colour isn't clear 				against black, consider changing to white. *(Site-wide CSS: the intro paragraph in the dark "shadowbox" hero was mid-grey (#888) on black; now near-white and legible. Applies to every page that uses the dark hero box.)*
-			⬜ Double check all distances. *(NEEDS SOURCE: this is a per-page content check — I can only verify distances against a reference A.S provides (or confirm they match the live site). Tell me the correct distances / source and I'll audit them.)*
-			⬜ Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-			rail/fly-drive/self-drive/rail) and accommodation (hotel/guesthouse) options. *(NEEDS A.S CONFIRMATION of the exact wording; then I can standardise it across pages.)*
+			the writing in the top header black box isn't too clear as the colour isn't clear 				against black, consider changing to white.
+			Double check all distances.
+			Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-			rail/fly-drive/self-drive/rail) and accommodation (hotel/guesthouse) options.
 
 			What to do:
 
-				✅ bullet points that carries over under the next line however they go under the 					bullet point rather than where the actual text starts after the bullet point. *(Fixed site-wide: content lists now use an outside marker with a hanging indent, so wrapped lines align with the first line's text.)*
+				bullet points that carries over under the next line however they go under the 					bullet point rather than where the actual text starts after the bullet point.
 
 		Bavaria:
 		

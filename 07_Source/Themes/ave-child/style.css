@@ -141,34 +141,3 @@ body.home .fancy-box-travel .liquid-overlay-link {
 body.home .fancy-box-travel .fancy-box-footer {
 	display: none;
 }
-/* ----------------------------------------------------------------------------
-   TWB - Destination (and other) sub-page dark hero box.
-   The top "shadowbox" hero has a dark background; the H1 is white but the intro
-   paragraph inherits a mid-grey (#888) that is hard to read on black. Lighten
-   the body copy (and links) inside the dark hero so it is legible.
-   Ref: A.S tasks - Talk > Destinations > all pages (header text not clear).
-   ---------------------------------------------------------------------------- */
-[class*="liquid-row-shadowbox"] .ld-fancy-heading p,
-[class*="liquid-row-shadowbox"] .wpb_text_column p,
-[class*="liquid-row-shadowbox"] .ld-fancy-heading li {
-	color: rgba(255, 255, 255, 0.9) !important;
-}
-
-/* ----------------------------------------------------------------------------
-   TWB - Content bullet lists ("What to do", etc.).
-   These used list-style-position: inside, so a bullet that wraps to a second
-   line started under the marker instead of aligning with the first line's text.
-   Move the marker outside with a hanging indent so wrapped text lines up.
-   Scoped to WPBakery content blocks so nav/footer menus are untouched.
-   Ref: A.S tasks - Talk > Destinations > all pages (bullet wrapping).
-   ---------------------------------------------------------------------------- */
-.wpb_text_column ul,
-.ld-fancy-heading ul {
-	list-style-position: outside;
-	padding-left: 1.25em;
-	margin-left: 0;
-}
-.wpb_text_column ul li,
-.ld-fancy-heading ul li {
-	padding-left: 0.25em;
-}
