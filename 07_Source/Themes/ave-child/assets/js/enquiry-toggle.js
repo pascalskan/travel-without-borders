@@ -47,6 +47,15 @@
 
 		// Establish the initial state attribute for the sliding pill.
 		root.setAttribute( 'data-active', 'individual' );
+
+		// Deep-link support: /contact/?enquiry=business (used by the Trade page CTA)
+		// opens straight on the Business form.
+		try {
+			var params = new URLSearchParams( window.location.search );
+			if ( ( params.get( 'enquiry' ) || '' ).toLowerCase() === 'business' ) {
+				activate( 'business' );
+			}
+		} catch ( e ) {}
 	}
 
 	function initAll() {
