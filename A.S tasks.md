@@ -102,62 +102,90 @@ V2:
 
 Footers:
 
-	✅ Ensure the footer across the full site is accurate containing the new testimonials page and the trade page. *(Site-wide footer, verified on the live-rendered page. **Our Services** column (footer-nav-1): Destinations, Groups, Special Interest Holidays, Special Events, Tailor-made Holidays, Trade. **Company** column (footer-nav-2): About Us, Testimonials, Blog, Contact Details, Privacy Policy, Terms & Conditions. **Bottom line** now a real menu (footer-nav-4, created — it previously fell back to the services list): Destinations, Groups, Special Interest Holidays, Special Events, Tailor-made Holidays, Testimonials, Trade. Per A.S: Trade sits under Our Services (not Company); Testimonials + Trade also added to the bottom line.)*
+	Ensure the footer across the full site is accurate containing the new testimonials page and the trade page.
 
 Homepage:
 
 	General:
 
-		✅ Fix grey, white pattern. *(Homepage section backgrounds now alternate cleanly starting grey at the hero/title: Grey (hero) → White (How can we help) → Grey (Germany intro) → White (Destinations) → Grey (Testimonials) → White (Special Interest) → Grey (Special Events) → White (Blogs) → green email band → footer. The rhythm was out of sync because removed sections left same-colour neighbours (two greys after the hero, two whites around testimonials). Fixed by applying the theme band classes (twb-band-grey / twb-band-white) to the affected rows on page 30 — these override the old inline vc_custom backgrounds via higher CSS specificity. No empty leftover rows were found; the "double bands" were the mis-alternation itself.)*
-		✅ Standardise spelling of Mosel. some instances are spelt differently. *(Standardised the French/English "Moselle" to the German "Mosel" everywhere it appears in visible content — 37 replacements across 15 pages/posts (homepage hero slide titles/descriptions, About, Destinations, Rhine-valley + Bernkastel-Kues/Cochem/Koblenz/Zell-Mosel pages, Fairy Tale Castles, Rhine in Flames, and 4 blog posts). Two "Mosel (Moselle)"/"also known as the Moselle River" notes were collapsed to avoid redundancy. Left one legacy lowercase URL slug (wine-tour-moselle-valley.html) untouched so the link isn't broken. Verified: hero carousel still renders and no visible "Moselle" remains.)*
+		Fix grey, white pattern.
+		Standardise spelling of Mosel. some instances are spelt differently.
 
 	Slideshow:
 		
-		✅ Neuschwanstein castle should be added in after Augsburg berlin, not replacing but after. this 			should be the snowy picture we have used as the top photo on the testimonials page *(Added as slide 3, right after Augsburg (nothing replaced) — using the snowy Neuschwanstein photo (id 7241) from the top of the Testimonials page. Title "Neuschwanstein – Bavaria", links to the Füssen & Schwangau destination page.)*
-		✅ Add Dresden photo, the same one used for the testimonials page at the bottom. *(Added as slide 10, immediately before the Hamburg slide (per A.S) — using the Dresden night photo (id 7244) from the bottom of the Testimonials page. Title "Dresden – Major Cities", links to the Dresden page. Slideshow now has 14 slides.)*
+		Neuschwanstein castle should be added in after Augsburg berlin, not replacing but after. this 			should be the snowy picture we have used as the top photo on the testimonials page
+		Add Dresden photo, the same one used for the testimonials page at the bottom.
 
-	Testimonials: *(HOMEPAGE testimonials section — the 3-card summary carousel on the homepage, page 30. NOT the Testimonials page.)*
+	Testimonials:
 		
-		✅ change title to "Bespoke Germany Planning Holiday Feedback" *(Section heading updated.)*
-		✅ change Karen review to the scott family *(Karen card replaced with The Schott Family — Tailor-made / Idstein, May 2025, with a short summary of their family-roots trip. Cards are now J Shaw, The Schott Family, A Corbin.)*
-		✅ change the A Corben review summary to include the POW war camp stuff. *(Summary now reads: "A superb trip to Colditz Castle and an obscure POW camp — hotels, English-speaking guides and taxi transfers to hard-to-reach places all arranged…")*
-		✅ Replace J Shaw with mosel image *(A.S supplied the Mosel photo (Mosel-photo-J-Shaw.JPG, id 7331 — the Mosel river valley with vineyards). Applied to J Shaw on BOTH the homepage and the Testimonials page.)*
-		✅ new Scott family picture will be uploaded when received *(A.S supplied Scott-Family-photo.jpg (id 7332 — the Idstein town square with its lion fountain). Applied to the Schott card on BOTH the homepage and the Testimonials page, replacing the earlier placeholder.)*
+		change title to "Bespoke Germany Planning Holiday Feedback"
+		change Karen review to the scott family
+		change the A Corben review summary to include the POW war camp stuff.
+		Replace J Shaw with mosel image
+		new Scott family picture will be uploaded when received
 
 	special interest:
 
-		✅ ensure all buttons can be clicked not just the photo. for the berlin berlsesque one, the enquire 		button takes u to the contact form where as the picture should take u to its designated page. *(All Special Interest card buttons (DETAILS / ENQUIRE) are now clickable links — previously the card footer sat above the photo's overlay link so only the photo was clickable. Each DETAILS button now links to the same page as its photo (Colditz, Fairy Tale Castles, Fine Wine and Dine, Football Camps). Berlin Burlesque's ENQUIRE button now links to the contact form. Berlin Burlesque has no dedicated page, so per A.S the photo also points to the contact page.)*
+		ensure all buttons can be clicked not just the photo. for the berlin berlsesque one, the enquire 		button takes u to the contact form where as the picture should take u to its designated page.
 
 	special events:
 
-		✅ the pictures are clickable but the buttons arnt clickable, fix this *(All Special Events DETAILS buttons (Augsburg Plärrer Volksfest, Christmas Markets, Rhine in Flames) are now clickable links to their pages — same fix as Special Interest. Photos remain clickable as before.)*
+		the pictures are clickable but the buttons arnt clickable, fix this
 
 	
 Testimonials page
 	
 	header/footer:
 		
-		✅ Replacing both the top and bottom photo. The top photo is is the first photo sent on WhatsApp. the 		bottom 	photo is the second photo. *(A.S supplied "Testimonial header photo" (winter alpine lake, id 7338) and "Testimonial footer photo" (Schwerin Castle reflection, id 7339). Top hero and bottom "Ready to plan…" hero on the Testimonials page updated. The homepage slideshow keeps its own Neuschwanstein/Dresden slides.)*
+		Replacing both the top and bottom photo. The top photo is is the first photo sent on WhatsApp. the 		bottom 	photo is the second photo.
 
 	Testimonials:	
 
 		Reviews:
 
-			✅ scott family needs location. *(Set to "Middlesex" (per A.S) on both the Testimonials page and the homepage Schott card.)*
-			✅ scott family needs picture *(A.S supplied Scott-Family-photo.jpg (Idstein square, id 7332) — applied to the Schott card here and on the homepage.)*
-			🟡 New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest) *(Card BUILT as the 3rd small card in the final row — photo Andy-Starling.jpg (id 7335, Berlin/Reichstag), location Cambridgeshire, Berlin / Special Interest, June 2026. Name shortened to "A Starling" per A.S. Review body is still PLACEHOLDER text; swap in the real wording when A.S supplies it.)*
-			✅ *(Extra per A.S: on every card the name · location · date now sits on the same row as the "Show more" button, not stacked above it.)*
-			✅ *(Extra per A.S: nav bar — Testimonials and Groups swapped, so the order is now … Tailor-made Holidays · Groups · Testimonials · Trade.)*
+			scott family needs location.
+			scott family needs picture
+			New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest)
 		
 		Format Of Cards:
 	
-			✅ J Shaw and Scott family cards should now follow the format of the cards on the homepage. 			the picture on the left and review on the right. the cards should cover the whole width of 			all the testimonials rather than leaving space for the a smaller card on its right. The 3 			remaining reviews will keep the smaller card format with the picture on the top. *(Done. J Shaw and Schott are now full-width (span-3) cards with the image on the left and the review on the right; A Corbin and Karen keep the small top-image format. Each card stays a contained height and clamps the review with a "Show more" button that opens the full review in a centred pop-up (portalled above the sticky header, scrollable). See commit a32eebd.)*
+			J Shaw and Scott family cards should now follow the format of the cards on the homepage. 			the picture on the left and review on the right. the cards should cover the whole width of 			all the testimonials rather than leaving space for the a smaller card on its right. The 3 			remaining reviews will keep the smaller card format with the picture on the top.
 
 			Order:
 	
-				✅ J Shaw (picture on the left) (covers full width of 3 cards instead of 2, replacing 				the space the smaller card lives on its right)
-				✅ Scott family (Follows same format as J Shaw card) (exists below J Shaw review)
-				✅ remaining 3 Reviews exist on the final row below Scott Family. Consistent smaller 				cards with pictures on the top. *(Final row now holds all 3 small cards: A Corbin, Karen, Andy Starling. Small-card images fill the card (no white padding, minimal crop, equal width). The Show-more pop-up is wider and shows the whole photo.)*
+				J Shaw (picture on the left) (covers full width of 3 cards instead of 2, replacing 				the space the smaller card lives on its right)
+				Scott family (Follows same format as J Shaw card) (exists below J Shaw review)
+				remaining 3 Reviews exist on the final row below Scott Family. Consistent smaller 				cards with pictures on the top.
+
+
+		Nav bar position:
+			
+			to be swapped with groups.
+
+
+Destinations:
+
+	Cards:
+
+		✅ only the pictures and titles of the cards are clickable not the actual "more" button. *(Made all "MORE" buttons real clickable links to the same destination as the card — across the Destinations, Bavaria, Black Forest, Rhine/Mosel/Eifel, Northern, Eastern and Major Cities region pages, plus the Special Interest and Special Events listing pages. 77 buttons in total.)*
+
+	Bavaria:
+
+		✅ the same thing applies here, the actual "more" buttons arnt clickable only the images and titles. *(MORE buttons now clickable, same fix.)*
+		✅ Somehow when clicking the images, it is redirecting me off my back up and onto the live site? *(ROOT CAUSE FOUND: all 12 Bavaria card links pointed to the absolute LIVE URL `https://travelwithoutborders.co.uk/…`. Converted them to local relative paths so they stay on the backup.)*
+		✅ Some of the images redirect to a 404, all clickable things should redirect to their correct page. *(Fixed — e.g. the Augsburg card linked to `…/holidays-to-augsburg/` which 404s locally; corrected to the real local slug `…/augsburg/`. Re-audit shows 0 bad links across all card pages.)*
+
+
+	Rest of the page directly under destinations:
+
+		✅ Check all images, titles and buttons such as "more" are clickable. ensure they all redirect 			correctly not to unknown pages, giving 404 errors or anything else they are not supposed to do. *(Audited every ld_content_box card site-wide: all resolve to valid local pages, MORE buttons linked.)*
+
+
+Special interests/special events:
+
+	✅ do all the checks u did for all child pages for destinations but for special interests and special events. *(Special Interest + Special Events listing-page cards included in the same clickability/link pass.)*
+
+
 
 
 Contact:
@@ -180,13 +208,13 @@ Talk:
 
 		all pages
 
-			the writing in the top header black box isn't too clear as the colour isn't clear 						ainst black, consider changing to white.
-			Double check all distances.
-			Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-rail/fly-				drive/self-drive/rail) and accommodation (hotel/guesthouse) options.
+			✅ the writing in the top header black box isn't too clear as the colour isn't clear 				against black, consider changing to white. *(Site-wide CSS: the intro paragraph in the dark "shadowbox" hero was mid-grey (#888) on black; now near-white and legible. Applies to every page that uses the dark hero box.)*
+			⬜ Double check all distances. *(NEEDS SOURCE: this is a per-page content check — I can only verify distances against a reference A.S provides (or confirm they match the live site). Tell me the correct distances / source and I'll audit them.)*
+			⬜ Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-			rail/fly-drive/self-drive/rail) and accommodation (hotel/guesthouse) options. *(NEEDS A.S CONFIRMATION of the exact wording; then I can standardise it across pages.)*
 
 			What to do:
 
-				bullet points that carries over under the next line however they go under the 					bullet point rather than where the actual text starts after the bullet point.
+				✅ bullet points that carries over under the next line however they go under the 					bullet point rather than where the actual text starts after the bullet point. *(Fixed site-wide: content lists now use an outside marker with a hanging indent, so wrapped lines align with the first line's text.)*
 
 		Bavaria:
 		
@@ -355,7 +383,7 @@ Talk:
 
 			Stuttgart:
 
-				picture doesn't load/exist anymore. description: Weindorf 0216 © Stuttgart Marketing GmbH Christoph 				Düpper
+				picture doesn't load/exist anymore. description: Weindorf 0216 © Stuttgart 					Marketing GmbH Christoph Düpper
 
 
 	Special interests:
@@ -369,8 +397,7 @@ Talk:
 
 			small description under title.
 			no credit given for pictures.
-			Centre sub-titles including ("sample packages for the independent traveller by Air" and "Sample package for
-			private groups" with both their child-titles)
+			Centre sub-titles including ("sample packages for the independent traveller by Air" and 			"Sample package for private groups" with both their child-titles)
 
 
 		Fine Wine and Dine:
@@ -391,9 +418,31 @@ Talk:
 			Centre "Sample packages for the independent traveller by Air" + description.
 			nothing next to "motorcar Weekend Dream" card. potentially a picture.
 
+
+	Special Events:
+
+		Stuttgart Canstatter Volksfest:
+
+			no picture in header.
+
+		
+		Christmas market: 
+
+			no credit on pictures.
+
+
+		Cologne Carnival:
+
+			no credit on photos.
+
+
+	Tailor-Made Holidays:
+
+		Tailor-made Holiday enquiry form should not exist, this should direct you to the contact page, 			where you complete that form, not an additional separate form on this page
+
 	Testimonials:
 
-		potential to change Header/Footer pictures. remove footer picture, change Header picture to match 		special events page style
+		potential to change Header/Footer pictures. remove footer picture, change Header picture to match 		special events page style.
 
 	Trade:
 		
