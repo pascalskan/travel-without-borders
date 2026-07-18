@@ -141,3 +141,18 @@ body.home .fancy-box-travel .liquid-overlay-link {
 body.home .fancy-box-travel .fancy-box-footer {
 	display: none;
 }
+/* ----------------------------------------------------------------------------
+   Special Interest listing page - equal-height cards.
+   The cards were all identical apart from two titles ("British - German Royal
+   Heritage Route" and "Motorcar Enthusiasts Holidays") wrapping onto a second
+   line, which made those cards 27px taller than the rest. Reserving two lines
+   for every title lines the whole grid up. Only needed once the cards sit side
+   by side - below that they stack, so a single-line title shouldn't reserve
+   space it doesn't need.
+   Ref: A.S tasks - Special interests page > Make all cards the same size.
+   ---------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+	body.page-id-4476 .fancy-box-tour .fancy-box-header h3 {
+		min-height: 54px; /* 2 x 27px line-height */
+	}
+}
