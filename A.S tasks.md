@@ -199,8 +199,8 @@ Trade:
 	
 	Header/footer:
 
-		Replace the top photo with a photo of Augsburg
-		replace the bottom photo with a photo of 
+		✅ Replace the top photo with a photo of Augsburg *(Also changed the header STYLE per A.S to match the Tailor-made Holidays header: the top hero is now a full-bleed background photo (Augsburg Town Hall / Rathaus, id 7246) with a translucent dark box (green left accent) holding the heading, intro and "Make a trade enquiry" button — no longer the split-band twb_page_hero.)*
+		⬜ replace the bottom photo with a photo of  *(BLOCKED — the intended bottom photo isn't specified in the notes. The closing "Let's work together" hero still uses the placeholder Dresden photo; send the bottom photo and I'll swap it.)*
 
 
 Talk:
