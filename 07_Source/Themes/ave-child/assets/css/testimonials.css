@@ -24,7 +24,10 @@
 
 /* --- Section header ------------------------------------------------------ */
 .twb-testimonials__header {
-	max-width: 760px;
+	/* Wide enough to keep the section heading on a single line at desktop sizes
+	   (at the 36px clamp cap the homepage heading needs ~790px). Narrower
+	   screens still wrap naturally, which is what we want. */
+	max-width: 900px;
 	margin: 0 auto var(--twb-space-48);
 	text-align: center;
 }
