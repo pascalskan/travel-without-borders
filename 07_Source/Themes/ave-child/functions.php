@@ -6,7 +6,13 @@ function liquid_parent_theme_scripts() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 }
 function liquid_child_theme_style(){
-    wp_enqueue_style( 'child-one-style', get_stylesheet_directory_uri() . '/style.css' );
+	// Version the stylesheet by its modification time so edits are picked up
+	// immediately. Without this the file is served with no version string and
+	// browsers keep serving a cached copy long after the CSS has changed.
+	$css_path = get_stylesheet_directory() . '/style.css';
+	$css_ver  = file_exists( $css_path ) ? filemtime( $css_path ) : false;
+
+	wp_enqueue_style( 'child-one-style', get_stylesheet_directory_uri() . '/style.css', array(), $css_ver );
 }
 
 /**
@@ -53,6 +59,30 @@ function twb_child_register_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'twb_child_register_assets' );
+
+/**
+ * Equalise the Special Interest listing cards across both of its rows.
+ *
+ * Loaded only on that page (ID 4476); the CSS in style.css handles everything
+ * else, this just levels the two separate WPBakery rows against each other.
+ */
+function twb_child_special_interest_cards() {
+	if ( ! is_page( 4476 ) ) {
+		return;
+	}
+
+	$js  = get_stylesheet_directory() . '/assets/js/special-interest-cards.js';
+	$ver = file_exists( $js ) ? filemtime( $js ) : false;
+
+	wp_enqueue_script(
+		'twb-special-interest-cards',
+		get_stylesheet_directory_uri() . '/assets/js/special-interest-cards.js',
+		array(),
+		$ver,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'twb_child_special_interest_cards' );
 
 /**
  * Remove the flickity-fade plugin on the front end.

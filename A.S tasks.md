@@ -82,9 +82,9 @@
 
 ## Business to Business page (Trade)
 - ✅ Replace Blogs on the nav bar. *(Header nav now shows "Trade" in place of "Blog", linking to the new /trade/ page. Blog itself is untouched and still linked in the footer.)*
-- ✅ Create full design; follow the design of the Testimonials page apart from content. Header with images, and all footers, should be copied. *(Page is currently the Augsburg header hero + the email band and footer only — all middle content removed at A.S's request while the page is still being written.)*
-- ✅ Header. *(Full-bleed Augsburg Town Hall hero in the Tailor-made style: translucent green-accented box with H1 "A Germany specialist / for the travel trade" (hard line break so it always splits at that point), the description "This page is under construction", and a "Make a trade enquiry" button that deep-links to /contact/?enquiry=business — which opens straight on the Business/Trade form. Verified no overflow down to 390px.)*
-- 🟡 Introduction. *(Full trade body copy was written (trust stats, "Why partner with us", "How we can help you" 7-point list, "Let's work together" CTA) but then REMOVED at A.S's request — the page is now just the header + email/footer. The written copy is preserved in git history (commit 4b1c4a6) and can be re-added if wanted.)*
+- 🟡 Create full design; follow the design of the Testimonials page apart from content. Header with images, and all footers, should be copied. *(The /trade/ page was created by cloning the Testimonials layout — top & bottom hero photos, the email section and the footer are all in place. Body content is placeholder for now; final design/copy still to do.)*
+- 🟡 Header. *(Placeholder hero in place — real heading/eyebrow/CTA copy pending.)*
+- 🟡 Introduction. *(Placeholder intro in place — real copy pending.)*
 - ✅ Contact me — its own form on the same page as the contact form, with a slider next to "Get in touch" toggling between Individual enquiries / Business enquiries (defaulting to individual). The slider swaps the form; the individual form is the one that already exists.
   *(Built and tested on Local. The two values previously "blocked on A.S" were found in the local DB — the contact form delivers to `mail@travelwithoutborders.co.uk`, and the individual form is Quform `id=1` ("Tailor-made Holidays Form"). The Trade form is Quform `id=3` ("Trade Enquiry — Business"), created by duplicating form 1 via Quform's own API, with relabelled fields and a `[TRADE ENQUIRY]` subject prefix, delivering to the same inbox. A new child-theme element `[twb_enquiry_toggle]` (inc/enquiry-toggle.php + own CSS/JS) renders both forms under a segmented Individual/Business switch defaulting to Individual; the Contact page (ID 4014) embeds it. Both SEND buttons normalised to the brand green. See `01_Documentation/TRADE_ENQUIRY_FORM.md`.)*
   - ✅ Business form contains:
@@ -143,8 +143,8 @@ Testimonials page
 
 		Reviews:
 
-			scott family needs location.
-			scott family needs picture
+			schott family needs location.
+			schott family needs picture
 			New review named Andy Starling (same size as Karen review card) (June 2026 - special 				interest)
 		
 		Format Of Cards:
@@ -167,23 +167,34 @@ Destinations:
 
 	Cards:
 
-		✅ only the pictures and titles of the cards are clickable not the actual "more" button. *(Made all "MORE" buttons real clickable links to the same destination as the card — across the Destinations, Bavaria, Black Forest, Rhine/Mosel/Eifel, Northern, Eastern and Major Cities region pages, plus the Special Interest and Special Events listing pages. 77 buttons in total.)*
+		only the pictures and titles of the cards are clickable not the actual "more" button.
 
 	Bavaria:
 
-		✅ the same thing applies here, the actual "more" buttons arnt clickable only the images and titles. *(MORE buttons now clickable, same fix.)*
-		✅ Somehow when clicking the images, it is redirecting me off my back up and onto the live site? *(ROOT CAUSE FOUND: all 12 Bavaria card links pointed to the absolute LIVE URL `https://travelwithoutborders.co.uk/…`. Converted them to local relative paths so they stay on the backup.)*
-		✅ Some of the images redirect to a 404, all clickable things should redirect to their correct page. *(Fixed — e.g. the Augsburg card linked to `…/holidays-to-augsburg/` which 404s locally; corrected to the real local slug `…/augsburg/`. Re-audit shows 0 bad links across all card pages.)*
+		the same thing applies here, the actual "more" buttons arnt clickable only the images and titles. 
+		Somehow when clicking the images, it is redirecting me off my back up and onto the live site? 			unsure how this is the case, could be a problem with the redirect taking to a url rather than a 		file?
+		Some of the images redirect to a 404, all clickable things should redirect to their correct page.
 
 
 	Rest of the page directly under destinations:
 
-		✅ Check all images, titles and buttons such as "more" are clickable. ensure they all redirect 			correctly not to unknown pages, giving 404 errors or anything else they are not supposed to do. *(Audited every ld_content_box card site-wide: all resolve to valid local pages, MORE buttons linked.)*
+		Check all images, titles and buttons such as "more" are clickable. ensure they all redirect 			correctly not to unknown pages, giving 404 errors or anything else they are not supposed to do.
 
 
 Special interests/special events:
 
-	✅ do all the checks u did for all child pages for destinations but for special interests and special events. *(Full audit of the Special Interest + Special Events listing pages and all 17 child pages: every card's image, title and MORE button is clickable and points to the correct LOCAL page (verified a MORE click navigates, e.g. Christmas Markets). No live-site redirects and no 404s — the only two absolute links found (Mercedes-Benz Museum, Porsche Museum on the Motorcar page) are valid external links. Burlesque + Motorcar cards correctly point to the contact page.)*
+	do all the checks u did for destinations and its child pages but for special interests and special events.
+
+	Special interests listing page:
+
+		✅ Make all cards the same size. (Cards now stretch to a common height at every
+			screen width, with the MORE buttons lined up across both rows.)
+		✅ Remove "Coming Soon" from the Burlesque card.
+		✅ Remove "Re-launch Coming Soon" from the Motorcar Enthusiasts Holidays card.
+		✅ Motorcar Enthusiasts Holidays card now links to its own page instead of the
+			contact form. (Pre-existing error in the card, not introduced by these changes.)
+		— Burlesque button left as MORE (the ENQUIRE relabel was reverted as instructed).
+			It still links to the contact page, as Burlesque has no page of its own.
 
 
 
@@ -192,126 +203,131 @@ Contact:
 
 	Address:
 		
-		✅ change "out address" to "Registered Address" *(The address box heading on the Contact page now reads "Registered Address".)*
-		✅ Add England *(Added "England" as the final line of the address: Unit 7 / Salisbury House / Wheatfield Way / Hinckley / LE10 1YG / England.)*
+		change "out address" to "Registered Address"
+		Add England
 
 Trade:
 	
 	Header/footer:
 
-		✅ Replace the top photo with a photo of Augsburg *(Also changed the header STYLE per A.S to match the Tailor-made Holidays header: the top hero is now a full-bleed background photo (Augsburg Town Hall / Rathaus, id 7246) with a translucent dark box (green left accent) holding the heading, intro and "Make a trade enquiry" button — no longer the split-band twb_page_hero.)*
-		⬜ replace the bottom photo with a photo of  *(BLOCKED — the intended bottom photo isn't specified in the notes. The closing "Let's work together" hero still uses the placeholder Dresden photo; send the bottom photo and I'll swap it.)*
+		Replace the top photo with a photo of Augsburg
 
 
 Talk:
+
+	All Pages:
+
+		ALL hyper links should be force removed, apart from ones that link directly to a pages within the site. we will 		introduce specific hyperlinks for paying clients. much easier to remove all and add ones we like. (To do)
+
+
 	Destinations:
 
 		all pages
 
-			the writing in the top header black box isn't too clear as the colour isn't clear 				against black, consider changing to white.
-			Double check all distances.
-			Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-			rail/fly-drive/self-drive/rail) and accommodation (hotel/guesthouse) options.
+			the writing in the top header black box isn't too clear as the colour isn't clear 						against black, consider changing to white. (To do)
+			Double check all distances. (To do) (create a file listing all the travel information foe 					each page. do research and put results next to current information to compare the two and 					make a decision for any changes)
+			Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-					rail/fly-drive/self-drive/rail) and accommodation (hotel/guesthouse) options. (To do) (this 					can all be removed and replaced with "Contact us for your holiday planning requirements to 					Germany". this should be applied globally to all relevant pages.)
 
 			What to do:
 
-				bullet points that carries over under the next line however they go under the 					bullet point rather than where the actual text starts after the bullet point.
+				bullet points that carries over under the next line however they go under the 							bullet point rather than where the actual text starts after the bullet point. (To do)
 
 		Bavaria:
 		
 			Oberammergau:
 		
-				Oberammergau passion play has no page under special events, only available from 				clicking register your interest in Oberammergau page under destination/Bavaria.
-				no credit given under sliding images
+				Oberammergau passion play has no page under special events, only available from 						clicking register your interest in Oberammergau page under destination/Bavaria. (To do) (remove all 				links to this page, the page shouldn't be deleted, just pushed to inaccessible for the time being. 				there should be no way to access this page)
+				no credit given under sliding images (waiting on confirmation)
 
 			Regensburg:
 
-				no credit given for any pictures
+				no credit given for any pictures (waiting on confirmation)
 
 			Rothenburg Ob Tauber:
 	
-				little to no description under title.
+				little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
 
 		Black Forest:
 
 			Freiburg:
 
-				no credit for any of the pictures.
+				no credit for any of the pictures. (waiting on confirmation)
 
 			Hiedelerg:
 				
-				no credit for any of the pictures.
+				no credit for any of the pictures. (waiting on confirmation)
 
 			Konstanz (Lake Constance):
 
-				little description under title.
-				no credit given for any of the pictures.
+				little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				no credit given for any of the pictures. (waiting on confirmation)
 
 			Lindau (Lake Constance):
 
-				Little to no description under title.
-				No credit given for pictures.
+				Little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
+				No credit given for pictures. (waiting on confirmation)
 
 			Meersburg (Lake Constance):
 
-				no credit given for pictures.
+				no credit given for pictures. (waiting on confirmation)
 
 			Schluchsee:
 
-				no credit given for pictures.
+				no credit given for pictures. (waiting on confirmation)
 
 			Titisee_Neustadt:
 		
-				little to no description under title.
-				No credit given for pictures.
+				little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
+				No credit given for pictures. (waiting on confirmation)
 
 			Triberg:
 
-				Little description under title.
-				No credit given for pictures.
+				Little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				No credit given for pictures. (waiting on confirmation)
 
 
 		Eastern Germany:
 
 			Eisenach:
 
-				No picture in header.
-				no credit given for pictures.
+				No picture in header. (To do) (Wwaiting on picture)
+				no credit given for pictures. (waiting on confirmation)
 
 			Erfurt:
 
-				no credit given for picture collage.
-				picture collage sizing isn't consistent.
+				no credit given for picture collage. (waiting on confirmation)
+				picture collage sizing isn't consistent. (to do) (fix sizing)
 
 			Potsdam:
 
-				Small description under Title.
+				Small description under Title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
 
 			Rostock and Warnemunde:
 
-				Small description under title.
-				No picture in header
+				Small description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				No picture in header (To do) (Find Rostock Heath photo (field of purple heather))
 			
 			Schwerin:
 
-				small description under title.
+				small description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
 
 
 		Northern Germany:
 
 			Celle:
 	
-				little description under title.
+				little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
 
 
 			Hamelin:
 
-				little to no description under title.
+				little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
 
 
 			Goslar (Harz Mountains):
 
-				no credit given for pictures.
-				sizing of pictures in collage isn't consistent.
+				no credit given for pictures. (waiting on confirmation)
+				sizing of pictures in collage isn't consistent. (to do) (fix sizes)
 
 
 		The Rhine, Mosel and Eifel:
@@ -319,43 +335,43 @@ Talk:
 			
 			Aachen:
 
-				no credit given for pictures.
+				no credit given for pictures. (waiting on confirmation)
 
 
 			Bernkastel-Kues:
 
-				no credit given for pictures.
+				no credit given for pictures. (waiting on confirmation)
 
 			
 			Boppard:
 
-				little description under title.
-				no credit given for pictures.
+				little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				no credit given for pictures. (waiting on confirmation)
 
 			
 			Cochem:
 
-				no credit given for photos.
+				no credit given for photos. (waiting on confirmation)
 
 
 			Daun:
 
-				No credit given for photos.
+				No credit given for photos. (waiting on confirmation)
 
 
 			Koblenz:
 
-				No credit given for picture collage.
+				No credit given for picture collage. (waiting on confirmation)
 
 
 			Rudesheim:
 
-				No credit given for picture collage
+				No credit given for picture collage (waiting on confirmation)
 
 
 			Trier:
 
-				No credit given for picture collage.
+				No credit given for picture collage. (waiting on confirmation)
 
 
 		
@@ -363,88 +379,96 @@ Talk:
 
 			Bremen:
 
-				Travel Facts format doesn't match all other pages. 
-				section on its right doesn't line up
+				Travel Facts format doesn't match all other pages.  (To do) (match the other pages)
+				section on its right doesn't line up (To do) (ensure it lines up correctly)
 
 			
 			Dusseldorf:
 
-				Little description under title
-				ALOT of info under "What to do"
+				Little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				ALOT of info under "What to do" (To do) (Summarise/Use key words for each)
 
 			Frankfurt:
 		
-				Little description under title
-				Extra bullet point under "what to do" with no content.
+				Little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				Extra bullet point under "what to do" with no content. (to do) (remove it)
 
 			Hannover:
 				
-				no credit given for picture collage.
+				no credit given for picture collage. (waiting on confirmation)
 
 			Stuttgart:
 
-				picture doesn't load/exist anymore. description: Weindorf 0216 © Stuttgart 					Marketing GmbH Christoph Düpper
+				picture doesn't load/exist anymore. description: Weindorf 0216 © Stuttgart 							Marketing GmbH Christoph Düpper (to do) (Find picture in folders (wine festival))
 
 
 	Special interests:
 
 		The Colditz Castle Experience:
 
-			Small description under title.
+			Small description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
 
 
 		The Eagles's Nest (Kehlsteinhaus) Experience:
 
-			small description under title.
-			no credit given for pictures.
-			Centre sub-titles including ("sample packages for the independent traveller by Air" and 			"Sample package for private groups" with both their child-titles)
+			small description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+			no credit given for pictures. (waiting on confirmation)
+			Centre sub-titles including ("sample packages for the independent traveller by Air" and 					"Sample package for private groups" with both their child-titles)
 
 
 		Fine Wine and Dine:
 
-			No credit for pictures.
+			No credit for pictures. (waiting on confirmation)
 
 		
 		Augsburg Football Tour:
 	
-			little to no description under title.
-			no credit given for pictures.
-			nothing next to the picture of a football in a goal.
-			centre the coming soon section.
+			little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
+			no credit given for pictures. (waiting on confirmation)
+			nothing next to the picture of a football in a goal. (To do) (add another photo next to it)
+			centre the coming soon section. (To do)
 
 
 		Motorcar Enthusiasts holidays:
 
-			Centre "Sample packages for the independent traveller by Air" + description.
-			nothing next to "motorcar Weekend Dream" card. potentially a picture.
+			Centre "Sample packages for the independent traveller by Air" + description. (To do)
+			nothing next to "motorcar Weekend Dream" card. potentially a picture. (To do) ( add picture)
 
 
 	Special Events:
 
 		Stuttgart Canstatter Volksfest:
 
-			no picture in header.
+			no picture in header. (To do) (needs confirmation on what photo to use)
 
 		
 		Christmas market: 
 
-			no credit on pictures.
+			no credit on pictures. (waiting on confirmation)
 
 
 		Cologne Carnival:
 
-			no credit on photos.
+			no credit on photos. (waiting on confirmation)
 
 
 	Tailor-Made Holidays:
 
-		Tailor-made Holiday enquiry form should not exist, this should direct you to the contact page, 			where you complete that form, not an additional separate form on this page
+		Tailor-made Holiday enquiry form should not exist, this should direct you to the contact page, 					where you complete that form, not an additional separate form on this page. (to do)
+		Remove dialog (To do)
 
-	Testimonials:
 
-		potential to change Header/Footer pictures. remove footer picture, change Header picture to match 		special events page style.
+	Groups:
 
-	Trade:
-		
-		Same change applied above (testimonials Header and Footer picture change)
-	
+		remove the whole photo footer with as well as black background which includes the content within it. it should go 		from the text above straight to the email footer. (To do)
+		Change "tour operator" to "Holiday planning service". (to do)
+
+
+	Testimonials page:
+
+		pictures change for KAREN Card. (waiting on confirmation)
+		Change Footer picture (To do) (find appropriate photo)
+
+
+
+

@@ -143,16 +143,47 @@ body.home .fancy-box-travel .fancy-box-footer {
 }
 /* ----------------------------------------------------------------------------
    Special Interest listing page - equal-height cards.
-   The cards were all identical apart from two titles ("British - German Royal
-   Heritage Route" and "Motorcar Enthusiasts Holidays") wrapping onto a second
-   line, which made those cards 27px taller than the rest. Reserving two lines
-   for every title lines the whole grid up. Only needed once the cards sit side
-   by side - below that they stack, so a single-line title shouldn't reserve
-   space it doesn't need.
+   The cards differ in height only because the longer titles ("British - German
+   Royal Heritage Route", "Motorcar Enthusiasts Holidays") wrap onto extra
+   lines - and how many lines they take changes with the viewport (two lines at
+   1280px, three at ~992px). A fixed min-height therefore can't keep them level,
+   so the columns are made real flex items instead: every card stretches to the
+   tallest in its row at any width, and the MORE/ENQUIRE footers line up.
+   Scoped to this page and to the card rows only, so the hero row is untouched.
    Ref: A.S tasks - Special interests page > Make all cards the same size.
    ---------------------------------------------------------------------------- */
 @media (min-width: 768px) {
-	body.page-id-4476 .fancy-box-tour .fancy-box-header h3 {
-		min-height: 54px; /* 2 x 27px line-height */
+	body.page-id-4476 .vc_custom_1581683778917 .row.ld-row {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	body.page-id-4476 .vc_custom_1581683778917 .row.ld-row > .wpb_column {
+		display: flex;
+	}
+	body.page-id-4476 .vc_custom_1581683778917 .wpb_column > .vc_column-inner,
+	body.page-id-4476 .vc_custom_1581683778917 .vc_column-inner > .wpb_wrapper,
+	body.page-id-4476 .vc_custom_1581683778917 .wpb_wrapper > .wpb_wrapper-inner {
+		display: flex;
+		flex-direction: column;
+		/* Each wrapper must grow, otherwise the column's height stops here and
+		   never reaches the card. */
+		flex: 1 1 auto;
+		width: 100%;
+		min-height: 0;
+	}
+	body.page-id-4476 .vc_custom_1581683778917 .fancy-box-tour {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+	}
+	/* Let the title block absorb the slack so the footer sits at the bottom. */
+	body.page-id-4476 .vc_custom_1581683778917 .fancy-box-tour .fancy-box-contents {
+		flex: 1 1 auto;
 	}
 }
+
+/* Flex only equalises cards against their own row, and the eight cards sit in
+   two separate WPBakery rows, so the row holding a long title stays taller.
+   assets/js/special-interest-cards.js reserves the tallest title's height on
+   every card to level the two rows; see the note there for why this isn't done
+   with a fixed min-height. */
