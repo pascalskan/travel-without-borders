@@ -183,7 +183,7 @@ Destinations:
 
 Special interests/special events:
 
-	✅ do all the checks u did for all child pages for destinations but for special interests and special events. *(Special Interest + Special Events listing-page cards included in the same clickability/link pass.)*
+	✅ do all the checks u did for all child pages for destinations but for special interests and special events. *(Full audit of the Special Interest + Special Events listing pages and all 17 child pages: every card's image, title and MORE button is clickable and points to the correct LOCAL page (verified a MORE click navigates, e.g. Christmas Markets). No live-site redirects and no 404s — the only two absolute links found (Mercedes-Benz Museum, Porsche Museum on the Motorcar page) are valid external links. Burlesque + Motorcar cards correctly point to the contact page.)*
 
 
 
