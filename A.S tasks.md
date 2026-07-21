@@ -264,9 +264,9 @@ Talk:
 
 		all pages
 
-			the writing in the top header black box isn't too clear as the colour isn't clear 				against black, consider changing to white. (To do)
-			Double check all distances. (To do) (create a file listing all the travel information foe 			each page. do research and put results next to current information to compare the two and 			make a decision for any changes)
-			Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-			rail/fly-drive/self-drive/rail) and accommodation (hotel/guesthouse) options. (To do) (this 			can all be removed and replaced with "Contact us for your holiday planning requirements to 			Germany". this should be applied globally to all relevant pages.)
+			the writing in the top header black box isn't too clear as the colour isn't clear 				against black, consider changing to white. (✅ DONE)
+			Double check all distances. (✅ DONE) (create a file listing all the travel information foe 			each page. do research and put results next to current information to compare the two and 			make a decision for any changes)
+			Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-			rail/fly-drive/self-drive/rail) and accommodation (hotel/guesthouse) options. (✅ DONE) (this 			can all be removed and replaced with "Contact us for your holiday planning requirements to 			Germany". this should be applied globally to all relevant pages.)
 
 			What to do:
 
@@ -285,7 +285,7 @@ Talk:
 
 			Rothenburg Ob Tauber:
 	
-				little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
+				little to no description under title. (✅ DONE) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 		Black Forest:
 
@@ -299,12 +299,12 @@ Talk:
 
 			Konstanz (Lake Constance):
 
-				little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
+				little description under title. (✅ DONE) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 				no credit given for any of the pictures. (waiting on confirmation)
 
 			Lindau (Lake Constance):
 
-				Little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
+				Little to no description under title. (✅ DONE) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
 				No credit given for pictures. (waiting on confirmation)
 
 			Meersburg (Lake Constance):
@@ -317,12 +317,12 @@ Talk:
 
 			Titisee_Neustadt:
 		
-				little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
+				little to no description under title. (✅ DONE) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
 				No credit given for pictures. (waiting on confirmation)
 
 			Triberg:
 
-				Little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
+				Little description under title. (✅ DONE) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 				No credit given for pictures. (waiting on confirmation)
 
 
@@ -330,44 +330,44 @@ Talk:
 
 			Eisenach:
 
-				No picture in header. (To do) (Wwaiting on picture)
+				No picture in header. (✅ DONE — header photo was broken by a filename bug; original Wartburg dusk photo restored. Supply a different picture if wanted.)
 				no credit given for pictures. (waiting on confirmation)
 
 			Erfurt:
 
 				no credit given for picture collage. (waiting on confirmation)
-				picture collage sizing isn't consistent. (to do) (fix sizing)
+				picture collage sizing isn't consistent. (✅ DONE) (fix sizing)
 
 			Potsdam:
 
-				Small description under Title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
+				Small description under Title. (✅ DONE) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 			Rostock and Warnemunde:
 
-				Small description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
-				No picture in header (To do) (Find Rostock Heath photo (field of purple heather))
+				Small description under title. (✅ DONE) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
+				No picture in header (✅ DONE — header photo was broken by a filename bug; original Warnemünde night-harbour photo restored. A "Rostock Heath / purple heather" image still needs supplying if you want to swap it.)
 			
 			Schwerin:
 
-				small description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
+				small description under title. (✅ DONE) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 
 		Northern Germany:
 
 			Celle:
 	
-				little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
+				little description under title. (✅ DONE) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 
 			Hamelin:
 
-				little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
+				little to no description under title. (✅ DONE) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 
 			Goslar (Harz Mountains):
 
 				no credit given for pictures. (waiting on confirmation)
-				sizing of pictures in collage isn't consistent. (to do) (fix sizes)
+				sizing of pictures in collage isn't consistent. (✅ DONE) (fix sizes)
 
 
 		The Rhine, Mosel and Eifel:
@@ -385,7 +385,7 @@ Talk:
 			
 			Boppard:
 
-				little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
+				little description under title. (✅ DONE) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 				no credit given for pictures. (waiting on confirmation)
 
 			
@@ -419,19 +419,19 @@ Talk:
 
 			Bremen:
 
-				Travel Facts format doesn't match all other pages.  (To do) (match the other pages)
-				section on its right doesn't line up (To do) (ensure it lines up correctly)
+				Travel Facts format doesn't match all other pages.  (✅ DONE) (match the other pages)
+				section on its right doesn't line up (✅ DONE) (ensure it lines up correctly)
 
 			
 			Dusseldorf:
 
-				Little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
-				ALOT of info under "What to do" (To do) (Summarise/Use key words for each)
+				Little description under title. (✅ DONE) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
+				ALOT of info under "What to do" (✅ DONE) (Summarise/Use key words for each)
 
 			Frankfurt:
 		
-				Little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
-				Extra bullet point under "what to do" with no content. (to do) (remove it)
+				Little description under title. (✅ DONE) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
+				Extra bullet point under "what to do" with no content. (✅ DONE) (remove it)
 
 			Hannover:
 				
@@ -439,7 +439,7 @@ Talk:
 
 			Stuttgart:
 
-				picture doesn't load/exist anymore. description: Weindorf 0216 © Stuttgart 					Marketing GmbH Christoph Düpper (to do) (Find picture in folders (wine festival))
+				picture doesn't load/exist anymore. description: Weindorf 0216 © Stuttgart 					Marketing GmbH Christoph Düpper (✅ DONE) (Find picture in folders (wine festival))
 
 
 	Special interests:
