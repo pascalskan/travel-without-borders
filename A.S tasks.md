@@ -217,26 +217,55 @@ Talk:
 
 	All Pages:
 
-		ALL hyper links should be force removed, apart from ones that link directly to a pages within the site. we will 		introduce specific hyperlinks for paying clients. much easier to remove all and add ones we like. (To do)
+		ALL hyper links should be force removed, apart from ones that link directly to a pages within the 		site. we will introduce specific hyperlinks for paying clients. much easier to remove all and add 		ones we like. (To do)
 
 
 	Destinations:
 
+		===== STATUS 2026-07-21 (destinations pass) =====
+		DONE:
+			✅ Header black-box subtitle → white on all 59 destination pages (CSS, scoped to the shared header row).
+			✅ "What to do" wrapped bullets now hang correctly (indent under the text, not the bullet) — CSS.
+			✅ "Travel without Borders offers a wide variety of travel..." replaced on all 53 pages with
+			   "Contact us for your holiday planning requirements to Germany" (Contact us → /contact/).
+			✅ Descriptions under title: all flagged pages already carry a full 3-5 line intro (added earlier) — verified, left as-is.
+			✅ Oberammergau Passion Play page (#5408) set to draft/inaccessible; all links to it removed
+			   (Bavaria + Oberammergau), "Register Your Interest" button removed. Page not deleted.
+			✅ Erfurt & Goslar image "collages" now uniform height (CSS: object-fit cover, one ratio) — applies to all destination carousels.
+			✅ Bremen Travel Facts reformatted to match other pages (proper <h4> heading); right-hand CTA now lines up.
+			✅ Düsseldorf "What to do" long sentences shortened to keywords.
+			✅ Frankfurt empty bullet removed.
+			✅ Stuttgart broken "Weindorf" wine-village image fixed (was a decomposed-Unicode filename bug).
+			✅ Rostock & Eisenach "no picture in header" were the SAME filename bug — headers restored
+			   (Rostock = Warnemünde night harbour; Eisenach = Wartburg dusk). Also fixed the Stuttgart
+			   beer-festival and Passion-Play "Ölberg" images. 4 broken umlaut-named files repaired in total.
+			✅ Distances: current travel-facts for all pages captured in 01_Documentation/DESTINATION_TRAVEL_FACTS.md
+			   with a Verify column + flagged inconsistencies.
+
+		PENDING USER CONFIRMATION / INPUT:
+			• Photo credits ("no credit given for pictures" on many pages) — left untouched, awaiting confirmation.
+			• Distances: external verification pass (~59 lookups) not yet run — see the ⚠ flags in the doc
+			  (Hamburg vs Cologne both 425km; Berlin airport text stale; several pages missing transfer time / Calais km).
+			• Rostock header now shows the original Warnemünde night photo; if a "Rostock Heath / purple heather"
+			  image is still wanted, please supply/confirm one (library only has a winter Rostock-heath shot + Lüneburg-heath photos).
+			• Eisenach header restored to the Wartburg dusk photo; still open if you want to supply a different picture.
+		=================================================
+
 		all pages
 
-			the writing in the top header black box isn't too clear as the colour isn't clear 						against black, consider changing to white. (To do)
-			Double check all distances. (To do) (create a file listing all the travel information foe 					each page. do research and put results next to current information to compare the two and 					make a decision for any changes)
-			Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-					rail/fly-drive/self-drive/rail) and accommodation (hotel/guesthouse) options. (To do) (this 					can all be removed and replaced with "Contact us for your holiday planning requirements to 					Germany". this should be applied globally to all relevant pages.)
+			the writing in the top header black box isn't too clear as the colour isn't clear 				against black, consider changing to white. (To do)
+			Double check all distances. (To do) (create a file listing all the travel information foe 			each page. do research and put results next to current information to compare the two and 			make a decision for any changes)
+			Confirm this quote is correct "Travel without Borders offers a wide variety of travel (air-			rail/fly-drive/self-drive/rail) and accommodation (hotel/guesthouse) options. (To do) (this 			can all be removed and replaced with "Contact us for your holiday planning requirements to 			Germany". this should be applied globally to all relevant pages.)
 
 			What to do:
 
-				bullet points that carries over under the next line however they go under the 							bullet point rather than where the actual text starts after the bullet point. (To do)
+				bullet points that carries over under the next line however they go under the 					bullet point rather than where the actual text starts after the bullet point. (To 				do)
 
 		Bavaria:
 		
 			Oberammergau:
 		
-				Oberammergau passion play has no page under special events, only available from 						clicking register your interest in Oberammergau page under destination/Bavaria. (To do) (remove all 				links to this page, the page shouldn't be deleted, just pushed to inaccessible for the time being. 				there should be no way to access this page)
+				Oberammergau passion play has no page under special events, only available from 				clicking register your interest in Oberammergau page under destination/Bavaria. (To 				do) (remove all links to this page, the page shouldn't be deleted, just pushed to 				inaccessible for the time being. there should be no way to access this page)
 				no credit given under sliding images (waiting on confirmation)
 
 			Regensburg:
@@ -245,7 +274,7 @@ Talk:
 
 			Rothenburg Ob Tauber:
 	
-				little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
+				little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 		Black Forest:
 
@@ -259,12 +288,12 @@ Talk:
 
 			Konstanz (Lake Constance):
 
-				little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 				no credit given for any of the pictures. (waiting on confirmation)
 
 			Lindau (Lake Constance):
 
-				Little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
+				Little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
 				No credit given for pictures. (waiting on confirmation)
 
 			Meersburg (Lake Constance):
@@ -277,12 +306,12 @@ Talk:
 
 			Titisee_Neustadt:
 		
-				little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
+				little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
 				No credit given for pictures. (waiting on confirmation)
 
 			Triberg:
 
-				Little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				Little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 				No credit given for pictures. (waiting on confirmation)
 
 
@@ -300,28 +329,28 @@ Talk:
 
 			Potsdam:
 
-				Small description under Title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				Small description under Title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 			Rostock and Warnemunde:
 
-				Small description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				Small description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 				No picture in header (To do) (Find Rostock Heath photo (field of purple heather))
 			
 			Schwerin:
 
-				small description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				small description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 
 		Northern Germany:
 
 			Celle:
 	
-				little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 
 			Hamelin:
 
-				little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
+				little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the 				title with)
 
 
 			Goslar (Harz Mountains):
@@ -345,7 +374,7 @@ Talk:
 			
 			Boppard:
 
-				little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 				no credit given for pictures. (waiting on confirmation)
 
 			
@@ -385,12 +414,12 @@ Talk:
 			
 			Dusseldorf:
 
-				Little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				Little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 				ALOT of info under "What to do" (To do) (Summarise/Use key words for each)
 
 			Frankfurt:
 		
-				Little description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+				Little description under title. (To do) (AI description, read page in full to 					understand what its about and write 3-5 lines to replace the description under the 				title with)
 				Extra bullet point under "what to do" with no content. (to do) (remove it)
 
 			Hannover:
@@ -399,21 +428,21 @@ Talk:
 
 			Stuttgart:
 
-				picture doesn't load/exist anymore. description: Weindorf 0216 © Stuttgart 							Marketing GmbH Christoph Düpper (to do) (Find picture in folders (wine festival))
+				picture doesn't load/exist anymore. description: Weindorf 0216 © Stuttgart 					Marketing GmbH Christoph Düpper (to do) (Find picture in folders (wine festival))
 
 
 	Special interests:
 
 		The Colditz Castle Experience:
 
-			Small description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+			Small description under title. (To do) (AI description, read page in full to understand 			what its about and write 3-5 lines to replace the description under the title with)
 
 
 		The Eagles's Nest (Kehlsteinhaus) Experience:
 
-			small description under title. (To do) (AI description, read page in full to understand what 					its about and write 3-5 lines to replace the description under the title with)
+			small description under title. (To do) (AI description, read page in full to understand 			what its about and write 3-5 lines to replace the description under the title with)
 			no credit given for pictures. (waiting on confirmation)
-			Centre sub-titles including ("sample packages for the independent traveller by Air" and 					"Sample package for private groups" with both their child-titles)
+			Centre sub-titles including ("sample packages for the independent traveller by Air" and 			"Sample package for private groups" with both their child-titles)
 
 
 		Fine Wine and Dine:
@@ -423,7 +452,7 @@ Talk:
 		
 		Augsburg Football Tour:
 	
-			little to no description under title. (To do) (AI description, read page in full to understand what 				its about and write 3-5 lines to replace the description under the title with)
+			little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the title 			with)
 			no credit given for pictures. (waiting on confirmation)
 			nothing next to the picture of a football in a goal. (To do) (add another photo next to it)
 			centre the coming soon section. (To do)
@@ -432,7 +461,7 @@ Talk:
 		Motorcar Enthusiasts holidays:
 
 			Centre "Sample packages for the independent traveller by Air" + description. (To do)
-			nothing next to "motorcar Weekend Dream" card. potentially a picture. (To do) ( add picture)
+			nothing next to "motorcar Weekend Dream" card. potentially a picture. (To do) ( add 				picture)
 
 
 	Special Events:
@@ -454,13 +483,13 @@ Talk:
 
 	Tailor-Made Holidays:
 
-		Tailor-made Holiday enquiry form should not exist, this should direct you to the contact page, 					where you complete that form, not an additional separate form on this page. (to do)
+		Tailor-made Holiday enquiry form should not exist, this should direct you to the contact page, 			where you complete that form, not an additional separate form on this page. (to do)
 		Remove dialog (To do)
 
 
 	Groups:
 
-		remove the whole photo footer with as well as black background which includes the content within it. it should go 		from the text above straight to the email footer. (To do)
+		remove the whole photo footer with as well as black background which includes the content within 		it. it should go from the text above straight to the email footer. (To do)
 		Change "tour operator" to "Holiday planning service". (to do)
 
 

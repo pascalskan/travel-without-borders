@@ -187,3 +187,54 @@ body.home .fancy-box-travel .fancy-box-footer {
    assets/js/special-interest-cards.js reserves the tallest title's height on
    every card to level the two rows; see the note there for why this isn't done
    with a fixed min-height. */
+
+/* ============================================================================
+   TWB - Destination pages
+   ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+   Dark header box - legible subtitle.
+   Every destination header is the same #242424 row (shared WPBakery class
+   vc_custom_1545203367366). Its subtitle was rgb(136,136,136) grey, which is
+   hard to read on black, so force the header's heading text to white. The title
+   is already white, so only the subtitle visibly changes.
+   Ref: A.S tasks - Talk > Destinations > all pages (header text not clear).
+   ---------------------------------------------------------------------------- */
+.vc_custom_1545203367366 .ld-fancy-heading,
+.vc_custom_1545203367366 .ld-fancy-heading .ld-fh-txt {
+	color: #fff !important;
+}
+
+/* ----------------------------------------------------------------------------
+   "What to do" (and any other content list) - hanging indent.
+   The theme sets list-style-position:inside with no padding, so when a bullet's
+   text wraps the second line sits under the bullet instead of under the text.
+   Switch to an outside marker with a little left padding to restore the hanging
+   indent, scoped to destination pages via the twb-destination body class.
+   Ref: A.S tasks - Talk > Destinations > What to do (wrapped bullets misalign).
+   ---------------------------------------------------------------------------- */
+body.twb-destination .wpb_text_column ul,
+body.twb-destination .wpb_text_column ol {
+	list-style-position: outside;
+	padding-left: 1.2em;
+	margin-left: 0;
+}
+body.twb-destination .wpb_text_column li {
+	padding-left: 0.2em;
+}
+
+/* ----------------------------------------------------------------------------
+   Image carousels ("collage") - uniform cell height.
+   The carousel images have mixed aspect ratios and were stretched to slightly
+   different heights (object-fit was effectively fill), so the row of images
+   looked uneven. Normalise every carousel image to one ratio with cover, so all
+   cells match and the collage lines up. Scoped to the carousel cells only, so
+   the header image group and inline images are untouched.
+   Ref: A.S tasks - Talk > Destinations (Erfurt/Goslar collage sizing).
+   ---------------------------------------------------------------------------- */
+body.twb-destination .carousel-item .vc_single_image-img {
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	height: auto !important;
+	object-fit: cover;
+}

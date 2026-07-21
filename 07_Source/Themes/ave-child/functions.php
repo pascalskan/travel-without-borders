@@ -99,6 +99,33 @@ function twb_remove_flickity_fade() {
 add_action( 'wp_enqueue_scripts', 'twb_remove_flickity_fade', 100 );
 
 /**
+ * Tag every Destinations page (and its region hubs) with a body class.
+ *
+ * The destination pages share a common template but no common body class, so
+ * destination-wide styling (header text colour, "What to do" list indentation)
+ * had nothing stable to hook onto. Add `twb-destination` to any page that is the
+ * Destinations page or a descendant of it.
+ */
+function twb_child_destination_body_class( $classes ) {
+	if ( ! is_page() ) {
+		return $classes;
+	}
+
+	$destinations = get_page_by_path( 'destinations' );
+	if ( ! $destinations ) {
+		return $classes;
+	}
+
+	$id = get_queried_object_id();
+	if ( $id === (int) $destinations->ID || in_array( $destinations->ID, get_post_ancestors( $id ), true ) ) {
+		$classes[] = 'twb-destination';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'twb_child_destination_body_class' );
+
+/**
  * Load custom child-theme components.
  *
  * A single, deterministic loader (inc/loader.php) requires every component in
