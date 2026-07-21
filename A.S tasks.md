@@ -217,7 +217,18 @@ Talk:
 
 	All Pages:
 
-		ALL hyper links should be force removed, apart from ones that link directly to a pages within the 		site. we will introduce specific hyperlinks for paying clients. much easier to remove all and add 		ones we like. (To do)
+		✅ ALL external hyper links force-removed (2026-07-21), apart from ones that link directly to
+		   pages within the site. 127 external links removed across 27 pages; internal links, mailto and
+		   tel links kept. EXCEPTION: the Augsburg page (#5384) keeps its 4 external links as instructed.
+		   Removed links were unwrapped to plain text (the linked wording stays, just no longer clickable).
+		   Note: the Cookie/Privacy/Terms pages also had their external links removed (browser cookie-help
+		   links on the Cookie Policy) — say if you want those specific ones reinstated.
+		   Original: "ALL hyper links should be force removed, apart from ones that link directly to a page
+		   within the site. we will introduce specific hyperlinks for paying clients."
+
+		✅ Distances: full Calais-distance research pass done for all 53 destinations; original vs
+		   researched figures compared in 01_Documentation/DESTINATION_TRAVEL_FACTS.md. No pages edited.
+		   Biggest issue: Hamburg shows 425km (should be ~769km). See doc for the full list.
 
 
 	Destinations:
