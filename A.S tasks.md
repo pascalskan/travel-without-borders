@@ -457,7 +457,7 @@ Talk:
 
 			small description under title. (✅ DONE – new 4-6 line hero description written 2026-07-21) (AI description, read page in full to understand 			what its about and write 3-5 lines to replace the description under the title with)
 			no credit given for pictures. (waiting on confirmation)
-			Centre sub-titles including ("sample packages for the independent traveller by Air" and 			"Sample package for private groups" with both their child-titles)
+			✅ DONE Centre sub-titles including ("sample packages for the independent traveller by Air" and 			"Sample package for private groups" with both their child-titles) — both headings and their child lines now centred.
 
 
 		Fine Wine and Dine:
@@ -469,14 +469,14 @@ Talk:
 	
 			little to no description under title. (✅ DONE – new 4-6 line hero description written 2026-07-21) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the title 			with)
 			no credit given for pictures. (waiting on confirmation)
-			nothing next to the picture of a football in a goal. (To do) (add another photo next to it)
-			centre the coming soon section. (To do)
+			nothing next to the picture of a football in a goal. (✅ DONE – goalkeeper photo added beside it)
+			centre the coming soon section. (✅ DONE)
 
 
 		Motorcar Enthusiasts holidays:
 
-			Centre "Sample packages for the independent traveller by Air" + description. (To do)
-			nothing next to "motorcar Weekend Dream" card. potentially a picture. (To do) ( add 				picture)
+			Centre "Sample packages for the independent traveller by Air" + description. (✅ DONE)
+			nothing next to "motorcar Weekend Dream" card. (✅ DONE – added the V8 Hotel British/Jaguar themed-room photo (#6574) beside the card; swap it if you had a different image in mind)
 
 
 	Special Events:
