@@ -85,6 +85,31 @@ function twb_child_special_interest_cards() {
 add_action( 'wp_enqueue_scripts', 'twb_child_special_interest_cards' );
 
 /**
+ * Keep the "Marketing Email Consent" checkbox (quform_1_8) on the Contact
+ * page's Individual enquiry form in sync with a hidden status field
+ * (quform_1_9), so the admin notification email always states plainly
+ * whether the client agreed or not — Quform's merge tags render an unticked
+ * checkbox as an empty string, which would otherwise say nothing at all.
+ */
+function twb_child_marketing_consent() {
+	if ( ! is_page( 4014 ) ) {
+		return;
+	}
+
+	$js  = get_stylesheet_directory() . '/assets/js/marketing-consent.js';
+	$ver = file_exists( $js ) ? filemtime( $js ) : false;
+
+	wp_enqueue_script(
+		'twb-marketing-consent',
+		get_stylesheet_directory_uri() . '/assets/js/marketing-consent.js',
+		array(),
+		$ver,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'twb_child_marketing_consent' );
+
+/**
  * Remove the flickity-fade plugin on the front end.
  *
  * Ave loads flickity-fade site-wide, but it patches Flickity's cell positioning
