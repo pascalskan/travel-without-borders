@@ -8,14 +8,7 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes( 'html' ); ?>>
 <head <?php liquid_helper()->attr( 'head' ); ?>>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TCZM2CR');</script>
-<!-- End Google Tag Manager -->
-	
+	<?php // Google Tag Manager: printed by twb_cookie_consent_head() (inc/cookie-consent.php) via wp_head, as a dormant function that only loads once the visitor accepts the cookie banner — not hardcoded here so it can't fire before consent. ?>
 	<meta charset="<?php echo esc_attr( get_bloginfo( 'charset' ) ) ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,10 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 
 <body <?php body_class(); ?> <?php liquid_helper()->attr( 'body' ); ?>>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCZM2CR"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+	<?php // Google Tag Manager noscript fallback: inserted dynamically by twbLoadGTM() only after consent — see inc/cookie-consent.php. A static <noscript> here would ping GTM unconditionally, bypassing consent entirely for JS-disabled visitors. ?>
 	<?php liquid_action( 'before' ) ?>
 
 	<div id="wrap">

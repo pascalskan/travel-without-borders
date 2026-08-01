@@ -36,6 +36,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $twb_inc = get_stylesheet_directory() . '/inc/';
 
+// Cookie consent — gates Google Tag Manager (and the Google Analytics tags
+// inside it) behind visitor consent. Loaded first: it hooks wp_head at
+// priority 1, so it must be registered before anything else that might rely
+// on dataLayer already existing.
+require_once $twb_inc . 'cookie-consent.php';
+
 // Existing component — unchanged.
 require_once $twb_inc . 'hero-carousel.php';
 

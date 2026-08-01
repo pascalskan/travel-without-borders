@@ -1,0 +1,161 @@
+/* ==========================================================================
+   TWB Cookie Consent Banner
+   Blocks Google Analytics (loaded via GTM) until the visitor actively
+   accepts. No banner interaction = no analytics cookies set (UK PECR/GDPR:
+   consent must come before non-essential cookies are placed, not after).
+   ========================================================================== */
+
+.twb-cookie-consent {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 100000; /* above the sticky header and any modal already on the page */
+	display: none;
+	box-sizing: border-box;
+	padding: var(--twb-space-24);
+	background: var(--twb-charcoal, #242424);
+	color: var(--twb-white, #fff);
+	box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+	transform: translateY(100%);
+	transition: transform 0.35s var(--twb-ease, cubic-bezier(0.4, 0, 0.2, 1));
+}
+.twb-cookie-consent.is-visible {
+	display: block;
+}
+/* Separate rAF-timed class (added by JS a frame after is-visible) so the
+   transform transition actually animates in, instead of starting painted. */
+.twb-cookie-consent.is-shown {
+	transform: translateY(0);
+}
+
+.twb-cookie-consent__inner {
+	box-sizing: border-box;
+	max-width: var(--twb-container, 1170px);
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	gap: var(--twb-space-24);
+	flex-wrap: wrap;
+}
+
+.twb-cookie-consent__text {
+	flex: 1 1 420px;
+	margin: 0;
+	font-family: var(--twb-font);
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--twb-white, #fff);
+}
+.twb-cookie-consent__text a {
+	color: var(--twb-yellow, #fed700);
+	text-decoration: underline;
+}
+
+.twb-cookie-consent__actions {
+	flex: 0 0 auto;
+	display: flex;
+	gap: var(--twb-space-16);
+	flex-wrap: wrap;
+}
+
+.twb-cookie-consent__btn {
+	display: inline-block;
+	padding: 10px 24px;
+	font-family: var(--twb-font);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	border-radius: var(--twb-radius-pill, 800px);
+	cursor: pointer;
+	white-space: nowrap;
+	transition: background var(--twb-dur, 0.3s) var(--twb-ease, ease),
+		color var(--twb-dur, 0.3s) var(--twb-ease, ease);
+}
+
+.twb-cookie-consent__btn--accept {
+	border: 0;
+	color: var(--twb-navy, #032c42);
+	background: var(--twb-yellow, #fed700);
+}
+.twb-cookie-consent__btn--accept:hover,
+.twb-cookie-consent__btn--accept:focus-visible {
+	background: #ffe14d;
+}
+
+.twb-cookie-consent__btn--reject {
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	color: var(--twb-white, #fff);
+	background: transparent;
+}
+.twb-cookie-consent__btn--reject:hover,
+.twb-cookie-consent__btn--reject:focus-visible {
+	border-color: var(--twb-white, #fff);
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.twb-cookie-consent__btn:focus-visible {
+	outline: 3px solid var(--twb-yellow, #fed700);
+	outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+	.twb-cookie-consent {
+		padding: var(--twb-space-16);
+	}
+	.twb-cookie-consent__inner {
+		gap: var(--twb-space-16);
+	}
+	.twb-cookie-consent__actions {
+		width: 100%;
+	}
+	.twb-cookie-consent__btn {
+		flex: 1 1 0;
+		text-align: center;
+	}
+}
+
+/* --- Reopen tab (small persistent "Cookie Settings" affordance) --------- */
+.twb-cookie-settings-tab {
+	position: fixed;
+	left: var(--twb-space-16);
+	bottom: var(--twb-space-16);
+	z-index: 99999;
+	padding: 8px 16px;
+	font-family: var(--twb-font);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--twb-white, #fff);
+	background: var(--twb-green, #1e5630);
+	border-radius: var(--twb-radius-pill, 800px);
+	box-shadow: var(--twb-shadow-control, 0 4px 14px rgba(0, 0, 0, 0.28));
+	text-decoration: none;
+	cursor: pointer;
+	opacity: 0.9;
+	transition: opacity var(--twb-dur-fast, 0.2s) ease;
+}
+.twb-cookie-settings-tab:hover,
+.twb-cookie-settings-tab:focus-visible {
+	opacity: 1;
+	color: var(--twb-white, #fff);
+}
+.twb-cookie-settings-tab:focus-visible {
+	outline: 3px solid var(--twb-yellow, #fed700);
+	outline-offset: 2px;
+}
+/* Hidden while the main banner is open, so they never stack. */
+.twb-cookie-settings-tab[hidden] {
+	display: none;
+}
+
+@media (max-width: 600px) {
+	.twb-cookie-settings-tab {
+		left: var(--twb-space-8, 8px);
+		bottom: var(--twb-space-8, 8px);
+		padding: 8px 14px;
+		font-size: 11px;
+	}
+}
