@@ -326,10 +326,24 @@ a.twb-testimonial-card__media:focus-visible {
 		grid-template-columns: repeat(2, 1fr);
 		gap: var(--twb-space-24);
 	}
+	/* Only 2 explicit columns here, so a span-3 request would otherwise force
+	 * the grid to auto-generate an extra implicit (content-width) track -
+	 * cap it to span the full 2-column row instead. */
+	.twb-testimonials__grid-item--span-3 {
+		grid-column: span 2;
+	}
 }
 @media (max-width: 767px) {
 	.twb-testimonials__grid {
 		grid-template-columns: 1fr;
+	}
+	/* With a single explicit column, a leftover span-2/span-3 request still
+	 * forces the grid to auto-generate extra implicit (content-width) tracks
+	 * to satisfy the span - blowing the row back out to multi-column width
+	 * even though the intended mobile layout is a single column. */
+	.twb-testimonials__grid-item--span-2,
+	.twb-testimonials__grid-item--span-3 {
+		grid-column: span 1;
 	}
 }
 
@@ -573,6 +587,17 @@ a.twb-testimonial-card__media:focus-visible {
 	   photo) so they never cover the quote text. */
 	.twb-testimonials--has-media .flickity-prev-next-button {
 		top: 100px;
+	}
+
+	/* The featured span-3 cards pair a long name + date with the "Show more"
+	 * button on one row (space-between). Neither the caption nor the button
+	 * shrinks, so a longer name (e.g. "The Schott Family · Middlesex · May
+	 * 2025") doesn't fit next to it at mobile widths and pushed the button
+	 * past the card edge - let the row wrap so "Show more" drops to its own
+	 * line instead of overflowing. */
+	.twb-testimonials--grid .twb-testimonial-card__foot {
+		flex-wrap: wrap;
+		row-gap: var(--twb-space-8);
 	}
 }
 

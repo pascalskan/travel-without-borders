@@ -17,7 +17,12 @@
 		pauseAutoPlayOnHover: true,
 		cellAlign: 'center',
 		imagesLoaded: true,
-		adaptiveHeight: true,
+		/* The image height is already reserved up-front via the fixed
+		 * --twb-img-h CSS variable, so adaptive height isn't needed for
+		 * layout - and combined with wrapAround + async lazy-loaded images,
+		 * it was causing cell widths/positions to drift further out of sync
+		 * with every autoplay cycle (slides ending up stacked or blank). */
+		adaptiveHeight: false,
 		accessibility: true /* tab focus + left/right arrow-key navigation */
 	};
 
@@ -59,8 +64,31 @@
 
 		el.dataset.twbHeroInit = 'true';
 		/* eslint-disable no-new */
-		new Flickity( carousel, options );
+		var flkty = new Flickity( carousel, options );
 		/* eslint-enable no-new */
+
+		// Slide images are lazy-loaded (their real `src` is swapped in later by
+		// the theme's lazy-loader), so Flickity's own `imagesLoaded` option only
+		// ever sees the tiny inline placeholder and lays out cells before the
+		// real image has a size. Re-measure once real images finish loading so
+		// cell/caption positioning is correct instead of stale. Several images
+		// tend to finish loading in a burst, and with `wrapAround` enabled,
+		// calling `resize()` once per image (rather than once for the whole
+		// burst) can desync Flickity's wrap-around cloned cell positions - so
+		// this is debounced to a single resize after the burst settles.
+		var imgs = carousel.querySelectorAll( 'img' );
+		var resizeTimer = null;
+		function scheduleResize() {
+			if ( resizeTimer ) {
+				clearTimeout( resizeTimer );
+			}
+			resizeTimer = setTimeout( function () {
+				flkty.resize();
+			}, 150 );
+		}
+		for ( var j = 0; j < imgs.length; j++ ) {
+			imgs[ j ].addEventListener( 'load', scheduleResize );
+		}
 	}
 
 	function initAll() {

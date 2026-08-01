@@ -100,22 +100,18 @@ a.twb-hero__media:focus-visible {
 	/* Generous, balanced breathing room: image ↓ title ↓ description. */
 	padding: 48px 24px 8px;
 	text-align: center;
-	/* Only the selected cell reveals its caption (subtle, ~300ms fade). */
+	/* Only the selected cell reveals its caption. A fade transition here was
+	 * found to reliably stick at its 0% starting frame (never progressing)
+	 * once combined with Flickity's autoPlay + wrapAround cycling, leaving
+	 * every slide after the first with a permanently invisible caption - so
+	 * this is an instant, non-animated toggle instead. */
 	opacity: 0;
 	visibility: hidden;
-	transform: translateY(6px);
-	transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-		transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-		visibility 0s linear 0.3s;
 }
 
 .twb-hero__cell.is-selected .twb-hero__caption {
 	opacity: 1;
 	visibility: visible;
-	transform: translateY(0);
-	transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s,
-		transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s,
-		visibility 0s;
 }
 
 .twb-hero__title {
