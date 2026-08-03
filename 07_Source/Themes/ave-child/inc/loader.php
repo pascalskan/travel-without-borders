@@ -59,3 +59,6 @@ require_once $twb_inc . 'email-strip.php';
 
 // Enquiry toggle — Individual/Business form switch on the Contact page (own CSS/JS).
 require_once $twb_inc . 'enquiry-toggle.php';
+
+// Language switch — EN/DE pill for pages that have a translated counterpart.
+require_once $twb_inc . 'language-switch.php';
