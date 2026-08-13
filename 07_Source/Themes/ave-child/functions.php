@@ -85,11 +85,12 @@ function twb_child_special_interest_cards() {
 add_action( 'wp_enqueue_scripts', 'twb_child_special_interest_cards' );
 
 /**
- * Keep the "Marketing Email Consent" checkbox (quform_1_8) on the Contact
- * page's Individual enquiry form in sync with a hidden status field
- * (quform_1_9), so the admin notification email always states plainly
- * whether the client agreed or not — Quform's merge tags render an unticked
- * checkbox as an empty string, which would otherwise say nothing at all.
+ * Keep the "Marketing Email Consent" checkbox on the Contact page's forms
+ * (both the Individual form, quform_1_8, and the Business form, quform_3_8)
+ * in sync with each form's hidden status field (quform_{1,3}_9), so the
+ * admin notification email always states plainly whether the client agreed
+ * or not — Quform's merge tags render an unticked checkbox as an empty
+ * string, which would otherwise say nothing at all.
  */
 function twb_child_marketing_consent() {
 	if ( ! is_page( 4014 ) ) {
