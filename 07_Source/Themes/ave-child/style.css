@@ -11,3 +11,254 @@ License URI: license.txt
 Text Domain: ave
 Tags: responsive, retina, rtl-language-support, blog, portfolio, custom-colors, live-editor
 */
+
+/* ============================================================================
+   TWB — Homepage blog cards
+   Give the homepage blog cards the same bordered-card treatment as the
+   Special Interest holiday cards (.fancy-box-tour: 1px solid #e7e9ef on white)
+   and pin each card's "Read more" button to the bottom, so the buttons line up
+   across a row no matter how much text a card has.
+   Scoped to the homepage (body.home); the Blog archive is left untouched.
+   Ref: A.S tasks - Homepage > Blogs (add borders; equal-size cards).
+   ============================================================================ */
+
+/* Equal-height cards: flex the grid row and its columns so every card in a row
+   stretches to the tallest one, giving the footer a fixed base to sit on. */
+body.home .liquid-blog-posts .liquid-blog-grid.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+body.home .liquid-blog-posts .liquid-blog-grid.row > [class*="col-"] {
+	display: flex;
+}
+
+/* The card: white background + the Special-Interest border, laid out as a
+   vertical flex column so the footer can be pushed to the bottom. */
+body.home .liquid-blog-posts article.liquid-lp {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	background: #fff;
+	border: 1px solid #e7e9ef; /* same border as .fancy-box-tour */
+}
+
+/* Keep the image flush to the top edge, inside the border. */
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-media {
+	margin: 0;
+}
+
+/* Padding so text and button clear the new border (20px matches the
+   Special-Interest card's .fancy-box-contents inset). */
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-header,
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-excerpt,
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-footer {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-header {
+	padding-top: 18px;
+}
+
+/* Pin the "Read more" footer to the bottom of every card. */
+body.home .liquid-blog-posts article.liquid-lp .liquid-lp-footer {
+	margin-top: auto;
+	padding-bottom: 20px;
+}
+
+/* ----------------------------------------------------------------------------
+   TWB - Homepage Special Interest / Special Events cards (.fancy-box-tour)
+   These s04 cards output each image at its natural aspect (attachment-full), so
+   an odd-ratio image (e.g. the Berlin Burlesque 4:3) rendered shorter than the
+   others (~564x500) and made its card shorter. Normalise every card image to
+   the same ratio with object-fit:cover so the cards are a consistent height.
+   Ref: A.S tasks - Homepage > Special Interest (all cards the same size).
+   ---------------------------------------------------------------------------- */
+body.home .fancy-box-tour .fancy-box-image img {
+	width: 100%;
+	aspect-ratio: 564 / 500;
+	height: auto;
+	object-fit: cover;
+}
+
+/* ----------------------------------------------------------------------------
+   TWB - Homepage Special Events: static centred row
+   Special Events has only 3 cards, so a carousel left them centred with peeking
+   neighbours. They are now a plain inner row (.twb-events-cards); lay the cards
+   out as a centred flex row at the same width as the Special Interest cards
+   (~271px), equal height with the DETAILS footer pinned to the bottom.
+   Ref: A.S tasks - Homepage > Special Events (cards same size as Special Interest).
+   ---------------------------------------------------------------------------- */
+body.home .twb-events-cards .wpb_wrapper-inner {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 14px;
+}
+body.home .twb-events-cards .fancy-box {
+	width: 271px;
+	max-width: 100%;
+	margin: 0;
+}
+/* ----------------------------------------------------------------------------
+   TWB - Homepage Special Interest + Special Events: uniform card height
+   Make every card in both sections the same height with the DETAILS / ENQUIRE
+   footer pinned to the bottom, so buttons line up regardless of how much text a
+   card has (e.g. Football Camps' two-line caption, Augsburg's two-line title).
+   Lay each card out as a flex column and give a shared min-height on desktop,
+   where the cards are a fixed ~271px wide; below that they size naturally.
+   Ref: A.S tasks - Homepage > Special Interest / Special Events (all cards same size).
+   ---------------------------------------------------------------------------- */
+body.home .fancy-box-tour {
+	display: flex;
+	flex-direction: column;
+}
+/* Grow the body (not a footer margin) so the card's border stays continuous and
+   the DETAILS / ENQUIRE footer sits flush at the bottom of every card. */
+body.home .fancy-box-tour .fancy-box-contents {
+	flex: 1 0 auto;
+}
+@media (min-width: 992px) {
+	body.home .fancy-box-tour {
+		min-height: 420px;
+	}
+}
+
+/* ----------------------------------------------------------------------------
+   TWB - Homepage "Wide choice of destinations" cards (.fancy-box-travel)
+   Make the WHOLE card clickable. Each card already has a full-cover
+   .liquid-overlay-link (from img_link), but on the short cards the
+   .fancy-box-contents (z-index:2) sits above it and swallows the clicks, so
+   only the tall cards worked. Lift the overlay link above the content so a
+   click anywhere on the card follows the link. The overlay is transparent, so
+   the title and the hover-revealed description still show through.
+   The "Learn More" button is hidden here: the s03 "travel" template renders the
+   footer unconditionally (it ignores show_button), so it is removed with CSS.
+   Ref: A.S tasks - Homepage > Wide Choice of Destinations.
+   ---------------------------------------------------------------------------- */
+body.home .fancy-box-travel .liquid-overlay-link {
+	z-index: 5;
+}
+body.home .fancy-box-travel .fancy-box-footer {
+	display: none;
+}
+/* ----------------------------------------------------------------------------
+   Special Interest listing page - equal-height cards.
+   The cards differ in height only because the longer titles ("British - German
+   Royal Heritage Route", "Motorcar Enthusiasts Holidays") wrap onto extra
+   lines - and how many lines they take changes with the viewport (two lines at
+   1280px, three at ~992px). A fixed min-height therefore can't keep them level,
+   so the columns are made real flex items instead: every card stretches to the
+   tallest in its row at any width, and the MORE/ENQUIRE footers line up.
+   Scoped to this page and to the card rows only, so the hero row is untouched.
+   Ref: A.S tasks - Special interests page > Make all cards the same size.
+   ---------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+	body.page-id-4476 .vc_custom_1581683778917 .row.ld-row {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	body.page-id-4476 .vc_custom_1581683778917 .row.ld-row > .wpb_column {
+		display: flex;
+	}
+	body.page-id-4476 .vc_custom_1581683778917 .wpb_column > .vc_column-inner,
+	body.page-id-4476 .vc_custom_1581683778917 .vc_column-inner > .wpb_wrapper,
+	body.page-id-4476 .vc_custom_1581683778917 .wpb_wrapper > .wpb_wrapper-inner {
+		display: flex;
+		flex-direction: column;
+		/* Each wrapper must grow, otherwise the column's height stops here and
+		   never reaches the card. */
+		flex: 1 1 auto;
+		width: 100%;
+		min-height: 0;
+	}
+	body.page-id-4476 .vc_custom_1581683778917 .fancy-box-tour {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+	}
+	/* Let the title block absorb the slack so the footer sits at the bottom. */
+	body.page-id-4476 .vc_custom_1581683778917 .fancy-box-tour .fancy-box-contents {
+		flex: 1 1 auto;
+	}
+}
+
+/* Flex only equalises cards against their own row, and the eight cards sit in
+   two separate WPBakery rows, so the row holding a long title stays taller.
+   assets/js/special-interest-cards.js reserves the tallest title's height on
+   every card to level the two rows; see the note there for why this isn't done
+   with a fixed min-height. */
+
+/* ============================================================================
+   TWB - Destination pages
+   ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+   Dark header box - legible subtitle.
+   Every destination header is the same #242424 row (shared WPBakery class
+   vc_custom_1545203367366). Its subtitle was rgb(136,136,136) grey, which is
+   hard to read on black, so force the header's heading text to white. The title
+   is already white, so only the subtitle visibly changes.
+   Ref: A.S tasks - Talk > Destinations > all pages (header text not clear).
+   ---------------------------------------------------------------------------- */
+.vc_custom_1545203367366 .ld-fancy-heading,
+.vc_custom_1545203367366 .ld-fancy-heading .ld-fh-txt {
+	color: #fff !important;
+}
+
+/* ----------------------------------------------------------------------------
+   "What to do" (and any other content list) - hanging indent.
+   The theme sets list-style-position:inside with no padding, so when a bullet's
+   text wraps the second line sits under the bullet instead of under the text.
+   Switch to an outside marker with a little left padding to restore the hanging
+   indent, scoped to destination pages via the twb-destination body class.
+   Ref: A.S tasks - Talk > Destinations > What to do (wrapped bullets misalign).
+   ---------------------------------------------------------------------------- */
+body.twb-destination .wpb_text_column ul,
+body.twb-destination .wpb_text_column ol {
+	list-style-position: outside;
+	padding-left: 1.2em;
+	margin-left: 0;
+}
+body.twb-destination .wpb_text_column li {
+	padding-left: 0.2em;
+}
+
+/* ----------------------------------------------------------------------------
+   Image carousels ("collage") - uniform cell height.
+   The carousel images have mixed aspect ratios and were stretched to slightly
+   different heights (object-fit was effectively fill), so the row of images
+   looked uneven. Normalise every carousel image to one ratio with cover, so all
+   cells match and the collage lines up. Scoped to the carousel cells only, so
+   the header image group and inline images are untouched.
+   Ref: A.S tasks - Talk > Destinations (Erfurt/Goslar collage sizing).
+   ---------------------------------------------------------------------------- */
+body.twb-destination .carousel-item .vc_single_image-img {
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	height: auto !important;
+	object-fit: cover;
+}
+
+/* ============================================================================
+   TWB - Legal pages
+   ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+   Terms & Conditions / Privacy Policy - hanging indent.
+   Same list-style-position:inside issue as the destination pages above (see
+   that rule's note): wrapped bullet text was sitting under the bullet marker
+   instead of under the first line's text. Same fix, scoped to these two pages.
+   Ref: A.S tasks - Terms & Conditions / Privacy Policy (wrapped bullets misalign).
+   ---------------------------------------------------------------------------- */
+body.page-id-5433 .wpb_text_column ul,
+body.page-id-5433 .wpb_text_column ol,
+body.page-id-5440 .wpb_text_column ul,
+body.page-id-5440 .wpb_text_column ol {
+	list-style-position: outside;
+	padding-left: 1.2em;
+	margin-left: 0;
+}
+body.page-id-5433 .wpb_text_column li,
+body.page-id-5440 .wpb_text_column li {
+	padding-left: 0.2em;
+}

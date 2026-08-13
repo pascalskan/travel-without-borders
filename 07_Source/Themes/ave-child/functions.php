@@ -6,7 +6,13 @@ function liquid_parent_theme_scripts() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 }
 function liquid_child_theme_style(){
-    wp_enqueue_style( 'child-one-style', get_stylesheet_directory_uri() . '/style.css' );
+	// Version the stylesheet by its modification time so edits are picked up
+	// immediately. Without this the file is served with no version string and
+	// browsers keep serving a cached copy long after the CSS has changed.
+	$css_path = get_stylesheet_directory() . '/style.css';
+	$css_ver  = file_exists( $css_path ) ? filemtime( $css_path ) : false;
+
+	wp_enqueue_style( 'child-one-style', get_stylesheet_directory_uri() . '/style.css', array(), $css_ver );
 }
 
 /**
@@ -55,6 +61,56 @@ function twb_child_register_assets() {
 add_action( 'wp_enqueue_scripts', 'twb_child_register_assets' );
 
 /**
+ * Equalise the Special Interest listing cards across both of its rows.
+ *
+ * Loaded only on that page (ID 4476); the CSS in style.css handles everything
+ * else, this just levels the two separate WPBakery rows against each other.
+ */
+function twb_child_special_interest_cards() {
+	if ( ! is_page( 4476 ) ) {
+		return;
+	}
+
+	$js  = get_stylesheet_directory() . '/assets/js/special-interest-cards.js';
+	$ver = file_exists( $js ) ? filemtime( $js ) : false;
+
+	wp_enqueue_script(
+		'twb-special-interest-cards',
+		get_stylesheet_directory_uri() . '/assets/js/special-interest-cards.js',
+		array(),
+		$ver,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'twb_child_special_interest_cards' );
+
+/**
+ * Keep the "Marketing Email Consent" checkbox on the Contact page's forms
+ * (both the Individual form, quform_1_8, and the Business form, quform_3_8)
+ * in sync with each form's hidden status field (quform_{1,3}_9), so the
+ * admin notification email always states plainly whether the client agreed
+ * or not — Quform's merge tags render an unticked checkbox as an empty
+ * string, which would otherwise say nothing at all.
+ */
+function twb_child_marketing_consent() {
+	if ( ! is_page( 4014 ) ) {
+		return;
+	}
+
+	$js  = get_stylesheet_directory() . '/assets/js/marketing-consent.js';
+	$ver = file_exists( $js ) ? filemtime( $js ) : false;
+
+	wp_enqueue_script(
+		'twb-marketing-consent',
+		get_stylesheet_directory_uri() . '/assets/js/marketing-consent.js',
+		array(),
+		$ver,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'twb_child_marketing_consent' );
+
+/**
  * Remove the flickity-fade plugin on the front end.
  *
  * Ave loads flickity-fade site-wide, but it patches Flickity's cell positioning
@@ -67,6 +123,33 @@ function twb_remove_flickity_fade() {
 	wp_deregister_script( 'flickity-fade' );
 }
 add_action( 'wp_enqueue_scripts', 'twb_remove_flickity_fade', 100 );
+
+/**
+ * Tag every Destinations page (and its region hubs) with a body class.
+ *
+ * The destination pages share a common template but no common body class, so
+ * destination-wide styling (header text colour, "What to do" list indentation)
+ * had nothing stable to hook onto. Add `twb-destination` to any page that is the
+ * Destinations page or a descendant of it.
+ */
+function twb_child_destination_body_class( $classes ) {
+	if ( ! is_page() ) {
+		return $classes;
+	}
+
+	$destinations = get_page_by_path( 'destinations' );
+	if ( ! $destinations ) {
+		return $classes;
+	}
+
+	$id = get_queried_object_id();
+	if ( $id === (int) $destinations->ID || in_array( $destinations->ID, get_post_ancestors( $id ), true ) ) {
+		$classes[] = 'twb-destination';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'twb_child_destination_body_class' );
 
 /**
  * Load custom child-theme components.

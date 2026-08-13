@@ -36,8 +36,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $twb_inc = get_stylesheet_directory() . '/inc/';
 
+// Cookie consent — gates Google Tag Manager (and the Google Analytics tags
+// inside it) behind visitor consent. Loaded first: it hooks wp_head at
+// priority 1, so it must be registered before anything else that might rely
+// on dataLayer already existing.
+require_once $twb_inc . 'cookie-consent.php';
+
 // Existing component — unchanged.
 require_once $twb_inc . 'hero-carousel.php';
 
-// Testimonials — reusable WPBakery carousel element (own CSS/JS, on-demand).
+// Testimonials — reusable WPBakery carousel/grid element (own CSS/JS, on-demand).
 require_once $twb_inc . 'testimonials.php';
+
+// Page hero / split band — reusable inner-page hero element (own CSS, on-demand).
+require_once $twb_inc . 'page-hero.php';
+
+// Trust stats — reusable credibility strip element (own CSS, on-demand).
+require_once $twb_inc . 'trust-stats.php';
+
+// Email strip — the standard green "e-mail us" closing band (own CSS, on-demand).
+require_once $twb_inc . 'email-strip.php';
+
+// Enquiry toggle — Individual/Business form switch on the Contact page (own CSS/JS).
+require_once $twb_inc . 'enquiry-toggle.php';
+
+// Language switch — EN/DE pill for pages that have a translated counterpart.
+require_once $twb_inc . 'language-switch.php';

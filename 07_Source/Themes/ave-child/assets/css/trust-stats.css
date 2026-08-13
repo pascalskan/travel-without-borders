@@ -1,0 +1,74 @@
+/* ==========================================================================
+   TWB Trust Stats
+   A credibility strip: number + label stats in a centred row, divided by
+   hairlines; stacks on mobile. All values from the token layer.
+   ========================================================================== */
+
+.twb-trust-stats {
+	font-family: var(--twb-font);
+	padding-top: var(--twb-space-48);
+	padding-bottom: var(--twb-space-48);
+}
+
+.twb-trust-stats__list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--twb-space-32) var(--twb-space-64);
+	/* margin: 0 auto keeps the .twb-container centred (a bare `margin: 0`
+	   would override the container's auto margins and push it flush left). */
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: var(--twb-space-16);
+	padding-right: var(--twb-space-16);
+	list-style: none;
+}
+
+.twb-trust-stats__item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	flex: 0 1 auto;
+}
+
+.twb-trust-stats__number {
+	font-size: clamp(38px, 5vw, 54px);
+	font-weight: 700;
+	line-height: 1;
+	color: var(--twb-green);
+}
+
+.twb-trust-stats__label {
+	margin-top: var(--twb-space-8);
+	font-size: var(--twb-fs-meta);
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--twb-text-muted);
+}
+
+/* Hairline dividers between items (desktop only). */
+@media (min-width: 768px) {
+	.twb-trust-stats__item + .twb-trust-stats__item {
+		position: relative;
+	}
+	.twb-trust-stats__item + .twb-trust-stats__item::before {
+		content: "";
+		position: absolute;
+		left: calc(-1 * var(--twb-space-32));
+		top: 50%;
+		transform: translateY(-50%);
+		width: 1px;
+		height: 48px;
+		background: var(--twb-border);
+	}
+}
+
+@media (max-width: 767px) {
+	.twb-trust-stats__list {
+		gap: var(--twb-space-32);
+		flex-direction: column;
+	}
+}

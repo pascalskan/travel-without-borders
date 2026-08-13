@@ -28,6 +28,7 @@
 	/* --- Surfaces & lines ------------------------------------------------ */
 	--twb-white: #ffffff;
 	--twb-surface: #f7f7f7;      /* alt section background */
+	--twb-charcoal: #242424;     /* split-panel dark background (heroes / bands) */
 	--twb-border: #e0e0e0;       /* hairline */
 	--twb-dot: #c4c9c4;          /* carousel inactive dot */
 
@@ -93,11 +94,64 @@
 .twb-bg-white { background-color: var(--twb-white); }
 .twb-bg-surface { background-color: var(--twb-surface); }
 
+/* Band overrides for WPBakery rows (applied via `el_class`), used to keep the
+   homepage grey/white alternation after inserting the testimonials band. The
+   `.wpb_row` compound + !important beats each row's per-row `.vc_custom_*`
+   background regardless of load order. */
+.wpb_row.twb-band-white { background-color: var(--twb-white) !important; }
+.wpb_row.twb-band-grey { background-color: var(--twb-surface) !important; }
+
+/* Green band: brand-green background with white text (headings + copy). */
+.twb-bg-green { background-color: var(--twb-green); }
+.twb-bg-green,
+.twb-bg-green h1,
+.twb-bg-green h2,
+.twb-bg-green h3,
+.twb-bg-green h4,
+.twb-bg-green p { color: var(--twb-white); }
+
 /* Section vertical rhythm (follows the site's 70–80px section padding). */
 .twb-section { padding-top: var(--twb-space-80); padding-bottom: var(--twb-space-80); }
 
 @media (max-width: 767px) {
 	.twb-section { padding-top: var(--twb-space-48); padding-bottom: var(--twb-space-48); }
+}
+
+/* Centred, readable prose column (intro / CTA copy). */
+.twb-prose {
+	max-width: 760px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+/* Primary button (gold pill) — brand green + gold pairing, for CTAs. */
+.twb-btn {
+	display: inline-block;
+	margin-top: var(--twb-space-16);
+	padding: 14px 32px;
+	font-family: var(--twb-font);
+	font-size: var(--twb-fs-body);
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--twb-navy);
+	background: var(--twb-yellow);
+	border: 0;
+	border-radius: var(--twb-radius-pill);
+	text-decoration: none;
+	cursor: pointer;
+	transition: background var(--twb-dur) var(--twb-ease), transform var(--twb-dur) var(--twb-ease);
+}
+.twb-btn:hover,
+.twb-btn:focus-visible {
+	background: #ffe14d;
+	color: var(--twb-navy);
+	transform: translateY(-1px);
+}
+.twb-btn:focus-visible {
+	outline: 3px solid var(--twb-white);
+	outline-offset: 3px;
 }
 
 /* Visually-hidden text for accessible labels (e.g. rating text equivalent). */

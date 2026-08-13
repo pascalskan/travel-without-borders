@@ -43,7 +43,8 @@ migration to a CPT can reuse the same card renderer and CSS/JS unchanged.
 
 | Aspect | Setting / behaviour |
 | ------ | ------------------- |
-| Transition | **Slide** (Flickity default). *Not* fade — `flickity-fade` is dequeued site-wide (see [Hero Carousel](HERO_CAROUSEL.md) Gotcha 1). Do **not** add `fade: true`. |
+| Layout | **Carousel** (default) or **Grid**. Grid is a static responsive grid (3 → 2 → 1 columns) that loads **no JavaScript/Flickity** — used on the dedicated page for the full collection. Both layouts share the same card renderer and CSS. |
+| Transition | (Carousel) **Slide** (Flickity default). *Not* fade — `flickity-fade` is dequeued site-wide (see [Hero Carousel](HERO_CAROUSEL.md) Gotcha 1). Do **not** add `fade: true`. |
 | Autoplay | Optional (element param), default 6000 ms; pauses on hover/interaction; **disabled automatically under `prefers-reduced-motion`** |
 | Loop | Infinite (`wrapAround`) |
 | Controls | Prev/next arrows (white circles, hero interaction language) + pagination dots; keyboard arrows; draggable |
@@ -63,6 +64,7 @@ migration to a CPT can reuse the same card renderer and CSS/JS unchanged.
 In WPBakery, add the **TWB Testimonials** element (under the **Travel Without
 Borders** category):
 
+- **Layout** — Carousel (default) or Grid.
 - **Eyebrow** — small label above the heading (optional).
 - **Heading** — section H2 (optional).
 - **Testimonials** (repeater) — per item: **Quote** (required), Author name,
@@ -83,8 +85,13 @@ No HTML/CSS required; fully reusable and configurable across pages.
 
 The element is placed on the homepage (front page, page 30) in a full-bleed
 WPBakery row (`full_width="stretch_row_content_no_spaces"`) **between the
-introduction/destinations content and the Special Interest Holidays row**, with a
-surface background so it reads as an alternating band. The band uses the shared
+introduction/destinations content and the Special Interest Holidays row**. The
+band is **grey (surface)**. Because inserting a band between a white and a grey
+section shifts the alternation, every following row is flipped to keep the site's
+grey/white swap: the rows below (Special Interest, decorative, Berlin, Special
+Events, Blog) carry an `el_class` of **`twb-band-white`** / **`twb-band-grey`**,
+styled by the `.wpb_row.twb-band-*` utilities in `twb-tokens.css` (the `.wpb_row`
+compound + `!important` overrides each row's per-row `.vc_custom_*` background). The band uses the shared
 80px section rhythm and sits between the site's standard ~45px inter-row margins,
 so the transitions match the rest of the homepage. The CTA ("Read all
 testimonials") points to `/testimonials/`. Each placeholder testimonial has a
@@ -96,6 +103,31 @@ relevant destination page (e.g. Bavaria → `/destinations/holidays-to-bavaria/`
   `_twb_homepage_pre_testimonials_backup` on page 30 (restore point).
 - The testimonial **content is element params** (local), entered in the builder;
   the **code** (element, renderer, assets) deploys with the theme.
+
+### Dedicated page (`/testimonials/`, local content)
+
+The dedicated page (the homepage CTA target) is assembled in WPBakery from
+reusable components — no bespoke CSS/JS/PHP — and follows the site's own page
+grammar (split hero, alternating bands, split CTA, email strip):
+
+1. **Split hero** — `[twb_page_hero]` H1: photo left + charcoal panel with intro
+   and a "Read the reviews" underline link (→ `#reviews`). See [Page Hero](PAGE_HERO.md).
+2. **Trust stats** — `[twb_trust_stats]`: **30+ years · 50+ German destinations**
+   (accurate: the site offers 53 individual destinations across 6 regions;
+   surfaces the About page's experience claim into the journey).
+3. **Featured** — `[twb_testimonials layout="carousel"]` on surface grey
+   (the row carries `el_id="reviews"`), curated three.
+4. **Full grid** — `[twb_testimonials layout="grid"]` on white, the complete collection.
+5. **Closing CTA band** — `[twb_page_hero]` H2 (photo + charcoal panel), "Start
+   your enquiry" underline link → `/contact/` (mirrors the Groups page's closing band).
+6. **Email strip** — `[twb_email_strip]`: the site's standard green "e-mail us"
+   band (envelope + yellow-bordered box).
+
+Bands alternate charcoal → white → surface → white → charcoal → green.
+
+The homepage continues to show only a curated **carousel** selection; the
+dedicated page shows the **complete collection** as a grid. Page content is local
+DB (not version-controlled); only the component code deploys with the theme.
 
 ---
 

@@ -1,0 +1,108 @@
+/* ==========================================================================
+   TWB Enquiry Toggle
+   A segmented "Get in touch" switch that swaps between the Individual and
+   Business enquiry forms on the Contact page. Individual is the default.
+   Uses the shared token layer; no hard-coded brand values.
+   ========================================================================== */
+
+.twb-enquiry {
+	font-family: var(--twb-font);
+	color: var(--twb-text);
+}
+
+/* --- Segmented switch ---------------------------------------------------- */
+.twb-enquiry__switch {
+	position: relative;
+	display: flex;
+	width: 100%;
+	max-width: 460px;
+	margin: 0 0 var(--twb-space-32);
+	padding: 5px;
+	background: var(--twb-surface);
+	border: 1px solid var(--twb-border);
+	border-radius: var(--twb-radius-pill);
+}
+
+.twb-enquiry__tab {
+	position: relative;
+	z-index: 1;
+	flex: 1 1 50%;
+	margin: 0;
+	padding: 12px 16px;
+	border: 0;
+	background: none;
+	border-radius: var(--twb-radius-pill);
+	font-family: inherit;
+	font-size: var(--twb-fs-meta);
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--twb-text-muted);
+	cursor: pointer;
+	transition: color var(--twb-dur-fast) var(--twb-ease);
+}
+.twb-enquiry__tab:hover {
+	color: var(--twb-green);
+}
+.twb-enquiry__tab.is-active {
+	color: var(--twb-white);
+}
+.twb-enquiry__tab:focus-visible {
+	outline: 3px solid var(--twb-yellow);
+	outline-offset: 2px;
+}
+
+/* Sliding pill behind the active tab. */
+.twb-enquiry__thumb {
+	position: absolute;
+	top: 5px;
+	bottom: 5px;
+	left: 5px;
+	width: calc(50% - 5px);
+	background: var(--twb-green);
+	border-radius: var(--twb-radius-pill);
+	box-shadow: var(--twb-shadow-ambient);
+	transition: transform var(--twb-dur-card) var(--twb-ease-spring);
+	pointer-events: none;
+}
+.twb-enquiry[data-active="business"] .twb-enquiry__thumb {
+	transform: translateX(100%);
+}
+
+/* --- Panels -------------------------------------------------------------- */
+.twb-enquiry__panel[hidden] {
+	display: none;
+}
+
+/* Brand the Quform submit buttons consistently across BOTH forms. The
+   duplicated trade form falls back to Quform's lime-green "theme-light" default,
+   whose selector is very specific; match it and force the site green so the
+   individual and business forms look identical. Scoped to .twb-enquiry only. */
+.twb-enquiry .quform-element-submit .quform-button-submit-default > button,
+.twb-enquiry button.quform-submit {
+	background-color: var(--twb-green) !important;
+	border-color: var(--twb-green) !important;
+	color: var(--twb-white) !important;
+}
+.twb-enquiry .quform-element-submit .quform-button-submit-default > button:hover,
+.twb-enquiry .quform-element-submit .quform-button-submit-default > button:focus,
+.twb-enquiry button.quform-submit:hover,
+.twb-enquiry button.quform-submit:focus {
+	background-color: var(--twb-green-dark) !important;
+	border-color: var(--twb-green-dark) !important;
+	color: var(--twb-white) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.twb-enquiry__thumb,
+	.twb-enquiry__tab {
+		transition: none;
+	}
+}
+
+@media (max-width: 480px) {
+	.twb-enquiry__tab {
+		padding: 11px 8px;
+		letter-spacing: 0.02em;
+	}
+}

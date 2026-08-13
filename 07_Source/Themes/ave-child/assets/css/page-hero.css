@@ -1,0 +1,114 @@
+/* ==========================================================================
+   TWB Page Hero / Split Band
+   The site's signature split: photo one side, charcoal panel the other
+   (heading + intro + yellow underline link). Panel is first in the DOM so the
+   H1 leads for SEO/screen-readers and text shows first when stacked on mobile;
+   flex `order` places the image on the left (default) on desktop.
+   All values from the token layer.
+   ========================================================================== */
+
+.twb-page-hero {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	width: 100%;
+	font-family: var(--twb-font);
+}
+
+/* --- Text panel (charcoal) ---------------------------------------------- */
+.twb-page-hero__panel {
+	order: 2; /* right on desktop */
+	flex: 1 1 45%;
+	display: flex;
+	align-items: center;
+	background: var(--twb-charcoal);
+	color: var(--twb-white);
+	padding: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4.5rem);
+}
+.twb-page-hero__panel-inner {
+	width: 100%;
+	max-width: 540px;
+	margin: 0 auto;
+}
+.twb-page-hero__eyebrow {
+	margin: 0 0 var(--twb-space-16);
+	font-size: var(--twb-fs-meta);
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--twb-yellow);
+}
+.twb-page-hero__heading {
+	margin: 0 0 var(--twb-space-24);
+	font-size: clamp(30px, 3.6vw, 44px);
+	line-height: 1.15;
+	color: var(--twb-white);
+}
+.twb-page-hero__intro {
+	margin: 0;
+	max-width: 46ch;
+	font-size: clamp(16px, 1.4vw, 18px);
+	line-height: 1.75;
+	color: rgba(255, 255, 255, 0.72);
+}
+
+/* Yellow underline link — the site's CTA idiom ("LEARN MORE" / "GET IN TOUCH"). */
+.twb-page-hero__link {
+	display: inline-block;
+	margin-top: var(--twb-space-32);
+	padding-bottom: 6px;
+	font-size: var(--twb-fs-meta);
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--twb-white);
+	text-decoration: none;
+	border-bottom: 2px solid var(--twb-yellow);
+	transition: color var(--twb-dur) var(--twb-ease), border-color var(--twb-dur) var(--twb-ease);
+}
+.twb-page-hero__link:hover,
+.twb-page-hero__link:focus-visible {
+	color: var(--twb-yellow);
+}
+.twb-page-hero__link:focus-visible {
+	outline: 3px solid var(--twb-yellow);
+	outline-offset: 4px;
+}
+
+/* --- Image -------------------------------------------------------------- */
+.twb-page-hero__media {
+	order: 1; /* left on desktop */
+	flex: 1 1 55%;
+	min-height: clamp(280px, 44vh, 480px);
+	overflow: hidden;
+}
+.twb-page-hero__img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	min-height: clamp(280px, 44vh, 480px);
+	object-fit: cover;
+	object-position: center;
+}
+
+/* Image on the right instead. */
+.twb-page-hero--image-right .twb-page-hero__panel { order: 1; }
+.twb-page-hero--image-right .twb-page-hero__media { order: 2; }
+
+/* --- Mobile: stack (panel/text on top, image below) --------------------- */
+@media (max-width: 767px) {
+	.twb-page-hero__panel,
+	.twb-page-hero__media {
+		order: 0; /* fall back to DOM order: panel first, then image */
+		flex-basis: 100%;
+	}
+	.twb-page-hero__panel {
+		padding: var(--twb-space-48) var(--twb-space-24);
+	}
+	.twb-page-hero__media {
+		min-height: 240px;
+	}
+	.twb-page-hero__img {
+		min-height: 240px;
+	}
+}

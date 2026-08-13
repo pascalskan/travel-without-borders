@@ -180,14 +180,41 @@ function twb_testimonials_vc_map() {
 							),
 							'description' => __( 'Optional. If set, the destination image links to this page (e.g. the region/city it mentions).', 'ave' ),
 						),
+						array(
+							'type'        => 'dropdown',
+							'heading'     => __( 'Card width (grid only)', 'ave' ),
+							'param_name'  => 'span',
+							'value'       => array(
+								__( 'Normal (1 column)', 'ave' ) => '1',
+								__( 'Wide (2 columns)', 'ave' )  => '2',
+								__( 'Full (3 columns)', 'ave' )  => '3',
+							),
+							'std'         => '1',
+							'description' => __( 'Grid columns this card spans. Use Wide/Full for a long review so it reads across instead of running tall. Ignored in carousel mode.', 'ave' ),
+						),
 					),
 				),
 				array(
-					'type'       => 'checkbox',
-					'heading'    => __( 'Auto-rotate', 'ave' ),
-					'param_name' => 'autoplay',
-					'value'      => array( __( 'Enable automatic rotation', 'ave' ) => 'yes' ),
-					'std'        => 'yes',
+					'type'        => 'dropdown',
+					'heading'     => __( 'Layout', 'ave' ),
+					'param_name'  => 'layout',
+					'value'       => array(
+						__( 'Carousel', 'ave' ) => 'carousel',
+						__( 'Grid', 'ave' )     => 'grid',
+					),
+					'std'         => 'carousel',
+					'description' => __( 'Carousel (one at a time, needs JS) or a static responsive grid (all at once).', 'ave' ),
+				),
+				array(
+					'type'        => 'checkbox',
+					'heading'     => __( 'Auto-rotate', 'ave' ),
+					'param_name'  => 'autoplay',
+					'value'       => array( __( 'Enable automatic rotation', 'ave' ) => 'yes' ),
+					'std'         => 'yes',
+					'dependency'  => array(
+						'element' => 'layout',
+						'value'   => array( 'carousel' ),
+					),
 				),
 				array(
 					'type'        => 'textfield',
@@ -195,7 +222,7 @@ function twb_testimonials_vc_map() {
 					'param_name'  => 'autoplay_speed',
 					'value'       => '6000',
 					'dependency'  => array(
-						'element'   => 'autoplay',
+						'element' => 'autoplay',
 						'not_empty' => true,
 					),
 					'description' => __( 'Time each testimonial is shown, in milliseconds. Default 6000 (6s).', 'ave' ),
@@ -362,21 +389,22 @@ function twb_testimonials_render_card( $item, $opts ) {
 	$location = isset( $item['author_location'] ) ? trim( $item['author_location'] ) : '';
 	$trip     = isset( $item['trip_type'] ) ? trim( $item['trip_type'] ) : '';
 	$region   = isset( $item['region'] ) ? trim( $item['region'] ) : '';
+	// The region field may hold several comma-separated tags, e.g. "Colditz, Berlin";
+	// each is rendered as its own badge, in the order given.
+	$regions  = array_values( array_filter( array_map( 'trim', explode( ',', $region ) ), 'strlen' ) );
+	$region_primary = $regions ? $regions[0] : '';
 	$date     = isset( $item['travel_date'] ) ? trim( $item['travel_date'] ) : '';
 	$rating   = isset( $item['rating'] ) ? (int) $item['rating'] : 0;
 
 	$show_rating = ! empty( $opts['show_rating'] );
 	$show_badges = ! empty( $opts['show_badges'] );
 
-	// Initial-letter avatar fallback (no author photo stored in this element).
-	$initial = '' !== $name ? mb_substr( $name, 0, 1 ) : '“';
-
 	// Optional destination image (shown to the left of the quote), which may link
 	// to the place it mentions. Reuses the shared vc_link parsing.
 	$media_html = twb_testimonials_render_media(
 		isset( $item['image'] ) ? absint( $item['image'] ) : 0,
 		isset( $item['image_link'] ) ? $item['image_link'] : '',
-		$region
+		$region_primary
 	);
 	$has_media = ( '' !== $media_html );
 
@@ -386,11 +414,11 @@ function twb_testimonials_render_card( $item, $opts ) {
 		<?php echo $media_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped values in twb_testimonials_render_media(). ?>
 		<div class="twb-testimonial-card__body">
 			<div class="twb-testimonial-card__top">
-				<?php if ( $show_badges && ( '' !== $region || '' !== $trip ) ) : ?>
+				<?php if ( $show_badges && ( ! empty( $regions ) || '' !== $trip ) ) : ?>
 					<div class="twb-testimonial-card__badges">
-						<?php if ( '' !== $region ) : ?>
-							<span class="twb-testimonial-card__badge twb-testimonial-card__badge--region"><?php echo esc_html( $region ); ?></span>
-						<?php endif; ?>
+						<?php foreach ( $regions as $region_tag ) : ?>
+							<span class="twb-testimonial-card__badge twb-testimonial-card__badge--region"><?php echo esc_html( $region_tag ); ?></span>
+						<?php endforeach; ?>
 						<?php if ( '' !== $trip ) : ?>
 							<span class="twb-testimonial-card__badge twb-testimonial-card__badge--trip"><?php echo esc_html( $trip ); ?></span>
 						<?php endif; ?>
@@ -407,8 +435,7 @@ function twb_testimonials_render_card( $item, $opts ) {
 				<p><?php echo esc_html( $quote ); ?></p>
 			</blockquote>
 
-			<figcaption class="twb-testimonial-card__caption">
-				<span class="twb-testimonial-card__avatar" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
+			<div class="twb-testimonial-card__foot"><figcaption class="twb-testimonial-card__caption">
 				<span class="twb-testimonial-card__attribution">
 					<?php if ( '' !== $name ) : ?>
 						<cite class="twb-testimonial-card__name"><?php echo esc_html( $name ); ?></cite>
@@ -423,6 +450,10 @@ function twb_testimonials_render_card( $item, $opts ) {
 					<?php endif; ?>
 				</span>
 			</figcaption>
+			<button type="button" class="twb-testimonial-card__more" hidden>
+				<span class="twb-testimonial-card__more-txt"><?php esc_html_e( 'Show more', 'ave' ); ?></span>
+			</button>
+				</div>
 		</div>
 	</figure>
 	<?php
@@ -439,6 +470,7 @@ function twb_testimonials_render_card( $item, $opts ) {
 function twb_testimonials_render( $atts, $content = null ) {
 	$atts = shortcode_atts(
 		array(
+			'layout'         => 'carousel',
 			'eyebrow'        => '',
 			'heading'        => '',
 			'items'          => '',
@@ -476,7 +508,10 @@ function twb_testimonials_render( $atts, $content = null ) {
 	foreach ( $items as $item ) {
 		$card = twb_testimonials_render_card( $item, $opts );
 		if ( '' !== $card ) {
-			$cards[] = $card;
+			// Optional grid span (1–3 columns) so long reviews can read across
+			// instead of running tall. Only used by the grid layout.
+			$span    = isset( $item['span'] ) ? max( 1, min( 3, (int) $item['span'] ) ) : 1;
+			$cards[] = array( 'html' => $card, 'span' => $span );
 			if ( isset( $item['image'] ) && absint( $item['image'] ) > 0 ) {
 				$any_media = true;
 			}
@@ -487,11 +522,18 @@ function twb_testimonials_render( $atts, $content = null ) {
 		return '';
 	}
 
-	// Request the on-demand assets (registered above + bundled by Ave).
-	wp_enqueue_style( 'flickity' );
-	wp_enqueue_script( 'flickity' );
+	$is_grid = ( 'grid' === $atts['layout'] );
+
+	// Component styles always; the carousel JS + Flickity only in carousel mode
+	// (the grid is static markup and needs no JavaScript).
 	wp_enqueue_style( 'twb-testimonials' );
+	// The script handles both the carousel (Flickity) and the grid's "Show more"
+	// modal, so it loads in both modes; Flickity is only needed for the carousel.
 	wp_enqueue_script( 'twb-testimonials' );
+	if ( ! $is_grid ) {
+		wp_enqueue_style( 'flickity' );
+		wp_enqueue_script( 'flickity' );
+	}
 
 	$autoplay = ( 'yes' === $atts['autoplay'] );
 	$speed    = absint( $atts['autoplay_speed'] );
@@ -533,7 +575,7 @@ function twb_testimonials_render( $atts, $content = null ) {
 
 	ob_start();
 	?>
-	<section class="twb-testimonials twb-section <?php echo esc_attr( $bg_class ); ?><?php echo $any_media ? ' twb-testimonials--has-media' : ''; ?>">
+	<section class="twb-testimonials twb-section <?php echo esc_attr( $bg_class ); ?><?php echo $any_media ? ' twb-testimonials--has-media' : ''; ?><?php echo $is_grid ? ' twb-testimonials--grid' : ''; ?>">
 		<div class="twb-container">
 			<?php if ( '' !== $atts['eyebrow'] || '' !== $atts['heading'] ) : ?>
 				<header class="twb-testimonials__header">
@@ -541,26 +583,46 @@ function twb_testimonials_render( $atts, $content = null ) {
 						<p class="twb-testimonials__eyebrow"><?php echo esc_html( $atts['eyebrow'] ); ?></p>
 					<?php endif; ?>
 					<?php if ( '' !== $atts['heading'] ) : ?>
-						<h2 class="twb-testimonials__heading"><?php echo esc_html( $atts['heading'] ); ?></h2>
+						<h2 class="twb-testimonials__heading"><?php echo wp_kses( $atts['heading'], array( 'br' => array() ) ); ?></h2>
 					<?php endif; ?>
 				</header>
 			<?php endif; ?>
 
-			<?php
-			// Accessible name for the focusable carousel (tabindex is added by
-			// Flickity). Uses the heading when present so a screen-reader user
-			// tabbing onto the scroller hears what it is.
-			$carousel_label = ( '' !== $atts['heading'] ) ? $atts['heading'] : __( 'Testimonials', 'ave' );
-			?>
-			<div class="twb-testimonials__carousel" aria-label="<?php echo esc_attr( $carousel_label ); ?>" aria-roledescription="carousel" data-twb-testimonials="<?php echo esc_attr( wp_json_encode( $options ) ); ?>">
-				<?php foreach ( $cards as $card ) : ?>
-					<div class="twb-testimonials__cell">
-						<?php echo $card; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
-					</div>
-				<?php endforeach; ?>
-			</div>
+			<?php if ( $is_grid ) : ?>
+				<div class="twb-testimonials__grid">
+					<?php foreach ( $cards as $card ) : ?>
+						<div class="twb-testimonials__grid-item<?php echo $card['span'] > 1 ? ' twb-testimonials__grid-item--span-' . (int) $card['span'] : ''; ?>">
+							<?php echo $card['html']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php else : ?>
+				<?php
+				// Accessible name for the focusable carousel (tabindex is added by
+				// Flickity). Uses the heading when present so a screen-reader user
+				// tabbing onto the scroller hears what it is.
+				$carousel_label = ( '' !== $atts['heading'] ) ? $atts['heading'] : __( 'Testimonials', 'ave' );
+				?>
+				<div class="twb-testimonials__carousel" aria-label="<?php echo esc_attr( $carousel_label ); ?>" aria-roledescription="carousel" data-twb-testimonials="<?php echo esc_attr( wp_json_encode( $options ) ); ?>">
+					<?php foreach ( $cards as $card ) : ?>
+						<div class="twb-testimonials__cell">
+							<?php echo $card['html']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — built from escaped fields in twb_testimonials_render_card(). ?>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
 
-			<?php if ( '' !== $cta_text ) : ?>
+			<?php if ( $is_grid ) : ?>
+					<div class="twb-testimonials__modal" hidden>
+						<div class="twb-testimonials__modal-backdrop" data-twb-modal-close></div>
+						<div class="twb-testimonials__modal-dialog" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Testimonial', 'ave' ); ?>">
+							<button type="button" class="twb-testimonials__modal-close" data-twb-modal-close aria-label="<?php esc_attr_e( 'Close', 'ave' ); ?>">&times;</button>
+							<div class="twb-testimonials__modal-body"></div>
+						</div>
+					</div>
+				<?php endif; ?>
+
+				<?php if ( '' !== $cta_text ) : ?>
 				<div class="twb-testimonials__cta-wrap">
 					<a class="twb-testimonials__cta" href="<?php echo esc_url( $cta_url ); ?>"
 						<?php

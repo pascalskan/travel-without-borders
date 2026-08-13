@@ -5,6 +5,57 @@ consequences. Newest first. Keep entries short and factual.
 
 ---
 
+## 2026-07-15 — Build the B2B "Trade Enquiry" form as a labelled Quform duplicate
+
+**Context:** The Business-to-Business page needs its own enquiry form
+(Business name, Email, Phone, Trade Enquiry) that reaches the same business inbox
+as the current contact form but is never confused with individual enquiries. The
+existing contact form is a Quform form whose definition and notification settings
+live in the WordPress database, not in this repo. Post SMTP already delivers mail.
+
+**Decision:** Do not build a second, parallel email path in the theme. Instead
+duplicate the existing Quform contact form in WP-admin, swap in the business
+fields, and label submissions three ways: a distinct form name, a
+`[TRADE ENQUIRY]` notification-subject prefix, and a fixed `Enquiry Type: Trade`
+value in the entry/email body. The reproducible procedure is version-controlled
+in [Trade / Business Enquiry Form](TRADE_ENQUIRY_FORM.md).
+
+**Consequences:** Reuses the working, verified email pipeline (no new sender to
+authenticate in Post SMTP); the original form and its 190 entries are untouched;
+trade entries file separately. The front-end Individual/Business slider toggle
+remains a separate task. Config lives in the DB, so the doc — not code — is the
+source of truth for the form.
+
+---
+
+## 2026-07-12 — Accept the desktop menu overflow at ~1200–1520px (fix in the optimisation milestone)
+
+**Context:** Adding **Testimonials** to the header menu (after Tailor-made
+Holidays, before Groups) made the site's pre-existing desktop menu overflow
+worse: at ~1200–1520px viewports the last items (Groups, Blog) are clipped off
+the right edge. Two fixes were attempted and measured:
+
+1. *Tighten nav spacing (child CSS):* fits the 9 menu links, but the header's
+   fixed logo + centred-menu + Contact-pill column structure still pushes the
+   Contact pill off-screen — the row's minimum width exceeds ~1550px.
+2. *Lower the hamburger breakpoint:* Ave stores it as `media-mobile-nav`
+   (theme option, regenerates responsive CSS), but the option is **capped at
+   1199** (`theme/theme-options/liquid-responsive.php`, `'max' => 1199`) and the
+   mobile header is rebuilt by JS hard-wired to that breakpoint. Setting 1500
+   left the 1200–1500px range with **no functioning header**; reverted.
+
+**Decision:** Leave the overflow as-is for now. It is a parent-theme
+(Ave) header-layout defect that predates the Testimonials work; Groups and Blog
+remain reachable via the footer and other pages. Fix it properly in the
+optimisation milestone (Phase 5), where header/menu work is already scoped by
+the Design System Audit (§9/§12).
+
+**Consequences:** At ~1200–1520px the header hides Groups/Blog; ≥ ~1520px and
+≤ 1100px (hamburger) are unaffected. Do **not** re-attempt the breakpoint
+override without also addressing the theme's JS breakpoint coupling.
+
+---
+
 ## 2026-06-25 — Preserve WPBakery and the Ave theme (no migration yet)
 
 **Context:** The customisation audit found all 87 pages are built with WPBakery

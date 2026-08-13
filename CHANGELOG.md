@@ -10,6 +10,18 @@ entries are grouped by project phase and dated.
 
 ### Added
 
+- **Dedicated Testimonials page (`/testimonials/`).** Assembled from reusable
+  components (no bespoke CSS/JS/PHP) and aligned to the site's own page grammar:
+  a **`[twb_page_hero]`** split section (photo + charcoal panel + yellow underline
+  link — see [Page Hero](01_Documentation/PAGE_HERO.md)), reused as both the H1
+  hero and the H2 closing CTA band; a **`[twb_trust_stats]`** credibility strip; a
+  **`[twb_email_strip]`** standard green contact band; and the **testimonials
+  element extended with a `layout` param** (carousel | grid — grid loads no
+  JavaScript). Page order: split hero → trust stats → featured carousel → full
+  grid → closing CTA → email strip. The homepage keeps a curated carousel; the
+  page shows the full collection. See
+  [Testimonials Component](01_Documentation/TESTIMONIALS.md).
+
 - **Testimonials system (reusable WPBakery component).** Introduced a
   `[twb_testimonials]` carousel element in the Ave child theme, following the
   hero-carousel pattern (Ave's bundled Flickity reused — no new library;

@@ -1,0 +1,84 @@
+/* ==========================================================================
+   TWB Language Switch
+   A small pill that swaps between the English and German version of a page.
+   Visually matches the cookie-settings tab (same pill language) but pinned
+   top-RIGHT, so it never collides with the bottom-left cookie control.
+
+   The vertical offset can't be fixed in CSS: the header changes height as you
+   scroll, because the theme pins `.mainbar-wrap` (shorter than the full
+   header) once you leave the top of the page. The `top` below is only the
+   at-rest starting value — assets/js/language-switch.js measures whichever
+   header element is currently on screen and keeps the pill below it. See that
+   file for the full reasoning.
+
+   The starting value clears the unscrolled desktop header (~190px), so if the
+   script fails to run the pill still never overlaps the nav at the top of the
+   page.
+   Ref: A.S tasks - Trade page (language pill overlapping the nav bar).
+   ========================================================================== */
+
+.twb-lang-switch {
+	position: fixed;
+	right: var(--twb-space-16, 16px);
+	top: 210px;
+	z-index: 99999;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+	font-family: var(--twb-font);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--twb-white, #fff);
+	background: var(--twb-green, #1e5630);
+	border: 0;
+	border-radius: var(--twb-radius-pill, 800px);
+	box-shadow: var(--twb-shadow-control, 0 4px 14px rgba(0, 0, 0, 0.28));
+	text-decoration: none;
+	cursor: pointer;
+	opacity: 0.9;
+	transition: opacity var(--twb-dur-fast, 0.2s) ease,
+		background var(--twb-dur-fast, 0.2s) ease;
+}
+.twb-lang-switch:hover,
+.twb-lang-switch:focus-visible {
+	opacity: 1;
+	color: var(--twb-white, #fff);
+	background: var(--twb-green-dark, #16401f);
+}
+.twb-lang-switch:focus-visible {
+	outline: 3px solid var(--twb-yellow, #fed700);
+	outline-offset: 2px;
+}
+
+/* The pill is fixed-positioned above the page, so with the mobile slide-out
+   nav open it floated on top of the menu panel. The theme flags that state on
+   <html>, so hide the pill for the duration - the menu already covers the
+   screen and the pill is not reachable content while it is open.
+   Ref: A.S tasks - V4 mobile audit. */
+html.mobile-nav-activated .twb-lang-switch {
+	display: none;
+}
+
+/* Globe mark, so the control reads as a language switch at a glance. */
+.twb-lang-switch__icon {
+	flex: none;
+	width: 14px;
+	height: 14px;
+	stroke: currentColor;
+	fill: none;
+	stroke-width: 1.6;
+}
+
+@media (max-width: 600px) {
+	.twb-lang-switch {
+		right: var(--twb-space-8, 8px);
+		/* Mobile header is much shorter (~80px); the script overrides this
+		   anyway, this is just the no-JS starting point. */
+		top: 95px;
+		padding: 8px 14px;
+		font-size: 11px;
+	}
+}

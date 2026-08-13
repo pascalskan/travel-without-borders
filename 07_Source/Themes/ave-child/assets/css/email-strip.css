@@ -1,0 +1,54 @@
+/* ==========================================================================
+   TWB Email Strip
+   The site's standard closing contact band: green section, a centred
+   yellow-bordered box with an envelope icon, a label and the enquiry email.
+   All values from the token layer.
+   ========================================================================== */
+
+.twb-email-strip {
+	font-family: var(--twb-font);
+	text-align: center;
+}
+
+.twb-email-strip__box {
+	box-sizing: border-box;
+	max-width: 620px;
+	margin: 0 auto;
+	padding: var(--twb-space-48) var(--twb-space-24);
+	border: 2px solid var(--twb-yellow);
+	color: var(--twb-white);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.twb-email-strip__icon {
+	color: var(--twb-yellow);
+	margin-bottom: var(--twb-space-16);
+}
+
+.twb-email-strip__label {
+	margin: 0 0 var(--twb-space-8);
+	font-size: var(--twb-fs-meta);
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--twb-white);
+}
+
+.twb-email-strip__email {
+	font-size: clamp(20px, 2.4vw, 26px);
+	font-weight: 700;
+	color: var(--twb-white);
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	transition: border-color var(--twb-dur) var(--twb-ease);
+}
+.twb-email-strip__email:hover,
+.twb-email-strip__email:focus-visible {
+	border-bottom-color: var(--twb-yellow);
+}
+.twb-email-strip__email:focus-visible {
+	outline: 3px solid var(--twb-yellow);
+	outline-offset: 4px;
+}

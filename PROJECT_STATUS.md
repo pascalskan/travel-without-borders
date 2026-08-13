@@ -104,12 +104,14 @@ element params; the CPT is a documented future enhancement
 - [x] M1 — Loader infrastructure (`inc/loader.php`) + shared token layer
 - [x] M2 — Reusable `[twb_testimonials]` carousel component (a11y + perf to hero standard)
 - [x] M3 — Homepage integration (full-bleed band + CTA → `/testimonials/`), polish, optional linked destination images
-- [ ] Dedicated `/testimonials/` page
+- [x] M4 — Dedicated `/testimonials/` page: `[twb_page_hero]` + grid layout for `[twb_testimonials]` + shared utilities; homepage CTA now resolves
 - [ ] Real testimonial content + photos
 - [ ] Client review
 
-> Verified locally (Playwright, 1440/768/390): hero unchanged, no horizontal
-> scroll, 0 console errors, no PHP warnings. Not yet committed.
+> Verified locally (Playwright, 1440/768/390): homepage testimonials unchanged,
+> dedicated page responsive, no horizontal scroll, 0 console errors, no PHP
+> warnings. Homepage work merged to `main` (PR #1); the dedicated page is on
+> `feature/testimonials-page`.
 
 ---
 
