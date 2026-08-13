@@ -238,3 +238,27 @@ body.twb-destination .carousel-item .vc_single_image-img {
 	height: auto !important;
 	object-fit: cover;
 }
+
+/* ============================================================================
+   TWB - Legal pages
+   ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+   Terms & Conditions / Privacy Policy - hanging indent.
+   Same list-style-position:inside issue as the destination pages above (see
+   that rule's note): wrapped bullet text was sitting under the bullet marker
+   instead of under the first line's text. Same fix, scoped to these two pages.
+   Ref: A.S tasks - Terms & Conditions / Privacy Policy (wrapped bullets misalign).
+   ---------------------------------------------------------------------------- */
+body.page-id-5433 .wpb_text_column ul,
+body.page-id-5433 .wpb_text_column ol,
+body.page-id-5440 .wpb_text_column ul,
+body.page-id-5440 .wpb_text_column ol {
+	list-style-position: outside;
+	padding-left: 1.2em;
+	margin-left: 0;
+}
+body.page-id-5433 .wpb_text_column li,
+body.page-id-5440 .wpb_text_column li {
+	padding-left: 0.2em;
+}
