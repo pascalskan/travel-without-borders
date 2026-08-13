@@ -637,3 +637,99 @@ Terms and conditions ✅ DONE
 
 	Content has been sent (DO NOT CHANGE NEW CONTENT JUST IMPLEMENT - Remove all existing content for 	replacement.) ✅ DONE
 
+
+
+V5:
+
+Add acceptance to business form ✅ DONE
+
+Trade page:
+	
+	Both english and german:
+	centralise final grey section ✅ DONE
+	move language change to top right not bottom right ✅ DONE
+	Change Dresdon to Augsburg (landscape) ✅ DONE
+	CHange the map to the new map in email photos folder ✅ DONE
+	Centre Christmas market photo ✅ DONE
+	Use Conference centre in Augsburg photo under business events and conference support (Kongress Am Park) ✅ DONE
+	Change Mosiel picture to Freiburg bike on bridge ✅ DONE	
+
+
+	German:
+
+	Change title to german ✅ DONE
+	change "make a trade Enquiry" to german  ✅ DONE
+	Check on all text ✅ DONE
+
+
+Planning Bespoke Holidays
+	
+	Remove green edge to header ✅ DONE
+	Grey/white background is off ✅ DONE
+	Remove second title above first text (next to map) its repeated the page title ✅ DONE
+	Change Designed around you and A flexible planning service to landscape sections ✅ DONE
+	Reduce sizing of the following titles/subtitles - "Inspiration & Recommendations", "Detailed Itinerary Planning", "Ideal for Independent Travellers", 	"Planning a Group Visit?", "Travel Insurance and Financial Protection" and "Why Choose Travel without Borders?" ✅ DONE
+	How can we help section. the list should be even of both sides. all continued text should be beneath it, not continuing from the list. ✅ DONE
+	centre black forest house photo. ✅ DONE
+	"how can we help" needs a "?" ✅ DONE
+	"how can we help" section should be swapped with "ideal for independent travellers" ✅ DONE
+	"Why choose TWB" should be above "travel insurance and financial protection"  ✅ DONE
+	"remove "what our clients say" ✅ DONE
+	Make the final sections "contact travel without borders" link be a button alike to the trade pages button ✅ DONE
+
+
+Terms and conditions:
+
+	where a bullet pointed line goes across two lines ensure the text starts from the text above not below the bullet point.✅ DONE
+
+Privacy Policy:
+
+	Titles and subtitles do not have correct sizing. follow design and format of the terms and conditions page.✅ DONE
+	title 8 becomes "international Privacy Transfers"✅ DONE
+
+Football Camp:
+
+	get rid of "experience" in the title ✅ DONE
+	make description under the titles slightly larger ✅ DONE
+	Change second photo to the replacement image in email pictures folder ✅ DONE
+	add button at the bottom of the page "register your interest" ✅ DONE
+	Remove final section ✅ DONE
+	
+
+Wine and dine:
+
+	Changing picture at the top next to text (Wine_main) ✅ DONE
+	changing carasel pictures (keep Fine Wine 2 which is already in the carausel, remove all others and put in the three phots in email photos/wine and 	dine carausel named Wine_c_1/2/3) ✅ DONE
+	Remove "why TWB" section ✅ DONE
+	
+
+Redoing About Page:✅ DONE
+
+
+V6:
+
+Fine Wine and Dine:
+	
+	new page title, "Wine and Dine", change nav bar and all appearances of "Fine Wine and Dine" ✅ DONE
+	actual titles on the header of the page change from "Germanys Wine Regions" to "Wine and Dine" ✅ DONE
+	drop the first image so it aligns with the text. ✅ DONE
+
+Bespoke German holidays:
+
+		Grey/white background is off ✅ DONE (incl. "How Our Service Works / During Your Holiday" made full grey, and "Why Choose TWB" made a plain white band, so the alternation runs unbroken)
+		Swap sections "designed around you" and "A flexible planning service" ✅ done
+		add image of pot in on the "designed around you" section. should be placed pn the right✅ DONE
+		Line up the two sections "Inspiration & Recommendations" and "Detailed Itinerary Planning"✅ DONE
+		the picture on the "planning a group visit" should be centred with the text ✅ DONE
+
+Trade:
+
+	Both german and English:
+
+		align the Christmas market photo with the text. ✅ DONE
+		The German business conference photo should be placed on the right with the business events and conference support text on the left of it. 		Professional English language and communication support should be made landscape below both the business events and conference support text as 		well as the photo on its right. Professional English-Language & Communication Support should then have become its own landscape section 		underneath. ✅ DONE
+		Ensure all grey and white background pattern is fixed as we are adding  a section. ✅ DONE
+	
+About Page:
+
+	Remove the grey section at bottom including its content entirely. ✅ DONE (removed the whole grey row: "Holidays throughout Germany", "Special Interest holidays in Germany", "Wide choice of travel/accommodation options" and "Special Event holidays in Germany")
