@@ -11,8 +11,10 @@
  * WordPress pages, so it works without JavaScript and each language version
  * keeps its own URL for sharing and search engines.
  *
- * Styled to match the cookie-settings tab but pinned bottom-RIGHT, so the two
- * fixed controls never overlap (the consent banner sits bottom-left).
+ * Styled to match the cookie-settings tab but pinned top-RIGHT, so the two
+ * fixed controls never overlap (the consent banner sits bottom-left). Its
+ * vertical offset is managed by assets/js/language-switch.js, which keeps it
+ * clear of the non-sticky header — see that file for why CSS can't do it.
  *
  * @package Ave Child
  */
@@ -73,21 +75,37 @@ function twb_language_switch_target() {
 }
 
 /**
- * Enqueue the switch stylesheet, only where the control will render.
+ * Enqueue the switch assets, only where the control will render.
  */
 function twb_language_switch_assets() {
 	if ( is_admin() || ! twb_language_switch_target() ) {
 		return;
 	}
 
-	$path = get_stylesheet_directory() . '/assets/css/language-switch.css';
-	$ver  = file_exists( $path ) ? filemtime( $path ) : false;
+	$dir = get_stylesheet_directory();
+	$uri = get_stylesheet_directory_uri();
+
+	$css_path = $dir . '/assets/css/language-switch.css';
+	$css_ver  = file_exists( $css_path ) ? filemtime( $css_path ) : false;
 
 	wp_enqueue_style(
 		'twb-language-switch',
-		get_stylesheet_directory_uri() . '/assets/css/language-switch.css',
+		$uri . '/assets/css/language-switch.css',
 		array( 'twb-tokens' ),
-		$ver
+		$css_ver
+	);
+
+	// Keeps the pill clear of the (non-sticky) header at the top of the page
+	// while still holding position once the header has scrolled away.
+	$js_path = $dir . '/assets/js/language-switch.js';
+	$js_ver  = file_exists( $js_path ) ? filemtime( $js_path ) : false;
+
+	wp_enqueue_script(
+		'twb-language-switch',
+		$uri . '/assets/js/language-switch.js',
+		array(),
+		$js_ver,
+		true
 	);
 }
 add_action( 'wp_enqueue_scripts', 'twb_language_switch_assets' );
