@@ -28,13 +28,22 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Add a line here when another page gains a German version.
  *
+ * Page ids differ between the local rebuild and production, because the Trade
+ * pages were created on live long after the local ones and picked up whatever
+ * ids were free. Both pairs are listed so the switch works in either
+ * environment; a filter can override this per-site if they ever diverge again.
+ *
+ *   local  7263 => 7539
+ *   live   7338 => 7339
+ *
  * @return array
  */
 function twb_language_switch_pairs() {
 	return apply_filters(
 		'twb_language_switch_pairs',
 		array(
-			7263 => 7539, // Trade  =>  Trade (Deutsch)
+			7263 => 7539, // local rebuild:  Trade => Trade (Deutsch)
+			7338 => 7339, // production:     Trade => Trade (Deutsch)
 		)
 	);
 }

@@ -310,22 +310,61 @@ function twb_testimonials_render_stars( $rating ) {
  * @param string $region    Region name, used for alt / link label.
  * @return string
  */
+/**
+ * Stop WordPress forcing `sizes="auto"` onto the testimonial card photos.
+ *
+ * WordPress 6.7+ prepends `auto` to `sizes` for lazy-loaded images, but it does
+ * so in wp_filter_content_tags() - after the shortcode has already rendered -
+ * so the attribute cannot be corrected at render time. `auto` resolves to the
+ * element's layout width and overrides every entry after it, which is wrong for
+ * these cards: they crop with `object-fit: cover` into a box that is taller than
+ * the photo's aspect ratio, so the painted width is roughly twice the layout
+ * width and the browser was picking a 300w candidate for a ~640px job.
+ *
+ * Scoped to this one class so every other image on the site keeps `auto`.
+ *
+ * @param string $image Rendered <img> tag.
+ * @return string
+ */
+function twb_testimonials_strip_auto_sizes( $image ) {
+	if ( false === strpos( $image, 'twb-testimonial-card__img' ) ) {
+		return $image;
+	}
+	return str_replace( ' sizes="auto, ', ' sizes="', $image );
+}
+add_filter( 'wp_content_img_tag', 'twb_testimonials_strip_auto_sizes', 20 );
+
 function twb_testimonials_render_media( $image_id, $link_raw, $region ) {
 	if ( $image_id < 1 ) {
 		return '';
 	}
 
+	/*
+	 * These cards crop with `object-fit: cover`, and the featured (span-3) card
+	 * stretches the photo to the card's full height while capping its width at
+	 * 38%. That makes a portrait box (~300x361) out of a landscape photo, so
+	 * covering it scales the image to ~640px wide - more than twice the 300px
+	 * the box occupies.
+	 *
+	 * `sizes` has to describe the width the image is *painted* at, not the width
+	 * of its box, or the browser picks a candidate that is then upscaled and the
+	 * photo renders soft.
+	 */
+	$sizes = '(max-width: 767px) 100vw, 700px';
+
 	$img = wp_get_attachment_image(
 		$image_id,
-		'medium_large',
+		'large',
 		false,
 		array(
 			'class'    => 'twb-testimonial-card__img',
 			'loading'  => 'lazy',
 			'decoding' => 'async',
+			'sizes'    => $sizes,
 			'alt'      => ( '' !== $region ) ? $region : '',
 		)
 	);
+
 
 	if ( '' === $img ) {
 		return '';
