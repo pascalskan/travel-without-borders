@@ -1,0 +1,71 @@
+/* ----------------------------------------------------------------------------
+   TWB - Header strapline
+   ----------------------------------------------------------------------------
+   Kept in its own file rather than style.css deliberately. WP Rocket serves a
+   minified copy of each stylesheet from /wp-content/cache/min/, and its copy of
+   style.css had gone stale - it was still serving a 2.8KB version of a 14.5KB
+   file, so rules added to style.css never reached visitors even after clearing
+   the cache. A stylesheet WP Rocket has never seen before has no stale copy to
+   serve, and this also matches the per-component layout of assets/css/.
+   ---------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------
+   Strapline on tablet and mobile.
+   The parent theme hides the whole top bar below 1199px
+   (liquid-responsive-100.css: `.secondarybar-wrap { display: none }`), which
+   takes the strapline with it - so it was desktop-only. The client wants it on
+   every screen size, so the bar is brought back below that breakpoint.
+
+   Specificity note: the parent rule is a single class and its stylesheet may
+   load after this one, so `#header` is prefixed to win on specificity rather
+   than relying on source order.
+
+   The bar is only ~30px tall, so at small widths the strapline is centred and
+   stepped down a couple of sizes to sit on one line, and the decorative
+   vertical separator is dropped. The size override needs !important because
+   the module carries an inline font-size of 16px.
+   Ref: A.S tasks V8 - strapline wording + "also add to mobile".
+   ---------------------------------------------------------------------------- */
+@media screen and (max-width: 1199px) {
+	#header .secondarybar-wrap {
+		display: block;
+	}
+	/* The parent theme hides the wrapper AND each module inside it, so both
+	   need bringing back or the bar renders empty. */
+	#header .secondarybar .header-module {
+		display: block;
+	}
+	/* Full-width so the text centres across the bar, not within a half column. */
+	#header .secondarybar-row > [class^="col"] {
+		flex: 0 0 100%;
+		max-width: 100%;
+		width: 100%;
+		text-align: center;
+	}
+	/* Decorative vertical rule reads as clutter at this size. Hiding the rule
+	   alone is not enough - its wrapping .header-module still reserves ~54px,
+	   which left a large empty green gap under the strapline - so the wrapper
+	   goes too. The separator is always the first module in its column. */
+	#header .secondarybar .header-module:first-child {
+		display: none;
+	}
+	/* Right-hand column now holds nothing but that separator, so it would
+	   otherwise stack up an empty 20px row of its own. */
+	#header .secondarybar-row > .text-right {
+		display: none;
+	}
+	#header .secondarybar .header-module p {
+		margin: 0;
+		text-align: center !important;
+	}
+	#header .secondarybar .header-module p span {
+		font-size: 13px !important;
+		line-height: 1.5 !important;
+	}
+}
+
+@media screen and (max-width: 479px) {
+	#header .secondarybar .header-module p span {
+		font-size: 12px !important;
+	}
+}

@@ -13,6 +13,19 @@ function liquid_child_theme_style(){
 	$css_ver  = file_exists( $css_path ) ? filemtime( $css_path ) : false;
 
 	wp_enqueue_style( 'child-one-style', get_stylesheet_directory_uri() . '/style.css', array(), $css_ver );
+
+	// Header strapline: shown on every page, so enqueued alongside the main
+	// stylesheet rather than on demand. Kept in its own file because WP Rocket
+	// was serving a stale minified copy of style.css - see the note in
+	// assets/css/header-strapline.css.
+	$strap_path = get_stylesheet_directory() . '/assets/css/header-strapline.css';
+	$strap_ver  = file_exists( $strap_path ) ? filemtime( $strap_path ) : false;
+	wp_enqueue_style(
+		'twb-header-strapline',
+		get_stylesheet_directory_uri() . '/assets/css/header-strapline.css',
+		array( 'child-one-style' ),
+		$strap_ver
+	);
 }
 
 /**
