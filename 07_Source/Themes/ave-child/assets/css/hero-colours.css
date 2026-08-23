@@ -1,0 +1,87 @@
+/**
+ * Hero band link colours — Travel without Borders.
+ *
+ * The dark hero at the top of every inner page (`vc_custom_1545203367366`,
+ * background #242424) inherits the site's link green for text links and an
+ * olive for its "Learn More" button. The green is #1e5630, which against that
+ * background measures a contrast ratio of **1.80:1** — effectively invisible.
+ * It is the reason the CW Sports Travel link could not be read when it was
+ * first added.
+ *
+ * Scope
+ * -----
+ * `.vc_custom_1545203367366` is the shared hero row class. Checked across
+ * Augsburg, Football Camps, Colditz, Christmas Markets and Berlin: it is
+ * present on all of them, always the #242424 band, and always contains exactly
+ * the two hero headings (title + standfirst) out of the 5–11 fancy headings on
+ * the page. So scoping to it colours hero links only and leaves section
+ * headings in the body untouched.
+ *
+ * On the red
+ * ----------
+ * The brand red sampled from the logo's German flag is #CC0000. On #242424 it
+ * scores **2.64:1** — barely better than the green it replaces, and still
+ * below the 4.5:1 needed for normal-size text. Using it literally would repeat
+ * the mistake it is meant to fix.
+ *
+ * `--twb-red-bright` (#FF4D4D) is the same hue lightened to the first value
+ * that clears 4.5:1 (it measures 4.75:1). The true brand red is kept as
+ * `--twb-red` for use on light backgrounds, where it is perfectly legible.
+ */
+
+:root {
+	--twb-red: #cc0000;          /* brand red, sampled from the logo flag */
+	--twb-red-bright: #ff4d4d;   /* the same red, lightened for dark grounds */
+}
+
+/* --------------------------------------------------------------------------
+   Text links inside the hero headings -> yellow
+   -------------------------------------------------------------------------- */
+
+.vc_custom_1545203367366 .ld-fancy-heading a,
+.vc_custom_1545203367366 .ld-fancy-heading a strong,
+.vc_custom_1545203367366 .ld-fancy-heading a span {
+	color: var(--twb-yellow);
+}
+
+.vc_custom_1545203367366 .ld-fancy-heading a {
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	transition: opacity 0.2s ease;
+}
+
+.vc_custom_1545203367366 .ld-fancy-heading a:hover,
+.vc_custom_1545203367366 .ld-fancy-heading a:focus {
+	color: var(--twb-yellow);
+	opacity: 0.78;
+}
+
+/* --------------------------------------------------------------------------
+   "Learn More" in the hero -> red
+   -------------------------------------------------------------------------- */
+
+.vc_custom_1545203367366 .btn.btn-underlined,
+.vc_custom_1545203367366 .btn.btn-underlined .btn-txt {
+	color: var(--twb-red-bright);
+}
+
+/* The underline is not a text-decoration or a .btn-line element — it is two
+   stacked pseudo-elements on the anchor itself: ::before is the resting rule
+   (#fed700) and ::after the darker one that wipes across on hover (#d6b500).
+   Colouring only the label leaves a yellow rule under red text, so both are
+   redone here: the bright red at rest, the true brand red as the hover wipe. */
+.vc_custom_1545203367366 .btn.btn-underlined::before {
+	background-color: var(--twb-red-bright);
+}
+
+.vc_custom_1545203367366 .btn.btn-underlined::after {
+	background-color: var(--twb-red);
+}
+
+.vc_custom_1545203367366 .btn.btn-underlined:hover,
+.vc_custom_1545203367366 .btn.btn-underlined:hover .btn-txt,
+.vc_custom_1545203367366 .btn.btn-underlined:focus,
+.vc_custom_1545203367366 .btn.btn-underlined:focus .btn-txt {
+	color: var(--twb-red-bright);
+	opacity: 0.78;
+}

@@ -1,0 +1,132 @@
+/**
+ * Content layout helpers — Travel without Borders.
+ *
+ * `.twb-wrap-right` floats a photograph to the right inside a full-width text
+ * block so the copy wraps around it and any list beneath continues the full
+ * width of the column.
+ *
+ * Why this exists: the Special Interest pages put the photo in its own
+ * `vc_col-md-6` beside a matching text column. That works while a section is
+ * short, but Southern Bavaria on the Fairy Tale Castles page carries a long
+ * list of castles, which was then forced down a half-width column and left a
+ * large empty area beside it. Wrapping is the fix, and wrapping needs the
+ * image to sit inside the text flow rather than in a sibling column.
+ *
+ * Inline styles were the obvious alternative and were rejected: they cannot
+ * carry a media query, so the float would survive down to phone widths and
+ * squeeze the copy into a few words per line.
+ */
+
+/* --------------------------------------------------------------------------
+   WPBakery image carousels — one consistent slide height
+   -------------------------------------------------------------------------- */
+
+/* Slides are laid out at a fixed width, so a mixture of source proportions
+   gives every slide a different height and the strip looks broken. Two of the
+   site's carousels (Colditz, Eagle's Nest) are already uniform at 9:8, so that
+   is adopted as the house ratio rather than inventing a new one — those two
+   are unaffected, while Motorcar and Augsburg stop stepping up and down.
+   `object-fit: cover` fills the box without distorting anyone.
+
+   Scoped through .wpb_single_image so it reaches WPBakery image carousels
+   only. A bare `.carousel-item img` would also catch the homepage hero, which
+   is a different component with 14 slides of its own. */
+.carousel-item .wpb_single_image img.vc_single_image-img {
+	aspect-ratio: 9 / 8;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   Text wrap
+   -------------------------------------------------------------------------- */
+
+.twb-wrap-right {
+	float: right;
+	width: 46%;
+	max-width: 520px;
+	height: auto;
+	margin: 0.4em 0 1.6em 2.2em;
+	border-radius: 6px;
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Tablet: keep the wrap but give the text more room. */
+@media screen and (max-width: 1199px) {
+
+	.twb-wrap-right {
+		width: 42%;
+		margin-left: 1.6em;
+	}
+}
+
+/* Phone: stop floating entirely. A 42% image beside body copy leaves roughly
+   four words to a line, which is unreadable — so the photo becomes a normal
+   full-width block between paragraphs. */
+@media screen and (max-width: 767px) {
+
+	.twb-wrap-right {
+		float: none;
+		width: 100%;
+		max-width: 100%;
+		margin: 0 0 1.5em;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   Subordinate headings inside a text block
+   -------------------------------------------------------------------------- */
+
+/* "Castles and Palaces:" lists King Ludwig's individual properties, so it is a
+   subheading of "King Ludwig's Castles" rather than a section of its own. The
+   theme sizes h4 at 23px against h3's 26px, which is too close to read as a
+   step down, so the relationship is made explicit here. Regular weight does
+   most of the work - every other heading on these pages is bold.
+
+   Selector note: WPBakery's text block carries `wpb_text_column`, NOT
+   `vc_column_text` - that is the shortcode name, not the rendered class. */
+.wpb_text_column h4.twb-subheading {
+	font-size: 20px;
+	font-weight: 400;
+	letter-spacing: 0.02em;
+	margin-bottom: 0.4em;
+}
+
+/* --------------------------------------------------------------------------
+   Vertically centring a two-column row against its photograph
+   -------------------------------------------------------------------------- */
+
+/* WPBakery's content_placement="middle" does not work in this theme. It puts
+   `vc_row-o-content-middle` on the row and expects the columns to be the row's
+   flex children, but Ave wraps them two levels deeper:
+   
+       section.vc_row > div.ld-container > div.row.ld-row > .vc_column_container
+   
+   so `align-items` lands on the wrapper and the columns never move. 242 rows
+   across 84 pages carry that attribute and none of them are getting it, so a
+   blanket fix would reflow most of the site at once. This is deliberately
+   opt-in instead: add el_class="twb-vmiddle" to the row that needs it.
+
+   Applied to "Eagle's Nest Guided Visit", where the copy sat at the top of its
+   column while the photograph beside it sat lower, so neither lined up. */
+.twb-vmiddle > .ld-container > .row.ld-row {
+	align-items: center;
+}
+
+/* The columns are themselves flex containers stretched to equal height, so the
+   content inside each still needs centring within its own column. */
+.twb-vmiddle > .ld-container > .row.ld-row > .vc_column_container > .vc_column-inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/* WPBakery's image element carries a 35px bottom margin. Inside a vertically
+   centred row that margin is counted as part of the column's content, so the
+   photograph ends up sitting ~28px above the copy it is supposed to line up
+   with - the columns are aligned correctly, the picture just floats high
+   inside its own. Dropping the margin here only affects opted-in rows. */
+.twb-vmiddle .wpb_single_image {
+	margin-bottom: 0;
+}

@@ -26,6 +26,30 @@ function liquid_child_theme_style(){
 		array( 'child-one-style' ),
 		$strap_ver
 	);
+
+	// Hero band link colours. Site-wide because every inner page carries the
+	// same dark hero row. Kept in its own file rather than style.css for the
+	// same reason as the strapline above.
+	$hero_path = get_stylesheet_directory() . '/assets/css/hero-colours.css';
+	$hero_ver  = file_exists( $hero_path ) ? filemtime( $hero_path ) : false;
+	wp_enqueue_style(
+		'twb-hero-colours',
+		get_stylesheet_directory_uri() . '/assets/css/hero-colours.css',
+		array( 'twb-tokens', 'child-one-style' ),
+		$hero_ver
+	);
+
+	// Content layout helpers (image text-wrap). Site-wide: the classes are
+	// applied in page content by editors, so there is no reliable hook that
+	// says "this page uses one".
+	$cl_path = get_stylesheet_directory() . '/assets/css/content-layout.css';
+	$cl_ver  = file_exists( $cl_path ) ? filemtime( $cl_path ) : false;
+	wp_enqueue_style(
+		'twb-content-layout',
+		get_stylesheet_directory_uri() . '/assets/css/content-layout.css',
+		array( 'child-one-style' ),
+		$cl_ver
+	);
 }
 
 /**
