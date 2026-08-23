@@ -62,3 +62,12 @@ require_once $twb_inc . 'enquiry-toggle.php';
 
 // Language switch — EN/DE pill for pages that have a translated counterpart.
 require_once $twb_inc . 'language-switch.php';
+
+// Blog — share row (X, no Instagram), post meta, comments off, thumbnail
+// resolution. Provides twb_blog_share(), which the overridden single-post
+// template in templates/blog/single/default.php calls.
+require_once $twb_inc . 'blog.php';
+
+// Outbound partner-link tracking — pushes a named event into the GTM
+// dataLayer defined by cookie-consent.php, so it must load after it.
+require_once $twb_inc . 'outbound-tracking.php';

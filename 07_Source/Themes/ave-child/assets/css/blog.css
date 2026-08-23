@@ -1,0 +1,342 @@
+/**
+ * Blog layout and formatting — Travel without Borders.
+ *
+ * Loaded on blog views only (see inc/blog.php).
+ *
+ * The parent theme's "image left" post style floats the featured image out of
+ * the column with a negative margin:
+ *
+ *   .blog-single-image-left:not(.has-sidebar) .blog-single-cover {
+ *       float: left; width: 470px; margin-left: -26%; margin-right: 17%; }
+ *
+ * The article text then wraps around it, so the opening paragraph starts in a
+ * narrow gutter beside the photo and jumps to full width partway through —
+ * the single worst thing about the current pages. Everything below rebuilds
+ * the single post as a straightforward stacked column: image, title, meta,
+ * then the article at a comfortable reading measure.
+ *
+ * Selectors match the parent's specificity (two classes plus :not()) by
+ * qualifying with `body`, so no !important is needed for the layout reset.
+ */
+
+/* One measure shared by the cover, the header, the article and the share row,
+   so all four have the same left and right edge. Roughly 72 characters. */
+.single-post {
+	--twb-measure: 42rem;
+}
+
+/* --------------------------------------------------------------------------
+   Single post: unstack the float
+   -------------------------------------------------------------------------- */
+
+body.blog-single-image-left:not(.has-sidebar) .blog-single-cover,
+body.blog-single-image-left:not(.has-sidebar) .blog-single-media.post-image {
+	float: none;
+	width: 100%;
+	max-width: var(--twb-measure);
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 2.5rem;
+}
+
+.single-post .blog-single-details {
+	max-width: var(--twb-measure);
+}
+
+body.blog-single-image-left:not(.has-sidebar) .blog-single-details {
+	margin-right: 0;
+}
+
+/* The cover photo: a consistent landscape band rather than whatever
+   proportion the source image happens to have. */
+.single-post .blog-single-cover .blog-single-media img,
+.single-post .blog-single-media.post-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 32rem;
+	object-fit: cover;
+	border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   Title and meta
+   -------------------------------------------------------------------------- */
+
+.single-post .blog-single-title {
+	margin-bottom: 0.6em;
+}
+
+.twb-post-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem 2.25rem;
+	align-items: baseline;
+	margin-bottom: 2.25rem;
+	padding-bottom: 1.25rem;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+.twb-post-meta > span {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+}
+
+.twb-post-meta .block {
+	font-size: 11px;
+	line-height: 1.2;
+	letter-spacing: 0.08em;
+	opacity: 0.6;
+}
+
+.twb-post-meta time {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Article body
+   -------------------------------------------------------------------------- */
+
+/* Anchored on .blog-single-content, which every one of Ave's single-post
+   templates emits (default, cover, cover-spaced, modern, slider, custom) and
+   nothing else does.
+   
+   It was previously anchored on .twb-blog-article, a class added by the child
+   theme's own copy of templates/blog/single/default.php. That silently tied
+   the article typography to one layout: "Why Use a Bespoke Travel Planner"
+   uses the cover-spaced layout, so it matched none of these rules and fell
+   through to the per-post generated stylesheet, which sets a bare
+   `h2 { font-size: 38px }` - the same size as the page title, leaving the
+   article with no heading hierarchy at all.
+   
+   Anchoring on the wrapper the theme itself provides means the typography
+   follows the article whichever layout a post is given. */
+
+.blog-single-content {
+	max-width: var(--twb-measure);
+	padding-top: 0;
+}
+
+.blog-single-content p {
+	font-size: 16px;
+	line-height: 1.75;
+	margin: 0 0 1.35em;
+}
+
+/* The opening paragraph carries a little more weight, which gives the article
+   a lead-in without needing a separate standfirst field. */
+.blog-single-content > p:first-of-type {
+	font-size: 17.5px;
+	line-height: 1.7;
+}
+
+.blog-single-content h2 {
+	font-size: 25px;
+	line-height: 1.3;
+	margin: 2.4em 0 0.85em;
+}
+
+.blog-single-content h2:first-child {
+	margin-top: 0;
+}
+
+.blog-single-content h3 {
+	font-size: 20px;
+	line-height: 1.35;
+	margin: 2em 0 0.7em;
+}
+
+/* --------------------------------------------------------------------------
+   Lists
+   -------------------------------------------------------------------------- */
+
+.blog-single-content ul {
+	margin: 0 0 1.6em;
+	padding-left: 1.35em;
+	list-style: none;
+}
+
+.blog-single-content ul > li {
+	position: relative;
+	font-size: 16px;
+	line-height: 1.7;
+	margin-bottom: 0.9em;
+	padding-left: 0.35em;
+}
+
+/* Marker in the brand green, sized independently of the text. */
+.blog-single-content ul > li::before {
+	content: "";
+	position: absolute;
+	left: -0.85em;
+	top: 0.62em;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #5e774c;
+}
+
+.blog-single-content ol {
+	margin: 0 0 1.6em;
+	padding-left: 1.5em;
+}
+
+.blog-single-content ol > li {
+	font-size: 16px;
+	line-height: 1.7;
+	margin-bottom: 0.9em;
+}
+
+/* --------------------------------------------------------------------------
+   In-article figures
+   -------------------------------------------------------------------------- */
+
+.twb-blog-figure {
+	margin: 2.2em 0;
+	text-align: center;
+}
+
+.twb-blog-figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	border-radius: 4px;
+}
+
+/* Portrait photographs would otherwise run the full measure and tower over
+   the text, so they are capped and centred. */
+.twb-blog-figure--portrait img {
+	max-width: 26rem;
+}
+
+.twb-blog-figure figcaption {
+	margin-top: 0.7em;
+	font-size: 13px;
+	line-height: 1.5;
+	opacity: 0.65;
+}
+
+/* --------------------------------------------------------------------------
+   Share row
+   -------------------------------------------------------------------------- */
+
+.blog-single-footer {
+	max-width: var(--twb-measure);
+	margin-top: 2.5rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+.share-links {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+.share-links > .text-uppercase {
+	font-size: 11px;
+	letter-spacing: 0.08em;
+	opacity: 0.6;
+}
+
+/* Scoped under .share-links to outrank the theme's `.share-links .social-icon
+   { display: inline-block }` — two classes, which a bare `ul.twb-share` loses
+   to. Without this the row falls back to inline-block and the gap/alignment
+   below never apply. */
+.share-links ul.twb-share {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Flex, not the default block: as a block the anchor inside sits on a text
+   baseline and the list item gains descender space, which knocked the X disc
+   out of line with the Font Awesome ones beside it. */
+ul.twb-share > li {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	line-height: 0;
+}
+
+/* The theme's "branded" styling paints the coloured disc onto the <i> element
+   itself — each .fa-facebook, .fa-linkedin and so on carries its own 30x30
+   background. An inline SVG gets none of that, so without this the X mark is
+   white-on-white and invisible. Rebuild the same disc here, in X's own black.
+   Sizes are matched to the Font Awesome icons rather than guessed. */
+ul.twb-share .twb-icon-x {
+	box-sizing: border-box;
+	width: 30px;
+	height: 30px;
+	padding: 8px;
+	border-radius: 700px;
+	background: #000;
+	fill: #fff;
+	/* Block, not inline: as an inline element the SVG sits on the text
+	   baseline and rides about 10px above the Font Awesome discs beside it.
+	   The anchor is already a centred flex container, so this aligns it. */
+	display: block;
+	transition: opacity 0.2s ease;
+}
+
+ul.twb-share > li > a:hover .twb-icon-x {
+	opacity: 0.75;
+}
+
+ul.twb-share > li > a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Blog index cards
+   -------------------------------------------------------------------------- */
+
+/* Every card image gets the same 49:30 box as the theme's 490x300 crop.
+   Most already match; the exception is the one featured image whose original
+   is too small to crop (441x300), which would otherwise sit at a different
+   proportion and break the row. Not scoped to a body class deliberately, so
+   the related-post cards at the foot of a single post match the index. */
+.liquid-lp-media img,
+.liquid-lp-figure img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 49 / 30;
+	object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   Narrow screens
+   -------------------------------------------------------------------------- */
+
+@media screen and (max-width: 767px) {
+
+	.single-post .blog-single-cover .blog-single-media img,
+	.single-post .blog-single-media.post-image img {
+		max-height: 15rem;
+	}
+
+	.blog-single-content > p:first-of-type {
+		font-size: 16.5px;
+	}
+
+	.blog-single-content h2 {
+		font-size: 22px;
+	}
+
+	.twb-blog-figure--portrait img {
+		max-width: 100%;
+	}
+
+	.twb-post-meta {
+		gap: 0.35rem 1.5rem;
+	}
+}
