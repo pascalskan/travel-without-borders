@@ -114,8 +114,22 @@ body.blog-single-image-left:not(.has-sidebar) .blog-single-details {
    Anchoring on the wrapper the theme itself provides means the typography
    follows the article whichever layout a post is given. */
 
+/* `content-box` is load-bearing, not a tidy-up.
+   
+   Ave's cover layouts (cover, cover-spaced) pull the article up over the hero
+   using a negative margin with matching horizontal padding - on desktop that is
+   195px a side. Under the default `border-box`, a 672px max-width is the width
+   of the padded box, so 390px of padding is subtracted from it and the reading
+   column collapses to 282px: a third of the intended measure, jammed against
+   the left of the page.
+   
+   With `content-box` the measure applies to the text itself and the layout's
+   padding is added outside it, so the copy lands in exactly the same place on
+   every layout. The padding is responsive, which is why it is not simply added
+   back with calc() - that would only be correct at one breakpoint. */
 .blog-single-content {
 	max-width: var(--twb-measure);
+	box-sizing: content-box;
 	padding-top: 0;
 }
 
