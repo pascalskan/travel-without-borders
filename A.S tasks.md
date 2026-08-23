@@ -733,3 +733,181 @@ Trade:
 About Page:
 
 	Remove the grey section at bottom including its content entirely. ✅ DONE (removed the whole grey row: "Holidays throughout Germany", "Special Interest holidays in Germany", "Wide choice of travel/accommodation options" and "Special Event holidays in Germany")
+
+
+
+V7 - post live:
+
+quform check
+
+Homepage:
+change Augsburg photo in the slide show with Slideshow- augsburg.jpg in live photos folder within email photos ✅ DONE
+testimonials blurred ✅ DONE
+change first picture below the slideshow with the photo we used for the karen testimonial on the testimonials page. ✅ DONE
+
+Testimonials page:
+Change Karen testimonial photo to new photo named jodose-city-of-colditz-1610445.jpg (pixabay) in live photos folder within email photos ✅ DONE
+
+Bespoke holidays to Germany:
+change to important information instead of travel info ✅ DONE
+
+Questions for claude:
+
+if we add a link to an partners website is there a way to track how many  people click the link?
+
+
+
+V8:
+
+everypage, strap line - "Bespoke Holidays planned by the Germany Specialist" to "Bespoke Holiday Planning by the Germany Specialist", also add to mobile ✅ DONE
+
+Main navigation tab - "Planning Bespoke Holidays" to "Bespoke Holiday Planning" ✅ DONE
+
+homepage - full replacement of - How can we help? ✅ DONE
+
+		"From inspiration and itinerary design to practical advice and logistics, we help you create a personalised holiday that reflects your 			interests and 	makes the most of your time in Germany.
+
+		Are you looking for a sightseeing tour through a historic town in breathtaking BAVARIA, or perhaps an exploration of the mystical BLACK 		FOREST? Maybe 	you would like to experience one of Germany’s famous CHRISTMAS MARKET, discover hidden gems off the beaten track, enjoy food 		and wine along the picturesque MOSEL, or explore the fascinating history of COLDITZ CASTLE.
+
+		Whatever your interests, we can help you shape a tailor-made itinerary with the flexibility to experience Germany in your own way.
+
+		Using our experience and specialist knowledge of Germany, we can help you identify suitable accommodation and transport options, piece 			together more complex journeys and recommend experiences such as local guides, WINE TASTINGS and excursions. Our personal and flexible 			planning service can save you valuable research time while helping you make informed choices for your trip.
+
+		Once your itinerary has been agreed, you make your travel arrangements directly with the relevant providers.
+
+		Explore our website and discover the magic of Germany.
+
+		In addition, our SPECIAL INTEREST HOLIDAYS offer another way to discover Germany – holidays with a ‘twist’."
+
+		Anything that is all in caps should become links to their relevant page.
+
+	testimonials section: "Bespoke Germany Planning Holiday Feedback" to "What our travellers say about our bespoke Germany holiday planning"
+
+Testimonials page introduction - "Planning bespoke holidays to Germany – Loved by our travellers" to "Bespoke holiday planning for Germany – Loved by our 	travellers" ✅ DONE
+
+About us tab name, currently stating "About Us | Bespoke Travel Agent", change to "About Travel without Borders | Germany Holiday Planning" ✅ DONE
+
+Blogs - Check why images are blurred on the main blogs page. redesign layout and formatting. (all under email photos/blogs) ✅ DONE
+
+	get rid of all links apart from links to pages within the website. excluding on "John Sergeant Spent A Night In Colditz Castle" keep the daily mail 	link attached to "visiting the famous Colditz Castle"
+
+	replace all 8 blogs with new content. Pictures stay the exact same,
+
+	on the share - update twitter to X, add Instagram.
+
+	remove "published in", remove "author", remove "add a comment" and everything that that form does.
+
+Special interest holidays - new content for all pages excluding wine and dine and the football page. all images stay the same as well as layout.
+
+special events page - update all pages, text in red is the replacement text. ✅ DONE
+
+Augsburg page: ✅ DONE
+
+	before we do any  changes, if its possible to get a screenshot of how this page was before we had done the first live push, before any changes were 	made. if its not possible, get a screenshot of how it currently is before we make the changes below.
+
+	Header text - Augsburg, the third largest city in BAVARIA, was founded by the Romans in 15 BC and is one of the oldest cities in GERMANY. Located 		around 60 km north-west of munich and on the ROMANTIC ROAD, it makes an excellent destination in its own right as well as a base for exploring 		more of BAVARIA. In 2019, its historic water management system – comprising 22 elements – was granted UNESCO World Heritage status
+
+	first paragraph - It is a city brimming with cultural, historical and architectural treasures, not to mention the green surrounding countryside. 		Sights include the magnificent Renaissance Rathaus (Town Hall) with its famous Golden Hall, the Augsburg Puppet Theatre, the impressive 		Augustus Fountain, erected in honour of the Roman Emperor from whom the city derived its name, the Cathedral with its five Romanesque prophet 		windows – the oldest figurative stained-glass cycle in the world – and the Fuggerei social housing complex, “like a town within a town”.
+		There are reminders throughout Augsburg of the Romans who founded the city more than 2,000 years ago. Later periods also left a remarkable 		architectural legacy. The Renaissance flourished here in particular, while the Baroque and Rococo eras added another distinctive layer to the 		city.
+
+	second paragraph, the left one - Linked to the splendid history of Augsburg are names such as Jakob Fugger the Rich, one of Europe’s most influential 		merchants and bankers; Leopold Mozart, composer and father of Wolfgang Amadeus Mozart, who was born in Augsburg in 1719; and the famous 		twentieth-century writer and playwright Bertolt Brecht, who was also born in the city.
+
+		Augsburg owes much of its historic appearance to the prosperity it enjoyed as an important European centre of trade and finance during the 		Renaissance. Yet it remains a lively and attractive city today, with an almost Italian flair in parts of the historic centre.
+
+	third paragraph, on the right - Discover for yourself the nooks and crannies of the old town – its city walls, narrow streets and waterways – and 		during Christmas Market time the city takes on a particularly atmospheric character. Augsburg’s Christkindlesmarkt is one of Germany’s oldest 		Christmas markets, with a tradition dating back to the 15th century, and its setting around Rathausplatz and the Renaissance Town Hall makes 		it one of the city’s seasonal highlights.
+
+	What to do:
+
+		City Hall and Golden Hall
+		Perlach Tower (currently undergoing restoration)
+		Fuggerei (https://www.fugger.de/en/fuggerei)
+		UNESCO Water Management System and Lech canals (https://wassersystem-augsburg.de/en)
+		UNESCO World Heritage Information Centre
+		Augsburg Cathedral
+		Three Magnificent Fountains
+		Fugger City Palace
+		Schaezler Palace (https://www.wmf.org/monuments/schaezler-palace)
+		St. Ulrich and St. Afra
+		Brecht House
+		Augsburger Puppenkiste (puppet theatre)
+		Augsburg Christkindlesmarkt (seasonal) (link to Christmas market page)
+
+	pictures: all photos needed are in post live folder
+
+		Map with English text to go next to "what to do" (Augsburg_Main_Sights_English_Combined)
+		uk rep photo thing replaces current rep text (TWB_Regio_Augsburg_UK_Destination_Representative)
+		main first image (town hall) replaced with “Augsburg Rathaus und Perlachturm”
+		Carousel: swap golden hall for Goldener Saal im Augsburger Rathaus-k , Foto Siegfried Kerpf Stadt Augsburg
+		Carousel: swap Mozart house for new Mozart house one – Leopold-Mozart-Haus_MozartstadtAugsburg_Christian_Menkel_Kutsche2 (rename to “Leopold 			Mozart house")
+		Carousel: swap fuggerei for _Q3_8699 Bildnachweis Fuggersche Stiftungen Quirin Leppert-k CC BY-SA
+		Carousel:  leave the puppet theatre one
+		Carousel: swap the water tower to the new one (UNESCO Welterbe Wassertürme am Roten Tor, links St. Ulrich 300dpi  Foto Regio Augsburg 				Tourismus GmbH,  Reinhard Paland)
+		Carousel: add Augsburg Dom, Foto Regio Augsburg Tourismus GmbH Christine Pemsl
+		Carousel: add Fugger und Welser Erlebnismuseum, Foto Regio Augsburg Tourismus GmbH, Rudolf Morbitzer-2
+		Carousel: add Brechthaus Blick nach innen Lounge und Treppenhaus, Foto Regio Augsburg Tourismus GmbH, Norbert Liesz-Wolfgang F. Lightmaster 			2014
+		Carousel: add Lechkanaele_Bild Regio Augsburg Tourismus GmbH_Martin Augsburger CC-BY-SA-quer
+
+V9:
+
+football page: add link (https://cwsportstravel.com/clubs/), in header text "Travel without Borders in Partnership with CW Sports Travel" the link atttaches to "CW Sports 	Travel".
+
+	find possible ways to track who clicks this link or how many people click the link
+
+
+change all links in headers to yellow, also all "learn more" in headers should be red. ✅ DONE
+
+move partnership photo on Augsburg to above "what to do" ✅ DONE
+
+Special interest pages: ✅ DONE
+
+	Royal heritage - 
+	
+		fix layout completely, copy existing live layout ✅ DONE
+
+	eagles nest - 
+		
+		"Sample Itinerary for Private Groups Eagle’s Nest & Dachau", content within it shuld be centred under title, it should also have a grey box 		alike to the sections above it. ✅ DONE
+
+		Second important notes should be removed and everything under it. ✅ DONE
+
+	fairytale castles
+
+		grey white background needs fixing. ✅ DONE
+
+		southern Bavaria castles - the main body fo text is good, second body of text ( castles and palaces ) is in the right place, flowing under the 		picture, however it should be joined to the above section, not its own section. the subtitle "castles and palaces" should be bold like "King 		Ludwigs castle" but a smaller size to signal a subheading within it. ✅ DONE
+
+		"Black Forest and South-West Germany" - "These castles can be incorporated individually or combined with other sightseeing according to your 		route and interests." should be added above "Hohenzollern Castle" and should also be changed to "the following castles...." ✅ DONE
+
+		Rhine Valley Castles - all content under this section should be joined, following the format of the above section. ✅ DONE
+
+		Mosel Valley Castles - Same problem arises as above, do the same fix. ✅ DONE
+
+		"Castles as Part of Your Germany Holiday" and all content within it should b centred. ✅ DONE
+
+	Motorcar enthusiasts - 
+
+		first body of text below the header ( next to the first image and below the same image ) should be joined together next to the first image. ✅ 
+	
+		"Stuttgart – a journey through automotive history" is slightly squashed to its contents, needs lifting ✅ DONE
+
+		content within and title "Beyond Stuttgart – Discover Germany’s Automotive Heritage" should be its own landscape section ✅ DONE
+
+		new header image named "Motorcar enthusiasts new header" ✅ DONE
+		new carousel image "porsche cars" replace "V8 - Hotel - Lobby - 1 - C - Frank - Hoppe" ✅ DONE
+		new carousel image "BMW museum" replace "V8 - Hotel - TZ - British - 02 - C - Frank - Hoppe" ✅ DONE
+		"all photos: @Frank Hoppe" change to "Hotel photos by @Frank Hoppe" ✅ DONE
+		new image "nurburgring" for next to "get behind a wheel" needs structure redesign (picture on the left) ✅ DONE
+
+		background grey white colour pattern needs fixing ✅ DONE
+
+Blogs: 
+
+	still main blogs page blurred images. ✅ DONE
+
+	On main blogs page, remove dates of blogs, make the "why use a bespoke travel planner for your Germany holiday" as the first blog on the list. the 	description of this one is also not written properly fix it. remove the "published:" part completely. ✅ DONE
+
+	on actual blog pages, the view previous/next blog seem to be linked in the wrong direction fix this, ensure the new order is taken into account. ✅ DONE
+
+	Why Use a Bespoke Travel Planner for Your Germany Holiday? - ✅ DONE
+
+		this is a new blog so it isn't being updated rather originally pblished is now august 2026. within its text it states "Published: August 		2026Germany Travel Guide" remove this✅ DONE

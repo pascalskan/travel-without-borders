@@ -235,3 +235,11 @@ See [Rollback Checklist](ROLLBACK_CHECKLIST.md).
 4. **The 18 unused attachments** — skip, or upload for completeness?
 5. **Staging.** If the host offers a staging environment, rehearse the whole
    sequence there first. Strongly recommended given the 84-page scope.
+
+---
+
+> **After the migration.** This plan describes the 2026-08-13 push. Work done
+> directly on production *since* then is recorded in
+> [Live Site Changes](LIVE_SITE_CHANGES.md) — read it before any further
+> deployment, because some of it has no counterpart in the repository and one
+> item exists in two places at once.

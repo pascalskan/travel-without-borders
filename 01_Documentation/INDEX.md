@@ -60,6 +60,7 @@ Central index of all documentation in this repository.
 | [Deployment Checklist](../05_Deployment/DEPLOYMENT_CHECKLIST.md) | Pre/post deployment steps |
 | [Rollback Checklist](../05_Deployment/ROLLBACK_CHECKLIST.md) | Emergency recovery steps |
 | [Release Notes](../05_Deployment/RELEASE_NOTES.md) | Notes per release |
+| [Live Site Changes](../05_Deployment/LIVE_SITE_CHANGES.md) | Changes made directly on production, and what must be reconciled before deploying |
 | [Local Setup](../05_Deployment/LOCAL_SETUP.md) | Reconstruct the site locally (LocalWP) |
 | [Restore Checklist](../05_Deployment/RESTORE_CHECKLIST.md) | Ordered local restore steps + WP-CLI commands |
 | [Post-Restore Checklist](../05_Deployment/POST_RESTORE_CHECKLIST.md) | Verify the local restore |

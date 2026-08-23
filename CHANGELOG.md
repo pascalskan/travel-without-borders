@@ -8,7 +8,53 @@ entries are grouped by project phase and dated.
 
 ## [Unreleased]
 
+### Deployed to production — 2026-08-13 and after
+
+The rebuild went live on **2026-08-13**. Work done *directly on production*
+after that date is listed in
+[Live Site Changes](05_Deployment/LIVE_SITE_CHANGES.md), not here — including
+the V7/V8 copy and image changes, the CW Sports Travel partner link, and the
+hero band link colours. That file also records what must be reconciled before
+the next deployment.
+
+**Everything below this line is local and undeployed.**
+
 ### Added
+
+- **Blog single-post redesign.** Share row with X (inline SVG — Font Awesome 4.7
+  has no X glyph) and Instagram; comments, author byline and "Published in"
+  removed; a 2× timeline image size registered past the parent theme's size
+  stripping. `inc/blog.php`, `assets/css/blog.css`, and child overrides of
+  `templates/blog/single/default.php` and `part-meta.php`.
+
+- **Blog index and navigation fixes.** Dates removed from the index cards
+  (`templates/blog/tmpl-timeline.php`); previous/next links re-wired to follow
+  reading order down the index rather than chronology
+  (`templates/blog/single/navigation.php`).
+
+- **Content layout helpers** (`assets/css/content-layout.css`): uniform carousel
+  slide heights, `.twb-wrap-right` text wrap, an opt-in `.twb-vmiddle` fix for
+  WPBakery's `content_placement="middle"` (which does not work in this theme),
+  and a subordinate-heading style.
+
+- **Hero band link colours** (`assets/css/hero-colours.css`) — the repository
+  copy of the change currently live as Customizer CSS. See Live Site Changes.
+
+- **Partner link click tracking** (`inc/outbound-tracking.php`,
+  `assets/js/outbound-tracking.js`) — present but **inert**; no container reads
+  the dataLayer yet. See
+  [Partner Link Tracking](01_Documentation/PARTNER_LINK_TRACKING.md).
+
+### Changed (local, undeployed)
+
+- **All eight blog posts** rewritten to the client's new copy; images unchanged.
+- **Five Special Interest pages** rewritten and re-laid out — Colditz, Eagle's
+  Nest, Royal Heritage, Fairy Tale Castles, Motorcar Enthusiasts. Grey/white
+  banding restarted from the first content row on each; Eagle's Nest converted
+  from tinted column cards to full-width bands.
+- **Augsburg page** rebuilt with new copy, replacement photography, the English
+  sights map beside "What to do", and the partnership image resized and moved.
+
 
 - **Dedicated Testimonials page (`/testimonials/`).** Assembled from reusable
   components (no bespoke CSS/JS/PHP) and aligned to the site's own page grammar:
