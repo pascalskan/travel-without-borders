@@ -51,7 +51,8 @@ deployment, newest first. For the full change history see the
   Divergence between them is now possible and has to be tracked deliberately —
   hence [Live Site Changes](LIVE_SITE_CHANGES.md).
 - The local work completed since 20 August 2026 (blogs, Special Interest pages,
-  Augsburg) has **not** been deployed. See the Development Log for the detail.
+  Augsburg) has **not** been deployed. The full manifest is in
+  [Pending Deployment](PENDING_DEPLOYMENT.md).
 
 ---
 

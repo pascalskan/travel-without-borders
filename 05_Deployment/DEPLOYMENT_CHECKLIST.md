@@ -3,6 +3,11 @@
 Run through this checklist for every deployment to the live site. See the
 [Workflow](../01_Documentation/WORKFLOW.md) for the wider process.
 
+> **For the deployment being prepared now**, work from
+> [Pending Deployment](PENDING_DEPLOYMENT.md) — it lists every page, post
+> and theme file still to go live, plus one blocker to resolve during the
+> deploy. This checklist covers the generic steps around it.
+
 ## Pre-Deployment
 
 - [ ] All changes tested locally and compared against baselines
