@@ -6,6 +6,47 @@ progress see the [Project Status](../PROJECT_STATUS.md).
 
 ---
 
+## 2026-08-25 (deployment) — V8/V9 content released to production
+
+The full manifest went live. Outcome and verification are in
+[Release Notes](../05_Deployment/RELEASE_NOTES.md); this entry records the
+changes made to the **local** copy during the deployment, so the two stay in step.
+
+- **Augsburg (5384)** — the two `img_size="large"` images changed to
+  `img_size="full"`. The attribute resolved differently per environment: local
+  strips registered sizes so `large` fell back to the full file, while live had
+  generated a `large` crop and was serving the sights map at 682px instead of
+  1023px — under half what a retina display needs for a map whose labels have to
+  be readable. Making the shortcode explicit removes the environment dependency
+  rather than papering over it.
+- **Post 5247** — publish date moved from 1 to 25 August 2026, with
+  `post_modified` set to match. `post_modified` cannot be set through wp-admin,
+  so on live it was always going to be stamped with the save time, producing an
+  "Updated" line the client explicitly did not want. Publishing on the
+  deployment date makes both fall on the same day, which suppresses it.
+
+### Two findings worth carrying forward
+
+**The Post Style dropdown lies.** It renders the theme's default rather than the
+post's stored value, so saving a post writes `cover-spaced` into meta that
+previously had no row, silently switching it to a cover layout. One post's layout
+flipped this way before it was spotted. Clear the dropdown before saving any post
+that should use the default.
+
+Note the direction of drift: local was correct throughout — it has no
+`post-style` row on seven of the eight posts, and `cover-spaced` only on 5247.
+Live was the side that had to be corrected. It is now storing an empty value
+where local stores no row; both fall through to the same default, so they render
+identically and neither needs further editing.
+
+**PowerShell's `Compress-Archive` cannot build a WordPress theme zip.** It writes
+backslash path separators, which the ZIP specification does not permit, so
+WordPress cannot see the folder structure and reports "the theme is missing the
+style.css stylesheet". Build theme packages with something that writes forward
+slashes.
+
+---
+
 ## 2026-08-23 (local) — Blog index, post navigation and article typography
 
 All local. Nothing in this entry has been deployed.

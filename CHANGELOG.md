@@ -17,7 +17,10 @@ the V7/V8 copy and image changes, the CW Sports Travel partner link, and the
 hero band link colours. That file also records what must be reconciled before
 the next deployment.
 
-**Everything below this line is local and undeployed.**
+**Everything below this line was released to production on 2026-08-25** —
+the child theme, Augsburg, the five Special Interest pages, and all eight
+blog posts with the index. See
+[Release Notes](05_Deployment/RELEASE_NOTES.md).
 
 ### Added
 

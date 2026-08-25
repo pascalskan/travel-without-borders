@@ -29,7 +29,7 @@ lives** and **what has to happen at the next deployment**.
 
 | Change | Lives on production as | In this repo? | Action at deploy |
 | ------ | ---------------------- | ------------- | ---------------- |
-| Hero band link colours (V9) | Customizer → Additional CSS | Yes, as `assets/css/hero-colours.css` | **Remove the Customizer block.** Two copies otherwise |
+| Hero band link colours (V9) | ~~Customizer → Additional CSS~~ → now `hero-colours.css` | Yes | **RESOLVED 2026-08-25** — theme deployed, Customizer block removed |
 | CW Sports Travel partner link | Page content (DB), page `augsburg-football-tour` | Yes, in the local DB copy | Content deploy carries it; verify it survives |
 | V8 text/label changes | Page content, menus, Yoast titles (DB) | Local DB matches | Verify after any content deploy |
 | V7 image replacements | Media library + page content (DB) | Local DB matches | Verify after any content deploy |
@@ -63,7 +63,14 @@ comment `/* TWB V9: hero band - links yellow, Learn More red */`.
 It is **not** in the live child theme's files. The live child `style.css`
 carries only the white-heading rule for that row.
 
-### The duplicate that has to be resolved
+### The duplicate — resolved 2026-08-25
+
+The child theme was deployed on 2026-08-25 and the Customizer block removed, so
+these rules now live only in `hero-colours.css`. Verified afterwards that hero
+links still render `#fed700` and "Learn More" `#ff4d4d`. The `.hideMob` rules
+that shared that Customizer block were preserved.
+
+The original problem, for the record:
 The same rules exist in this repository as
 `07_Source/Themes/ave-child/assets/css/hero-colours.css`, enqueued from
 `functions.php`. That file has **not** been deployed — verified on 23 Aug 2026:

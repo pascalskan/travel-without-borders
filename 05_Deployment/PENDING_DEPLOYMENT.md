@@ -1,5 +1,12 @@
 # Pending Deployment — Local Work Not Yet Live
 
+> **STATUS: DELIVERED 2026-08-25.** Everything in this manifest is now live —
+> the child theme, Augsburg, the five Special Interest pages, all eight blog
+> posts and the index, and the Customizer reconciliation in §5. See
+> [Release Notes](RELEASE_NOTES.md) for the outcome and the problems met along
+> the way. The document is kept as the record of what was deployed and as the
+> template for the next content release; §6 and §7 remain open.
+
 Everything built locally since **2026-08-20** that has not reached production.
 Work the client asked to be done *directly on live* is a separate list — see
 [Live Site Changes](LIVE_SITE_CHANGES.md), and read that first, because one item
@@ -92,7 +99,7 @@ grey/white banding on the Special Interest pages depends entirely on it.
 
 | ID | Post | What changed |
 | -- | ---- | ------------ |
-| 5247 | Why Use a Bespoke Travel Planner | New post. **Re-dated to 2026-08-01**, `post_modified` set to match. Stray "Published: August 2026Germany Travel Guide" line removed. SEO title corrected. See §4 |
+| 5247 | Why Use a Bespoke Travel Planner | New post. **Re-dated to 2026-08-25**, `post_modified` set to match. Stray "Published: August 2026Germany Travel Guide" line removed. SEO title corrected. See §4 |
 | 6635 | John Sergeant / Colditz | New copy |
 | 5241 | 10 Reasons Why Germany Travel | New copy |
 | 5231 | Romantic Road | New copy |
@@ -131,8 +138,8 @@ Easy to miss, because none of it is in the post content:
 
 | Meta | Value | Why |
 | ---- | ----- | --- |
-| `post_date` / `post_date_gmt` | `2026-08-01 09:00:00` | Puts it first on the date-ordered index |
-| `post_modified` / `post_modified_gmt` | same as `post_date` | A new article, not a revision — stops an "Updated" line appearing under an identical published date |
+| `post_date` / `post_date_gmt` | `2026-08-25 09:00:00` | Puts it first on the date-ordered index |
+| `post_modified` / `post_modified_gmt` | same as `post_date` | A new article, not a revision — stops an "Updated" line appearing. **wp-admin cannot set this**: WordPress stamps it on every save, so the publish date was moved to the deployment date to make both fall on the same day |
 | `post-style` | `cover-spaced` | Its layout differs from the other seven by design |
 | `_yoast_wpseo_title` | `Why Use a Bespoke Travel Planner for Your Germany Holiday? \| Travel without Borders` | Replaced a title left over from the article this post supersedes |
 
@@ -142,7 +149,7 @@ still shows the old wording after deployment, clear that post's indexable row
 (or re-save the post in wp-admin, which rebuilds it).
 
 **Verify:** the browser tab reads "Why Use a Bespoke Travel Planner…", the post
-shows "Published: 01.08.2026" with no "Updated" line, and it is first on the index.
+shows "Published: 25.08.2026" with no "Updated" line, and it is first on the index.
 
 ---
 
