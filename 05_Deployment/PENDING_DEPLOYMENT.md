@@ -202,9 +202,11 @@ place awaiting an account change.
   needs at 1440px/2×: **seven of the eight originals are larger than the 490px
   being served** — two (1200px and 1067px) are big enough to go fully sharp, five
   (848, 640, 551, 540, 540) would visibly improve without reaching it, and only
-  "7 Facts" (441×441) is genuinely limited by its source file. The fix is to
-  register a 2× card size and regenerate these eight featured images. Full
-  measurements in [Live Site Changes](LIVE_SITE_CHANGES.md), 2026-08-26 entry.
+  "7 Facts" (441×441) is genuinely limited by its source file.
+  **FIXED 2026-08-28** — `tmpl-timeline.php` now asks for `large` instead, which
+  needed no regeneration and no new image size. Two cards are now fully sharp,
+  five visibly improved, one unchanged at its ceiling. Full measurements in
+  [Live Site Changes](LIVE_SITE_CHANGES.md), 2026-08-26 entry.
 - **`content_placement="middle"` is broken theme-wide.** 242 rows across 84
   pages carry the attribute and none of them get it — Ave nests columns two
   levels below where WPBakery expects them. Deliberately not fixed globally;

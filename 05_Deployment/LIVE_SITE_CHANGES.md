@@ -110,10 +110,28 @@ originals are larger than what is being served. Two are large enough to go fully
 sharp; five would visibly improve without reaching it; only `beer` is truly
 limited by its source file.
 
-The fix is a theme change — register a 2× card size and regenerate these eight
-featured images — **not new photography for most of them**. Not done here: it
-adds an image size and needs a media regeneration pass on live, which is beyond
-this correction list and should be a decision, not a side effect.
+**Fixed 2026-08-28, and more cheaply than expected.** No new image size and no
+media regeneration were needed: `tmpl-timeline.php` now asks for `large` rather
+than `liquid-timeline-blog`, and WordPress falls back to the full file by itself
+for the six images that never had a `large` generated. Measured afterwards on
+live: **two cards fully sharp, five visibly improved, one unchanged** — `beer`,
+which is at its ceiling. In Git, deployed.
+
+Two consequences worth recording:
+
+- **The cards no longer share a height.** The hidden `<img>` is what gives the
+  figure its height, so each card now takes the shape of its own photograph.
+  The uniform height could be restored with `aspect-ratio`, but only by cropping
+  to fit, and the client's instruction was the opposite — *"we dont want the
+  photos cropped at all they should show all the image as best as possible"*.
+  Letterboxing to a fixed box was tried and rejected: black bars down the sides.
+  The listing is a masonry grid, so it absorbs the varying heights.
+- **The page carries about 520KB more image weight.** The cards are lazy-loaded,
+  so it is spread down the scroll. Two images are worth replacing at source
+  rather than re-encoding here: `berlin-new.png` is a photograph saved as a PNG
+  (325KB) and `cd380ad3…` is a poorly compressed JPEG (277KB at 1024px). Both
+  would fall a long way with no visible loss. There is no WebP delivery on this
+  site — checked, the server ignores an `Accept: image/webp` header.
 
 Separately, a genuine sharpness bug **was** found and fixed in this window: the
 in-article images were being **upscaled by up to 224%** by `width: 100%` in
