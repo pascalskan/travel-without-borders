@@ -192,10 +192,19 @@ place awaiting an account change.
 
 ## 7. Carried forward — not blockers
 
-- **Six blog featured images are soft on high-resolution screens.** Each already
-  serves the largest crop its original supports; the originals are 441–779px
-  against the ~946px needed. Needs higher-resolution source files from the
-  client. "7 Facts" (441×441, square) cannot be improved at all.
+- **The blog index featured images are soft on high-resolution screens — and
+  the cause is the theme, not the source files.** An earlier note here said each
+  image "already serves the largest crop its original supports". That was wrong,
+  and the correction matters because it was about to be passed to the client as
+  a reason nothing could be done. The theme requests a fixed **490×300** crop for
+  every card and offers no larger `srcset` candidate, so the crop is thrown away
+  regardless of what was uploaded. Measured 2026-08-28 against the ~946px a card
+  needs at 1440px/2×: **seven of the eight originals are larger than the 490px
+  being served** — two (1200px and 1067px) are big enough to go fully sharp, five
+  (848, 640, 551, 540, 540) would visibly improve without reaching it, and only
+  "7 Facts" (441×441) is genuinely limited by its source file. The fix is to
+  register a 2× card size and regenerate these eight featured images. Full
+  measurements in [Live Site Changes](LIVE_SITE_CHANGES.md), 2026-08-26 entry.
 - **`content_placement="middle"` is broken theme-wide.** 242 rows across 84
   pages carry the attribute and none of them get it — Ave nests columns two
   levels below where WPBakery expects them. Deliberately not fixed globally;

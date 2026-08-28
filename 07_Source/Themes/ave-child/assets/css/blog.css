@@ -212,9 +212,21 @@ body.blog-single-image-left:not(.has-sidebar) .blog-single-details {
 	text-align: center;
 }
 
+/* `width: auto` rather than `width: 100%` is the important part.
+   
+   These photographs are old and small - several are only 209-353px wide.
+   Stretching them to fill the 672px measure meant displaying them at up to
+   224% of their real size, which is visibly soft at normal zoom, never mind on
+   a high-resolution screen. An image can be scaled DOWN cleanly but never up.
+   
+   So the figure now renders at the photograph's own size, and `max-width`
+   only ever shrinks it to fit. Some of the older images therefore sit smaller
+   than the column - that is their true size, and a small sharp photograph
+   reads better than a large mushy one. */
 .twb-blog-figure img {
 	display: block;
-	width: 100%;
+	width: auto;
+	max-width: 100%;
 	height: auto;
 	margin: 0 auto;
 	border-radius: 4px;

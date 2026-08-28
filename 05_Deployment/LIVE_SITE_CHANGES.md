@@ -34,6 +34,116 @@ lives** and **what has to happen at the next deployment**.
 | V8 text/label changes | Page content, menus, Yoast titles (DB) | Local DB matches | Verify after any content deploy |
 | V7 image replacements | Media library + page content (DB) | Local DB matches | Verify after any content deploy |
 | Child theme CSS fixes | Theme files | Yes — committed | Already reconciled |
+| Savita's copy edits (15 Things, 7 Facts, Top 10) | Post content (DB) | **No — live only** | **Mirror to local before any content deploy, or they are lost** |
+| `/category/germany-travel-guide/` → `/blog/` 301 | Redirection plugin (DB) | No — plugin data | Re-create if Redirection is ever reset |
+| Related-post category link removed | `templates/related-post.php` | Yes — committed | Already reconciled |
+
+---
+
+## 2026-08-26 to 2026-08-28 — Client correction list (Savita)
+
+**Made by:** Claude, via wp-admin (Chrome extension), at the client's direction
+("all this work should be done on the live site").
+
+Six items raised by the client after reviewing the V8/V9 release. Four were
+changed, one was investigated and **contradicted the assumption behind it**, one
+is an open question for the client. Three of the four changes exist **only in
+the live database** and are listed in the reconciliation table above.
+
+### 1. The "Germany Travel Guide" category page — done
+
+> "if you press Travel guide it actually takes you to a separate page with a
+> girl jumping into a swimming pool !!! and then Germany stuff — we need this
+> page to disappear please!"
+
+The link was in the **related-posts cards at the foot of every post** — the
+parent theme printed the post's category under each card title. Every post sits
+in the one category, so the same link appeared twice on all eight posts, leading
+to `/category/germany-travel-guide/`: an archive nobody designed, with a stock
+header image belonging to no article.
+
+Fixed in two halves, because either alone leaves a way in:
+
+- **The link** — removed by overriding the parent's `templates/related-post.php`
+  in the child theme, dropping only its `<ul class="related-post-categories">`
+  block. **This is in Git** and needs no reconciliation. The category itself is
+  untouched — Yoast and wp-admin both rely on it; only its display is dropped.
+- **The URL** — a 301 to `/blog/` added in the Redirection plugin, covering
+  anyone arriving from a search result or an old bookmark. **Plugin data, not in
+  Git.**
+
+**A trap worth recording:** the redirect appeared not to work for some time
+after it was saved. It was correct all along — **WP Rocket was serving the
+archive from cache, so the request never reached WordPress and Redirection never
+ran.** Clearing the cache made it fire immediately. Redirection also shows a
+"database needs updating" notice (4.1 → 4.2); that is unrelated, was **not** the
+cause, and was deliberately **not** run, because it migrates 86 live redirects,
+one of them carrying over 1,000 hits.
+
+**Verified:** all eight posts render zero category links and zero
+`related-post-categories` blocks; the related cards still render with their
+images and titles; `/category/germany-travel-guide/` returns `301 → /blog/`.
+
+### 2. Blurred pictures on the Travel Blogs page — the assumption was wrong
+
+The client was about to be told the images cannot be improved "because that is
+the size and quality of the photos themselves". **That is not the main cause and
+the message should not be sent as it stands.**
+
+Measured on the live index at a 1440px viewport, where each card is displayed at
+473 CSS px and so needs ~946px to be sharp on a 2× screen:
+
+| Featured image | Served | Original | Verdict |
+| -------------- | ------ | -------- | ------- |
+| `Colditz_Castle_2011` | 490px | **1200px** | can be sharpened |
+| `cd380ad3-…` | 490px | **1067px** | can be sharpened |
+| `ac-almelor-…unsplash` | 490px | 848px | improvable, not to full sharpness |
+| `img-0457-1_orig` | 490px | 640px | improvable, not to full sharpness |
+| `9132dd68-…` | 490px | 551px | improvable, not to full sharpness |
+| `neuschwanstein-castle-christies` | 490px | 540px | improvable, not to full sharpness |
+| `berlin-new` | 490px | 540px | improvable, not to full sharpness |
+| `beer` | 441px | 441px | genuinely at its ceiling |
+
+**The theme requests a fixed 490×300 crop for every card and offers no larger
+srcset candidate**, so even a 1200px original is thrown away. Seven of the eight
+originals are larger than what is being served. Two are large enough to go fully
+sharp; five would visibly improve without reaching it; only `beer` is truly
+limited by its source file.
+
+The fix is a theme change — register a 2× card size and regenerate these eight
+featured images — **not new photography for most of them**. Not done here: it
+adds an image size and needs a media regeneration pass on live, which is beyond
+this correction list and should be a decision, not a side effect.
+
+Separately, a genuine sharpness bug **was** found and fixed in this window: the
+in-article images were being **upscaled by up to 224%** by `width: 100%` in
+`blog.css`. That is now `width: auto; max-width: 100%`, so no article image
+renders above its natural size. In Git, deployed.
+
+### 3. Footer "blog" vs "blogs" — open question for the client
+
+Both links go to `/blog/`. The **footer says "Blog"** (singular) and the
+**homepage button says "See all Blogs"** (plural). The footer follows the normal
+convention; the homepage button is the inconsistent one. Not changed — the
+client asked which was right rather than asking for a change.
+
+### 4. "15 Things to Know" (post 5235) — done
+
+Section 3 replaced with the client's supplied copy: the heading is now
+**"3. Sundays are for Culture, Not Shopping"**, followed by three new
+paragraphs. **Live only — mirror to local.**
+
+### 5. "7 Facts" (post 5244) — done
+
+The repeated photograph was removed, keeping the top one. The article carried
+`beer-1.jpeg`, byte-identical (md5 `a933bafcc10b…`) to the featured image
+`beer.jpeg`. Remaining article images: `wine.jpeg`, `spa.jpeg`.
+**Live only — mirror to local.**
+
+### 6. "Top 10 Best Places" (post 5255) — done
+
+The repeated photograph was removed, keeping the top one — the same
+Mauerspringer mural as the featured image. **Live only — mirror to local.**
 
 ---
 
