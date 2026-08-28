@@ -104,6 +104,16 @@ Measured on the live index at a 1440px viewport, where each card is displayed at
 | `berlin-new` | 490px | 540px | improvable, not to full sharpness |
 | `beer` | 441px | 441px | genuinely at its ceiling |
 
+**Checked 2026-08-28 for better source files and there are none.** The repo, the
+`00_Backups/2026-06-25_Pre-Development/uploads` snapshot and the live media
+library were compared for all eight. Only `Colditz_Castle_2011` has a larger
+original anywhere (1920px in the backup against 1200px live), and that card is
+already sharp, so there is nothing to gain. In particular **"15 Things to Know"
+(`img-0457-1_orig`) is 640x480 in every copy that exists** — it improved from
+490px to 640px but cannot reach the ~946px the card wants, and is the one image
+where "the photograph itself is the limit" is the true answer. A replacement
+photograph is the only fix for it.
+
 **The theme requests a fixed 490×300 crop for every card and offers no larger
 srcset candidate**, so even a 1200px original is thrown away. Seven of the eight
 originals are larger than what is being served. Two are large enough to go fully
@@ -119,13 +129,17 @@ which is at its ceiling. In Git, deployed.
 
 Two consequences worth recording:
 
-- **The cards no longer share a height.** The hidden `<img>` is what gives the
-  figure its height, so each card now takes the shape of its own photograph.
-  The uniform height could be restored with `aspect-ratio`, but only by cropping
-  to fit, and the client's instruction was the opposite — *"we dont want the
-  photos cropped at all they should show all the image as best as possible"*.
-  Letterboxing to a fixed box was tried and rejected: black bars down the sides.
-  The listing is a masonry grid, so it absorbs the varying heights.
+- **The cards keep a uniform height and the photographs are still not cropped.**
+  Two instructions that pull against each other — *"we dont want the photos
+  cropped at all they should show all the image as best as possible"* and
+  *"the blog sections are not structured symmetrically"* — and a card cannot
+  satisfy both alone, the images being 16:9, 3:2, 4:3 and one perfect square.
+  Letting each card follow its photograph was tried first and staggered the
+  columns; plain letterbox bars were tried next and read as a mistake. What
+  shipped fixes the card to the old 490x300 proportion and **fills the leftover
+  area with a blurred, scaled copy of the photograph itself**, with the whole
+  photograph sharp and complete on top of it. Verified uniform (0px spread
+  across all eight cards) at 1440px, 768px and 390px.
 - **The page carries about 520KB more image weight.** The cards are lazy-loaded,
   so it is spread down the scroll. Two images are worth replacing at source
   rather than re-encoding here: `berlin-new.png` is a photograph saved as a PNG

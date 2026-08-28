@@ -130,3 +130,70 @@
 .twb-vmiddle .wpb_single_image {
 	margin-bottom: 0;
 }
+
+/* ---------------------------------------------------------------------------
+   Blog index cards - uniform cards without cropping the photographs
+   ---------------------------------------------------------------------------
+
+   Two requirements that pull against each other: the client asked for the whole
+   of each photograph to be visible ("we dont want the photos cropped at all"),
+   and for the grid to line up. A card cannot do both on its own - the images
+   are 16:9, 3:2, 4:3 and one perfect square, so either the card follows the
+   photograph and the columns stagger, or the card is fixed and the photograph
+   gets cut.
+
+   The way out is to fix the card and fill what the photograph does not cover.
+
+   The card image is not the <img>. The theme's data-responsive-bg script reads
+   the img's source and paints it onto the figure, leaving the <img> itself
+   visibility: hidden - but hidden is not gone, it is still in flow and is what
+   was giving the figure its height. Pinning `aspect-ratio` on both restores the
+   490x300 proportion every card used to have.
+
+   Then two layers inside that fixed box:
+
+     - the parallax figure already carries the same image at `cover`, so it is
+       blurred and scaled up slightly to become a backdrop that bleeds to the
+       edges - it fills the letterbox area with the photograph's own colours
+     - ::after carries the image again at `contain`, so the whole photograph
+       sits sharp and complete on top of it
+
+   `background-image: inherit` on ::after picks up the URL the script wrote onto
+   the figure, which is why the figure keeps its background-image but paints
+   nothing itself (`background-size: 0 0`).
+
+   Plain bars were tried first and rejected: they read as letterboxing, while
+   the blurred fill reads as intentional. Scoped to the timeline listing style
+   so no other listing is affected. */
+.liquid-blog-style-timeline .liquid-lp-media {
+	position: relative;
+	aspect-ratio: 49 / 30;
+	overflow: hidden;
+	background-size: 0 0;
+}
+
+.liquid-blog-style-timeline .liquid-lp-media > img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 49 / 30;
+}
+
+.liquid-blog-style-timeline .liquid-lp-media .liquid-parallax-container {
+	z-index: 1;
+}
+
+.liquid-blog-style-timeline .liquid-lp-media .liquid-parallax-figure {
+	filter: blur(24px) saturate(1.15);
+	transform: scale(1.15);
+}
+
+.liquid-blog-style-timeline .liquid-lp-media::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: inherit;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	z-index: 2;
+}
