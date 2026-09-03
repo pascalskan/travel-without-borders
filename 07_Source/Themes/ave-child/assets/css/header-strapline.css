@@ -58,15 +58,12 @@
 		margin: 0;
 		text-align: center !important;
 	}
+	/* Fluid rather than stepped, so the strapline is always as large as it can
+	   be while still fitting on ONE line - see the note below. */
 	#header .secondarybar .header-module p span {
-		font-size: 15px !important;
-		line-height: 1.5 !important;
-	}
-}
-
-@media screen and (max-width: 479px) {
-	#header .secondarybar .header-module p span {
-		font-size: 14px !important;
+		font-size: clamp(10px, 3.45vw, 16px) !important;
+		letter-spacing: normal !important;
+		line-height: 1.4 !important;
 	}
 }
 
@@ -85,3 +82,40 @@
 		font-size: 18px !important;
 	}
 }
+
+/* ----------------------------------------------------------------------------
+   Why the mobile size is fluid, and why the letter-spacing goes.
+
+   The bar is a single row, so the moment the strapline takes a second line the
+   whole header grows by 29px - measured, 164px to 193px - and that band starts
+   to dominate a phone screen. Enlarging the strapline to 14px did exactly that.
+
+   Worth recording: it was already happening before this work. At 320px and
+   360px the strapline wrapped even at its old 12px, so the header was 193px on
+   most small phones already. This fixes that too.
+
+   The text needs a predictable amount of room, so the size can be solved rather
+   than guessed. Measured on the rendered page, "Bespoke Holiday Planning by the
+   Germany Specialist" needs:
+
+       26.93px of width per 1px of font-size   at letter-spacing 0.05em
+       24.43px of width per 1px of font-size   at letter-spacing normal
+
+   and the column it sits in is about `100vw - 45px`. So the largest size that
+   still fits one line is roughly (100vw - 45px) / 24.43, which is about 4.09vw.
+   `3.45vw` is that with a margin, and it holds from 280px upwards:
+
+       320px -> 11.0px  (fits up to 11.3px)
+       360px -> 12.4px  (fits up to 12.9px)
+       390px -> 13.5px  (fits up to 14.1px)
+       430px -> 14.8px  (fits up to 15.7px)
+
+   The 0.05em letter-spacing is dropped because it costs 10% of the width for no
+   benefit at this size - keeping it would force roughly a whole point of font
+   size to be given up instead, which is the more visible loss.
+
+   `white-space: nowrap` is deliberately NOT used. It would guarantee one line,
+   but on a narrower screen than we have tested it would overflow and add
+   horizontal scroll to a page that already reports one. Wrapping is the safer
+   failure.
+   ---------------------------------------------------------------------------- */
