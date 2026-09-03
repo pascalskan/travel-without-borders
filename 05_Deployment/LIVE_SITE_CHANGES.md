@@ -31,12 +31,51 @@ lives** and **what has to happen at the next deployment**.
 | ------ | ---------------------- | ------------- | ---------------- |
 | Hero band link colours (V9) | ~~Customizer → Additional CSS~~ → now `hero-colours.css` | Yes | **RESOLVED 2026-08-25** — theme deployed, Customizer block removed |
 | CW Sports Travel partner link | Page content (DB), page `augsburg-football-tour` | Yes, in the local DB copy | Content deploy carries it; verify it survives |
-| V8 text/label changes | Page content, menus, Yoast titles (DB) | Local DB matches | Verify after any content deploy |
+| V8 text/label changes | Page content, menus, Yoast titles (DB) | **Local was NOT in sync — reconciled 2026-09-03** | Homepage, tagline and menus pulled live→local; verify after any content deploy |
 | V7 image replacements | Media library + page content (DB) | Local DB matches | Verify after any content deploy |
 | Child theme CSS fixes | Theme files | Yes — committed | Already reconciled |
 | Savita's copy edits (15 Things, 7 Facts, Top 10) | Post content (DB) | **No — live only** | **Mirror to local before any content deploy, or they are lost** |
 | `/category/germany-travel-guide/` → `/blog/` 301 | Redirection plugin (DB) | No — plugin data | Re-create if Redirection is ever reset |
 | Related-post category link removed | `templates/related-post.php` | Yes — committed | Already reconciled |
+
+---
+
+## 2026-09-03 — Homepage reconciled live → local
+
+**Made by:** Claude, locally, before starting the homepage proportion work.
+
+The reconciliation table above claimed the V8 text changes were already mirrored
+locally. **That was wrong for the homepage**, and it would have bitten: the next
+content deploy of page 30 from local would have silently reverted a week of live
+edits. Found by diffing the two rendered homepages rather than trusting the note.
+
+Live was ahead of local in four places. All four were pulled **live → local**, so
+local is now the source of truth and safe to work from:
+
+| What | Local had | Live had (now local too) |
+| ---- | --------- | ------------------------ |
+| Tagline / strapline | "Bespoke Holidays planned by the Germany Specialist" | "Bespoke Holiday Planning by the Germany Specialist" |
+| Homepage intro copy | 3 paragraphs, "How can we help?" | 7 paragraphs, "From inspiration and itinerary design…" |
+| Testimonials heading | "Bespoke Germany Planning Holiday Feedback" | "What our travellers say about our bespoke Germany holiday planning" |
+| Menu label ×3 | "Planning Bespoke Holidays" | "Bespoke Holiday Planning" |
+| Footer Nav ‑ 4 | included "Testimonials" | item removed |
+
+Notes for anyone repeating this:
+
+- The strapline is **not** only the `blogdescription` option. It is also
+  hard-coded in the `liquid-header` post **4357** ("Main Header - Colour"), which
+  is what actually renders. Changing the option alone does nothing.
+- Page content was written with a direct `$wpdb->update`, not `wp_update_post`.
+  In CLI there is no current user, so `content_save_pre` runs kses and strips the
+  inline `style` attributes these blocks depend on for their green links.
+- Rollbacks are kept outside the repository: the previous page 30 content, the
+  previous header 4357 content, and a JSON record of the deleted menu item.
+
+**Verified:** the rendered text of both homepages is now identical line for line
+(134 lines each, empty diff), the intro block renders 7 paragraphs with all 7
+green links pointing at the right pages. One cosmetic difference remains and was
+deliberately not copied: live carries an extra **1px-high empty row** below the
+hero, a leftover from the V8 editing.
 
 ---
 
