@@ -220,6 +220,61 @@ place awaiting an account change.
 
 ---
 
+## 9. Homepage proportion work — September 2026, NOT YET LIVE
+
+From the client's email review of the homepage. Built locally on 2026-09-03,
+**after** reconciling the homepage live → local (see
+[Live Site Changes](LIVE_SITE_CHANGES.md), 2026-09-03) — do that reconciliation
+first if this is ever rebuilt, or a week of live edits gets reverted.
+
+### Theme files — travel with the child theme
+
+| File | Change |
+| ---- | ------ |
+| `assets/css/homepage-proportions.css` | **new** — title scale, Special Events cards, blog thumbnails, hero size |
+| `assets/css/header-strapline.css` | strapline sized fluidly so it cannot take a second line |
+| `functions.php` | enqueues the new stylesheet, front page only |
+
+### Database — page 30 (Homepage), content only
+
+**The testimonials row was moved** to sit after the holiday sections and before
+"From Our Blogs", which the client asked for. The four rows between "Wide choice
+of destinations" and "From Our Blogs" were re-banded at the same time, because
+moving the row alone left two greys and two whites adjacent. Nothing else in the
+content changed — the reordered content is character-for-character the same,
+only rearranged.
+
+**This is a DB change and is not in Git.** It has to travel as page content, and
+`_wpb_shortcodes_custom_css` travels with it as usual.
+
+### Verify after deploying
+
+1. Section order reads: Wide choice → Special Interest → Special Events →
+   Augsburg Plärrer → **testimonials** → From Our Blogs.
+2. Banding still alternates grey/white with no two adjacent rows the same.
+3. Page title is 34px on desktop and 26px on mobile; "Germany", "Wide choice of
+   destinations", "Special Interest Holidays" and "Special Events" are all 28px
+   (22px mobile).
+4. The strapline sits on **one line** at 320, 360 and 390px, and the header is
+   164px tall rather than 193px.
+5. The eight homepage blog thumbnails are all the same height.
+6. The three Special Events cards share a left edge on mobile.
+
+### Not done, needs a decision
+
+- **The logo was not enlarged**, though the client asked. Every asset is 70px
+  tall (337×70, 417×70 and 472×70 are three different lockups, not one at three
+  resolutions) and it already renders 1:1, so scaling it up would blur it.
+  **Ask the client for a vector or high-resolution original.**
+- **The hero is at its ceiling for a boxed row** (~972px wide). Going properly
+  full-bleed is a "Stretch row and content (no paddings)" row setting on the
+  page, which changes the homepage from a boxed layout to an edge-to-edge one.
+  Left for the client.
+- **"From Our Blogs" stays 26px** rather than 28px — it is an H3 sharing its
+  classes with 14px and 18px headings elsewhere, so no safe selector reaches it.
+
+---
+
 ## 8. Before you start
 
 - **Take the backup.** Phase 0 of the [Live Migration Plan](LIVE_MIGRATION_PLAN.md).
