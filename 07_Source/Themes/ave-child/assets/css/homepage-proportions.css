@@ -91,3 +91,103 @@ body.home .wpb_column h2.twb-hero__title {
    section size on desktop. Giving it an `el_class` in the page editor would
    make it targetable properly, if it is ever worth a content change.
    ---------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------
+   Special Events cards - "The Augsburg Plärrer Volksfest picture is not in
+   line with the others"
+   ----------------------------------------------------------------------------
+   She is right, and it is worst on a phone. These three cards carry a fixed
+   `width: 271px` from the theme, while every other card on the page is fluid.
+   Measured before this rule:
+
+     desktop  three 271px cards floated in a 1140px row, so the block sat inset
+              and narrower than the full-width rows above and below it
+     mobile   271px cards in a 360px column, stacked but each one landing at a
+              different offset - left 67px, then 60px, then 53px, each 7px
+              further left than the last, which is the stagger she spotted
+
+   So make them fluid. Three across on desktop where there is room, one per row
+   on mobile like every other section.
+
+   The breakpoint split is load-bearing: `flex: 1 1 0` alone reads well on
+   desktop but on mobile the container is still a flex row, so the three cards
+   squeeze onto one line at 166px, 166px and 346px. They have to be told to take
+   a full row each below 768px. */
+@media (min-width: 768px) {
+	body.home .fancy-box-tour {
+		width: auto;
+		max-width: none;
+		flex: 1 1 0;
+	}
+}
+
+@media (max-width: 767px) {
+	body.home .fancy-box-tour {
+		width: 100%;
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+}
+
+/* ----------------------------------------------------------------------------
+   Homepage blog cards - "the blog pictures are so much bigger than the rest of
+   the page ... may be if these blog pictures are smaller they will look
+   sharper too"
+   ----------------------------------------------------------------------------
+   The complaint is really inconsistency rather than size. Measured heights
+   across the eight cards, against a page where every other grid is uniform:
+
+     desktop  168, 211, 195, 211, 195, 261, 171, 162   (99px spread)
+     mobile   231, 290, 268, 290, 269, 358, 235, 222   (136px spread)
+
+   The square "7 Facts" photograph is the outlier that reads as "so much
+   bigger" - 358px tall on a phone where its neighbours are 222px.
+
+   These cards are built exactly like the ones on the blog index, so they get
+   the same treatment and for the same reasons: the box is pinned to a fixed
+   3:2, the photograph is shown whole on top of it at `contain`, and the
+   leftover area is filled with a blurred, scaled copy of the photograph rather
+   than a flat bar. Nothing is cropped - the client asked for that explicitly -
+   and the grid still lines up. See the matching note in content-layout.css.
+
+   3:2 is chosen to match the destination grid above it, and it is close to what
+   the first card was already doing (261x168), so the section keeps its
+   proportions rather than gaining a new one.
+
+   Her instinct about sharpness is right as a side effect: constraining the tall
+   ones stops them being the largest images on the page, and a photograph shown
+   smaller than its natural size always reads sharper than one stretched past
+   it. Scoped through `body.home` so the blog index, which has its own rule, is
+   untouched. */
+body.home .liquid-blog-grid .liquid-lp-media {
+	position: relative;
+	aspect-ratio: 3 / 2;
+	overflow: hidden;
+	background-size: 0 0;
+}
+
+body.home .liquid-blog-grid .liquid-lp-media img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3 / 2;
+}
+
+body.home .liquid-blog-grid .liquid-lp-media .liquid-parallax-container {
+	z-index: 1;
+}
+
+body.home .liquid-blog-grid .liquid-lp-media .liquid-parallax-figure {
+	filter: blur(22px) saturate(1.15);
+	transform: scale(1.15);
+}
+
+body.home .liquid-blog-grid .liquid-lp-media::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: inherit;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	z-index: 2;
+}
