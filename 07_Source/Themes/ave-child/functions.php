@@ -42,6 +42,19 @@ function liquid_child_theme_style(){
 	// Content layout helpers (image text-wrap). Site-wide: the classes are
 	// applied in page content by editors, so there is no reliable hook that
 	// says "this page uses one".
+	// Homepage proportions (title scale). Front page only - see the note in the
+	// stylesheet about rolling it out site-wide.
+	if ( is_front_page() ) {
+		$hp_path = get_stylesheet_directory() . '/assets/css/homepage-proportions.css';
+		$hp_ver  = file_exists( $hp_path ) ? filemtime( $hp_path ) : false;
+		wp_enqueue_style(
+			'twb-homepage-proportions',
+			get_stylesheet_directory_uri() . '/assets/css/homepage-proportions.css',
+			array( 'child-one-style' ),
+			$hp_ver
+		);
+	}
+
 	$cl_path = get_stylesheet_directory() . '/assets/css/content-layout.css';
 	$cl_ver  = file_exists( $cl_path ) ? filemtime( $cl_path ) : false;
 	wp_enqueue_style(

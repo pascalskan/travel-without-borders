@@ -1,0 +1,93 @@
+/* ----------------------------------------------------------------------------
+   TWB - Homepage proportions
+   ----------------------------------------------------------------------------
+   From the client's review of the homepage (email, Sept 2026):
+
+     "the titles of the page - at least on the homepage are just far too big in
+      relation to the logo and strapline and in general on the page ... Are the
+      titles of Germany and Wide choice of destinations the same size, but a
+      fair bit smaller than the title of the page?"
+
+   Measured before this file existed:
+
+     page title (H1)          44px   - and still 44px on a 390px phone
+     "Wide choice of destinations"    38px
+     "Special Interest Holidays"      38px
+     "Germany"                        34px
+     strapline                        16px
+
+   So the answer to her question was no, they were not the same size - "Germany"
+   was the odd one out at 34px - and at 34-38px against a 44px H1 they were not
+   "a fair bit smaller" either. The H1 never scaled down for mobile at all,
+   which is why the proportions read worst on a phone.
+
+   This sets a deliberate three-step scale, so the page title leads, the section
+   titles are equal to each other and clearly subordinate, and the gap down to
+   body copy stays even:
+
+     desktop   H1 34px   section H2 28px
+     mobile    H1 26px   section H2 22px
+
+   Note on the logo: the client also asked for it to be made bigger. It is NOT
+   enlarged here, deliberately. Every logo asset on the site is 70px tall
+   (337x70, 417x70 and 472x70 are three different lockups, not one at three
+   resolutions), and it already renders 1:1 at 337px - so it is soft on any
+   high-resolution screen before we touch it, and scaling it up would blur it
+   the same way the blog thumbnails were being blurred. Making the titles
+   smaller and the strapline larger closes the proportion gap she is describing
+   without degrading the logo. Enlarging it properly needs a vector or
+   high-resolution original from the client.
+
+   Scoped to `body.home` for now. The same complaint probably applies site-wide
+   ("and in general on the page") but the other templates have not been reviewed
+   at these sizes yet - dropping the `body.home` prefix is all that is needed to
+   roll it out once they have been.
+   ---------------------------------------------------------------------------- */
+
+body.home .wpb_column h1 {
+	font-size: 34px;
+}
+
+body.home .wpb_column h2 {
+	font-size: 28px;
+}
+
+/* The hero carousel captions are a different thing on a photographic band, not
+   part of the page's heading hierarchy, and the client did not query them, so
+   they keep their own size. The selector is qualified with `.wpb_column h2`
+   rather than written as the bare class it deserves because the rule above is
+   (0,2,2) and a bare `.twb-hero__title` is only (0,2,1) - it would lose, and
+   the captions would silently take the section size. */
+body.home .wpb_column h2.twb-hero__title {
+	font-size: 36px;
+}
+
+@media (max-width: 767px) {
+	body.home .wpb_column h1 {
+		font-size: 26px;
+	}
+
+	body.home .wpb_column h2 {
+		font-size: 22px;
+	}
+
+	body.home .wpb_column h2.twb-hero__title {
+		font-size: 26px;
+	}
+}
+
+/* ----------------------------------------------------------------------------
+   Not covered here: "From Our Blogs".
+   It is a section title like the others but marked up as an H3, and it cannot
+   be swept in with them. "Our Services" further down the page is also an H3
+   carrying the identical `lqd-highlight-underline` classes at 14px, as are the
+   sub-headings inside the destination cards ("A wonderfully diverse
+   destination...", "Bavaria", "The Black Forest") at 18-24px. Any selector
+   broad enough to catch "From Our Blogs" catches those too and blows them up.
+   The only thing separating them is a WPBakery-generated class
+   (`ld_fancy_heading_<hash>`) which is regenerated whenever the page is saved,
+   so keying off it would break silently at the next edit.
+   It therefore stays at its own 26px, which sits close enough to the 28px
+   section size on desktop. Giving it an `el_class` in the page editor would
+   make it targetable properly, if it is ever worth a content change.
+   ---------------------------------------------------------------------------- */
