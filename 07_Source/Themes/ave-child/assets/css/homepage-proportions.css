@@ -191,3 +191,72 @@ body.home .liquid-blog-grid .liquid-lp-media::after {
 	background-position: 50% 50%;
 	z-index: 2;
 }
+
+/* ----------------------------------------------------------------------------
+   Hero slideshow - "the slideshow seems to tiny, so I just feel the
+   proportions are a bit out"
+   ----------------------------------------------------------------------------
+   The carousel sits in a boxed 1140px row, and hero-carousel.css then insets
+   each cell by `--twb-gutter` on both sides to keep the arrows clear of the
+   photograph. At 84px a side that left the picture itself only 972px wide in a
+   1440px window - about two thirds of the screen - which is what reads as tiny.
+
+   The lever is mostly HEIGHT, which is not obvious. The photograph is sized
+   `max-width: 100%; max-height: 100%` inside the cell, so it fits the box and
+   keeps its aspect - and at these proportions it is the height that binds, not
+   the width. Raising the height is therefore what makes the picture wider.
+   Lowering the gutter alone barely moved it: the first attempt here cut the
+   gutter and nudged the height, and the photograph came out at 918px, narrower
+   than the 972px it started at, because the shorter box cropped it back.
+
+   The gutter is left exactly as the carousel sets it, at every width. It is not
+   decorative - the previous/next arrows live in it - and reducing it was tried
+   and reverted at both ends: 40px on mobile put the arrows on top of the
+   photograph (arrow ending at 64px against an image starting at 55px), and 56px
+   on desktop did the same once the taller box let the picture fill the cell
+   (arrow ending at 219px against an image starting at 206px).
+
+   That is the honest ceiling here. Inside a boxed 1140px row with the arrows
+   sitting outside the picture, about 972px is as wide as the photograph can
+   get, and it was already at 972px. So the gain in this file is height, not
+   width - a taller band that carries more weight, especially now the titles
+   above it are smaller.
+
+   Making the slideshow properly bigger means going full-bleed, which the
+   carousel already supports: hero-carousel.css notes that a "Stretch row and
+   content (no paddings)" row gives an edge-to-edge hero, taking the photograph
+   from 972px to the full window. That is a row setting on the page rather than
+   CSS, and it turns the homepage from a boxed layout into a full-bleed one, so
+   it is deliberately left for the client to decide rather than assumed here.
+
+   Note this is only half the available range. The carousel already supports a
+   full-bleed hero: hero-carousel.css says a "Stretch row and content (no
+   paddings)" row gives an edge-to-edge one. That is a row setting on the page
+   rather than CSS, so it is left alone - worth offering if this still reads
+   small, but it changes the homepage from a boxed layout to a full-bleed one,
+   which is a bigger decision than the client asked for.
+
+   Front-page only, in case the carousel is reused elsewhere at its own size. */
+body.home .twb-hero {
+	--twb-img-h: clamp(700px, 72vh, 820px);
+}
+
+@media (max-width: 1024px) {
+	body.home .twb-hero {
+		--twb-img-h: clamp(520px, 60vh, 620px);
+	}
+}
+
+@media (max-width: 767px) {
+	body.home .twb-hero {
+		--twb-img-h: clamp(330px, 48vh, 420px);
+		/* On a phone the gutter is the binding constraint, not the height: at
+		   52px a side it took 104px of a 390px screen and left the photograph
+		   only 256px - about a third of the width given over to empty margin,
+		   which is where "too tiny" is most true. The arrows move onto the
+		   edges of the photograph instead, which is what nearly every carousel
+		   on a phone does, and the picture gets that space back. They stay
+		   44px, so the touch targets are unchanged. */
+		--twb-gutter: 8px;
+	}
+}
