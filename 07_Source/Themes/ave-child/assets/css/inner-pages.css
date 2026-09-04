@@ -10,6 +10,7 @@
 
      page-id-4654 / parent-pageid-4654   Germany Holiday Destinations + regions
      parent-pageid-4476                  the eight Special Interest pages
+     parent-pageid-4564                  the six Special Events pages
 
    The Special Interest parent page (4476) is deliberately excluded - the client
    said that page reads fine. The city pages under the regions are excluded too:
@@ -42,7 +43,8 @@
 @media (max-width: 767px) {
 	body.page-id-4654 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.parent-pageid-4654 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4476 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
+	body.parent-pageid-4476 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.parent-pageid-4564 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
 		height: 300px;
 	}
 }
@@ -64,7 +66,8 @@
 @media (max-width: 767px) {
 	body.page-id-4654 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.parent-pageid-4654 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4476 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
+	body.parent-pageid-4476 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.parent-pageid-4564 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
 		order: -1;
 	}
 }
@@ -87,7 +90,8 @@
    pattern occurs, rather than recolouring one paragraph on one page. */
 body.page-id-4654 .ld-fancy-heading p,
 body.parent-pageid-4654 .ld-fancy-heading p,
-body.parent-pageid-4476 .ld-fancy-heading p {
+body.parent-pageid-4476 .ld-fancy-heading p,
+body.parent-pageid-4564 .ld-fancy-heading p {
 	color: inherit;
 }
 
@@ -108,12 +112,19 @@ body.parent-pageid-4476 .ld-fancy-heading p {
    untouched, which is why the client's "the others can be left where they are"
    still holds.
 
-   Region pages only for now. The Special Interest picture rows are a separate
-   piece of work - the client asked for specific changes to them page by page,
-   and applying this blindly there would pre-empt those decisions. */
+   Applied to the region pages and the Special Events pages, where the client
+   named this fault directly ("all individual pages of the special events
+   holidays have the problem of the header picture and the two photos following
+   each other").
+
+   NOT applied to the Special Interest pages. The client asked for specific and
+   different changes to their picture rows page by page - sizes on Royal
+   Heritage and Fairy Tale, the oversized soldier on Colditz - and a generic
+   reorder there would pre-empt those decisions. */
 @media (max-width: 767px) {
 	body.page-id-4654 .row.ld-row > .wpb_column:last-child:has(img),
-	body.parent-pageid-4654 .row.ld-row > .wpb_column:last-child:has(img) {
+	body.parent-pageid-4654 .row.ld-row > .wpb_column:last-child:has(img),
+	body.parent-pageid-4564 .row.ld-row > .wpb_column:last-child:has(img) {
 		order: -1;
 	}
 }

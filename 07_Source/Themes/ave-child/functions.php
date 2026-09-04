@@ -43,12 +43,13 @@ function liquid_child_theme_style(){
 	// applied in page content by editors, so there is no reliable hook that
 	// says "this page uses one".
 	// Inner page layout (banner height and order, intro colour, stacking on
-	// phones). The Destinations page and its regions, plus the eight Special
-	// Interest pages - both families share the same row pattern and the same
-	// faults. The body classes WordPress adds do the scoping; the Special
-	// Interest parent page is not included, the client said it reads fine.
+	// phones). The Destinations page and its regions, the eight Special Interest
+	// pages and the six Special Events pages - all three families share the same
+	// row pattern and the same faults. The body classes WordPress adds do the
+	// scoping; the Special Interest and Special Events parent pages are not
+	// included, the client said both read fine.
 	$twb_parent = wp_get_post_parent_id( get_queried_object_id() );
-	if ( is_page( 4654 ) || 4654 === $twb_parent || 4476 === $twb_parent ) {
+	if ( is_page( 4654 ) || in_array( $twb_parent, array( 4654, 4476, 4564 ), true ) ) {
 		$ip_path = get_stylesheet_directory() . '/assets/css/inner-pages.css';
 		$ip_ver  = file_exists( $ip_path ) ? filemtime( $ip_path ) : false;
 		wp_enqueue_style(
