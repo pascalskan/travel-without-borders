@@ -165,3 +165,29 @@ body.parent-pageid-4564 .ld-fancy-heading p {
 		margin-right: auto;
 	}
 }
+
+/* ----------------------------------------------------------------------------
+   6. Notes blocks
+   ----------------------------------------------------------------------------
+   "I feel that the Important notes should almost a point size smaller and/or in
+   italics" (the Eagle's Nest), and the same request for the notes on "Planning
+   your bespoke Holiday".
+
+   These blocks are caveats and qualifications - seasonal opening, what is and
+   is not included, that itineraries are examples - sitting at the same 16px as
+   the copy they qualify, which gives them more weight than they need. A step
+   down and an italic marks them as secondary without hiding them.
+
+   Applied through an `el_class="twb-notes"` added to the row in the page
+   editor rather than a page-specific selector. WPBakery's own row classes
+   (`vc_custom_<digits>`) are regenerated whenever the page is saved, so keying
+   off one would break silently at the next edit; a named class survives, and
+   the same class can be put on any other notes block that needs it.
+
+   The heading keeps its size - it is the signpost for the section, and the
+   client asked for the notes themselves to step back, not the label. */
+.twb-notes p,
+.twb-notes li {
+	font-size: 15px;
+	font-style: italic;
+}
