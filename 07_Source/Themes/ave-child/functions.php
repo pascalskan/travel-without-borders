@@ -42,17 +42,20 @@ function liquid_child_theme_style(){
 	// Content layout helpers (image text-wrap). Site-wide: the classes are
 	// applied in page content by editors, so there is no reliable hook that
 	// says "this page uses one".
-	// Destination pages (banner height, intro colour, stacking order on phones).
-	// The parent Destinations page and every region page beneath it; the body
-	// classes WordPress adds do the scoping.
-	if ( is_page( 4654 ) || 4654 === wp_get_post_parent_id( get_queried_object_id() ) ) {
-		$dp_path = get_stylesheet_directory() . '/assets/css/destination-pages.css';
-		$dp_ver  = file_exists( $dp_path ) ? filemtime( $dp_path ) : false;
+	// Inner page layout (banner height and order, intro colour, stacking on
+	// phones). The Destinations page and its regions, plus the eight Special
+	// Interest pages - both families share the same row pattern and the same
+	// faults. The body classes WordPress adds do the scoping; the Special
+	// Interest parent page is not included, the client said it reads fine.
+	$twb_parent = wp_get_post_parent_id( get_queried_object_id() );
+	if ( is_page( 4654 ) || 4654 === $twb_parent || 4476 === $twb_parent ) {
+		$ip_path = get_stylesheet_directory() . '/assets/css/inner-pages.css';
+		$ip_ver  = file_exists( $ip_path ) ? filemtime( $ip_path ) : false;
 		wp_enqueue_style(
-			'twb-destination-pages',
-			get_stylesheet_directory_uri() . '/assets/css/destination-pages.css',
+			'twb-inner-pages',
+			get_stylesheet_directory_uri() . '/assets/css/inner-pages.css',
 			array( 'child-one-style' ),
-			$dp_ver
+			$ip_ver
 		);
 	}
 

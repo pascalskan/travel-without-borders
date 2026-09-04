@@ -1,0 +1,119 @@
+/* ----------------------------------------------------------------------------
+   TWB - Inner page layout
+   ----------------------------------------------------------------------------
+   The destination region pages and the Special Interest pages are built from the
+   same row pattern, and the client's review found the same faults on both. The
+   rules live together because the selectors are identical - only the page family
+   they are scoped to differs.
+
+   Scoped through the body classes WordPress provides:
+
+     page-id-4654 / parent-pageid-4654   Germany Holiday Destinations + regions
+     parent-pageid-4476                  the eight Special Interest pages
+
+   The Special Interest parent page (4476) is deliberately excluded - the client
+   said that page reads fine. The city pages under the regions are excluded too:
+   they use a different layout and are being handled separately.
+
+   Started life as destination-pages.css; renamed when the Special Interest pages
+   turned out to need exactly the same treatment.
+   ---------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------
+   1. The banner photograph at the top of the page
+   ----------------------------------------------------------------------------
+   "Picture at the top of the page is cut off and should be more prominent."
+
+   On desktop the banner is a tall half-width panel and reads fine. On a phone it
+   collapsed to 390x120 - on the Destinations page that is a square 1500x1500
+   photograph shown through a slot of aspect 3.25, so about a third of it was
+   visible and the castle was sliced through. Every page in both families
+   measured exactly 120px. 300px brings the slot to roughly 1.3 and the subject
+   survives.
+
+   The selector is fussy for a reason. The obvious target - the first column's
+   .wpb_wrapper - also matches the COPY column's wrapper, and a height there
+   squashes the intro text from 1077px to 300px and clips it. The banner is
+   instead identified by what it does NOT contain: it is the wrapper carrying a
+   vc_custom_ background that holds no text. Verified to match exactly one
+   element on Destinations, Bavaria, the Black Forest, Colditz, the Eagle's Nest,
+   Royal Heritage, Wine and Dine, Motorcar and Football, and nothing on the city
+   pages. */
+@media (max-width: 767px) {
+	body.page-id-4654 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.parent-pageid-4654 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.parent-pageid-4476 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
+		height: 300px;
+	}
+}
+
+/* ----------------------------------------------------------------------------
+   2. The banner should come before the writing
+   ----------------------------------------------------------------------------
+   "The header picture needs to be bigger and then come before the writing."
+
+   On the region pages the banner column is already written first, so it stacks
+   above the copy on a phone and there is nothing to do. On every Special
+   Interest page it is written THIRD, so the heading and the whole intro arrived
+   first and the banner appeared a screen and a half down - which is why those
+   pages read as headless on a phone.
+
+   Pulling the banner column to the front of its row fixes that, and is a no-op
+   on the region pages where it is already first. Same identification as above:
+   the column in the first row that carries a background and holds no text. */
+@media (max-width: 767px) {
+	body.page-id-4654 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.parent-pageid-4654 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.parent-pageid-4476 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
+		order: -1;
+	}
+}
+
+/* ----------------------------------------------------------------------------
+   3. Half the intro copy was grey
+   ----------------------------------------------------------------------------
+   "On the writing before 'Learn more' half of the writing is white and half
+   grey."
+
+   Both paragraphs sit inside the same .ld-fancy-heading block, which is set to
+   white for the dark band behind it. The first is wrapped in the element's own
+   span.ld-fh-txt and inherits that white; the second is a bare <p> the wrapper
+   never got applied to, so it falls back to the theme's default body colour,
+   #888 - grey text on a near-black panel, which is both odd-looking and hard to
+   read.
+
+   Every page in both families carried exactly one of these. Making paragraphs
+   inherit the colour their heading block already declares fixes it wherever the
+   pattern occurs, rather than recolouring one paragraph on one page. */
+body.page-id-4654 .ld-fancy-heading p,
+body.parent-pageid-4654 .ld-fancy-heading p,
+body.parent-pageid-4476 .ld-fancy-heading p {
+	color: inherit;
+}
+
+/* ----------------------------------------------------------------------------
+   4. Two photographs landing back to back on a phone
+   ----------------------------------------------------------------------------
+   "Two pictures following each other needs to be changed, so the glass dome
+   picture should go above 'what is there to do in Germany'."
+
+   These rows are two columns side by side on desktop - picture beside copy - and
+   they stack in source order on a phone. Where the picture column is written
+   second, the heading arrives first and the picture is pushed down against the
+   NEXT section's picture, so two photographs end up touching with nothing
+   between them.
+
+   Pulling a trailing picture column above its copy restores the alternation the
+   desktop layout has. Rows whose picture column is already written first are
+   untouched, which is why the client's "the others can be left where they are"
+   still holds.
+
+   Region pages only for now. The Special Interest picture rows are a separate
+   piece of work - the client asked for specific changes to them page by page,
+   and applying this blindly there would pre-empt those decisions. */
+@media (max-width: 767px) {
+	body.page-id-4654 .row.ld-row > .wpb_column:last-child:has(img),
+	body.parent-pageid-4654 .row.ld-row > .wpb_column:last-child:has(img) {
+		order: -1;
+	}
+}
