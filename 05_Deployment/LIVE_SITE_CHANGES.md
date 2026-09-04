@@ -144,10 +144,12 @@ Two things done deliberately rather than by default:
 media library and unchanged. Setting post 5235's featured image back to it
 restores the old state exactly.
 
-**Not yet mirrored to local.** LocalWP's database was down when this was made, so
-local still shows the old 640px image on post 5235. Re-import the file from
-`Email Photos/Blogs/` and set it as the featured image when Local is next up, or
-local will look wrong and a future content deploy could carry the old image back.
+**Mirrored to local 2026-09-04** (LocalWP's database was down at the time of the
+live change, so this was done once it came back). Local attachment **7601**,
+same 1920×1440 file, same alt text, set as the featured image on post 5235.
+Note the attachment IDs differ between the two — 7433 live, 7601 local — which
+is normal and is exactly why page content should never be pushed between them
+without checking attachment references.
 
 ---
 
