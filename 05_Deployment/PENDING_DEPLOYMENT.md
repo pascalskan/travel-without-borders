@@ -361,7 +361,7 @@ change with no layout risk.
 Nothing to push — no code, no database transfer. In wp-admin on live:
 
 1. Media → Add New → upload `02_Assets/Logos/logo-black-674px.png` and
-   `logo-white-674px.png`.
+   `logo-white-674px.png` (or the 400/800 pair if the enlargement is approved).
 2. Theme Options → Logo → set **Retina Logo** to the black file and **Retina
    Sticky Logo** to the white one. Leave the two base logos alone.
 3. Purge WP Rocket ("Clear and preload"), then confirm on the front end that
@@ -370,13 +370,98 @@ Nothing to push — no code, no database transfer. In wp-admin on live:
 Attachment IDs on live will differ from the local 7602/7603 — pick the files
 in the media picker, never by ID.
 
-### Still needs a decision — making it bigger
+### Making it bigger — built, not deployed
 
-Savita asked for the logo *bigger*, not just sharper. That is now possible: at
-2× density the master supports a base up to ~872px wide, far past anything the
-header would want. But it is not free — at 400px wide (83px tall) the header
-bar grows from **149px to 162px** on every page. That is a visible structural
-change, so it is left for sign-off rather than shipped with the sharpness fix.
+Built from the same master by
+[`build-from-master.php`](../02_Assets/Logos/master/build-from-master.php),
+which now emits every size in one pass. Each output is an exact integer
+multiple of the one above it, so a 2× file is double its base in every number:
+
+| file | canvas | artwork | role |
+|---|---|---|---|
+| `logo-black-400px.png` / white | 400×83 | 397×80 at 0,2 | new base |
+| `logo-black-800px.png` / white | 800×166 | 794×160 at 0,4 | new retina |
+
+The script also writes a **control build** at 337px into `master/control/`,
+which is not used by the site — it exists so the pipeline can be checked
+against the file already shipped. Diffed composited-on-grey, the control and
+the shipped `logo-black-337px.png` agree to a mean of **3.4/255**, and the only
+row with a real difference is **y46**, the red-to-gold band boundary in the
+flag, where the two land the transition a fraction of a pixel apart. The white
+variants differ from the black ones identically, which proves the recolour adds
+no error of its own.
+
+The flag block is found by colour rather than by a hard-coded column, so the
+white variant stays correct at any size. Detection deliberately accepts a
+column carrying red **or** gold, not both: the flag's outermost columns are
+antialiased and one band can register there before the other starts. Requiring
+both narrowed the range by a pixel each side and would have whitened a hairline
+of the flag's own black band.
+
+Local theme options now point at the 400/800 set. Previous values are saved at
+[`rollback-logo-options.json`](../02_Assets/Logos/master/rollback-logo-options.json).
+
+Measured at 1440×900, `device_scale_factor=2`:
+
+| | logo | header bar | sticky bar |
+|---|---|---|---|
+| Live today | 337×70 | 149px | 107px |
+| Enlarged | 400×83 | 162px | 120px |
+
+Mobile is untouched — 169×35 in an 80px bar in both, because the phone header
+uses `mobile-logo-default` and its own `menu-logo` option, which were not
+changed.
+
+### The finding that blocks it — the desktop menu already overflows
+
+Checking the enlargement turned up a fault that is **already live** and has
+nothing to do with the logo. The main menu runs past the right edge of the
+window, and `html { overflow-x: hidden }` hides the evidence, so items are
+simply unreachable:
+
+| viewport | hidden on live today |
+|---|---|
+| 1366px | **TESTIMONIALS and TRADE** |
+| 1440px | **TRADE** |
+| 1536px and up | none |
+
+The header's call-to-action button is off-screen too — its left edge sits at
+**1575px** in a 1440px window.
+
+A bigger logo pushes everything 66px further right, so on its own it would cost
+**TESTIMONIALS** at 1440 as well. The cause is dead space, not a shortage of
+room: the column holding the menu carries `padding: 5%` on both sides — about
+**82px a side** at 1440 — while the columns either side of it use 15px.
+
+Bringing that column into line with its neighbours **exactly cancels the
+enlargement**. Measured, not estimated:
+
+| | menu starts | last item ends | hidden | CTA left |
+|---|---|---|---|---|
+| Live today | 475 | 1496 | TRADE | 1575 |
+| Bigger logo alone | 541 | 1563 | TESTIMONIALS, TRADE | 1644 |
+| Bigger logo + padding | **474** | **1496** | **TRADE** | **1511** |
+
+The third row is the first row's menu position to within a pixel, with a logo
+63px wider and the CTA 64px closer to being visible. The rule is desktop-only —
+below 992px the column already computes to 15px, so phones are unaffected:
+
+```css
+@media ( min-width: 992px ) {
+	#header .mainbar-row > .col { padding-left: 15px; padding-right: 15px; }
+}
+```
+
+**Not applied.** The instruction on this engagement is not to touch the nav bar,
+and this is a nav-bar rule, so it waits for a decision. Without it the
+enlargement is a regression; with it the menu is where it is today and the
+pre-existing overflow is 66px less bad.
+
+Going further — trimming the menu links from 15px to 11px of side padding —
+would close the gap entirely at 1440 (last item at 1442, a 2px overrun) and cut
+1366 from 129px over to 75px. That is a separate change to the menu's own type
+and spacing and is **not** recommended without the client seeing it.
+
 
 ---
 

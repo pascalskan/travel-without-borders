@@ -1,0 +1,46 @@
+{
+    "header-logo": {
+        "url": "http://travelwithoutborders.local/wp-content/uploads/2020/01/logo-black-337px.png",
+        "id": "4360",
+        "height": "70",
+        "width": "337",
+        "thumbnail": "http://travelwithoutborders.local/wp-content/uploads/2020/01/logo-black-337px-150x70.png",
+        "title": "logo-black-337px",
+        "caption": "",
+        "alt": "",
+        "description": ""
+    },
+    "header-logo-retina": {
+        "url": "http://travelwithoutborders.local/wp-content/uploads/2026/09/logo-black-674px.png",
+        "id": "7602",
+        "height": "140",
+        "width": "674",
+        "thumbnail": "http://travelwithoutborders.local/wp-content/uploads/2026/09/logo-black-674px.png",
+        "title": "logo-black-674px",
+        "caption": "",
+        "alt": "",
+        "description": ""
+    },
+    "header-sticky-logo": {
+        "url": "http://travelwithoutborders.local/wp-content/uploads/2020/01/logo-white-337px.png",
+        "id": "4284",
+        "height": "70",
+        "width": "337",
+        "thumbnail": "http://travelwithoutborders.local/wp-content/uploads/2020/01/logo-white-337px-150x70.png",
+        "title": "logo-white-337px",
+        "caption": "",
+        "alt": "",
+        "description": ""
+    },
+    "header-sticky-logo-retina": {
+        "url": "http://travelwithoutborders.local/wp-content/uploads/2026/09/logo-white-674px.png",
+        "id": "7603",
+        "height": "140",
+        "width": "674",
+        "thumbnail": "http://travelwithoutborders.local/wp-content/uploads/2026/09/logo-white-674px.png",
+        "title": "logo-white-674px",
+        "caption": "",
+        "alt": "",
+        "description": ""
+    }
+}
