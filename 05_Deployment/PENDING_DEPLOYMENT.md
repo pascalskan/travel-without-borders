@@ -452,10 +452,28 @@ below 992px the column already computes to 15px, so phones are unaffected:
 }
 ```
 
-**Not applied.** The instruction on this engagement is not to touch the nav bar,
-and this is a nav-bar rule, so it waits for a decision. Without it the
-enlargement is a regression; with it the menu is where it is today and the
-pre-existing overflow is 66px less bad.
+**Approved and applied 2026-09-05**, as
+[`assets/css/header-logo.css`](../07_Source/Themes/ave-child/assets/css/header-logo.css),
+enqueued site-wide. `!important` is not optional in that rule: WPBakery writes
+its own `vc_custom_` padding with `!important`, so the first version without it
+loaded, matched, and changed nothing — the measurement caught it.
+
+Verified across seven pages at 1440: logo 400×83 serving `logo-black-800px.png`,
+column padding 15px, bar 162px, only `TRADE` clipped — the same single item as
+live today. No failing asset requests anywhere (the one 404 in the sweep is
+`/contact-us/`, a slug that does not exist locally).
+
+| viewport | menu starts | last item ends | hidden | CTA left |
+|---|---|---|---|---|
+| 1280 | 471 | 1493 | TESTIMONIALS, TRADE | 1508 |
+| 1366 | 472 | 1494 | TESTIMONIALS, TRADE | 1509 |
+| 1440 | 474 | 1496 | TRADE | 1511 |
+| 1536 | 476 | 1498 | none | 1513 |
+| 1920 | 571 | 1593 | none | 1696 |
+
+Every row matches live's own figures to within two pixels, with a logo 63px
+wider — so the pre-existing overflow is unchanged rather than worsened, and the
+CTA is 64px closer to visible at every width.
 
 Going further — trimming the menu links from 15px to 11px of side padding —
 would close the gap entirely at 1440 (last item at 1442, a 2px overrun) and cut

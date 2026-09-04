@@ -1,0 +1,40 @@
+/**
+ * Header logo — room for the enlarged mark.
+ *
+ * The logo went from 337x70 to 400x83 so the client could have it bigger. That
+ * pushes everything to its right along by 66px, and the desktop menu has no
+ * 66px to give: it already runs past the edge of the window on live, where
+ * `overflow-x: hidden` quietly swallows the evidence. At 1440 "Trade" is
+ * already unreachable; at 1366 "Testimonials" has gone as well. The header's
+ * call-to-action button sits at 1575px in a 1440px window.
+ *
+ * The room is there, it is just not being used. The column that holds the menu
+ * carries `padding: 5%` on each side - about 82px a side at 1440 - while the
+ * columns either side of it use the grid's usual 15px. Bringing it into line
+ * gives back more than the logo took:
+ *
+ *                       menu starts   last item ends   CTA left
+ *   before, 337px logo      475            1496          1575
+ *   after,  400px logo      474            1496          1511
+ *
+ * So the menu lands within a pixel of where it has always been, with a logo
+ * 63px wider and the button 64px closer to being visible. This does not fix the
+ * overflow - that is a pre-existing fault and a separate decision about the
+ * menu's own spacing - it only stops the bigger logo making it worse.
+ *
+ * Desktop only. Below 992px the column already computes to 15px, so the phone
+ * header is untouched by this file.
+ */
+
+@media screen and ( min-width: 992px ) {
+
+	/* Keyed off .mainbar-row, not the vc_custom_* class the column also
+	   carries: WPBakery regenerates those on every save. !important is not
+	   optional here - WPBakery writes its own vc_custom_ padding with
+	   !important, so nothing without it can win however specific it is. */
+	#header .mainbar-row > .col {
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
+
+}

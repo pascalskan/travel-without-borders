@@ -27,6 +27,19 @@ function liquid_child_theme_style(){
 		$strap_ver
 	);
 
+	// Header logo spacing. Site-wide: the header is the same on every page, and
+	// the rule only exists to keep the enlarged logo from pushing the desktop
+	// menu further off the edge than it already sits. Own file for the same
+	// cache reason as the strapline above.
+	$hlogo_path = get_stylesheet_directory() . '/assets/css/header-logo.css';
+	$hlogo_ver  = file_exists( $hlogo_path ) ? filemtime( $hlogo_path ) : false;
+	wp_enqueue_style(
+		'twb-header-logo',
+		get_stylesheet_directory_uri() . '/assets/css/header-logo.css',
+		array( 'child-one-style' ),
+		$hlogo_ver
+	);
+
 	// Hero band link colours. Site-wide because every inner page carries the
 	// same dark hero row. Kept in its own file rather than style.css for the
 	// same reason as the strapline above.
