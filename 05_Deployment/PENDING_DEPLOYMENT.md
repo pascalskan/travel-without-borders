@@ -223,7 +223,11 @@ place awaiting an account change.
 
 ---
 
-## 9. Homepage proportion work — September 2026, NOT YET LIVE
+## 9. Homepage proportion work — September 2026 — **DELIVERED 2026-09-04**
+
+> Deployed and verified on live. Kept as the record of what went out and as the
+> template for the next content release. The three "needs a decision" items at
+> the end remain open.
 
 From the client's email review of the homepage. Built locally on 2026-09-03,
 **after** reconciling the homepage live → local (see

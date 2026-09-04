@@ -40,6 +40,70 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-04 — Homepage proportion work deployed to live
+
+**Made by:** Claude, via wp-admin, at the client's direction ("make them live
+and we can ask savita to check it all as confirmation").
+
+The work built locally on 2026-09-03 (see [Pending Deployment](PENDING_DEPLOYMENT.md)
+§9) went out in two parts.
+
+**1. Child theme**, uploaded as a ZIP: `homepage-proportions.css` (new),
+`header-strapline.css` and `functions.php`.
+
+**2. Page 30 content** — the testimonials row moved to sit after the holiday
+sections and before the blogs, with the banded rows re-alternated.
+
+### The content change was applied to LIVE's own copy, not pushed from local
+
+This matters and is worth repeating next time. Local and live had diverged in
+ways that do not show in rendered text — live carries an extra 81-byte empty row
+after the hero that local does not, and live's content is wrapped in `<p>…</p>`
+where local's is not. Pushing local's copy wholesale would have carried local's
+attachment IDs and dropped live's row.
+
+Instead live's raw content was read over the REST API, the same reorder applied
+to it in place, and the result written back. Live keeps everything of its own;
+only the row order and two `el_class` values changed.
+
+**Two things the verification caught before anything was written**, both worth
+keeping as checks:
+
+- The first transform **silently dropped the leading `<p>`** — it sliced from the
+  first `[vc_row]` and lost the 3 characters before it. Caught by comparing the
+  sorted characters of the old and new content, which is a cheap way to prove a
+  reorder only reordered.
+- The first theme upload **failed with "the theme is missing the style.css
+  stylesheet"** even though the archive was valid — the upload had been truncated
+  (WordPress was running translation updates at the time). The retry sent the
+  full 95,648 bytes and installed cleanly. If that error appears with a ZIP that
+  checks out locally, re-upload before rebuilding it.
+
+### Verified on live, desktop and mobile
+
+| | desktop | mobile |
+| ---- | ------- | ------ |
+| Page title | 44px → **34px** | 44px → **26px** |
+| Section titles | 34/38px mixed → **28px, all equal** | → **22px** |
+| Strapline | 16px → **18px** | 12px → **13.5px**, one line |
+| Header height | — | 193px → **164px** |
+| Blog thumbnail spread | 49px → **0px** | 68px → **0px** |
+| Plärrer cards | inset → fill the row | staggered 67/60/53 → **aligned** |
+| Hero photograph | taller | 256px → **344px** wide |
+
+Section order now reads Wide choice → Special Interest → Special Events →
+Augsburg Plärrer → **testimonials** → From Our Blogs, and the banding alternates
+grey/white with no two adjacent rows the same. No PHP errors on the page.
+
+**Rollback:** page 30 revision **7436** holds the previous content. The theme
+rolls back by re-uploading the previous commit's ZIP.
+
+**Still open** (unchanged by this deployment): the logo cannot be enlarged
+without a vector original, the hero is at its ceiling inside a boxed row, and
+"From Our Blogs" keeps its own 26px.
+
+---
+
 ## 2026-09-04 — "15 Things to Know" featured image replaced (live)
 
 **Made by:** Claude, via wp-admin on live, at the client's direction ("this
