@@ -40,6 +40,58 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-04 — Destination pages: banner, intro colour, stacking order (live)
+
+**Made by:** Claude, child theme uploaded via wp-admin, at the client's
+direction ("make it live"). Theme only — no content changed.
+
+Three faults the client reported on "Germany Holiday Destinations" and the
+region pages beneath it. Two of the three turned out to be **mobile-only**,
+which the report did not say and which matters for anyone re-testing:
+
+| Reported | What it actually was |
+| -------- | -------------------- |
+| "Picture at the top of the page is cut off" | Fine on desktop. On a phone the banner collapsed to **390×120** — a square 1500×1500 photograph through a slot of aspect 3.25, so a third was visible and the castle was sliced through. Now 300px. |
+| "Half the writing is white and half grey" | Both paragraphs sit in the same `.ld-fancy-heading`, which **is** set white. The first is wrapped in the element's own `<span class="ld-fh-txt">`; the second is a bare `<p>` that never got it, so it fell back to the theme's `#888`. Paragraphs now inherit their block's colour. |
+| "Two pictures following each other" | Mobile stacking. These rows are picture-beside-copy on desktop and stack in source order on a phone, so a picture column written second lands against the next section's picture. A trailing picture column is now pulled above its copy. |
+
+Fixed once in `assets/css/destination-pages.css` for the whole layout rather
+than page by page, scoped through `body.page-id-4654` and
+`body.parent-pageid-4654`.
+
+**A trap worth recording.** The obvious selector for the banner — the first
+column's `.wpb_wrapper` — also matches the **text** column's wrapper, and
+setting a height there squashes the intro copy from 1077px to 300px and clips
+it. It was caught before shipping by listing what the selector actually matched;
+the tell was the H1 moving *up* when the banner was made taller. The banner is
+now picked out as the wrapper in that position carrying a `vc_custom_`
+background and containing no text.
+
+### Verified live at 390px
+
+| Page | stylesheet | banner | grey paragraphs | intro copy height |
+| ---- | ---------- | ------ | --------------- | ----------------- |
+| Destinations | yes | 300px | 0 | 1077px |
+| Bavaria | yes | 300px | 0 | 802px |
+| The Black Forest | yes | 300px | 0 | 760px |
+| Rhine/Mosel/Eifel | yes | 300px | 0 | 745px |
+| Northern Germany | yes | 300px | 0 | 571px |
+| Eastern Germany | yes | 300px | 0 | 418px |
+
+No PHP errors on any of them, the copy column is intact everywhere, and the
+homepage was re-checked for regressions and is unaffected.
+
+### Open — the city pages have the same two faults
+
+Berlin, Munich, Hamburg and the other city pages sit **below** the regions, so
+`parent-pageid-4654` does not reach them and they were deliberately left alone —
+the brief named the regions. Checked on live: Berlin still shows a **120px
+banner and one grey paragraph**, so the same two faults are there. Extending the
+scoping to cover them is a small change if the client wants it; their picture
+rows would need re-checking separately, as they use a different layout.
+
+---
+
 ## 2026-09-04 — Homepage proportion work deployed to live
 
 **Made by:** Claude, via wp-admin, at the client's direction ("make them live
