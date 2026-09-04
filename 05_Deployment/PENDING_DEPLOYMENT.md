@@ -202,7 +202,10 @@ place awaiting an account change.
   needs at 1440px/2×: **seven of the eight originals are larger than the 490px
   being served** — two (1200px and 1067px) are big enough to go fully sharp, five
   (848, 640, 551, 540, 540) would visibly improve without reaching it, and only
-  "7 Facts" (441×441) is genuinely limited by its source file.
+  "7 Facts" (441×441) is genuinely limited by its source file. **"15 Things to
+  Know" was the other genuinely-stuck one at 640×480, and it is now resolved** —
+  the client supplied a 1920×1440 replacement on 2026-09-04 and it is live. That
+  leaves "7 Facts" as the single image still needing new source material.
   **FIXED 2026-08-28** — `tmpl-timeline.php` now asks for `large` instead, which
   needed no regeneration and no new image size. Two cards are now fully sharp,
   five visibly improved, one unchanged at its ceiling. Full measurements in

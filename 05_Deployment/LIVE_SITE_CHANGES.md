@@ -40,6 +40,53 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-04 — "15 Things to Know" featured image replaced (live)
+
+**Made by:** Claude, via wp-admin on live, at the client's direction ("this
+change should be done live").
+
+The one blog image that genuinely could not be sharpened now can be, because the
+client supplied a better one.
+
+`img-0457-1_orig.jpg` was **640x480** — the smallest original on the site after
+"7 Facts", and the card wants about 946px. Every copy that existed was 640px
+(checked the repo, the pre-development uploads backup and the media library on
+2026-08-28), so it was the one case where "the photograph itself is the limit"
+was the true answer. The client's reply was to send a replacement: a royalty-free
+photograph of a European map with a pin in Germany, **1920x1440**.
+
+| | before | after |
+| ---- | ------ | ----- |
+| Attachment | 5236 `img-0457-1_orig.jpg` | **7433** `map-of-germany-travel-planning.jpg` |
+| Original | 640×480 | **1920×1440** |
+| Blog index card | 640px into a 473px slot — soft | 1920px — **sharp** |
+| Homepage card | 640px into a 261px slot | 740px — **sharp** |
+| Post cover | 640px into a 672px slot | 1200px (89% of ideal, not perceptible) |
+| Alt text | none | "Map of Europe with a red pin marking Germany" |
+
+Two things done deliberately rather than by default:
+
+- **The file was renamed before upload.** It arrived as
+  `15 things tyto know about germany.jpg` — the typo would have been baked into
+  the URL permanently, since WordPress slugifies the filename and the URL cannot
+  be changed later without breaking links.
+- **The post was updated over the REST API, not through the editor.** Saving
+  post 5235 in wp-admin re-runs the WPBakery editor and the Post Style dropdown,
+  which has previously flipped a post's layout on save (see the 5247 note in
+  [Pending Deployment](PENDING_DEPLOYMENT.md) §4). Setting `featured_media`
+  through the API touches that one field and nothing else.
+
+**Rollback:** the previous featured image is attachment **5236**, still in the
+media library and unchanged. Setting post 5235's featured image back to it
+restores the old state exactly.
+
+**Not yet mirrored to local.** LocalWP's database was down when this was made, so
+local still shows the old 640px image on post 5235. Re-import the file from
+`Email Photos/Blogs/` and set it as the featured image when Local is next up, or
+local will look wrong and a future content deploy could carry the old image back.
+
+---
+
 ## 2026-09-03 — Homepage reconciled live → local
 
 **Made by:** Claude, locally, before starting the homepage proportion work.
