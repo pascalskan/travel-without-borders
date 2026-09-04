@@ -1,0 +1,89 @@
+/* ----------------------------------------------------------------------------
+   TWB - Destination pages
+   ----------------------------------------------------------------------------
+   "Germany Holiday Destinations" (page 4654) and every region page beneath it -
+   Bavaria, the Black Forest, the Rhine/Mosel/Eifel, Northern and Eastern
+   Germany - share one layout, and the client reported three faults in it. All
+   three are fixed here rather than page by page, so every region page gets them.
+
+   Scoped through `body.page-id-4654` (the parent page) and
+   `body.parent-pageid-4654` (its children), both of which WordPress adds for us.
+   The city pages beneath the regions use a different layout and are deliberately
+   not touched - the selectors below match nothing on them.
+   ---------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------
+   1. The banner photograph at the top of the page
+   ----------------------------------------------------------------------------
+   "Picture at the top of the page is cut off and should be more prominent."
+
+   On desktop it is a tall half-width panel and reads fine. On a phone it
+   collapsed to a 390x120 letterbox strip - a square 1500x1500 photograph shown
+   through a slot with an aspect ratio of 3.25, so about a third of the picture
+   was visible and the castle was sliced through. That is the "cut off".
+
+   Giving it 300px turns that slot into roughly 1.3 - still a crop, because the
+   source is square, but the subject survives and the banner reads as a picture
+   rather than a border.
+
+   The selector is fussy for a reason. The obvious target - the first column's
+   `.wpb_wrapper` - also matches the *text* column's wrapper, and setting a
+   height on that squashes the copy from 1077px to 300px and clips it. The
+   banner is the wrapper in that position that carries a `vc_custom_` background
+   and holds no text, so it is picked out by what it does NOT contain. Verified
+   to match exactly one element on Destinations, Bavaria and the Black Forest,
+   and nothing at all on the city pages. */
+@media (max-width: 767px) {
+	body.page-id-4654 .wpb_row:first-of-type .wpb_column:first-child .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.parent-pageid-4654 .wpb_row:first-of-type .wpb_column:first-child .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
+		height: 300px;
+	}
+}
+
+/* ----------------------------------------------------------------------------
+   2. Half the intro copy was grey
+   ----------------------------------------------------------------------------
+   "On the writing before 'Learn more' half of the writing is white and half
+   grey."
+
+   Both paragraphs sit inside the same `.ld-fancy-heading` block, which is set
+   to white for the dark band it sits on. The first paragraph is wrapped in the
+   element's own `<span class="ld-fh-txt">` and inherits that white. The second
+   is a bare `<p>` that the wrapper never got applied to, so it falls back to
+   the theme's default body colour, `#888` - grey text on a near-black panel,
+   which is both odd-looking and hard to read.
+
+   Making paragraphs inherit the colour their heading block already declares
+   fixes it wherever the pattern occurs, rather than recolouring one paragraph
+   on one page. */
+body.page-id-4654 .ld-fancy-heading p,
+body.parent-pageid-4654 .ld-fancy-heading p {
+	color: inherit;
+}
+
+/* ----------------------------------------------------------------------------
+   3. Two photographs landing back to back on a phone
+   ----------------------------------------------------------------------------
+   "Two pictures following each other needs to be changed, so the glass dome
+   picture should go above 'what is there to do in Germany'."
+
+   These rows are two columns side by side on desktop - picture beside copy -
+   and they stack in DOM order on a phone. Where the picture column is written
+   second, the heading arrives first and the picture is pushed down against the
+   *next* section's picture, so two photographs end up touching with nothing
+   between them.
+
+   On the Destinations page that is the glass dome landing under "What Is There
+   To Do In Germany?" and butting into the snowy-mansions photograph below it.
+   The same thing happens on Bavaria, where the Franconia and Bavaria pictures
+   sat back to back.
+
+   Pulling a trailing picture column above its copy restores the alternation the
+   desktop layout has. Rows whose picture column is already written first are
+   untouched, which is why the other pictures stay where they are. */
+@media (max-width: 767px) {
+	body.page-id-4654 .row.ld-row > .wpb_column:last-child:has(img),
+	body.parent-pageid-4654 .row.ld-row > .wpb_column:last-child:has(img) {
+		order: -1;
+	}
+}
