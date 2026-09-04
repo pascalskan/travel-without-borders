@@ -259,13 +259,24 @@ body.page-id-2390 .ld-fancy-heading p {
    same way. Planning, Trade and About use `.ld-fancy-heading`; the Privacy
    Policy and the Terms & Conditions write their fourteen and fifteen headings
    as plain markup inside `.wpb_text_column` text blocks, so a rule naming only
-   the first left those two pages entirely unchanged. */
+   the first left those two pages entirely unchanged.
+
+   The Trade pages are listed under two ids each. They are 7263 and 7539 locally
+   but 7338 and 7339 on production - the only pages in this set whose ids differ
+   between the two installs, which was found when the stylesheet loaded on every
+   page except those two after deployment. Every other page here shares an id.
+   Listing both keeps one stylesheet correct in both environments; the
+   alternative, keying off the slug, is not available to CSS. */
 body.page-id-4580 #content .ld-fancy-heading h2,
 body.page-id-4580 #content .wpb_text_column h2,
 body.page-id-7263 #content .ld-fancy-heading h2,
+body.page-id-7338 #content .ld-fancy-heading h2,
 body.page-id-7263 #content .wpb_text_column h2,
+body.page-id-7338 #content .wpb_text_column h2,
 body.page-id-7539 #content .ld-fancy-heading h2,
+body.page-id-7339 #content .ld-fancy-heading h2,
 body.page-id-7539 #content .wpb_text_column h2,
+body.page-id-7339 #content .wpb_text_column h2,
 body.page-id-2390 #content .ld-fancy-heading h2,
 body.page-id-2390 #content .wpb_text_column h2,
 body.page-id-5440 #content .ld-fancy-heading h2,
@@ -278,9 +289,13 @@ body.page-id-5433 #content .wpb_text_column h2 {
 body.page-id-4580 #content .ld-fancy-heading h3,
 body.page-id-4580 #content .wpb_text_column h3,
 body.page-id-7263 #content .ld-fancy-heading h3,
+body.page-id-7338 #content .ld-fancy-heading h3,
 body.page-id-7263 #content .wpb_text_column h3,
+body.page-id-7338 #content .wpb_text_column h3,
 body.page-id-7539 #content .ld-fancy-heading h3,
+body.page-id-7339 #content .ld-fancy-heading h3,
 body.page-id-7539 #content .wpb_text_column h3,
+body.page-id-7339 #content .wpb_text_column h3,
 body.page-id-2390 #content .ld-fancy-heading h3,
 body.page-id-2390 #content .wpb_text_column h3,
 body.page-id-5440 #content .ld-fancy-heading h3,
@@ -294,9 +309,17 @@ body.page-id-5433 #content .wpb_text_column h3 {
 	body.page-id-4580 #content .ld-fancy-heading h2,
 	body.page-id-4580 #content .wpb_text_column h2,
 	body.page-id-7263 #content .ld-fancy-heading h2,
+	body.page-id-7338 #content .ld-fancy-heading h2,
+body.page-id-7338 #content .ld-fancy-heading h2,
 	body.page-id-7263 #content .wpb_text_column h2,
+	body.page-id-7338 #content .wpb_text_column h2,
+body.page-id-7338 #content .wpb_text_column h2,
 	body.page-id-7539 #content .ld-fancy-heading h2,
+	body.page-id-7339 #content .ld-fancy-heading h2,
+body.page-id-7339 #content .ld-fancy-heading h2,
 	body.page-id-7539 #content .wpb_text_column h2,
+	body.page-id-7339 #content .wpb_text_column h2,
+body.page-id-7339 #content .wpb_text_column h2,
 	body.page-id-2390 #content .ld-fancy-heading h2,
 	body.page-id-2390 #content .wpb_text_column h2,
 	body.page-id-5440 #content .ld-fancy-heading h2,
@@ -309,9 +332,17 @@ body.page-id-5433 #content .wpb_text_column h3 {
 	body.page-id-4580 #content .ld-fancy-heading h3,
 	body.page-id-4580 #content .wpb_text_column h3,
 	body.page-id-7263 #content .ld-fancy-heading h3,
+	body.page-id-7338 #content .ld-fancy-heading h3,
+body.page-id-7338 #content .ld-fancy-heading h3,
 	body.page-id-7263 #content .wpb_text_column h3,
+	body.page-id-7338 #content .wpb_text_column h3,
+body.page-id-7338 #content .wpb_text_column h3,
 	body.page-id-7539 #content .ld-fancy-heading h3,
+	body.page-id-7339 #content .ld-fancy-heading h3,
+body.page-id-7339 #content .ld-fancy-heading h3,
 	body.page-id-7539 #content .wpb_text_column h3,
+	body.page-id-7339 #content .wpb_text_column h3,
+body.page-id-7339 #content .wpb_text_column h3,
 	body.page-id-2390 #content .ld-fancy-heading h3,
 	body.page-id-2390 #content .wpb_text_column h3,
 	body.page-id-5440 #content .ld-fancy-heading h3,
