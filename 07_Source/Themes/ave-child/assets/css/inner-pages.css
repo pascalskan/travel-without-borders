@@ -128,3 +128,40 @@ body.parent-pageid-4564 .ld-fancy-heading p {
 		order: -1;
 	}
 }
+
+/* ----------------------------------------------------------------------------
+   5. Tall portrait photographs on a phone - Special Interest pages
+   ----------------------------------------------------------------------------
+   "The random photo of the soldier is far too big" (Colditz), "the picture seem
+   all a bit big and need to be sorted out" (Royal Heritage), and "not that we
+   have two pictures of mis-matched sizes together" (Fairy Tale).
+
+   Measured at 390px, these are all one cause. Landscape photographs on these
+   pages settle at 360x240, which is the house norm, but the portrait ones are
+   left to run to their full height:
+
+     Colditz     soldier              337x544
+     Fairy Tale  Hohenschwangau       360x540
+     Wine & Dine wine_main            360x480
+     Royal Her.  british-heritage     302x450
+
+   A 544px-tall photograph fills almost an entire phone screen, and sitting next
+   to a 240px one it reads as mismatched rather than merely large.
+
+   Capping the height rather than the width is deliberate. The client has been
+   clear on the blog images that photographs should not be cropped, so the
+   picture keeps its whole self and simply scales down - the soldier lands at
+   about 223x360, Hohenschwangau at 240x360 - which brings the portraits into
+   the same visual band as the landscapes without cutting anything off. They are
+   centred because a narrower picture left-aligned under full-width copy looks
+   like a mistake.
+
+   Landscape images are untouched: at 240px tall they never reach the cap. */
+@media (max-width: 767px) {
+	body.parent-pageid-4476 .liquid-img-group-img-container img {
+		max-height: 360px;
+		width: auto;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

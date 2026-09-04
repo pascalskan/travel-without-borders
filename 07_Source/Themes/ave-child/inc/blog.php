@@ -80,20 +80,39 @@ function twb_blog_styles() {
 add_action( 'wp_enqueue_scripts', 'twb_blog_styles' );
 
 /**
- * Close comments on posts and hide any that already exist.
+ * Close comments on posts and pages, and hide any that already exist.
  *
- * `default.php` renders the comment template when comments are open *or* a
- * comment already exists, so both have to be answered to remove the section.
+ * Both the blog templates and the parent theme's `page.php` render the comment
+ * section when comments are open *or* a comment already exists, so both have to
+ * be answered to remove it.
+ *
+ * Pages are included because of a real case the client found. The Colditz
+ * Castle page carried, at its foot, the title of the John Sergeant blog post
+ * followed by "Comments are closed." That was not a comment anyone left - the
+ * blog post links to the page, so publishing it made WordPress record a
+ * **pingback** against the page, and a pingback is stored as a comment and
+ * rendered like one. It appeared only on live, because that is where the post
+ * was published.
+ *
+ * Suppressing the section on pages therefore fixes the page the client reported
+ * and every other page a future blog post happens to link to. `pings_open` is
+ * closed alongside it so no further pingbacks are recorded in the first place;
+ * without that, the existing ones are merely hidden and new ones keep arriving.
  */
-function twb_blog_comments_closed( $open, $post_id ) {
-	return ( 'post' === get_post_type( $post_id ) ) ? false : $open;
+function twb_comments_closed( $open, $post_id ) {
+	return in_array( get_post_type( $post_id ), array( 'post', 'page' ), true ) ? false : $open;
 }
-add_filter( 'comments_open', 'twb_blog_comments_closed', 20, 2 );
+add_filter( 'comments_open', 'twb_comments_closed', 20, 2 );
 
-function twb_blog_hide_existing_comments( $count, $post_id ) {
-	return ( 'post' === get_post_type( $post_id ) ) ? 0 : $count;
+function twb_hide_existing_comments( $count, $post_id ) {
+	return in_array( get_post_type( $post_id ), array( 'post', 'page' ), true ) ? 0 : $count;
 }
-add_filter( 'get_comments_number', 'twb_blog_hide_existing_comments', 20, 2 );
+add_filter( 'get_comments_number', 'twb_hide_existing_comments', 20, 2 );
+
+function twb_pings_closed( $open, $post_id ) {
+	return in_array( get_post_type( $post_id ), array( 'post', 'page' ), true ) ? false : $open;
+}
+add_filter( 'pings_open', 'twb_pings_closed', 20, 2 );
 
 /**
  * The X logo as inline SVG.
