@@ -40,6 +40,94 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-04 — Special Interest, Special Events and the standalone pages (live)
+
+**Made by:** Claude, child theme via wp-admin plus two content edits over the
+REST API, at the client's direction ("we will deploy everything apart from
+destinations at once").
+
+The rest of the client's page-by-page review. Nearly all of it turned out to be
+**the same three faults** repeating across every page family, so one stylesheet
+(`inner-pages.css`, formerly `destination-pages.css`) now serves them all:
+
+| Family | Pages | Faults found |
+| ------ | ----- | ------------ |
+| Special Interest | 8 | 390×120 banner, banner **below** the copy, one grey paragraph each |
+| Special Events | 6 | identical |
+| About, Privacy, T&Cs | 3 | banner, and H2 38px against a 40px H1 |
+| Trade EN + DE, Planning | 3 | H2 38px against a 40px H1 |
+
+Section headings are now a uniform 40 / 32 / 24 on desktop and 40 / 28 / 22 on a
+phone across all six standalone pages.
+
+### Two things that were not what they looked like
+
+**The "dead Learn More" is not dead.** It was reported as an `href="#"` going
+nowhere and the client asked for it to be removed. It carries
+`data-localscroll` — the theme's scroll-to-next-section feature — and `href="#"`
+is simply how that is wired. A real mouse click scrolls the page on every page
+tested (Eagle's Nest 0→565, Colditz 0→491, Bavaria 0→476, homepage 0→1363); an
+earlier programmatic `.click()` did not fire the theme's jQuery handler, which
+is what made it look broken. **It was not removed** — doing so would have
+stripped working navigation from 13 pages.
+
+**The Colditz "comments are closed" was a pingback.** The John Sergeant blog
+post links to the Colditz page, so publishing it made WordPress record a
+pingback against the page — stored as a comment and rendered like one. It
+existed only on live, which is why it could not be reproduced locally. Comments
+and pings are now closed on pages as well as posts, fixing that page and any
+other page a future post links to.
+
+### Content edits — applied to LIVE's own copy, never pushed from local
+
+Page 5535 (the Eagle's Nest): "About The Eagle's Nest" moved from row 9 to row 1,
+and `twb-notes` added to the Important Notes row.
+Page 4580 (Planning): `germany.jpg` moved above the "How We Can Help?" heading,
+which also separates it from `traditional.jpg`, and `twb-notes` added to the
+Important Information row.
+
+**Both were transformed in place on live rather than pushed from local, and that
+is not optional.** On page 4580 the two installs disagree on 14 of 17 rows, and
+the attachment ids do not merely differ — they *mean different things*: local
+`7569` holds the "Designed Around You" image while local's `7257` is a
+Testimonials post, and on live `7257` is that image. Content pushed either way
+would break pictures.
+
+Rollback revisions: **7440** (Eagle's Nest), **7441** (Planning).
+
+### Two mistakes caught during the work
+
+- A first heading selector used `.wpb_column h3`, which pushed the **site
+  footer** from 14px to 22px and an icon-box from 18px to 24px — the footer is
+  built with WPBakery too. Scoped to `#content .ld-fancy-heading`.
+- That then missed the Privacy Policy and T&Cs entirely, which write their 14
+  and 15 headings as plain markup in `.wpb_text_column`. Both components named.
+
+### A trap for next time: the Trade pages have different ids per install
+
+After the first deployment the stylesheet loaded on every page except the two
+Trade pages. They are **7263 and 7539 locally but 7338 and 7339 on production** —
+the only pages in this set whose ids differ. Every other page shares an id, which
+is why it was easy to miss. Both ids are now listed in the CSS and the enqueue.
+**Check page ids against production before scoping CSS by `page-id`.**
+
+### Verified on live at 390px
+
+All 13 pages: stylesheet loaded, banner 300px and above the H1 where the page has
+one, no grey paragraphs, footer still 14px, no "Comments are closed", no PHP
+errors. Planning reads picture → "How We Can Help?" → …, with the two
+photographs no longer touching. Notes render 15px italic on both pages.
+
+### Nothing to fix: the blog "arrow"
+
+Reported as "there is an arrow on the first blog, but the rest are just lines".
+All eight cards are byte-identical in markup and behave identically: at rest a
+line then the text, on hover the text then an arrow, the line sliding across to
+become it. Measured on all eight — `[30, 0]` at rest, `[0, 30]` hovered, without
+exception. What was seen was the first card in its hover state.
+
+---
+
 ## 2026-09-04 — Destination pages: banner, intro colour, stacking order (live)
 
 **Made by:** Claude, child theme uploaded via wp-admin, at the client's
