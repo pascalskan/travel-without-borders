@@ -204,3 +204,49 @@ body.parent-pageid-4564 .ld-fancy-heading p {
 	font-size: 15px;
 	font-style: italic;
 }
+
+/* ----------------------------------------------------------------------------
+   7. "Planning your bespoke Holiday" - the section titles shout
+   ----------------------------------------------------------------------------
+   "I feel that 'How can we help' is suddenly a very big title!"
+
+   Measured on live, the page runs:
+
+     H1  "Planning your bespoke holiday to Germany"   40px
+     H2  "How We Can Help?"                           38px
+     H2  "Ready to Start Planning?"                   38px
+     H3  every section heading                        26px
+
+   The H2s are within 2px of the page title while everything else on the page is
+   26px, so they read as a second H1 dropped into the middle rather than as
+   section headings - which is exactly what she describes as sudden.
+
+   The H3s are pinned here too, and that is not cosmetic. Local and live disagree
+   about them: local's page content carries an `ld_fancy_heading` size of 22px
+   for those headings and live's does not, so live falls through to the theme's
+   26px. Sizing the H2 against local alone produced a 26px H2 on a phone against
+   live's 26px H3 - no distinction at all. Setting both explicitly makes the two
+   environments render the same scale whichever copy of the content is in place:
+
+     desktop   H1 40   H2 32   H3 24
+     mobile    H1 40   H2 28   H3 22
+
+   That keeps a clear step at every level and answers the same "title sizes need
+   to be uniform" note the client made about the Trade pages. */
+body.page-id-4580 .wpb_column h2 {
+	font-size: 32px;
+}
+
+body.page-id-4580 .wpb_column h3 {
+	font-size: 24px;
+}
+
+@media (max-width: 767px) {
+	body.page-id-4580 .wpb_column h2 {
+		font-size: 28px;
+	}
+
+	body.page-id-4580 .wpb_column h3 {
+		font-size: 22px;
+	}
+}

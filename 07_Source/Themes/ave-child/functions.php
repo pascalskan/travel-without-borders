@@ -49,7 +49,7 @@ function liquid_child_theme_style(){
 	// scoping; the Special Interest and Special Events parent pages are not
 	// included, the client said both read fine.
 	$twb_parent = wp_get_post_parent_id( get_queried_object_id() );
-	if ( is_page( 4654 ) || in_array( $twb_parent, array( 4654, 4476, 4564 ), true ) ) {
+	if ( is_page( array( 4654, 4580 ) ) || in_array( $twb_parent, array( 4654, 4476, 4564 ), true ) ) {
 		$ip_path = get_stylesheet_directory() . '/assets/css/inner-pages.css';
 		$ip_ver  = file_exists( $ip_path ) ? filemtime( $ip_path ) : false;
 		wp_enqueue_style(
