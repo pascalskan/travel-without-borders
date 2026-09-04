@@ -314,7 +314,7 @@ cannot be used as-is.
 
 ### How the 2× files were built
 
-[`02_Assets/Logos/master/build-2x-from-master.php`](../02_Assets/Logos/master/build-2x-from-master.php)
+[`02_Assets/Logos/master/build-from-master.php`](../02_Assets/Logos/master/build-from-master.php)
 — re-runnable, byte-reproducible.
 
 1. **Resample first, key second.** The master is resampled while still
