@@ -112,19 +112,32 @@ body.parent-pageid-4564 .ld-fancy-heading p {
    untouched, which is why the client's "the others can be left where they are"
    still holds.
 
-   Applied to the region pages and the Special Events pages, where the client
-   named this fault directly ("all individual pages of the special events
-   holidays have the problem of the header picture and the two photos following
-   each other").
+   Applied to all three families. The client named this fault directly on the
+   Special Events pages ("all individual pages of the special events holidays
+   have the problem of the header picture and the two photos following each
+   other"), and on the Destinations page.
 
-   NOT applied to the Special Interest pages. The client asked for specific and
-   different changes to their picture rows page by page - sizes on Royal
-   Heritage and Fairy Tale, the oversized soldier on Colditz - and a generic
-   reorder there would pre-empt those decisions. */
+   The Special Interest pages were initially left out of this rule, on the
+   reasoning that the client had asked for specific per-page picture changes
+   there and a generic reorder would pre-empt them. That was wrong, and Fairy
+   Tale is why. Her complaint on that page - "it's a bit confusing which castle
+   belongs to which picture ... not that we have two pictures of mis-matched
+   sizes together" - is this exact fault. Measured at 390px, the Black Forest
+   photograph was landing below the *Rhine Valley* heading and the Mosel one
+   below *Northern Germany*, so every picture appeared to belong to the section
+   after the one it illustrates, and the displaced pictures piled up in pairs.
+   The rule restores heading-then-picture the whole way down.
+
+   Checked across all eight Special Interest pages before applying: it removes
+   two stacked pairs on Fairy Tale and one on Royal Heritage, and changes
+   nothing on the other six. Football keeps one stacked pair its picture columns
+   are written first so the rule does not reach them - the client did not raise
+   the pictures on that page, only its header. */
 @media (max-width: 767px) {
 	body.page-id-4654 .row.ld-row > .wpb_column:last-child:has(img),
 	body.parent-pageid-4654 .row.ld-row > .wpb_column:last-child:has(img),
-	body.parent-pageid-4564 .row.ld-row > .wpb_column:last-child:has(img) {
+	body.parent-pageid-4564 .row.ld-row > .wpb_column:last-child:has(img),
+	body.parent-pageid-4476 .row.ld-row > .wpb_column:last-child:has(img) {
 		order: -1;
 	}
 }
