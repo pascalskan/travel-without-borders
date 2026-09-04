@@ -269,16 +269,114 @@ only rearranged.
 
 ### Not done, needs a decision
 
-- **The logo was not enlarged**, though the client asked. Every asset is 70px
+- **The logo was not enlarged**, though the client asked. Every asset was 70px
   tall (337×70, 417×70 and 472×70 are three different lockups, not one at three
-  resolutions) and it already renders 1:1, so scaling it up would blur it.
-  **Ask the client for a vector or high-resolution original.**
+  resolutions) and it already rendered 1:1, so scaling it up would have blurred
+  it. **Resolved 2026-09-04** — the client supplied a 1747×356 master. See
+  section 10; the sharpness half is built, the size increase still needs a
+  decision because it grows the header bar.
 - **The hero is at its ceiling for a boxed row** (~972px wide). Going properly
   full-bleed is a "Stretch row and content (no paddings)" row setting on the
   page, which changes the homepage from a boxed layout to an edge-to-edge one.
   Left for the client.
 - **"From Our Blogs" stays 26px** rather than 28px — it is an H3 sharing its
   classes with 14px and 18px headings elsewhere, so no safe selector reaches it.
+
+---
+
+## 10. Header logo — the retina fix — September 2026
+
+### Why the logo looked soft
+
+Not because it was too small on the page. `logo-black-337px.png` is 337×70 and
+the header draws it in a 337×70 box, which is correct at 1× — but on any 2×
+display (most phones, and every Retina or 4K laptop) the browser has to paint
+that box with 674×140 physical pixels and has only 337×70 to work from. The
+theme has a `header-logo-retina` slot for exactly this and it was **empty**, so
+no `srcset` was emitted at all. Mobile was already covered — `menu-logo-retina`
+points at the 337px file for a 160px base — which is why the blur showed on
+desktop and not on a phone.
+
+So there were two separate problems wearing one coat: **no 2× asset** (fixable
+the moment a bigger master existed) and **no bigger master** (only the client
+could supply it).
+
+### The master
+
+`twblogos.zip`, 2026-09-04. Four files, three of them the same wordmark at
+three sizes and one a stray FrontPage metadata stub from 2008 that is not an
+image at all. The usable one is **1747×356 at 300dpi** — the same artwork as
+`logo-black-337px.png`, at 5.2×. Kept as
+[`02_Assets/Logos/master/twb-logo-master-1747x356.jpg`](../02_Assets/Logos/master/twb-logo-master-1747x356.jpg).
+
+It is a JPEG on white with no alpha, and the header needs transparency, so it
+cannot be used as-is.
+
+### How the 2× files were built
+
+[`02_Assets/Logos/master/build-2x-from-master.php`](../02_Assets/Logos/master/build-2x-from-master.php)
+— re-runnable, byte-reproducible.
+
+1. **Resample first, key second.** The master is resampled while still
+   composited on white, because "composited on white" is already premultiplied
+   and gives clean edges; keying to alpha first and then resampling produces
+   fringing.
+2. **White → alpha, then unpremultiply.** Every colour in this logo — black,
+   flag red, flag gold — has at least one channel at zero, so `alpha =
+   255 − min(r,g,b)` recovers the alpha exactly and the colour divides back out.
+   This also swallows the JPEG ringing around the white.
+3. **Fitted to the existing artwork, not to the canvas.** The master's own
+   margins differ from the in-use file's, so the artwork bounding box is scaled
+   to exactly 2× the in-use bounding box (334×67 at x0 y2) and placed at exactly
+   2× its offset. Verified: the new file's box is `0,4,667,137`, precisely
+   double.
+4. **The white variant** turns pure black to pure white everywhere except
+   columns 562–637, the flag block, which keeps its own black band. That
+   column range was measured off the existing black/white pair rather than
+   guessed — the only difference between them is `000000 → FFFFFF` with alpha
+   untouched, over columns 0–280 and 319–333 of 337.
+
+Output: `logo-black-674px.png` and `logo-white-674px.png`, 674×140 RGBA.
+
+### Wired up locally
+
+Attachments 7602 and 7603, set into `liquid_one_opt` as `header-logo-retina`
+and `header-sticky-logo-retina`. No code change — `liquid-header-image.php`
+emits `srcset="… 2x"` as soon as those options are filled.
+
+### Verified — the layout does not move
+
+Measured in Chromium at 1440×900, `device_scale_factor=2`, live against local:
+
+| | rendered | intrinsic | file fetched | header bar |
+|---|---|---|---|---|
+| Live today | 337×70 | 337×70 | `logo-black-337px.png` | 149px |
+| Local with retina | 337×70 | 337×70 | **`logo-black-674px.png`** | 149px |
+
+Same box, same header height, twice the pixels. This is a pure sharpness
+change with no layout risk.
+
+### To deploy
+
+Nothing to push — no code, no database transfer. In wp-admin on live:
+
+1. Media → Add New → upload `02_Assets/Logos/logo-black-674px.png` and
+   `logo-white-674px.png`.
+2. Theme Options → Logo → set **Retina Logo** to the black file and **Retina
+   Sticky Logo** to the white one. Leave the two base logos alone.
+3. Purge WP Rocket ("Clear and preload"), then confirm on the front end that
+   `img.logo-default` carries `srcset="…logo-black-674px.png 2x"`.
+
+Attachment IDs on live will differ from the local 7602/7603 — pick the files
+in the media picker, never by ID.
+
+### Still needs a decision — making it bigger
+
+Savita asked for the logo *bigger*, not just sharper. That is now possible: at
+2× density the master supports a base up to ~872px wide, far past anything the
+header would want. But it is not free — at 400px wide (83px tall) the header
+bar grows from **149px to 162px** on every page. That is a visible structural
+change, so it is left for sign-off rather than shipped with the sharpness fix.
 
 ---
 
