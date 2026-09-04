@@ -44,7 +44,10 @@
 	body.page-id-4654 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.parent-pageid-4654 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.parent-pageid-4476 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4564 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
+	body.parent-pageid-4564 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.page-id-2390 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.page-id-5440 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.page-id-5433 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
 		height: 300px;
 	}
 }
@@ -67,7 +70,10 @@
 	body.page-id-4654 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.parent-pageid-4654 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.parent-pageid-4476 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4564 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
+	body.parent-pageid-4564 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.page-id-2390 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.page-id-5440 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.page-id-5433 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
 		order: -1;
 	}
 }
@@ -91,7 +97,8 @@
 body.page-id-4654 .ld-fancy-heading p,
 body.parent-pageid-4654 .ld-fancy-heading p,
 body.parent-pageid-4476 .ld-fancy-heading p,
-body.parent-pageid-4564 .ld-fancy-heading p {
+body.parent-pageid-4564 .ld-fancy-heading p,
+body.page-id-2390 .ld-fancy-heading p {
 	color: inherit;
 }
 
@@ -206,7 +213,7 @@ body.parent-pageid-4564 .ld-fancy-heading p {
 }
 
 /* ----------------------------------------------------------------------------
-   7. "Planning your bespoke Holiday" - the section titles shout
+   7. Section titles that shout - Planning, Trade EN/DE, About, Privacy, T&Cs
    ----------------------------------------------------------------------------
    "I feel that 'How can we help' is suddenly a very big title!"
 
@@ -231,22 +238,86 @@ body.parent-pageid-4564 .ld-fancy-heading p {
      desktop   H1 40   H2 32   H3 24
      mobile    H1 40   H2 28   H3 22
 
-   That keeps a clear step at every level and answers the same "title sizes need
-   to be uniform" note the client made about the Trade pages. */
-body.page-id-4580 .wpb_column h2 {
+   That keeps a clear step at every level.
+
+   The same scale is applied to the Trade pages in both languages, About, the
+   Privacy Policy and the Terms & Conditions, all of which measured H1 40px
+   against H2 38px - the client asked for the Trade title sizes to "be uniform"
+   in English and German, and for the title sizes on About, Privacy and the
+   T&Cs to be checked. They were all the same fault.
+
+   The scoping is `#content .ld-fancy-heading`, and both halves are load-bearing.
+   A first attempt used `.wpb_column`, which caught two things it should not:
+   the site footer is itself built with WPBakery, so "Our Services" and
+   "Company" jumped from 14px to 22px, and the "E-MAIL US FOR MORE INFORMATION"
+   icon-box heading went from 18px to 24px. `#content` excludes the footer -
+   checked, three of the four `.wpb_column h3` on the About page are in it - and
+   `.ld-fancy-heading` is the component the section headings actually use, which
+   the icon-box is not.
+
+   Two components are listed because these pages do not all build headings the
+   same way. Planning, Trade and About use `.ld-fancy-heading`; the Privacy
+   Policy and the Terms & Conditions write their fourteen and fifteen headings
+   as plain markup inside `.wpb_text_column` text blocks, so a rule naming only
+   the first left those two pages entirely unchanged. */
+body.page-id-4580 #content .ld-fancy-heading h2,
+body.page-id-4580 #content .wpb_text_column h2,
+body.page-id-7263 #content .ld-fancy-heading h2,
+body.page-id-7263 #content .wpb_text_column h2,
+body.page-id-7539 #content .ld-fancy-heading h2,
+body.page-id-7539 #content .wpb_text_column h2,
+body.page-id-2390 #content .ld-fancy-heading h2,
+body.page-id-2390 #content .wpb_text_column h2,
+body.page-id-5440 #content .ld-fancy-heading h2,
+body.page-id-5440 #content .wpb_text_column h2,
+body.page-id-5433 #content .ld-fancy-heading h2,
+body.page-id-5433 #content .wpb_text_column h2 {
 	font-size: 32px;
 }
 
-body.page-id-4580 .wpb_column h3 {
+body.page-id-4580 #content .ld-fancy-heading h3,
+body.page-id-4580 #content .wpb_text_column h3,
+body.page-id-7263 #content .ld-fancy-heading h3,
+body.page-id-7263 #content .wpb_text_column h3,
+body.page-id-7539 #content .ld-fancy-heading h3,
+body.page-id-7539 #content .wpb_text_column h3,
+body.page-id-2390 #content .ld-fancy-heading h3,
+body.page-id-2390 #content .wpb_text_column h3,
+body.page-id-5440 #content .ld-fancy-heading h3,
+body.page-id-5440 #content .wpb_text_column h3,
+body.page-id-5433 #content .ld-fancy-heading h3,
+body.page-id-5433 #content .wpb_text_column h3 {
 	font-size: 24px;
 }
 
 @media (max-width: 767px) {
-	body.page-id-4580 .wpb_column h2 {
+	body.page-id-4580 #content .ld-fancy-heading h2,
+	body.page-id-4580 #content .wpb_text_column h2,
+	body.page-id-7263 #content .ld-fancy-heading h2,
+	body.page-id-7263 #content .wpb_text_column h2,
+	body.page-id-7539 #content .ld-fancy-heading h2,
+	body.page-id-7539 #content .wpb_text_column h2,
+	body.page-id-2390 #content .ld-fancy-heading h2,
+	body.page-id-2390 #content .wpb_text_column h2,
+	body.page-id-5440 #content .ld-fancy-heading h2,
+	body.page-id-5440 #content .wpb_text_column h2,
+	body.page-id-5433 #content .ld-fancy-heading h2,
+	body.page-id-5433 #content .wpb_text_column h2 {
 		font-size: 28px;
 	}
 
-	body.page-id-4580 .wpb_column h3 {
+	body.page-id-4580 #content .ld-fancy-heading h3,
+	body.page-id-4580 #content .wpb_text_column h3,
+	body.page-id-7263 #content .ld-fancy-heading h3,
+	body.page-id-7263 #content .wpb_text_column h3,
+	body.page-id-7539 #content .ld-fancy-heading h3,
+	body.page-id-7539 #content .wpb_text_column h3,
+	body.page-id-2390 #content .ld-fancy-heading h3,
+	body.page-id-2390 #content .wpb_text_column h3,
+	body.page-id-5440 #content .ld-fancy-heading h3,
+	body.page-id-5440 #content .wpb_text_column h3,
+	body.page-id-5433 #content .ld-fancy-heading h3,
+	body.page-id-5433 #content .wpb_text_column h3 {
 		font-size: 22px;
 	}
 }
