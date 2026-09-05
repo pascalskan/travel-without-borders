@@ -99,6 +99,29 @@ Eight pages at 390px (3×) and 1440px (2×), after the purge:
 
 Every measurement matches the local build row for row.
 
+### Follow-up the same day — a regression we shipped and fixed
+
+The first deployment enlarged the sticky logo to 400×83 without noticing that
+**a phone swaps to the DESKTOP sticky mark as soon as you scroll**. Measured on
+live at 320, 360, 390 and 414, the scrolled logo ran from x25 to **x425** — past
+the right edge of every one of them, and **20px over the menu button**. At its
+old 337px it had cleared that button by 43px, so this was ours, not
+pre-existing. Found by checking the scrolled state while reviewing what was
+left, not by the deployment sweep, which only ever looked at the top of the page.
+
+`header-logo.css` now pins `img.logo-sticky` to the same `min(200px, 52vw)` as
+the phone mark. Re-verified on live after a second theme upload and purge:
+
+| viewport | sticky logo | clear of the button |
+|---|---|---|
+| 320 | 166px | 14px |
+| 360 | 187px | 19px |
+| 390 | 200px | 27px |
+| 414 | 200px | 43px |
+
+**Lesson for the next header change: verify the scrolled state as well as the
+resting one, on a phone as well as a desktop.** The two use different images.
+
 
 ## 2026-09-04 — Special Interest, Special Events and the standalone pages (live)
 

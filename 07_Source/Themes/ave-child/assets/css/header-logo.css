@@ -72,7 +72,14 @@
    for. */
 @media screen and ( max-width: 1199px ) {
 
-	#header .navbar-brand img.mobile-logo-default {
+	#header .navbar-brand img.mobile-logo-default,
+	/* .logo-sticky as well, and it is not optional. On a phone the header
+	   swaps to the DESKTOP sticky mark as soon as you scroll, so enlarging
+	   that mark to 400px leaked straight onto the phone: measured on live at
+	   320, 360, 390 and 414, the scrolled logo ran from x25 to x425 - past the
+	   right edge of every one of them, and 20px over the menu button. At its
+	   old 337px it had cleared the button by 43px, so this was ours. */
+	#header .navbar-brand img.logo-sticky {
 		width: min( 200px, 52vw );
 		height: auto;
 		max-width: none;
