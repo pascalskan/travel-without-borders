@@ -81,6 +81,59 @@ kses. Verified before saving that everything outside the replaced block was
 byte-identical: only a 1,066-character static grid became a 2,719-character
 carousel. **Rollback: revision 7436.**
 
+### Card photos switched to each event's own page header
+
+The client asked for the header photo from each event's page rather than images
+chosen separately. Taken from the first row's background on each page, where
+WPBakery carries the attachment id in the URL, and **each id verified against
+its filename by fetching the attachment directly** rather than trusting a media
+search — one of them (5377) had come back mislabelled in a search result.
+
+| card | header photo | id | replaced |
+|---|---|---|---|
+| Augsburg Plärrer Volksfest | `plarrer.jpeg` | 5627 | 5852 |
+| Canstatter Volksfest | `stuttgart-volksfest-wasen-fruchtsaule.jpg` | 7353 | 5745 |
+| Christmas Markets | `lindau-christmas.jpg` | 6172 | 5226 |
+| Cologne Carnival | `cologne-3.jpg` | 5377 | 5378 |
+| Hamburger Dom | `hamburger-dom-main.jpg` | 6073 | 6041 |
+| Oktoberfest | `oktoberfest-small.jpg` | 6084 | 6079 |
+| Rhine in Flames | `rhine-in-flames-main.jpg` | 6086 | 5854 |
+
+All seven moved, including the three that predated this work — they were not
+using their page headers either.
+
+Verified with the strongest check available: masking every `image="…"` value out
+of the section before and after leaves the two **byte-identical**, so nothing
+but the seven ids changed. Content length identical at 24,892 either side.
+**Rollback: revision 7453.**
+
+### The weight problem this exposed
+
+The card box is 275x243, but the theme writes `sizes="(max-width: 1600px)
+100vw, 1600px"` onto these images — it tells the browser the picture fills the
+window, so the browser fetches the **largest** candidate. The four cards visible
+on load pulled **1.1 MB** of full-size originals.
+
+Measured across all seven originals:
+
+| | total |
+|---|---|
+| before this change | **1,509 KB** |
+| after | **1,943 KB** (+434 KB, +29%) |
+
+So this change made it worse, but it did not cause it: the old set already had
+Oktoberfest at 454 KB (2560x2284) and Canstatter at 371 KB. **The fault is the
+`sizes` attribute, not the choice of picture.**
+
+Every one of these attachments has a 300w intermediate already generated, and
+`plarrer` has the theme's own 450x400 card crop. Correcting `sizes` to the real
+card width would let the browser pick those instead — on the order of 1.9 MB
+down to a few hundred KB, with no visual change at all.
+
+**Not done.** `sizes` is an HTML attribute, so it needs a PHP filter rather than
+CSS, and the obvious hooks apply site-wide to every image. That wants its own
+scoping exercise rather than being tacked onto a picture swap.
+
 ### A selector that looked safe and was not
 
 The arrow rule was first written as `.twb-band-grey .carousel-nav
