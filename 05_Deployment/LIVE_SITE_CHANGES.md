@@ -40,6 +40,78 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-05 (late) — Card images stop fetching full-size originals
+
+The card elements asked the theme for the **full** size image, so WordPress
+wrote `sizes="(max-width: 1600px) 100vw, 1600px"` — telling the browser the
+picture fills the window, for a card whose image box is 275px wide.
+
+[`inc/card-image-sizes.php`](../07_Source/Themes/ave-child/inc/card-image-sizes.php)
+corrects both halves, scoped to `ld_content_box` only.
+
+### Getting it wrong first, and what that taught
+
+The obvious fix was `sizes` alone. Deployed and measured, it was **not enough**:
+
+| | before | sizes only |
+|---|---|---|
+| desktop | 5,162 KB / 30 files | 4,481 KB / **37 files** |
+| phone | 2,399 KB / 21 files | 2,399 KB / 21 files |
+
+Bytes fell 13%, requests **rose**, and phones did not move at all. Smush's
+lazyload writes `src` first and `srcset` a moment later, so the browser fetched
+the full-size original for `src` **and** a 1024w candidate once the srcset
+arrived — two requests where there had been one.
+
+The fix is to stop the card asking for `full` in the first place. Resolving it
+to `large` means `src`, `srcset` and `sizes` all describe the same sensibly
+sized picture:
+
+| | before | after |
+|---|---|---|
+| desktop | 5,162 KB | **2,802 KB** (−2,360 KB, −46%) |
+| phone | 2,399 KB | **1,998 KB** (−401 KB, −17%) |
+
+**Had I stopped at the first measurement I would have reported a win while
+leaving the site making more requests than before.**
+
+### Widths, measured not guessed
+
+`sizes` per card style, from the rendered page at 390, 768, 992, 1200, 1440 and
+1920px:
+
+| style | where | widths | `sizes` |
+|---|---|---|---|
+| `s03` | "Wide choice" tiles | 360 / 595 / 617 / 750 | `(max-width: 767px) 92vw, (max-width: 991px) 78vw, 750px` |
+| `s04` | carousel cards | 360 / 353 / 225 / 275 | `(max-width: 767px) 92vw, (max-width: 991px) 46vw, 275px` |
+
+Scoping uses `pre_do_shortcode_tag`, which fires **before** the shortcode runs
+and hands over its attributes — that is what makes the per-style split
+possible. `do_shortcode_tag` lowers the flag after. The blunt hooks
+(`wp_calculate_image_sizes`, `wp_get_attachment_image_attributes`) apply to
+every image on the site, including banners that genuinely do fill the viewport.
+
+The `wp_get_attachment_image_src` filter calls the function it is filtering, so
+it carries a static recursion guard.
+
+### Nothing became blurry
+
+Checked properly: each chosen file's real pixel width against the card's CSS
+width times the device ratio. **Phone at 3x: 0 of 8 short. Desktop at 2x: 12 of
+14 fine.** The two exceptions are limited by their source files, not by this
+change — `bavaria-1.jpg` is 1280px for a 750px tile at 2x, and `cologne-3.jpg`
+is only **450x400**, the smallest source on the page. Both were equally short
+before.
+
+A first attempt at this check used `naturalWidth`, which is meaningless here:
+with `w`-descriptor srcsets the intrinsic width equals the layout width, so
+everything scored 1.0 and 13 images looked "under-resolved". Comparing real
+file widths is the only reading that means anything.
+
+**Worth raising with the client:** the Cologne Carnival header photo is
+450x400. It is the weakest picture on the homepage and cannot be improved
+without a better original.
+
 ## 2026-09-05 (evening) — Homepage carousels
 
 ### Special Interest — arrows made visible

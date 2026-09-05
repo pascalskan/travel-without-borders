@@ -68,6 +68,11 @@ require_once $twb_inc . 'language-switch.php';
 // template in templates/blog/single/default.php calls.
 require_once $twb_inc . 'blog.php';
 
+// Card image sizes - corrects the `sizes` hint on ld_content_box images so the
+// browser stops fetching full-size originals for a 275px card. Independent of
+// everything above; placed last among the content components.
+require_once $twb_inc . 'card-image-sizes.php';
+
 // Outbound partner-link tracking — pushes a named event into the GTM
 // dataLayer defined by cookie-consent.php, so it must load after it.
 require_once $twb_inc . 'outbound-tracking.php';
