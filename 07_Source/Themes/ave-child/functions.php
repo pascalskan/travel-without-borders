@@ -2,6 +2,39 @@
 
 add_action( 'wp_enqueue_scripts', 'liquid_child_theme_style', 99 );
 
+/**
+ * Mark the inner-page families with a class of our own.
+ *
+ * WordPress writes `parent-pageid-N` for the IMMEDIATE parent only, so a town
+ * page carries its region's id and never Destinations'. Scoping the inner-page
+ * CSS on those classes therefore reached the six regions and none of the 53
+ * towns. Walking the ancestor chain holds at any depth.
+ *
+ * `twb-si-page` is separate because one rule - the portrait-photo cap - is
+ * wanted on Special Interest and nowhere else.
+ */
+function twb_inner_page_body_class( $classes ) {
+	if ( ! is_page() ) {
+		return $classes;
+	}
+
+	$id   = get_queried_object_id();
+	$tree = get_post_ancestors( $id );
+	$tree[] = $id;
+
+	if ( array_intersect( $tree, array( 4654, 4476, 4564 ) ) ) {
+		$classes[] = 'twb-inner-page';
+	}
+
+	if ( in_array( 4476, $tree, true ) ) {
+		$classes[] = 'twb-si-page';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'twb_inner_page_body_class' );
+
+
 function liquid_parent_theme_scripts() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 }

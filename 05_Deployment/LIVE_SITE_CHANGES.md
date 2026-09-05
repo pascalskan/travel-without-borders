@@ -40,6 +40,97 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-05 (night) — The 53 town pages, listings, slugs, footer mark
+
+### All 53 destination town pages were never fixed
+
+The inner-page CSS loads if a page's **parent** is Destinations (4654), Special
+Interest (4476) or Special Events (4564). That is true of the six region pages
+and false of every town beneath them: Augsburg's parent is Bavaria, not
+Destinations. Audited on live at 390px across all 59 destination pages, **53
+failed** — every one a town — each with a 120px banner sitting **below** the
+title and a grey intro paragraph, the exact faults the file was written to fix.
+
+Two separate bugs, and fixing the first alone was not enough:
+
+1. **The enqueue** asked `wp_get_post_parent_id()`. Now `get_post_ancestors()`.
+   That got the stylesheet onto the towns — and they still failed, because…
+2. **The selectors** were scoped on WordPress's `parent-pageid-N` body class,
+   which names the immediate parent too. A town carries
+   `parent-pageid-<region>` and never `parent-pageid-4654`.
+
+Both now hang off a class the theme adds itself, `twb-inner-page`, set by
+walking the ancestor chain. `twb-si-page` is kept separate because rule 5 (the
+portrait-photo cap) is wanted on Special Interest and nowhere else — collapsing
+it with the rest would have applied it to all 59 destination pages.
+
+**Re-audited: 59 of 59 pass.** Banner 300px, above the title, no grey
+paragraphs, no comments block, no horizontal scroll.
+
+### Listings put in order, and two page titles trimmed
+
+| | before | after |
+|---|---|---|
+| Special Interest page | 8 cards, Burlesque before British, "The Eagle's Nest" | 8, alphabetical, "Eagle's Nest" |
+| Special Events page | **6 cards — Oktoberfest missing**, Hamburger Dom before Cologne | **7**, alphabetical |
+| Homepage SI carousel | 5 cards | **8**, alphabetical |
+
+Pages 4501 and 5535 renamed to **Colditz Castle** and **Eagle's Nest** — the
+definite article is what pushed them out of alphabetical order. Renaming a
+title does not touch the slug, so no URL moved.
+
+Every content edit went through REST against live's own copy and saved
+byte-exact, with prefix and suffix verified byte-identical first. On the
+Special Interest page the character multiset is unchanged once "The " is put
+back, which proves it was a reorder and one deletion and nothing else.
+Rollbacks: homepage **7456**, Special Events **7317**, Special Interest — see
+its revision list.
+
+### Slugs
+
+Redirection was already monitoring post and page slug changes, so the 301s were
+created for us. Verified each one:
+
+| old | new |
+|---|---|
+| `/services/` | `/tours/` |
+| `/special-interest-holidays/augsburg-football-tour/` | `…/football-camps/` |
+| `/how-a-bespoke-tour-operator-can-give-you-the-trip-of-a-lifetime/` | `/why-use-a-bespoke-travel-planner-for-your-germany-holiday/` |
+| `/destinations/holidays-to-the-rhine-valley/` | `…/holidays-to-the-rhine-mosel-and-eifel/` |
+| `/destinations/germany-city-holidays/` | `…/major-cities-in-germany/` |
+
+**Redirection's monitor does not follow children.** The two region renames moved
+21 town pages with them and every old town URL returned **404** until two regex
+redirects were added by hand:
+
+    ^/destinations/holidays-to-the-rhine-valley/(.+)$  ->  …/holidays-to-the-rhine-mosel-and-eifel/$1
+    ^/destinations/germany-city-holidays/(.+)$         ->  …/major-cities-in-germany/$1
+
+Spot-checked Trier, Cochem, Berlin and Munich: all 301. **Any future slug change
+on a page with children needs this same manual step.**
+
+Held back deliberately: `/tailor-made-holidays-to-germany/`, whose slug is
+keyword-rich and well established (renaming it to match a nav label trades
+search value for tidiness), and the two blog slugs that are merely shorter than
+their titles — `romantic-road-germany` especially, which is the post the four
+customer enquiries arrived on.
+
+### Blog title, footer mark
+
+Post titles were **38px on every screen** — the largest type on the site once
+page titles came down to 34/26. Now **30px desktop, 24px on phones**.
+
+The footer carried `logo-white-160px.png`, the same 1x file the header used
+before this work. Now the 400px master-derived file, pinned to 160px so the
+footer looks identical with 400 real pixels behind it.
+
+**That save failed silently the first time** and it is worth recording how:
+after submitting the form I read the page's own textarea, saw the new value and
+believed it. The textarea still held what I had typed — the submit had not gone
+through. A fresh load an hour later showed the old attachment. **Read a fresh
+load, never the form you just edited.** Same lesson as the Redux "Settings
+Saved!" notice on 2026-09-05.
+
 ## 2026-09-05 (late) — Card images stop fetching full-size originals
 
 The card elements asked the theme for the **full** size image, so WordPress

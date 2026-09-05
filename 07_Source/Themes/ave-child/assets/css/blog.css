@@ -67,6 +67,25 @@ body.blog-single-image-left:not(.has-sidebar) .blog-single-details {
 	margin-bottom: 0.6em;
 }
 
+/* The post title was 38px on every screen - the largest type anywhere on the
+   site once the page titles came down to 34/26 and the section headings to
+   32/28. It read as shouting next to everything else.
+   
+   30px desktop, 24px on phones. That keeps it plainly the title of the page,
+   sitting just under the 34px used by the page titles it sits alongside,
+   rather than above them. Line-height comes down with it - the inherited
+   53.2px was set for 38px type and leaves a 24px title looking loose. */
+.single-post .blog-single-title {
+	font-size: 30px;
+	line-height: 1.25;
+}
+
+@media screen and ( max-width: 767px ) {
+	.single-post .blog-single-title {
+		font-size: 24px;
+	}
+}
+
 .twb-post-meta {
 	display: flex;
 	flex-wrap: wrap;

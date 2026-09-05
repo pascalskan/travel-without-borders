@@ -8,9 +8,18 @@
 
    Scoped through the body classes WordPress provides:
 
-     page-id-4654 / parent-pageid-4654   Germany Holiday Destinations + regions
-     parent-pageid-4476                  the eight Special Interest pages
-     parent-pageid-4564                  the six Special Events pages
+     .twb-inner-page   Destinations, its six regions and ALL 53 towns beneath
+                       them, plus the eight Special Interest and six Special
+                       Events pages. Added by twb_inner_page_body_class() in
+                       functions.php, which walks the ancestor chain.
+     .twb-si-page      Special Interest only - rule 5 wants nothing else.
+
+   This used to be scoped with WordPress's own page-id-4654 / parent-pageid-*
+   classes. That was wrong in a way that hid for weeks: parent-pageid names the
+   IMMEDIATE parent, so a town page carries parent-pageid-<region>, never
+   parent-pageid-4654. Every rule below reached the six regions and none of the
+   53 towns - they kept a 120px banner sitting below the title with a grey
+   intro paragraph, which is exactly what this file was written to fix.
 
    The Special Interest parent page (4476) is deliberately excluded - the client
    said that page reads fine. The city pages under the regions are excluded too:
@@ -41,10 +50,7 @@
    Royal Heritage, Wine and Dine, Motorcar and Football, and nothing on the city
    pages. */
 @media (max-width: 767px) {
-	body.page-id-4654 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4654 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4476 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4564 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.twb-inner-page .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.page-id-2390 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.page-id-5440 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.page-id-5433 .wpb_row:first-of-type .wpb_column .wpb_wrapper[class*="vc_custom_"]:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
@@ -67,10 +73,7 @@
    on the region pages where it is already first. Same identification as above:
    the column in the first row that carries a background and holds no text. */
 @media (max-width: 767px) {
-	body.page-id-4654 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4654 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4476 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
-	body.parent-pageid-4564 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
+	body.twb-inner-page .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.page-id-2390 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.page-id-5440 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)),
 	body.page-id-5433 .wpb_row:first-of-type .row.ld-row > .wpb_column:not(:has(p, h1, h2, h3, h4, img, a, .ld-fancy-heading)) {
@@ -94,10 +97,7 @@
    Every page in both families carried exactly one of these. Making paragraphs
    inherit the colour their heading block already declares fixes it wherever the
    pattern occurs, rather than recolouring one paragraph on one page. */
-body.page-id-4654 .ld-fancy-heading p,
-body.parent-pageid-4654 .ld-fancy-heading p,
-body.parent-pageid-4476 .ld-fancy-heading p,
-body.parent-pageid-4564 .ld-fancy-heading p,
+body.twb-inner-page .ld-fancy-heading p,
 body.page-id-2390 .ld-fancy-heading p {
 	color: inherit;
 }
@@ -141,10 +141,7 @@ body.page-id-2390 .ld-fancy-heading p {
    are written first so the rule does not reach them - the client did not raise
    the pictures on that page, only its header. */
 @media (max-width: 767px) {
-	body.page-id-4654 .row.ld-row > .wpb_column:last-child:has(img),
-	body.parent-pageid-4654 .row.ld-row > .wpb_column:last-child:has(img),
-	body.parent-pageid-4564 .row.ld-row > .wpb_column:last-child:has(img),
-	body.parent-pageid-4476 .row.ld-row > .wpb_column:last-child:has(img) {
+	body.twb-inner-page .row.ld-row > .wpb_column:last-child:has(img) {
 		order: -1;
 	}
 }
@@ -178,7 +175,10 @@ body.page-id-2390 .ld-fancy-heading p {
 
    Landscape images are untouched: at 240px tall they never reach the cap. */
 @media (max-width: 767px) {
-	body.parent-pageid-4476 .liquid-img-group-img-container img {
+	/* Special Interest only. This rule caps portrait photographs, and the
+	   destination pages do not want it - their image groups are sized for a
+	   different layout. Kept on its own class for that reason. */
+	body.twb-si-page .liquid-img-group-img-container img {
 		max-height: 360px;
 		width: auto;
 		margin-left: auto;

@@ -86,3 +86,24 @@
 	}
 
 }
+
+/* ----------------------------------------------------------------------------
+   The footer mark.
+
+   The footer carried `logo-white-160px.png` at its own 160x33 - the same
+   1x file the header used before this work, and just as soft on any modern
+   screen. It now points at the 400px master-derived file.
+
+   The width is pinned because the swap would otherwise resize it: the
+   shortcode asked for `medium`, which on the old attachment was 160px wide and
+   on the new one is 300px, and `full` is 400px. Holding it at 160px keeps the
+   footer looking exactly as it did while giving the browser 400 real pixels to
+   paint it with - comfortably sharp at 2x, where 320 are wanted.
+   ---------------------------------------------------------------------------- */
+
+.main-footer .vc_single_image-img,
+footer .vc_single_image-img {
+	width: 160px;
+	height: auto;
+	max-width: 100%;
+}
