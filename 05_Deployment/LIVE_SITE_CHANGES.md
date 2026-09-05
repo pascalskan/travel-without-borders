@@ -40,6 +40,66 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-05 — Header logo and strapline
+
+Deployed through wp-admin. Four PNGs to the media library, six theme options,
+one child-theme upload, one cache purge.
+
+### What went live
+
+| | before | after |
+|---|---|---|
+| desktop logo | 337×70, no retina source | **400×83**, `logo-black-800px.png` at 2× |
+| sticky logo | 337×70, no retina source | **400×83**, `logo-white-800px.png` at 2× |
+| phone logo | 169×35 from a 337px file | **200×42** (fluid), `logo-white-800px.png` |
+| strapline, phone | 13.5px, one line | **17.9px**, two balanced lines |
+| strapline, 1200–1365 | 18px | **19px** |
+| strapline, 1366+ | 18px | **21px** |
+| header, phone | 166px | **166px** — unchanged |
+| menu column padding | 5% a side (~82px at 1440) | **15px**, matching its neighbours |
+
+Live attachment ids: **7443** black-400, **7444** white-400, **7445** black-800,
+**7446** white-800. They differ from local (7604–7607) — pick files in the media
+picker, never by id.
+
+Theme options changed: `header-logo`, `header-logo-retina`,
+`header-sticky-logo`, `header-sticky-logo-retina`, `menu-logo`,
+`menu-logo-retina`. Their previous values are recorded at
+[`02_Assets/Logos/master/rollback-logo-options-LIVE.json`](../02_Assets/Logos/master/rollback-logo-options-LIVE.json).
+
+### Two things that would have wasted an hour next time
+
+**Redux reported "Settings Saved!" and saved nothing.** The theme options panel
+accepted the six new values, showed its success notice, and a reload brought
+back the old ones — twice. Its own save path drops values written into the
+fields rather than picked through its media modal. Submitting the form the
+ordinary way instead (it is a standard settings form posting to `options.php`
+with `option_page=liquid_one_opt_group`) saved all six, confirmed by reload.
+**Never trust that notice — reload and re-read the fields.**
+
+**The theme upload needed the submit driven, not clicked.** The uploader's
+`Install now` did nothing through several ordinary clicks; posting the form's
+own `FormData` to `update.php?action=upload-theme` went straight through to
+"Destination folder already exists", then `Replace installed with uploaded`.
+This is separate from the truncated-upload problem recorded on 2026-09-04 — the
+file reached the input intact at 104,921 bytes both times.
+
+### Verified on live
+
+Eight pages at 390px (3×) and 1440px (2×), after the purge:
+
+- Phone: logo 200×42 fetching `logo-white-800px.png`, strapline 17.94px over two
+  lines, header 166px, **no horizontal scroll**.
+- Desktop: menu column padding 15px, logo 400×83, strapline 21px, **only
+  "Trade" clipped — the same single item as before this work**, call-to-action
+  button at 1511px against 1575px before.
+- Document scroll width 1696px against **1761px before**: the pre-existing menu
+  overflow is 65px less bad despite a logo 63px wider.
+- **Zero page errors, zero failed requests.**
+
+Every measurement matches the local build row for row.
+
+
 ## 2026-09-04 — Special Interest, Special Events and the standalone pages (live)
 
 **Made by:** Claude, child theme via wp-admin plus two content edits over the

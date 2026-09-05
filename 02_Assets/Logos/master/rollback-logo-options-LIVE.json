@@ -1,0 +1,25 @@
+{
+  "_note": "Live theme option values as they stood immediately before the 2026-09-05 logo deployment. Live attachment ids differ from local: the new files are 7443 black-400, 7444 white-400, 7445 black-800, 7446 white-800.",
+  "header-logo": {
+    "url": "https://travelwithoutborders.co.uk/wp-content/uploads/2020/01/logo-black-337px.png",
+    "id": "4360", "width": "337", "height": "70",
+    "thumbnail": "https://travelwithoutborders.co.uk/wp-content/uploads/2020/01/logo-black-337px-150x70.png"
+  },
+  "header-logo-retina": { "url": "", "id": "", "width": "", "height": "", "thumbnail": "" },
+  "header-sticky-logo": {
+    "url": "https://travelwithoutborders.co.uk/wp-content/uploads/2020/01/logo-white-337px.png",
+    "id": "4284", "width": "337", "height": "70",
+    "thumbnail": "https://travelwithoutborders.co.uk/wp-content/uploads/2020/01/logo-white-337px-150x70.png"
+  },
+  "header-sticky-logo-retina": { "url": "", "id": "", "width": "", "height": "", "thumbnail": "" },
+  "menu-logo": {
+    "url": "https://travelwithoutborders.co.uk/wp-content/uploads/2020/01/logo-white-160px.png",
+    "id": "4298", "width": "160", "height": "33",
+    "thumbnail": "https://travelwithoutborders.co.uk/wp-content/uploads/2020/01/logo-white-160px-150x33.png"
+  },
+  "menu-logo-retina": {
+    "url": "https://travelwithoutborders.co.uk/wp-content/uploads/2020/01/logo-white-337px.png",
+    "id": "4284", "width": "337", "height": "70",
+    "thumbnail": "https://travelwithoutborders.co.uk/wp-content/uploads/2020/01/logo-white-337px-150x70.png"
+  }
+}

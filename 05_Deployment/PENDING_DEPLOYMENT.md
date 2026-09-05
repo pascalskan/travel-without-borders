@@ -284,7 +284,7 @@ only rearranged.
 
 ---
 
-## 10. Header logo — the retina fix — September 2026
+## 10. Header logo — the retina fix — September 2026 — **DELIVERED 2026-09-05**
 
 ### Why the logo looked soft
 
@@ -356,9 +356,10 @@ Measured in Chromium at 1440×900, `device_scale_factor=2`, live against local:
 Same box, same header height, twice the pixels. This is a pure sharpness
 change with no layout risk.
 
-### To deploy
+### Deployed 2026-09-05
 
-Nothing to push — no code, no database transfer. In wp-admin on live:
+Done — see [Live Site Changes](LIVE_SITE_CHANGES.md) for what went live, the
+live attachment ids, and the two wp-admin traps hit on the way. The steps were:
 
 1. Media → Add New → upload `02_Assets/Logos/logo-black-674px.png` and
    `logo-white-674px.png` (or the 400/800 pair if the enlargement is approved).
