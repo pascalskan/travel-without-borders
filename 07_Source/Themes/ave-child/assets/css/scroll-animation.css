@@ -1,0 +1,49 @@
+/**
+ * Turn off the theme's scroll-triggered entrance animation.
+ *
+ * The client asked for the photos to stop moving as you scroll. Chasing it
+ * turned up something worse than the movement.
+ *
+ * The theme marks containers with `data-custom-animations` (and one image group
+ * with `data-reveal`), then its JS writes inline `opacity: 0` and
+ * `transform: translateY(30px)` onto the headings, text columns and image
+ * groups inside them, and animates those back to zero as each scrolls into
+ * view. When the animation does not fire - a fast scroll, a deep link that
+ * lands past the trigger point - the element is simply left at opacity 0 and
+ * the visitor never sees it.
+ *
+ * Surveyed across fifteen live pages, fifteen elements were stuck that way.
+ * Worst is Bespoke Holiday Planning, where the whole "Planning a Group Visit?"
+ * heading and its paragraph, an intro paragraph and BOTH photos (map.jpg and
+ * germany.jpg) stayed invisible after scrolling the entire page. Bavaria loses
+ * the paragraph beginning "In the German Alps to the south are famous
+ * resorts...". That is live copy nobody can read.
+ *
+ * Every final transform on these elements is the identity matrix - checked on
+ * all fifteen pages, the only non-identity values were the animation's own
+ * translateY(30px) and two frames caught mid-flight - so pinning them to
+ * `transform: none` cannot disturb any layout that relies on a transform.
+ *
+ * Pre-flighted by injecting exactly these rules on live before writing them:
+ * every stuck element was released, and the only movement anywhere was two
+ * headings rising by precisely 30px, which is the animation's own offset going
+ * away.
+ *
+ * This deliberately does not strip the data attributes. The theme's JS is free
+ * to keep writing its inline styles; these rules simply outrank them, so the
+ * page renders its finished state immediately and nothing moves.
+ */
+
+.wpb_text_column,
+.ld-fancy-heading,
+.liquid-img-group-single,
+.liquid-img-container-inner figure,
+.block-revealer__content {
+	opacity: 1 !important;
+	transform: none !important;
+}
+
+/* The wipe panel that sweeps across the "Germany" image group on the homepage. */
+.block-revealer__element {
+	display: none !important;
+}

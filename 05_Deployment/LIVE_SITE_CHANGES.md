@@ -40,6 +40,81 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-05 (later) — Self-pingbacks removed, scroll animation switched off
+
+### The "comments are closed" sections — audited site-wide
+
+Fetched all **97 published pages and posts** and searched every one for a
+comment block or the words "comments are closed". **None render on any of
+them** — the `comments_open` / `get_comments_number` / `pings_open` filters in
+the child theme already covered the whole site, not just the two pages the
+client had reached.
+
+The rows behind them were still in the database, though, hidden rather than
+gone. There were **11 approved self-pingbacks** — the site's own blog posts
+linking to its own pages — sitting on Hamburg, Bavaria (×4), The Rhine Mosel
+and Eifel, Bespoke Holiday Planning, Destinations, Wine and Dine, Würzburg and
+The Colditz Castle Experience. All 11 moved to the Bin (recoverable, not
+permanently deleted).
+
+**Left alone deliberately: four pending comments that are real customer
+enquiries**, all on the blog post "What makes The Romantic Road in Germany a
+'Must See'?" — see the note at the end of this entry.
+
+### The scroll animation — and the content it was hiding
+
+The client asked for the photos to stop moving as you scroll. The cause is the
+theme's `data-custom-animations` (plus one `data-reveal` image group on the
+homepage): its JS writes inline `opacity: 0` and `transform: translateY(30px)`
+onto headings, text columns and image groups, then animates them back as each
+scrolls into view.
+
+**When that animation does not fire, the element stays invisible.** Surveyed
+across fifteen live pages, **fifteen elements were stuck at opacity 0 after
+scrolling the entire page**:
+
+| page | what the visitor never saw |
+|---|---|
+| Bespoke Holiday Planning | the **"Planning a Group Visit?"** heading and its paragraph, an intro paragraph, and **both photos** (`map.jpg`, `germany.jpg`) |
+| Bavaria | the paragraph beginning "In the German Alps to the south are famous resorts…" |
+| others | 9 text columns and 4 headings frozen mid-animation |
+
+That is published copy that could not be read, and it is the more serious half
+of this fix.
+
+[`assets/css/scroll-animation.css`](../07_Source/Themes/ave-child/assets/css/scroll-animation.css)
+pins those elements to `opacity: 1; transform: none`. It does **not** strip the
+data attributes — the theme's JS can keep writing its inline styles, the rules
+simply outrank them, so the finished state renders immediately and nothing
+moves.
+
+Safe because every final transform on those elements is the identity matrix:
+checked across all fifteen pages, the only non-identity values found were the
+animation's own `translateY(30px)` and two frames caught mid-flight.
+
+Pre-flighted by injecting the exact rules on live before writing them. Every
+stuck element was released, and the only movement anywhere was two headings
+rising by precisely 30px — the animation's own offset going away.
+
+### Verified on live
+
+Same fifteen-page survey after deployment and purge: **222 elements, every one
+at `transform: none`, non-identity count 0** — from fifteen stuck before. Seven
+pages re-checked for invisible content: **zero on every one**.
+
+Worth recording: the first verification run still showed the old numbers
+because WP Rocket was serving the pre-purge page. A cache-busting query string
+gave the true result. **Always re-verify with the cache bypassed.**
+
+### For the client — four unanswered enquiries
+
+Four pending comments have been sitting unapproved on "What makes The Romantic
+Road in Germany a 'Must See'?", each with a name and an email address. They are
+holiday enquiries, not spam — one asks for a Munich-to-Cologne itinerary, one
+for campervan suggestions along the Romantic Road. They have never been
+approved or replied to. **Left untouched: approving them would publish them,
+and replying is the client's call.** Comments → Pending in wp-admin.
+
 ## 2026-09-05 — Header logo and strapline
 
 Deployed through wp-admin. Four PNGs to the media library, six theme options,

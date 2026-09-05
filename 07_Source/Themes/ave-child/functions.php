@@ -40,6 +40,19 @@ function liquid_child_theme_style(){
 		$hlogo_ver
 	);
 
+	// Scroll-triggered entrance animation, switched off. Site-wide: the theme
+	// applies it on almost every page, and where it fails to fire it leaves
+	// headings, copy and photos permanently invisible. See the file for the
+	// survey and the pre-flight.
+	$anim_path = get_stylesheet_directory() . '/assets/css/scroll-animation.css';
+	$anim_ver  = file_exists( $anim_path ) ? filemtime( $anim_path ) : false;
+	wp_enqueue_style(
+		'twb-scroll-animation',
+		get_stylesheet_directory_uri() . '/assets/css/scroll-animation.css',
+		array( 'child-one-style' ),
+		$anim_ver
+	);
+
 	// Hero band link colours. Site-wide because every inner page carries the
 	// same dark hero row. Kept in its own file rather than style.css for the
 	// same reason as the strapline above.
