@@ -74,11 +74,20 @@ function liquid_child_theme_style(){
 	// row pattern and the same faults. The body classes WordPress adds do the
 	// scoping; the Special Interest and Special Events parent pages are not
 	// included, the client said both read fine.
-	$twb_parent = wp_get_post_parent_id( get_queried_object_id() );
+	// ANCESTORS, not the immediate parent. This originally asked
+	// wp_get_post_parent_id() whether the page sat directly under Destinations
+	// (4654), Special Interest (4476) or Special Events (4564). That is true of
+	// the six region pages, and false of every town beneath them: Augsburg's
+	// parent is Bavaria, not Destinations. So the stylesheet reached the six
+	// regions and none of the 53 towns, which kept their 120px banner sitting
+	// below the title with a grey intro paragraph - the exact faults this file
+	// exists to fix. Audited on live at 390px: 53 of 59 destination pages
+	// affected, every one of them a town.
+	$twb_tree = get_post_ancestors( get_queried_object_id() );
 	// The Trade pages carry different ids on local (7263, 7539) and production
 	// (7338, 7339); both are listed so one build works in either install.
 	if ( is_page( array( 4654, 4580, 7263, 7539, 7338, 7339, 2390, 5440, 5433 ) )
-		|| in_array( $twb_parent, array( 4654, 4476, 4564 ), true ) ) {
+		|| array_intersect( $twb_tree, array( 4654, 4476, 4564 ) ) ) {
 		$ip_path = get_stylesheet_directory() . '/assets/css/inner-pages.css';
 		$ip_ver  = file_exists( $ip_path ) ? filemtime( $ip_path ) : false;
 		wp_enqueue_style(
