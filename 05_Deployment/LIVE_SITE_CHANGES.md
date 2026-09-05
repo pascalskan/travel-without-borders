@@ -40,6 +40,70 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-05 (evening) — Homepage carousels
+
+### Special Interest — arrows made visible
+
+They were never missing. The carousel is configured `prevnextbuttons="yes"`,
+but the shortcode asks for a **white** button with a near-black arrow at
+**40x28px** and a 12%-opacity shadow — on the light grey band that reads as
+nothing. Now brand green with a white arrow at **48x48** (44x44 on phones).
+
+### Special Events — rebuilt as the same carousel, with every event
+
+It was a static `vc_row_inner` holding **three** `ld_content_box` cards. It is
+now the Special Interest `ld_carousel` — the opening tag copied verbatim from
+that section so the two behave identically — holding **seven**:
+
+| card | image | links to |
+|---|---|---|
+| Augsburg Plärrer Volksfest | 5852 | `/special-events/augsburg-plarrer-volksfest/` |
+| Canstatter Volksfest | 5745 | `/special-events/canstatter-volksfest/` |
+| Christmas Markets | 5226 | `/special-interest-holidays/christmas-markets/` |
+| Cologne Carnival | 5378 | `/special-events/cologne-carnival/` |
+| Hamburger Dom | 6041 | `/special-events/hamburger-dom/` |
+| Oktoberfest | 6079 | `/special-events/oktoberfest/` |
+| Rhine in Flames | 5854 | `/special-events/rhine-in-flames/` |
+
+Four of the seven are new, so four one-line descriptions had to be written:
+"Stuttgart's Great Autumn Festival", "Germany's Biggest Street Carnival",
+"Northern Germany's Largest Funfair", "Munich's World-Famous Beer Festival".
+**These are ours, not the client's — worth a look before they settle.**
+
+**Christmas Markets is the odd one out**: it is presented as a Special Event but
+lives at `/special-interest-holidays/christmas-markets/` and is a child of
+Special Interest. Kept at its real URL rather than quietly moved — see the slug
+audit below.
+
+Applied to live's own content through the REST API and **saved byte-exact**
+(24,892 characters in, 24,892 out, `raw === sent`), so nothing was mangled by
+kses. Verified before saving that everything outside the replaced block was
+byte-identical: only a 1,066-character static grid became a 2,719-character
+carousel. **Rollback: revision 7436.**
+
+### A selector that looked safe and was not
+
+The arrow rule was first written as `.twb-band-grey .carousel-nav
+.flickity-prev-next-button` and checked — 2 matches, Special Interest only.
+That check was luck. **The homepage only has all eight arrow buttons in the DOM
+once every carousel row has been scrolled into view**; checking after scrolling
+to one section undercounts and makes any selector look tighter than it is.
+Re-checked after scrolling every row: the testimonials arrows sit outside
+`.carousel-nav`, so the original was in fact safe — but it would not have been
+by design.
+
+The rule is now `body.home .wpb_row[class*="twb-band-"]:not(.twb-testimonials-row)`,
+matching **4** — Special Interest and Special Events — deliberately, so the new
+carousel gets the same treatment. It needs it more: it sits on the *white* band,
+where a white button is invisible outright.
+
+### Verified on live, desktop and phone
+
+Eight arrow buttons on the page: hero 2 and testimonials 2 untouched at white;
+Special Interest 2 and Special Events 2 at 48x48 (44x44 mobile) in
+`rgb(30, 86, 48)`. Special Events shows all seven cards with the seven correct
+links at both widths.
+
 ## 2026-09-05 (later) — Self-pingbacks removed, scroll animation switched off
 
 ### The "comments are closed" sections — audited site-wide

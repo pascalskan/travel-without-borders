@@ -260,3 +260,55 @@ body.home .twb-hero {
 		--twb-gutter: 8px;
 	}
 }
+
+/* ----------------------------------------------------------------------------
+   Special Interest and Special Events carousels - visible arrows.
+
+   Both carousels are configured with `prevnextbuttons="yes"`, so the arrows
+   were always there; they were just invisible. The shortcode asks for a WHITE
+   button with a near-black arrow (`nav_bg_color: rgb(255,255,255)`,
+   `nav_arrow_color: rgb(24,27,49)`) at 40x28px. Special Interest sits on the
+   light grey band and Special Events on the white one, so a white button
+   carrying only a 12%-opacity shadow read as nothing at all - worse on the
+   white band than the grey.
+
+   Brand green with a white arrow, and bigger: 48x48 on desktop, 44x44 on
+   phones, hover going to --twb-green-dark.
+
+   Scoped by band class rather than by the vc_custom_* class the rows also
+   carry, because WPBakery regenerates those on every save. The homepage has
+   EIGHT of these buttons once every carousel has initialised - two in the hero,
+   two here, two in Special Events, two in testimonials - and the count only
+   reaches eight after each row has been scrolled into view, so any check of
+   this selector has to scroll the whole page first or it will undercount and
+   look safer than it is. Verified that way: this selector matches 4, in
+   Special Interest and Special Events only, leaving the hero and testimonials
+   arrows exactly as they were.
+   ---------------------------------------------------------------------------- */
+
+body.home .wpb_row[class*="twb-band-"]:not(.twb-testimonials-row) .carousel-nav .flickity-prev-next-button {
+	width: 48px;
+	height: 48px;
+	border-radius: 4px;
+	background-color: var(--twb-green, #1e5630);
+	color: var(--twb-white, #ffffff);
+	box-shadow: 0 4px 14px rgba(0, 0, 0, .28);
+}
+
+body.home .wpb_row[class*="twb-band-"]:not(.twb-testimonials-row) .carousel-nav .flickity-prev-next-button:hover,
+body.home .wpb_row[class*="twb-band-"]:not(.twb-testimonials-row) .carousel-nav .flickity-prev-next-button:focus {
+	background-color: var(--twb-green-dark, #16401f);
+	color: var(--twb-white, #ffffff);
+}
+
+/* The arrow glyph is an inline SVG; it follows `color` only via currentColor. */
+body.home .wpb_row[class*="twb-band-"]:not(.twb-testimonials-row) .carousel-nav .flickity-prev-next-button .flickity-button-icon {
+	fill: currentColor;
+}
+
+@media screen and ( max-width: 991px ) {
+	body.home .wpb_row[class*="twb-band-"]:not(.twb-testimonials-row) .carousel-nav .flickity-prev-next-button {
+		width: 44px;
+		height: 44px;
+	}
+}
