@@ -68,8 +68,18 @@
 	visibility: visible !important;
 }
 
+/* The column too. On the region pages "Wide choice of destinations" was still
+   invisible on a phone after the wrapper was covered, because there the
+   animation is applied one level higher again - to `.wpb_column` itself, at
+   opacity 0.
+   
+   Safe to force: a column that is meant to be hidden uses WPBakery's
+   `vc_hidden-*` classes, which work through `display`, and nothing here
+   touches display. */
 .wpb_wrapper,
-.wpb_wrapper-inner {
+.wpb_wrapper-inner,
+.wpb_column,
+.vc_column-inner {
 	opacity: 1 !important;
 }
 
