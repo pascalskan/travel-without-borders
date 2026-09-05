@@ -40,6 +40,75 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-06 — What looked like missing mobile content was the animation again
+
+### The client's report, and what it actually was
+
+"Wine & Dine seemed lacking in photos — one photo on mobile where the desktop
+has four." And on Trade, whole blocks apparently absent on a phone.
+
+**Neither was a mobile/desktop content difference.** Both were the scroll
+animation, in two places the earlier fix did not reach:
+
+1. **The container.** The animation hides `div.wpb_wrapper` at
+   `visibility: hidden; opacity: 0`. The earlier rules pinned opacity on the
+   *children*, which does nothing for that — and **`visibility` is inherited**,
+   so every heading inside a container that never got revealed stayed invisible
+   however visible its own styles said it was.
+2. **The `<img>` itself**, one level below the `figure` the old rules reached.
+   On Wine & Dine the plate-of-food photograph sat at **`opacity: 1e-08`** on a
+   phone. Not zero — so nothing looking for `display: none` would call it
+   hidden — but invisible all the same.
+
+Measured after scrolling each page in full, before the fix:
+
+| | desktop | mobile |
+|---|---|---|
+| Trade EN | 1 heading lost | **5 lost** |
+| Trade DE | 1 | **5** |
+
+The five: Professional Services, UK Destination Representation, Tourism
+Projects, Business Events & Conference Support, Who We Support.
+
+Pre-flighted by injection before writing anything: 5 hidden goes to 0 on both
+Trade pages, and **not a single heading moves position**. Verified after
+deployment across 40 pages at two viewports.
+
+### Trade heading hierarchy
+
+The client: "Professional Services should be the main title and each subtitle
+under it should all be the same size. Nothing is more important than the other
+service — right until you get to 'Could TWB support your organisation?' Even
+'Who we support' should be the same subtitle size."
+
+Five headings were `h2` and four `h3`, so the services were split across two
+sizes. All nine services are now `h3`; `Professional Services` and the closing
+`Could Travel without Borders Support Your Organisation?` stay `h2`.
+
+| | desktop | mobile |
+|---|---|---|
+| page title | 40px | 40px |
+| Professional Services | 32px | 28px |
+| all nine services | **24px** | **22px** |
+| Could TWB support… | 32px | 28px |
+
+Applied identically to the English (7338) and German (7339) pages. Verified as
+a pure tag change: masking `tag="h2|h3"` out of the content leaves the two
+byte-identical, and the length is unchanged.
+
+### Footer
+
+Copyright year **2020 → 2026**. The mark is the 400px file at 160px.
+
+### Still open, and deliberately not touched
+
+Roughly thirty destination pages carry an **"Additional Information" column
+hidden at every breakpoint** — `vc_hidden-lg vc_hidden-md vc_hidden-sm
+vc_hidden-xs` on the same column. It is not a duplicate shown elsewhere; there
+is exactly one instance and it is visible nowhere. That is either deliberate or
+an old mistake, and it is content the client may want back, so it is being
+raised rather than silently unhidden.
+
 ## 2026-09-05 (night) — The 53 town pages, listings, slugs, footer mark
 
 ### All 53 destination town pages were never fixed
