@@ -481,6 +481,94 @@ would close the gap entirely at 1440 (last item at 1442, a 2px overrun) and cut
 and spacing and is **not** recommended without the client seeing it.
 
 
+### The phone — a separate problem, fixed 2026-09-05
+
+None of the desktop work reached a phone: the mobile header draws its own image
+from the theme's `menu-logo` options and the padding rule is behind a 992px
+breakpoint. Measured live against local before this change, 390/360/414px at
+3×, the two were identical.
+
+Two faults, both worse than the desktop equivalents:
+
+- **Size.** The mark drew at 169×35 on a 390px screen.
+- **Sharpness.** The phone offered a **337px** file as its 2× source, so a 3×
+  screen had **336 real pixels** to paint a box wanting **506**.
+
+`menu-logo` and `menu-logo-retina` now point at the 400/800 white pair. The
+width in [`header-logo.css`](../07_Source/Themes/ave-child/assets/css/header-logo.css)
+is what stops the 800px file setting the layout — a file declared `2x` has an
+intrinsic width of 400px, which would render the logo twice the size wanted.
+Pinning it means the browser still fetches the 800px file and paints it into a
+200px box: **800 real pixels where 600 are wanted**, sharp with room to spare.
+
+The width is fluid because a flat 200px **overlaps the menu button on a 320px
+phone by 20px**. `min(200px, 52vw)` clears it everywhere:
+
+| | 320 | 360 | 375 | 390 | 414 | 430 |
+|---|---|---|---|---|---|---|
+| logo width | 166 | 187 | 195 | 200 | 200 | 200 |
+| clear of the button | 14 | 19 | 22 | 27 | 43 | 53 |
+
+The breakpoint is 1199px, not 991px: the theme keeps the phone header up to
+1199, and stopping at 991 left the mark rendering at the 800px file's own
+intrinsic 400px between 992 and 1199 — a jump from 169px that nobody asked for.
+
+### The strapline — reversing an earlier decision on purpose
+
+The first version of `header-strapline.css` fought to keep the strapline on
+**one line**, because a second line grew the header from 164px to 193px. That
+was right against the layout as it stood, but it capped the text at about
+3.6vw — 13.5px on a 390px phone — so "larger" and "one line" could not both be
+had. Measured ceilings on one line: 11.3px at 320, 14.1px at 390, 15.7px at 430.
+
+The second line was never the real cost. The height was going on chrome:
+
+| | |
+|---|---|
+| the text itself | 17px at a 13.5px font |
+| the paragraph's line box | **29px** — line-height inherited as a flat 28.8px from body copy, so it does not scale down with much smaller text |
+| `.header-module` padding | 20px |
+| column `margin-bottom` | 16px |
+| **the bar** | **86px to show one 17px line** |
+
+Setting the paragraph's line-height in ems, trimming the module padding to 8px
+and dropping a margin under a column that is the only thing in its row gives
+back most of what a second line costs:
+
+| | strapline | header |
+|---|---|---|
+| 320px | 11.0 → 14.7px | 166 → **154px** |
+| 360px | 12.4 → 16.6px | 166 → **160px** |
+| 375px | 12.9 → 17.3px | 166 → **163px** |
+| 390px | 13.5 → 17.9px | 166 → **166px** |
+| 414px | 14.3 → 19.0px | 166 → 169px |
+| 430px | 14.8 → 19.0px | 166 → 169px |
+| 768px | 16.0 → 19.0px | bar 65 → **41px** |
+
+About a third larger, with the header level or shorter at 390 and below. Honest
+about the top of the range: a 414 or 430px phone ends up **3px taller**.
+
+`text-wrap: balance` is on the paragraph. Left alone the break falls after "by
+the", stranding "Specialist" on its own and splitting the phrase "Germany
+Specialist"; balanced it reads as a deliberate two-line strapline. Browsers
+without it get the ordinary break, which still fits — it is only less tidy.
+
+On desktop the bands are **19px at 1200–1365** and **21px at 1366 and up**,
+from 18px. They are not one value because **1200 is the tightest desktop width,
+not the roomiest**: at 1200 the bar splits into two columns and the strapline's
+half drops from 922px of usable width to 546px. The mobile clamp is capped at
+19px for the same reason — capping at 20 would have made the strapline *shrink*
+as the screen got wider.
+
+### Verified
+
+Seven pages at 390px and at 1440px: strapline 17.94px over two lines and 21px
+over one, header 166px and 219px, **no page errors, no failed requests, and no
+horizontal scroll on the phone**. Document scroll width at 1440 is 1696px
+against live's **1761px** — the header overflow is 65px less bad than it is
+today.
+
+
 ---
 
 ## 8. Before you start

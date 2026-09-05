@@ -42,5 +42,27 @@
         "caption": "",
         "alt": "",
         "description": ""
+    },
+    "menu-logo": {
+        "url": "http://travelwithoutborders.local/wp-content/uploads/2020/01/logo-white-160px.png",
+        "id": "4298",
+        "height": "33",
+        "width": "160",
+        "thumbnail": "http://travelwithoutborders.local/wp-content/uploads/2020/01/logo-white-160px-150x33.png",
+        "title": "logo-white-160px",
+        "caption": "",
+        "alt": "",
+        "description": ""
+    },
+    "menu-logo-retina": {
+        "url": "http://travelwithoutborders.local/wp-content/uploads/2020/01/logo-white-337px.png",
+        "id": "4284",
+        "height": "70",
+        "width": "337",
+        "thumbnail": "http://travelwithoutborders.local/wp-content/uploads/2020/01/logo-white-337px-150x70.png",
+        "title": "logo-white-337px",
+        "caption": "",
+        "alt": "",
+        "description": ""
     }
 }

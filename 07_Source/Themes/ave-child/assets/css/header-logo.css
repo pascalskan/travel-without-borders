@@ -38,3 +38,44 @@
 	}
 
 }
+
+/* ----------------------------------------------------------------------------
+   The phone logo.
+
+   None of the above reaches a phone - the mobile header draws its own image
+   from the theme's `menu-logo` options, and the rule above is behind a 992px
+   breakpoint. Two things were wrong on the phone independently of the desktop.
+
+   Size: the mark was drawn at 169x35, small against a 390px screen.
+
+   Sharpness: worse than the desktop case, not better. The phone header offered
+   a 337px file as its 2x source, so a 3x screen - which is most phones - had
+   336 real pixels to paint a box wanting 506. The options now point at the
+   400/800 pair cut from the master, and the width below is what keeps the 800px
+   file from setting the layout: without it the intrinsic size of a file
+   declared `2x` would be 400px and the logo would render twice the size wanted.
+   Pinning the width means the browser still downloads the 800px file and paints
+   it into a 200px box - 800 real pixels where 600 are wanted, so it is sharp
+   with room to spare rather than merely less soft.
+
+   The width is fluid because a flat 200px overlaps the menu button on a 320px
+   phone by 20px. Measured gap to the button, left edge to left edge:
+
+       320 -> 166px wide, 14px clear      390 -> 200px wide, 27px clear
+       360 -> 187px wide, 19px clear      414 -> 200px wide, 43px clear
+       375 -> 195px wide, 22px clear      430 -> 200px wide, 53px clear
+   ---------------------------------------------------------------------------- */
+
+/* 1199, not 991: the theme keeps the phone header - burger and all - right up
+   to 1199px, and without this the mobile mark rendered at the 800px file's own
+   intrinsic 400px between 992 and 1199, a jump from 169px that nobody asked
+   for. */
+@media screen and ( max-width: 1199px ) {
+
+	#header .navbar-brand img.mobile-logo-default {
+		width: min( 200px, 52vw );
+		height: auto;
+		max-width: none;
+	}
+
+}
