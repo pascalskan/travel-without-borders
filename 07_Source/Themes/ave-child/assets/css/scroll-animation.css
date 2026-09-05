@@ -43,6 +43,50 @@
 	transform: none !important;
 }
 
+/* The container, and `visibility` - both of which the first version of this
+   file missed, and the miss was doing real damage.
+   
+   The animation hides its CONTAINER, `div.wpb_wrapper`, at
+   `visibility: hidden; opacity: 0`, and reveals it on scroll. Pinning opacity
+   on the children above did nothing for that, and `visibility` is inherited,
+   so every heading inside a container that never got revealed stayed invisible
+   however visible its own styles said it was.
+   
+   Measured after a full scroll of each page: the Trade page was losing FIVE
+   headings on a phone - "Professional Services", "UK Destination
+   Representation", "Tourism Projects...", "Business Events & Conference
+   Support" and "Who We Support" - and one on desktop. The German page lost the
+   same five. Pre-flighted by injection: 5 hidden goes to 0 on both, and not a
+   single heading moves position. */
+.wpb_wrapper,
+.wpb_wrapper-inner,
+.ld-fancy-heading,
+[class*="lqd-highlight"],
+.wpb_text_column,
+.liquid-img-group-single,
+.liquid-img-container-inner figure {
+	visibility: visible !important;
+}
+
+.wpb_wrapper,
+.wpb_wrapper-inner {
+	opacity: 1 !important;
+}
+
+/* And the <img> itself. On Wine and Dine the plate-of-food photograph was
+   sitting at `opacity: 1e-08` on a phone - not zero, so it does not read as
+   "hidden" to anything looking for display:none, but invisible all the same.
+   The client saw one photograph where the desktop has four.
+   
+   The rules above reach the figure and the group wrapper; the reveal is
+   applied one level deeper than that, to the image element. */
+.liquid-img-container-inner img,
+.liquid-img-group-single img,
+.liquid-img-group-img-container img {
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+
 /* The wipe panel that sweeps across the "Germany" image group on the homepage. */
 .block-revealer__element {
 	display: none !important;
