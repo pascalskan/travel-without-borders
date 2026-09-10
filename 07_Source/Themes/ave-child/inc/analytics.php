@@ -69,11 +69,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  * sends nothing — tested on 2026-08-20 and recorded in PARTNER_LINK_TRACKING.md.
  * A new stream has no incumbent, which is the point of creating one.
  *
- * Empty until the stream exists. While empty this component prints nothing at
- * all, so the file is safe to deploy ahead of the GA4 change.
+ * Stream created 2026-09-10: "TWB Direct (gtag)", stream id 15755605316, on
+ * property 386233391 (account 135755883) alongside the existing
+ * "www.travelwithoutborders.co.uk - GA4" stream 5487567775.
+ *
+ * Its detail page reports **Manage connected site tags: 0 connected** — which
+ * is exactly the condition absent from the old stream and the reason this
+ * approach is expected to work. Enhanced measurement is on, with Outbound
+ * clicks confirmed enabled in the panel before the stream was created.
  */
 if ( ! defined( 'TWB_GA4_MEASUREMENT_ID' ) ) {
-	define( 'TWB_GA4_MEASUREMENT_ID', '' );
+	define( 'TWB_GA4_MEASUREMENT_ID', 'G-HY9C6Z86W9' );
 }
 
 /**
