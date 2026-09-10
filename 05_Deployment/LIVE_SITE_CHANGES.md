@@ -40,6 +40,47 @@ lives** and **what has to happen at the next deployment**.
 
 ---
 
+## 2026-09-10 — GA4 installed directly, bypassing the GTM container
+
+The last outstanding item on the project. Full diagnosis and evidence in
+[Partner Link Tracking](../01_Documentation/PARTNER_LINK_TRACKING.md).
+
+**The container has no GA4 tag.** Fetched and inspected: seven tags, of which
+four are Universal Analytics (dead since July 2023) and three are listeners.
+Every figure on the property arrives via Google's connected-site-tags relay
+forwarding UA hits — which is what suppresses Enhanced Measurement, and why
+`link_domain` has never existed on the property.
+
+Deleting those tags needs container access we do not have, so the other half
+of Google's own remedy was taken instead: install the Google tag directly.
+
+- New data stream **TWB Direct (gtag)**, id 15755605316, measurement ID
+  **G-HY9C6Z86W9**, Outbound clicks on, **0 connected site tags**.
+- `inc/analytics.php` loads gtag.js for it, gated behind the same consent call
+  as GTM so consent cannot apply to one and not the other.
+- Deployed to live and verified: the loader is in the page, `cookie-consent.js`
+  filemtime moved 1788632695 → 1789066752, WP Rocket purged, and the cached
+  football page serves the tag without a cache-buster.
+
+**Proven on the wire:** `region1.google-analytics.com/g/collect` with
+`tid=G-HY9C6Z86W9`, `en=page_view`, `v=2`. `window.gtag` is now defined, which
+it never was under GTM.
+
+**Not yet confirmed:** GA4 has reported none of it — Realtime 0, DebugView
+empty, stream "No data received". The established stream `G-484B6GT6CW` shows
+the same hits on the wire from the same page loads and is equally absent, so
+no browser-side measurement distinguishes the new tag from the working one.
+Reporting latency on a minutes-old stream is the likely explanation, recorded
+as an inference rather than a result. Re-check before changing anything.
+
+**Two deployment traps recurred, both already in the error backstory:** the
+uploader reported "missing style.css" on an archive proven valid (all CRCs
+pass, forward slashes, correct theme header) and went through on retry; and
+"Install now" silently did nothing on a click, needing the form's own FormData
+posted to `update.php?action=upload-theme` instead.
+
+---
+
 ## 2026-09-06 — What looked like missing mobile content was the animation again
 
 ### The client's report, and what it actually was

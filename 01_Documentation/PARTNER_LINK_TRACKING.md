@@ -3,8 +3,12 @@
 Tracks clicks on the **CW Sports Travel** link in the header text of the
 Augsburg Football Camp page.
 
-**Status: configured in GA4, but NOT yet working. Verified by testing on the
-live site — no click event reaches GA4.** See "Test results" below.
+**Status 2026-09-10: rebuilt. A GA4 tag is now installed directly on the site
+and is provably transmitting; GA4 has not yet reported any of it. Not
+confirmed end to end — see "2026-09-10 rebuild" below.**
+
+Earlier status, for the record: configured in GA4 but not working; no click
+event reached GA4. See "Test results".
 
 The link itself is live on the football page and verified visible to anonymous
 visitors.
@@ -240,3 +244,108 @@ have been going nowhere useful for over three years.
 It is not causing harm beyond a wasted request on every page load, but the tag
 should be removed from the GTM container when someone has access. Worth
 raising with whoever administers it.
+
+
+---
+
+## 2026-09-10 rebuild — the tag installed directly
+
+### What the container actually contains
+
+Fetching the published container settles what three rounds of testing could
+only infer. **`GTM-TCZM2CR` contains no GA4 tag at all.** Its seven tags are:
+
+| type | count | what |
+| ---- | ----- | ---- |
+| `__ua` | 4 | pageview, and events for form / phone / email |
+| `__fsl` | 1 | form-submit listener |
+| `__cl` | 2 | click listeners |
+
+No `__gaawc` (GA4 config), no `__gaawe` (GA4 event), no `__googtag`. All four
+measurement tags are Universal Analytics, dead since July 2023.
+
+**This corrects an inference in this document.** It recorded that `click` and
+`email_click` reaching GA4 proved "GA4 event delivery works fine — it is
+Enhanced Measurement specifically that is inert." The observation was right;
+the attributed mechanism was wrong. Those events are not from a GA4 tag,
+because there isn't one — they are legacy UA hits forwarded by Google's
+**connected site tags** relay, which is precisely what Google's diagnostic
+names. The relay carries `event_category` and nothing else, which is why
+`link_url`, `link_domain`, `link_text` and `outbound` have never existed on
+the property.
+
+### The new stream
+
+Deleting the UA tags needs container access we do not have. Google's remedy
+names two routes and the other is open to us: install the Google tag directly.
+
+| | |
+| --- | --- |
+| Stream | **TWB Direct (gtag)** |
+| Stream ID | 15755605316 |
+| Measurement ID | **G-HY9C6Z86W9** |
+| Property | 386233391 (account 135755883) |
+| Enhanced measurement | on; **Outbound clicks** confirmed enabled before creation |
+| **Connected site tags** | **0 connected** |
+
+That last row is the point of the exercise: no UA relay attached to this tag,
+so nothing to suppress Enhanced Measurement.
+
+Site side is `inc/analytics.php`, gated behind the same consent call as GTM
+(both loaders are invoked from one function in `cookie-consent.js`, so consent
+cannot apply to one and not the other). Deployed and verified on live.
+
+### What is proven, and what is not
+
+**Proven, on the wire**, via Resource Timing on the live football page:
+
+```
+region1.google-analytics.com/g/collect   tid=G-HY9C6Z86W9   en=page_view   v=2
+```
+
+- `window.gtag` is now **defined**. It never was before — GTM kept its
+  instance private, which this document records as blocking two earlier
+  workarounds.
+- `google_tag_manager` registers `G-HY9C6Z86W9` as its own container.
+- The collect endpoint is reachable from the test browser; nothing is blocking it.
+- The hits carry **no `traffic_type` parameter**, so the property's
+  "Internal Traffic → Exclude" data filter — which excludes only where
+  `traffic_type` exactly matches `internal` — does not apply to them.
+
+**Not proven.** GA4 has reported none of it: Realtime shows 0 active users,
+DebugView is empty, and the stream still reads "No data received".
+
+**The observation that matters most:** the long-established stream
+`G-484B6GT6CW` shows the *same* `en=page_view` hits on the wire from the same
+page loads, and is *equally* absent from Realtime. Since GA4 itself reports
+that stream as "receiving traffic in the past 48 hours", its pipeline plainly
+works. **No browser-side measurement distinguishes the new tag from the
+working one.** That points at reporting latency on a stream created minutes
+earlier, not at a transmission failure — but it is an inference, not a
+verified result, and it is recorded as such.
+
+### Measurements that could not answer the question
+
+Four were tried and discarded rather than read into:
+
+- **Patching `navigator.sendBeacon` / `fetch` / `Image`** caught nothing, not
+  even a page view. gtag.js captures its own reference to `sendBeacon` at load
+  time, before any later patch.
+- **The extension's network log** captured no requests at all on that tab.
+- **Resource Timing cannot see `sendBeacon`**, which is exactly what GA4 uses
+  for outbound clicks — so it can prove `page_view` and can neither prove nor
+  disprove `click`.
+- **`responseStatus: 0`** on the GA4 hits is the ordinary opaque cross-origin
+  response, not a failure. The UA hit reads 200 only because `/j/collect`
+  exposes CORS headers.
+
+### Next step
+
+Re-check Realtime and DebugView after a few hours, and confirm with a real
+outbound click. GA4 documents up to 48 hours before a new stream reports.
+**Do not change anything else until that has been observed** — the site side
+is complete and transmitting, and further changes would only add variables.
+
+Once events do arrive, `cw_sports_travel_click` should begin matching with no
+further work: it keys on `link_domain`, which Enhanced Measurement produces
+and the UA relay never did.
