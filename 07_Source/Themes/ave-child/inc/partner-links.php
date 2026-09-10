@@ -383,6 +383,39 @@ function twb_partner_links_sum_last_days( $record, $days ) {
 }
 
 /**
+ * Reset one partner's count to zero.
+ *
+ * A real form POST to admin-post.php rather than a link, because a GET that
+ * destroys data can be fired by anything that follows links on the page — a
+ * prefetch, a link checker, a browser extension warming the cache. The nonce
+ * would survive all of those; the visitor never intended any of them.
+ *
+ * Clears the record outright rather than zeroing the total, so the daily
+ * history goes too. "Reset to zero" should not leave yesterday's rows behind.
+ */
+function twb_partner_links_handle_reset() {
+	if ( ! current_user_can( 'edit_pages' ) ) {
+		wp_die( esc_html__( 'You do not have permission to do that.', 'ave' ), 403 );
+	}
+	check_admin_referer( 'twb_partner_links_reset' );
+
+	$slug     = isset( $_POST['slug'] ) ? sanitize_title( wp_unslash( $_POST['slug'] ) ) : '';
+	$partners = twb_partner_links_registry();
+
+	if ( isset( $partners[ $slug ] ) ) {
+		$all = get_option( TWB_PARTNER_LINKS_OPTION, array() );
+		if ( is_array( $all ) && isset( $all[ $slug ] ) ) {
+			unset( $all[ $slug ] );
+			update_option( TWB_PARTNER_LINKS_OPTION, $all, false );
+		}
+	}
+
+	wp_safe_redirect( add_query_arg( 'twb_reset', '1', admin_url( 'tools.php?page=twb-partner-links' ) ) );
+	exit;
+}
+add_action( 'admin_post_twb_partner_links_reset', 'twb_partner_links_handle_reset' );
+
+/**
  * Add the admin screen. Under Tools rather than its own top-level menu — one
  * table of numbers does not earn a permanent place in the sidebar.
  */
@@ -413,6 +446,12 @@ function twb_partner_links_render_page() {
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Partner Link Clicks', 'ave' ); ?></h1>
+
+		<?php if ( ! empty( $_GET['twb_reset'] ) ) : ?>
+			<div class="notice notice-success is-dismissible">
+				<p><?php esc_html_e( 'Count reset to zero.', 'ave' ); ?></p>
+			</div>
+		<?php endif; ?>
 		<p class="description" style="max-width:46em">
 			<?php esc_html_e( 'Counted on this website rather than in Google Analytics, so these numbers include every visitor — including those who decline cookies. Nothing is recorded about who clicked: no cookie, no IP address, no identifier. These are clicks, not people, so one person clicking twice counts twice.', 'ave' ); ?>
 		</p>
@@ -426,6 +465,7 @@ function twb_partner_links_render_page() {
 					<th style="text-align:right"><?php esc_html_e( 'Last 30 days', 'ave' ); ?></th>
 					<th style="text-align:right"><?php esc_html_e( 'All time', 'ave' ); ?></th>
 					<th><?php esc_html_e( 'Most recent click', 'ave' ); ?></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -448,6 +488,17 @@ function twb_partner_links_render_page() {
 					<td style="text-align:right;font-size:15px"><?php echo esc_html( number_format_i18n( twb_partner_links_sum_last_days( $record, 30 ) ) ); ?></td>
 					<td style="text-align:right;font-size:17px"><strong><?php echo esc_html( number_format_i18n( (int) $record['total'] ) ); ?></strong></td>
 					<td><?php echo esc_html( $last ); ?></td>
+					<td style="text-align:right">
+						<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin:0">
+							<?php wp_nonce_field( 'twb_partner_links_reset' ); ?>
+							<input type="hidden" name="action" value="twb_partner_links_reset" />
+							<input type="hidden" name="slug" value="<?php echo esc_attr( $slug ); ?>" />
+							<button type="submit" class="button button-small"
+								onclick="return confirm(<?php echo esc_attr( wp_json_encode( __( 'Reset this count to zero? The daily history is cleared too and this cannot be undone.', 'ave' ) ) ); ?>);">
+								<?php esc_html_e( 'Reset to zero', 'ave' ); ?>
+							</button>
+						</form>
+					</td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
