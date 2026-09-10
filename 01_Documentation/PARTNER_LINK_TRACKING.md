@@ -3,9 +3,14 @@
 Tracks clicks on the **CW Sports Travel** link in the header text of the
 Augsburg Football Camp page.
 
-**Status 2026-09-10: rebuilt. A GA4 tag is now installed directly on the site
-and is provably transmitting; GA4 has not yet reported any of it. Not
-confirmed end to end — see "2026-09-10 rebuild" below.**
+**Status 2026-09-10: SOLVED, on our own server rather than in GA4.**
+`/go/cw-sports-travel/` counts every click and forwards to the partner.
+Visible at **Tools → Partner Link Clicks** and on the dashboard. Verified
+end to end on live. See "The counter" at the foot of this document.
+
+The GA4 route was rebuilt first and is left in place — the tag is installed
+directly and provably transmitting — but it never reported an outbound click
+and is no longer what answers the client's question. See "2026-09-10 rebuild".
 
 Earlier status, for the record: configured in GA4 but not working; no click
 event reached GA4. See "Test results".
@@ -349,3 +354,89 @@ is complete and transmitting, and further changes would only add variables.
 Once events do arrive, `cw_sports_travel_click` should begin matching with no
 further work: it keys on `link_domain`, which Enhanced Measurement produces
 and the UA relay never did.
+
+
+---
+
+## The counter — what actually shipped
+
+`07_Source/Themes/ave-child/inc/partner-links.php`.
+
+The client asked "any way we can view the amount of people clicking the link
+is okay". This is that way, and it needs nothing outside this site — no
+account, no tag, no container, and no cooperation from a property whose
+Enhanced Measurement is suppressed by tags we cannot delete.
+
+### How it works
+
+`/go/<slug>/` records a click, then forwards to the partner. The link is
+pointed at it by filtering rendered content, not by editing the page.
+
+### Four decisions worth keeping
+
+**302, never 301.** A permanent redirect is cached by the browser, so the
+second and every later click would go straight to the partner without
+reaching this site. The counter would sit at 1 forever — and would look
+broken rather than wrong, which is worse.
+
+**The destination comes only from the registry, never from the request.** A
+`/go/` endpoint that accepts a target URL in a query string is an **open
+redirect**, and those are used for phishing on the borrowed credibility of
+the domain hosting them.
+
+**The link is routed by a `the_content` filter, not by editing the page.**
+The anchor lives in an `ld_fancy_heading` shortcode, so a filter at priority
+20 (after `do_shortcode` at 11) sees the finished markup. A href edited into
+the page content could be undone by a WPBakery re-save, and tracking would
+stop silently.
+
+**Only the exact registered URL is matched**, normalised for scheme, `www.`
+and trailing slash. A link to a *different* page on the partner's domain is
+left alone rather than being quietly redirected somewhere the author did not
+choose.
+
+### What is recorded
+
+A count and a date. No cookie, no IP address, no user agent, no identifier —
+so no visitor is distinguishable from another.
+
+Two consequences, both good:
+
+- **It needs no consent**, and therefore **counts the visitors who decline
+  cookies**. Every number in the GA4 property is a floor; this one is not.
+- **It measures clicks, not people.** De-duplicating into people would need a
+  cookie or a stored IP hash, which would pull the feature back under the
+  consent rules it currently sits outside. The admin screen says so plainly
+  rather than implying otherwise.
+
+Not counted: HEAD requests, prefetch/prerender (`Sec-Purpose`, `Purpose`,
+`X-Purpose`, `X-Moz`), obvious bots by user agent, requests with no user
+agent, and logged-in users who can edit pages — so testing the link does not
+pad the client's numbers. **Every one of those still redirects**; the visitor
+is never made to suffer for a counting decision.
+
+### Verified on live, 2026-09-10
+
+| check | result |
+| ----- | ------ |
+| Link on the page | `href="https://travelwithoutborders.co.uk/go/cw-sports-travel/"`, `target`/`rel`/`data-*` preserved |
+| Raw partner URLs left in the page | 0 |
+| `/go/cw-sports-travel/` | **302** → `https://cwsportstravel.com/clubs/` |
+| Unknown slug | 302 → home page, rather than a 404 |
+| 3 real clicks | counted **3** |
+| bot, prefetch, preview, HEAD, no-UA | **all excluded** (would have read 8) |
+
+**The counter currently reads 3 — those are the test clicks above.**
+
+### Known limitation
+
+The count is a read-modify-write on a single option, so two clicks in the same
+millisecond could lose one. At this link's volume that is not worth a custom
+table, and the figure is a measure of interest rather than an invoice.
+Recorded so it is known rather than discovered.
+
+### Adding another partner
+
+Add a row to `twb_partner_links_registry()` — `label`, `target`, `where` — and
+put the partner's real URL in the page as normal. The filter routes it and the
+admin screen picks it up. No other change.
