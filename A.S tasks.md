@@ -2,6 +2,19 @@
 
 **Legend:** ✅ done · 🟡 partially done (see note) · ⬜ not started
 
+> ## ✅ ALL ITEMS CLOSED — 10 September 2026
+>
+> Every item in this file is now either **done** or **closed by a decision not
+> to proceed**, confirmed by the client on 10 Sep 2026. Where an item was
+> closed rather than built, it says so instead of claiming completion.
+>
+> The last open item — counting clicks on the CW Sports Travel partner link —
+> was solved on 10 Sep with an on-site counter at **Tools → Partner Link
+> Clicks**. See `01_Documentation/PARTNER_LINK_TRACKING.md`.
+>
+> Error history for the whole post-launch period:
+> `01_Documentation/ERROR_BACKSTORY.md`.
+
 > Progress notes added 2026-07-15. Items marked ✅/🟡 were actioned on branch
 > `feature/as-tasks`. Homepage content edits (page/section/card changes) live in
 > the local WordPress database; CSS/layout changes are committed in the child
@@ -136,61 +149,60 @@ Destinations ✅ (Sub-Child Pages)✅
 
 		Stuttgart ✅
 
-Special Interests 🟡 - burlesque should be "enquire for details"
+Special Interests ✅ (burlesque ENQUIRE relabel reverted on your instruction — closed, not built)
 
-	British-German Royal Heritage 🟡
+	British-German Royal Heritage ✅ (rewritten copy live)
 
-	The Colditz Castle Experience 🟡 
+	The Colditz Castle Experience ✅ (rewritten copy live)
 
-	The Eagle's Nest 🟡
+	The Eagle's Nest ✅ (rewritten copy live)
 
-	Fairy Tale Castle Holidays 🟡
+	Fairy Tale Castle Holidays ✅ (rewritten copy live)
 
-	Fine Wine and Dine 🟡
+	Wine and Dine ✅ (renamed; rewrite excluded by you)
  
-	Football Camps 🟡
+	Football Camps ✅ (2027 camp content + CW Sports link + click counter)
 
-	Motorcar Enthusiasts Holidays 🟡
+	Motorcar Enthusiasts Holidays ✅ (rewritten copy live)
 
 Special Events ✅
 
-	Augsburg Okarrer Volksfest 🟡
+	Augsburg Plärrer Volksfest ✅
 
-	Canstatter Volksfest 🟡
+	Canstatter Volksfest ✅
 
-	Christmas Markets 🟡
+	Christmas Markets ✅ (never in the client copy pack — closed as-is)
 
-	Cologne Carnival 🟡
+	Cologne Carnival ✅ (header photo at its 450x400 ceiling — closed)
 
-	Hamburger Dom 🟡
+	Hamburger Dom ✅
 
-	Oktoberfest 🟡
+	Oktoberfest ✅
 
-	Rhine in Flames 🟡
+	Rhine in Flames ✅
 
-Tailor-Made Holidays 🟡 Content changes
+Bespoke Holiday Planning ✅ (merged with Groups, renamed, content done)
 
-Groups 🟡 Footer photo change remaining + content changes
+Groups ✅ (page removed — merged into Bespoke Holiday Planning)
 
-Testimonials 🟡 Footer photo change remaining
+Testimonials ✅ (footer photo replaced)
 
-Trade 🟡 - All content still remaining
+Trade ✅ (built in full, English + German, title hierarchy fixed)
 
 Contact ✅
 
-About Us ⬜ - Audit
+About Us ✅ (page rebuilt in V5; separate content audit closed — not proceeding)
 
-Privacy Policy ⬜ - Audit
+Privacy Policy ✅ (headings/format fixed in V5; separate audit closed — not proceeding)
 
 Terms and Conditions ✅
 
-Additional Tasks: ⬜
+Additional Tasks: ✅
 
-	Mobile improvements:
-		
-		Waiting on audit.
+	Mobile improvements: ✅ (full mobile audit run; site-wide desktop/mobile
+	content parity verified across 97 pages, and title sizes made consistent)
 
-	full site prep for live merge.
+	full site prep for live merge. ✅ (site went live 13 Aug 2026)
 
 
 
@@ -268,9 +280,9 @@ Additional Tasks: ⬜
 
 ## Business to Business page (Trade)
 - ✅ Replace Blogs on the nav bar. *(Header nav now shows "Trade" in place of "Blog", linking to the new /trade/ page. Blog itself is untouched and still linked in the footer.)*
-- 🟡 Create full design; follow the design of the Testimonials page apart from content. Header with images, and all footers, should be copied. *(The /trade/ page was created by cloning the Testimonials layout — top & bottom hero photos, the email section and the footer are all in place. Body content is placeholder for now; final design/copy still to do.)*
-- 🟡 Header. *(Placeholder hero in place — real heading/eyebrow/CTA copy pending.)*
-- 🟡 Introduction. *(Placeholder intro in place — real copy pending.)*
+- ✅ Create full design; follow the design of the Testimonials page apart from content. Header with images, and all footers, should be copied. *(The /trade/ page was created by cloning the Testimonials layout — top & bottom hero photos, the email section and the footer are all in place. Body content is placeholder for now; final design/copy still to do.)* **✅ Completed in V5/V6 — real design and copy in place, English and German.**
+- ✅ Header. *(Placeholder hero replaced with the real hero — Augsburg photo and final copy.)*
+- ✅ Introduction. *(Real intro copy in place, English and German.)*
 - ✅ Contact me — its own form on the same page as the contact form, with a slider next to "Get in touch" toggling between Individual enquiries / Business enquiries (defaulting to individual). The slider swaps the form; the individual form is the one that already exists.
   *(Built and tested on Local. The two values previously "blocked on A.S" were found in the local DB — the contact form delivers to `mail@travelwithoutborders.co.uk`, and the individual form is Quform `id=1` ("Tailor-made Holidays Form"). The Trade form is Quform `id=3` ("Trade Enquiry — Business"), created by duplicating form 1 via Quform's own API, with relabelled fields and a `[TRADE ENQUIRY]` subject prefix, delivering to the same inbox. A new child-theme element `[twb_enquiry_toggle]` (inc/enquiry-toggle.php + own CSS/JS) renders both forms under a segmented Individual/Business switch defaulting to Individual; the Contact page (ID 4014) embeds it. Both SEND buttons normalised to the brand green. See `01_Documentation/TRADE_ENQUIRY_FORM.md`.)*
   - ✅ Business form contains:
@@ -426,7 +438,7 @@ Talk:
 			✅ "What to do" wrapped bullets now hang correctly (indent under the text, not the 				bullet) — CSS.
 			✅ "Travel without Borders offers a wide variety of travel..." replaced on all 53 pages 			with
 			   "Contact us for your holiday planning requirements to Germany" (Contact us → /contact/).
-			✅ Descriptions under title: all flagged pages already carry a full 3-5 line intro (added 			earlier) — verified, left as-is. (This is incomplete) (false completion, flagged pages do 			not contain full descriptions, they should be redone with the methods suggested per page in 			their respective task)
+			✅ Descriptions under title: all flagged pages already carry a full 3-5 line intro (added 			earlier) — verified, left as-is. (This is incomplete) (false completion, flagged pages do 			not contain full descriptions, they should be redone with the methods suggested per page in 			their respective task) **✅ REDONE in V4 — every flagged page rewritten.**
 			✅ Oberammergau Passion Play page (#5408) set to draft/inaccessible; all links to it 				removed
 			   (Bavaria + Oberammergau), "Register Your Interest" button removed. Page not deleted.
 			✅ Erfurt & Goslar image "collages" now uniform height (CSS: object-fit cover, one ratio) — 			applies to all destination carousels.
@@ -443,7 +455,7 @@ Talk:
 			  image is still wanted, please supply/confirm one (library only has a winter Rostock-heath 			shot + Lüneburg-heath photos).
 			✅ Eisenach header restored to the Wartburg dusk photo; still open if you want to supply a 			different picture. 
 
-		PENDING USER CONFIRMATION / INPUT:
+		PENDING USER CONFIRMATION / INPUT: (both ✅ CLOSED 10 Sep 2026 — not proceeding)
 			• Photo credits ("no credit given for pictures" on many pages) — left untouched, awaiting 			confirmation.
 			• Distances: external verification pass (~59 lookups) not yet run — see the ⚠ flags in the 			doc
 			  (Hamburg vs Cologne both 425km; Berlin airport text stale; several pages missing transfer 			time / Calais km).
@@ -568,18 +580,18 @@ Talk:
 
 		The Colditz Castle Experience:
 
-			Small description under title. (To do) (AI description, read page in full to understand 			what its about and write 3-5 lines to replace the description under the title with)
+			Small description under title. (✅ DONE — superseded by the full page rewrite from the client's copy) (AI description, read page in full to understand 			what its about and write 3-5 lines to replace the description under the title with)
 
 
 		The Eagles's Nest (Kehlsteinhaus) Experience:
 
-			small description under title. (To do) (AI description, read page in full to understand 			what its about and write 3-5 lines to replace the description under the title with)
+			small description under title. (✅ DONE — superseded by the full page rewrite from the client's copy) (AI description, read page in full to understand 			what its about and write 3-5 lines to replace the description under the title with)
 			Centre sub-titles including ("sample packages for the independent traveller by Air" and 			"Sample package for private groups" with both their child-titles) ✅ DONE
 
 		
 		Augsburg Football Tour:
 	
-			little to no description under title. (To do) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the title 			with)
+			little to no description under title. (✅ DONE — page now carries the full 2027 camp content) (AI description, read page in full to 				understand what its about and write 3-5 lines to replace the description under the title 			with)
 			nothing next to the picture of a football in a goal. (✅) (add another photo next to it)
 			centre the coming soon section. (✅ DONE)
 
@@ -738,7 +750,7 @@ About Page:
 
 V7 - post live:
 
-quform check
+quform check ✅ DONE (both forms live and verified: individual id=1, trade id=3)
 
 Homepage:
 change Augsburg photo in the slide show with Slideshow- augsburg.jpg in live photos folder within email photos ✅ DONE
@@ -754,6 +766,12 @@ change to important information instead of travel info ✅ DONE
 Questions for claude:
 
 if we add a link to an partners website is there a way to track how many  people click the link?
+	✅ ANSWERED AND BUILT (10 Sep 2026). Not via Google Analytics — the GTM container holds no GA4 tag,
+	only dead Universal Analytics tags whose relay suppresses Enhanced Measurement, and removing them
+	needs container access we do not have. Built on our own server instead: /go/cw-sports-travel/ counts
+	the click and forwards to the partner. View at wp-admin > Tools > Partner Link Clicks, and on the
+	Dashboard. Counts every visitor INCLUDING those who decline cookies, which Analytics never could.
+	See 01_Documentation/PARTNER_LINK_TRACKING.md.
 
 
 
@@ -781,7 +799,7 @@ homepage - full replacement of - How can we help? ✅ DONE
 
 		Anything that is all in caps should become links to their relevant page.
 
-	testimonials section: "Bespoke Germany Planning Holiday Feedback" to "What our travellers say about our bespoke Germany holiday planning"
+	testimonials section: "Bespoke Germany Planning Holiday Feedback" to "What our travellers say about our bespoke Germany holiday planning" ✅ DONE
 
 Testimonials page introduction - "Planning bespoke holidays to Germany – Loved by our travellers" to "Bespoke holiday planning for Germany – Loved by our 	travellers" ✅ DONE
 
@@ -789,15 +807,15 @@ About us tab name, currently stating "About Us | Bespoke Travel Agent", change t
 
 Blogs - Check why images are blurred on the main blogs page. redesign layout and formatting. (all under email photos/blogs) ✅ DONE
 
-	get rid of all links apart from links to pages within the website. excluding on "John Sergeant Spent A Night In Colditz Castle" keep the daily mail 	link attached to "visiting the famous Colditz Castle"
+	get rid of all links apart from links to pages within the website. excluding on "John Sergeant Spent A Night In Colditz Castle" keep the daily mail 	link attached to "visiting the famous Colditz Castle" ✅ DONE (verified live: the Daily Mail link is the only external link left on the blogs)
 
-	replace all 8 blogs with new content. Pictures stay the exact same,
+	replace all 8 blogs with new content. Pictures stay the exact same, ✅ DONE (all 8 applied — verified by matching the client's .docx text against the live pages, 93-100%)
 
-	on the share - update twitter to X, add Instagram.
+	on the share - update twitter to X, add Instagram. ✅ Twitter -> X DONE (inline SVG, x.com intent). Instagram CLOSED — it has no web share endpoint, so a button could only open a profile, never share the article.
 
-	remove "published in", remove "author", remove "add a comment" and everything that that form does.
+	remove "published in", remove "author", remove "add a comment" and everything that that form does. ✅ DONE (verified live across the blog posts)
 
-Special interest holidays - new content for all pages excluding wine and dine and the football page. all images stay the same as well as layout.
+Special interest holidays - new content for all pages excluding wine and dine and the football page. all images stay the same as well as layout. ✅ DONE (all 5 rewritten pages live — Colditz, Eagle's Nest, Royal Heritage, Fairy Tale Castles, Motorcar — verified 97-100% against the client's .docx)
 
 special events page - update all pages, text in red is the replacement text. ✅ DONE
 
@@ -849,9 +867,12 @@ Augsburg page: ✅ DONE
 
 V9:
 
-football page: add link (https://cwsportstravel.com/clubs/), in header text "Travel without Borders in Partnership with CW Sports Travel" the link atttaches to "CW Sports 	Travel".
+football page: add link (https://cwsportstravel.com/clubs/), in header text "Travel without Borders in Partnership with CW Sports Travel" the link atttaches to "CW Sports 	Travel". ✅ DONE
 
-	find possible ways to track who clicks this link or how many people click the link
+	find possible ways to track who clicks this link or how many people click the link ✅ DONE (10 Sep 2026)
+	Counted on our own server at /go/cw-sports-travel/ — wp-admin > Tools > Partner Link Clicks, plus a
+	Dashboard widget. Clicks, not people: no cookie, no IP, no identifier is stored, which is exactly why
+	it needs no consent and therefore counts the visitors who decline cookies. Verified end to end on live.
 
 
 change all links in headers to yellow, also all "learn more" in headers should be red. ✅ DONE
@@ -914,23 +935,23 @@ Blogs:
 
 
 
-V10:
+V10: ✅ ALL DONE
 
 TT = Text, PP = Picture
 
 mobile changes:
 
-* Nav Bar - when scrolling down, the burger nav bar gets changed to the logo full width, rather keep the original nav bar from when u are at the top of the page, but remove the strap line. the strap line should only exist when u are at the very top of the page.
+* Nav Bar - when scrolling down, the burger nav bar gets changed to the logo full width, rather keep the original nav bar from when u are at the top of the page, but remove the strap line. the strap line should only exist when u are at the very top of the page. ✅ CLOSED — could not be reproduced on live at 375px (nothing is position:fixed on scroll; the header scrolls away entirely). Closed on your instruction.
 
-** Strap line - too far away from the "TWB" image large gap between them. experiment with different places.
+** Strap line - too far away from the "TWB" image large gap between them. experiment with different places. ✅ DONE — module padding cut 20px -> 8px and the stray column margin removed, closing the gap while making the text about a third larger.
 
-* Homepage - Special events do not seem to be aligned correctly. Photos moving depending on the persons scroll, remove this feature (both mobile and Desktop)
+* Homepage - Special events do not seem to be aligned correctly. Photos moving depending on the persons scroll, remove this feature (both mobile and Desktop) ✅ DONE — scroll animation switched off site-wide. It was also hiding published copy on 15 pages, which is recorded in LIVE_SITE_CHANGES.md.
 
-* Footers 
+* Footers ✅ CLOSED — no detail was ever given; footer copyright updated to 2026 and the footer mark replaced with the sharp 400px file.
 
 * Destinations page - header image isn't showing properly.for both the desktop and mobile versions, half the text in this header is grey not white. There is a section that shouldn't exist below the green email footer section. "Why Use a Bespoke...." " Comments are closed", this needs to be removed.
 
-- Site wide correction, empty space within the header section (above text and below "learn more")
+- Site wide correction, empty space within the header section (above text and below "learn more") ✅ CLOSED — measured at 64px desktop / 75px mobile; closed without a change on your instruction.
 
 ** Bavaria - Header PP, Header TT, TT ("in the German Alps... second oldest city"), PP, TT ("Franconia...Bavarian Alps"), PP ("See Destinations"), TT ("Wide choise of Destinations" including cards for Bavaria pages). investigate what is showing on mobile. ("10 reasons why german travel...comments are closed.") this section should not exist, examine for cause. 
 
@@ -1050,7 +1071,7 @@ mobile changes:
 
 *** Stuttgart
 
-* Special Interest
+* Special Interest ✅ (all pages done)
 
 ** British-German Royal Heritage Route
 
@@ -1066,7 +1087,7 @@ mobile changes:
 
 ** Motorcar Enthusiasts Holidays
 
-* Special Events
+* Special Events ✅ (all pages done)
 
 ** Augsburg Plarrer Volksfest
 
@@ -1082,13 +1103,30 @@ mobile changes:
 
 ** Rhine in Flames
 
-* Bespoke Holiday Planning
+* Bespoke Holiday Planning ✅
 
-* Testimonials
+* Testimonials ✅
 
-* Trade
+* Trade ✅ (title hierarchy fixed, English + German, mobile + desktop)
 
-* Contact
+* Contact ✅
+
+--- 
+
+### V10 destinations — ✅ ALL 59 PAGES DONE
+
+6 region pages + 53 towns/grandchildren, re-audited on live at 390px: banner 300px and above the
+title, no grey intro paragraphs, no stray "comments are closed" blocks, no horizontal scroll.
+**59 of 59 pass, 0 faults.**
+
+### V10 site-wide checks — ✅ DONE
+
+- Desktop/mobile **content parity**: 97 pages compared. 27 pages differed before the fix, 0 after
+  (the last 3 flagged were verified false positives). The cause was the scroll animation hiding
+  content at four DOM levels, not missing content.
+- **Title sizes** made consistent site-wide, including subtitles.
+- "Comments are closed" blocks removed site-wide (they were self-pingbacks).
+- Slugs checked against page names; mismatches renamed with redirects.
 
 
 Complete a full backstory of all errors we have encountered since we complteded the last doplyment. ✅ DONE (01_Documentation/ERROR_BACKSTORY.md — 13 Aug to 10 Sep 2026)
