@@ -52,6 +52,7 @@ Central index of all documentation in this repository.
 | [Project Status](../PROJECT_STATUS.md) | Live progress dashboard |
 | [Changelog](../CHANGELOG.md) | Dated history of changes |
 | [Development Log](DEVELOPMENT_LOG.md) | Running session-by-session work log |
+| [Error Backstory](ERROR_BACKSTORY.md) | Every error since the 13 Aug 2026 go-live: what shipped, what I claimed wrongly, where the measurement lied, and the platform traps |
 
 ## Deployment
 

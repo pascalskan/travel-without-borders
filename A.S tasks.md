@@ -911,3 +911,184 @@ Blogs:
 	Why Use a Bespoke Travel Planner for Your Germany Holiday? - ✅ DONE
 
 		this is a new blog so it isn't being updated rather originally pblished is now august 2026. within its text it states "Published: August 		2026Germany Travel Guide" remove this✅ DONE
+
+
+
+V10:
+
+TT = Text, PP = Picture
+
+mobile changes:
+
+* Nav Bar - when scrolling down, the burger nav bar gets changed to the logo full width, rather keep the original nav bar from when u are at the top of the page, but remove the strap line. the strap line should only exist when u are at the very top of the page.
+
+** Strap line - too far away from the "TWB" image large gap between them. experiment with different places.
+
+* Homepage - Special events do not seem to be aligned correctly. Photos moving depending on the persons scroll, remove this feature (both mobile and Desktop)
+
+* Footers 
+
+* Destinations page - header image isn't showing properly.for both the desktop and mobile versions, half the text in this header is grey not white. There is a section that shouldn't exist below the green email footer section. "Why Use a Bespoke...." " Comments are closed", this needs to be removed.
+
+- Site wide correction, empty space within the header section (above text and below "learn more")
+
+** Bavaria - Header PP, Header TT, TT ("in the German Alps... second oldest city"), PP, TT ("Franconia...Bavarian Alps"), PP ("See Destinations"), TT ("Wide choise of Destinations" including cards for Bavaria pages). investigate what is showing on mobile. ("10 reasons why german travel...comments are closed.") this section should not exist, examine for cause. 
+
+*** Ausgburg - Header PP, Header TT, TT ("it is a city... layer to the city"), PP, TT ("Linked to the splendid history...seasonal highlights"), carousel) PP (Augsburg partnership), TT ("what to do"), PP (Map), Travel Facts.
+
+*** Bamberg - Header PP, Header TT, TT, PP, Carousel, TT ("what to do "), Map, TT ("travel facts)
+
+*** Bayreuth - Header PP, Header TT, TT, PP, TT, PP (carousel), TT ("what to do"), PP Map, TT ("Travel facts")
+
+*** Berchtesgadener Land - Header PP, Header TT, TT, PP, Carousel, TT ("What to do"), PP Map, TT ("travel facts")
+
+*** Coburg - Header PP, Header TT, TT, PP, carousel, ("What to do"), PP Map, TT ("Travel Facts")
+
+*** Fussen & Schwangau - Header PP, Header TT, TT, PP, Carousel, TT ("what to do"), PP Map, TT ("travel facts")
+                                                  
+*** Garmisch-Partenkirchen - Header PP, Header TT, TT,PP, Carousel, TT ("what to do"), PP Map, TT ("travel facts")
+
+*** Oberammergau - Header PP, Header TT, TT, PP, Carousel, TT ("what to do"), PP map, TT ("travel facts")
+
+*** Passau - Header PP, Header TT, TT, PP, Carousel, TT ("what to do"), PP Map, TT ("Travel facts")
+
+*** Regensburg - Header PP, Header TT, TT, PP, Carousel, TT ("what to do"), PP map, TT ("travel facts")
+
+*** Rothernburg ob der Tauber - Header PP, Header TT, TT, PP, Carousel, TT ("what to do"), PP map, TT ("travel facts")
+
+*** Wurzburg - Header PP, Header TT, TT ("if you don't want to... all over the city"), PP, TT ("The city is... is to indulge"), Carousel, TT ("what to do"), PP Map, TT ("travel facts"). additional content showing on mobile "what makes... comments are closed" this section is below the green email header, and should not exist.
+
+** The Black Forest - Header PP, Header TT, TT, PP, TT, PP, TT ("wide choice of destinations"),  Cards
+
+*** Baden-Baden - Header PP, Header TT,
+
+***Freilburg- Header PP, Header TT,
+
+*** Hiedelberg - Header PP, Header TT,
+
+*** Konstanz/Constance (Lake Constance) - Header PP, Header TT,
+
+*** Lindau (Lake Constance) - Header PP, Header TT,
+
+*** Meersburg (lake Constance) - Header PP, Header TT,
+
+*** Schluchsee - Header PP, Header TT,
+
+*** Titisee-Neustadt - Header PP, Header TT,
+
+*** Triberg - Header PP, Header TT,
+
+** Eastern Germany - Header PP, Header TT,
+
+*** Eisenach - Header PP, Header TT,
+
+*** Erfurt - Header PP, Header TT,
+
+*** Potsdam - Header PP, Header TT,
+
+*** Rostock and Warnemunde - Header PP, Header TT,
+
+*** Schwerin - Header PP, Header TT,
+
+*** Weimar - Header PP, Header TT,
+
+** Northern Germany - Header PP, Header TT,
+
+*** Celle - Header PP, Header TT,
+
+*** Hamelin - Header PP, Header TT,
+
+*** Lubeck - Header PP, Header TT,
+
+*** Timmendorfer Strand - Header PP, Header TT,
+
+*** Goslar (Harz Mountains) - Header PP, Header TT,
+
+** The Rhine, Mosel and Eifel - Header PP, Header TT,
+
+*** Aachen - Header PP, Header TT,
+
+*** Bernkastel-Kues - Header PP, Header TT,
+
+*** Boppard - Header PP, Header TT,
+
+*** Cochem - Header PP, Header TT,
+
+*** Daun - Header PP, Header TT,
+
+*** Koblenz - Header PP, Header TT,
+
+*** Rudensheim - Header PP, Header TT,
+
+*** Trier - Header PP, Header TT,
+
+*** Zell Mosel - Header PP, Header TT,
+
+** Major Cities in Germany - Header PP, Header TT,
+
+*** Bremen - Header PP, Header TT,
+
+*** Berlin - Header PP, Header TT,
+
+*** Cologne - Header PP, Header TT,
+
+*** Dusseldorf - Header PP, Header TT,
+
+*** Dresden - Header PP, Header TT,
+
+*** Frankfurt
+
+*** Hamburg
+
+*** Hannover
+
+*** Leipzig
+
+*** Munich
+
+*** Nuremberg
+
+*** Stuttgart
+
+* Special Interest
+
+** British-German Royal Heritage Route
+
+** The Colditz Castle Experience
+
+** The Eagles Nest
+
+** Fairy Tale Castle Holidays
+
+** Wine and Dine
+
+** Football Camps
+
+** Motorcar Enthusiasts Holidays
+
+* Special Events
+
+** Augsburg Plarrer Volksfest
+
+** Canstatter Volksfest
+
+** Christmas market
+
+** Cologne Carnvial
+
+** Hamburger Dom
+
+** Oktoberfest
+
+** Rhine in Flames
+
+* Bespoke Holiday Planning
+
+* Testimonials
+
+* Trade
+
+* Contact
+
+
+Complete a full backstory of all errors we have encountered since we complteded the last doplyment. ✅ DONE (01_Documentation/ERROR_BACKSTORY.md — 13 Aug to 10 Sep 2026)
