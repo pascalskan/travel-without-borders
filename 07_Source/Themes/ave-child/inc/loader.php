@@ -76,3 +76,8 @@ require_once $twb_inc . 'card-image-sizes.php';
 // Outbound partner-link tracking — pushes a named event into the GTM
 // dataLayer defined by cookie-consent.php, so it must load after it.
 require_once $twb_inc . 'outbound-tracking.php';
+
+// GA4 Google tag, installed directly rather than through GTM — the container
+// has no GA4 tag and its legacy UA tags suppress Enhanced Measurement. Gated
+// by the same consent call as GTM, so it must load after cookie-consent.php.
+require_once $twb_inc . 'analytics.php';

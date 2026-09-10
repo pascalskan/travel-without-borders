@@ -40,8 +40,17 @@
 	}
 
 	function loadAnalytics() {
+		// Two tags, one gate. GTM carries the container's legacy Universal
+		// Analytics tags; twbLoadGA4 is the GA4 Google tag installed directly
+		// (see inc/analytics.php for why it cannot go through GTM). Both are
+		// called from here and nowhere else, so consent can never apply to
+		// one and not the other. Either may be absent — GA4 prints nothing
+		// until its measurement ID is set — hence the typeof guards.
 		if ( typeof window.twbLoadGTM === 'function' ) {
 			window.twbLoadGTM();
+		}
+		if ( typeof window.twbLoadGA4 === 'function' ) {
+			window.twbLoadGA4();
 		}
 	}
 
