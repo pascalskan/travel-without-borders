@@ -81,3 +81,8 @@ require_once $twb_inc . 'outbound-tracking.php';
 // has no GA4 tag and its legacy UA tags suppress Enhanced Measurement. Gated
 // by the same consent call as GTM, so it must load after cookie-consent.php.
 require_once $twb_inc . 'analytics.php';
+
+// Partner link click counter — /go/<slug>/ counted on this server, because
+// every route to GA4 for outbound clicks is closed. Independent of both
+// analytics components above; needs no consent, sets no cookie.
+require_once $twb_inc . 'partner-links.php';
