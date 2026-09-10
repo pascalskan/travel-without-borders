@@ -426,7 +426,24 @@ is never made to suffer for a counting decision.
 | 3 real clicks | counted **3** |
 | bot, prefetch, preview, HEAD, no-UA | **all excluded** (would have read 8) |
 
-**The counter currently reads 3 — those are the test clicks above.**
+**Reset to zero after testing, so the client's figures start clean.**
+
+### Viewing and resetting
+
+**wp-admin → Tools → Partner Link Clicks**, plus a summary widget on the
+Dashboard. Both need the `edit_pages` capability, so any Editor or
+Administrator sees them.
+
+Each row carries a **Reset to zero** button. It is a form POST rather than a
+link, because a GET that destroys data can be fired by anything that follows
+links on a page — a prefetch, a link checker, a browser extension warming the
+cache — and the nonce survives all of them, since the browser sends it
+willingly. None of those is an intention to reset. It clears the daily history
+along with the total; "reset to zero" that left yesterday's rows behind would
+be a lie.
+
+Re-verified after resetting: a subsequent click counted 1, confirming the
+reset does not disable counting. Cleared again afterwards.
 
 ### Known limitation
 
